@@ -23,6 +23,7 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...                            ${nonce} 
     Send Request Client Credentials    
     Verify Access Token
+    Sleep    1s
     # Decode Token To JWT   
 
 TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
