@@ -5,6 +5,7 @@ Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.r
 Resource    ../Resource/Keyword/ClientCredentialKeyword.robot    
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
+    [Documentation]     Owner : sasipen
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}     
@@ -15,6 +16,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Verify Access Token
     # Decode Token To JWT 
 TST_F7_1_1_002 ClientCredentail with client id on browser
+    [Documentation]     Owner : sasipen
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_browser} 
@@ -23,7 +25,6 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...                            ${nonce} 
     Send Request Client Credentials    
     Verify Access Token
-    Sleep    1s
     # Decode Token To JWT   
 
 TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
