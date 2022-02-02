@@ -1,6 +1,5 @@
 *** Settings ***
 Library    String
-Library    AppiumLibrary
 Resource    ../Variable/ClientCredentialVariable.robot
 Resource    ../../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.robot
 
