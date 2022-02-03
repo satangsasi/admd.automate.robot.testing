@@ -69,4 +69,5 @@ Set Documentation Test
     #Set Test Documentation    Owner : sasipen\r\n***Condition***\r\n${condition_message}\r\n***Expected Result***\r\n${expected_result_message}\r\n***Provisioning data***\r\n request ${type_request} ${url}
     Set Test Documentation    \r\n request ${type_request} ${url}          Append=***Provisioning data***
 
-Set Documentation Test
+Set Documentation Test Header
+    Set Test Documentation    \r\n header ${HEADER_CLIENT_CREDENTIALS}      Append=ture    

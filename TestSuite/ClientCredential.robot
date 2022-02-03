@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ./Resource_init.robot
+Resource    
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
     [Documentation]     Owner : sasipen
@@ -15,6 +15,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Set Documentation Test         url=${url_client_credentials_dev} 
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
+    Set Documentation Test Header
     # Set Body Client Credentials    ${client_id_OhFw3u}     
     # ...                            ${client_secret_id_OhFw3u}    
     # ...                            ${grant_type}    
