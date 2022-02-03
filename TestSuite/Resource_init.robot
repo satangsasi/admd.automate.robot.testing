@@ -7,11 +7,11 @@ Library    String
 Resource    ../../arcadia.automate.buffet/UIBuffet/BrowserLibrary_UICommonKeywords.robot
 Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.robot
 # Keywords
-Resource    ../Resources/Keyword/ClientCredentialKeyword.robot
-Resource    ../Resources/Keyword/LDAPallOUKeyword.robot
+Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
+Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 # Variables
-Resource    ../Resources/Variable/CommonVariable.robot
-Resource    ../Resources/Variable/ClientCredentialVariable.robot
-Resource    ../Resources/Variable/LDAPallOUVariable.robot
+Resource    ../Resources/Variables/CommonVariable.robot
+Resource    ../Resources/Variables/ClientCredentialVariable.robot
+Resource    ../Resources/Variables/LDAPallOUVariable.robot
 # Repositories
 Resource    ../Resources/Repositories/LDAPallOURepository.robot
