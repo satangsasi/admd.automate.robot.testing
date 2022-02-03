@@ -59,5 +59,13 @@ Verify Access Token
 Verify Response Client Credentials Error
     [Arguments]        ${error_message}
     Verify Value Response By Key    error        ${error_message}  
+# Decode Token To JWT 
+#     Set Test Documentation    doc
 
-Decode Token To JWT 
+
+
+Set Documentation Test
+    [Arguments]    ${condition_message}=${EMPTY}        ${expected_result_message}=${EMPTY}    ${type_request}=POST   ${url}=${EMPTY}                 
+    Set Test Documentation    Owner : sasipen\r\n***Condition***\r\n${condition_message}\r\n***Expected Result***\r\n${expected_result_message}\r\n***Provisioning data***\r\n request ${type_request} ${url}
+
+
