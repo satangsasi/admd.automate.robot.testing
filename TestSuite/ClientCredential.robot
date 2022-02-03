@@ -13,14 +13,9 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...    User can loginB2B success and  recieved Access Token.
     ...
     ...    ***Provisioning data***
-    ...    Curl for ClientCredential : curl --location --request POST 'https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token' \
-    ...    --header 'Content-Type: application/x-www-form-urlencoded' \
-    ...    --data-urlencode 'client_id=OhFw3uAQgMeBUD8IOxYZRO0HNSI7VuX/w5SmiwOO7UU=' \
-    ...    --data-urlencode 'client_secret=cb32b1d1e0f1361881aadb0cc175778e' \
-    ...    --data-urlencode 'grant_type=client_credentials' \
-    ...    --data-urlencode 'nonce=robototp_20210322'"
+    ... 
     ...
-    Set Documentation Test         expected_result_message=User:123\r\npassword     url=${url_client_credentials_dev} 
+    Set Documentation Test         url=${url_client_credentials_dev} 
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
     # Set Body Client Credentials    ${client_id_OhFw3u}     
