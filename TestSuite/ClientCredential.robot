@@ -1,8 +1,5 @@
 *** Settings ***
-Library    Collections
-Library    RequestsLibrary
-Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.robot
-Resource    ../Resources/Keyword/ClientCredentialKeyword.robot    
+Resource    ./Resource_init.robot
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
     [Documentation]     Owner : sasipen

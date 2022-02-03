@@ -1,7 +1,5 @@
 *** Settings ***
-Library    String
-Resource    ../Variable/ClientCredentialVariable.robot
-Resource    ../../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.robot
+Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
