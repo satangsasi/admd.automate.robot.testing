@@ -11,7 +11,7 @@ Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 # Variables
 Resource    ../Resources/Variables/CommonVariable.robot
-Resource    ../Resources/Variables/ClientCredentialVariables.robot
-Resource    ../Resources/Variables/LDAPallOUVariables.robot
+Resource    ../Resources/Variables/ClientCredentialVariable.robot
+Resource    ../Resources/Variables/LDAPallOUVariable.robot
 # Repositories
 Resource    ../Resources/Repositories/LDAPallOURepository.robot
