@@ -1,5 +1,6 @@
 *** Settings ***
-Resource    ./Resource_init.robot    
+Resource    ./Resource_init.robot
+
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
     [Documentation]     Owner : sasipen
@@ -14,13 +15,13 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u}     
-    ...                            ${client_secret_id_OhFw3u}    
-    ...                            ${grant_type}    
-    ...                            ${nonce}  
-    Send Request Client Credentials      
+    Set Body Client Credentials    ${client_id_OhFw3u}
+    ...                            ${client_secret_id_OhFw3u}
+    ...                            ${grant_type}
+    ...                            ${nonce}
+    Send Request Client Credentials
     Verify Access Token
-    # Decode Token To JWT 
+    # Decode Token To JWT
 TST_F7_1_1_002 ClientCredentail with client id on browser
     [Documentation]     Owner : sasipen
     ...
@@ -30,16 +31,16 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...    \r\n User can loginB2B success and  recieved Access Token.
     ...
     ...    ***Provisioning data***
-    ... 
+    ...
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u_browser} 
-    ...                            ${client_secret_id_OhFw3u_browser}   
-    ...                            ${grant_type}    
-    ...                            ${nonce} 
-    Send Request Client Credentials    
+    Set Body Client Credentials    ${client_id_OhFw3u_browser}
+    ...                            ${client_secret_id_OhFw3u_browser}
+    ...                            ${grant_type}
+    ...                            ${nonce}
+    Send Request Client Credentials
     Verify Access Token
-    # Decode Token To JWT   
+    # Decode Token To JWT
 
 TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     [Documentation]     Owner : sasipen

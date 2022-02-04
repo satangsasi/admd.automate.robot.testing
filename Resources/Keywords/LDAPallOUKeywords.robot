@@ -306,7 +306,7 @@ Fill Username And Password
 Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Click    ${btn_login}
+    Click     ${btn_login}
 
 Verify Login Fail
     [Documentation]    Owner: Nakarin
