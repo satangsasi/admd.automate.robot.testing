@@ -9,6 +9,7 @@ Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.r
 # Keywords
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
+Resource    ../Resources/Keywords/Commonkeywords.robot
 # Variables
 Resource    ../Resources/Variables/CommonVariable.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
