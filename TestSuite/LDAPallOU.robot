@@ -24,42 +24,42 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     #Decode Token To JWT
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider 
-    
+    [Tags]    On-Hold
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
-    
+    [Tags]    On-Hold
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
-    
+    [Tags]    On-Hold
 TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
-    
+    [Tags]    On-Hold
 TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
-    
+    [Tags]    On-Hold
 TST_F10_1_1_008 Verify Decrypted PID ldap Content provider camel case
-    
+    [Tags]    On-Hold
 TST_F10_1_1_009 Verify Logout with Ldap Content provider
-    
+    [Tags]    On-Hold
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
-    
+    [Tags]    On-Hold
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
-    
+    [Tags]    On-Hold
 TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
-
+    [Tags]    On-Hold
 TST_F10_1_1_013 Verify Refresh Token with login ldap employee
-
+    [Tags]    On-Hold
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
-
+    [Tags]    On-Hold
 TST_F10_1_1_015 Verify Refresh Token with login ldap employee
-
+    [Tags]    On-Hold
 TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
-
+    [Tags]    On-Hold
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
-
+    [Tags]    On-Hold
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
-
+    [Tags]    On-Hold
 TST_F10_1_1_019 Verify Logout with Ldap Employee
-
+    [Tags]    On-Hold
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
-
+    [Tags]    On-Hold
 
 
 
