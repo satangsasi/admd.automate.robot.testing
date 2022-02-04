@@ -31,7 +31,6 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...    \r\n User can loginB2B success and  recieved Access Token.
     ...
     ...    ***Provisioning data***
-    ...
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_browser}
