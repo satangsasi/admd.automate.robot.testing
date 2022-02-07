@@ -52,7 +52,7 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     ...    ***Provisioning data***
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
-    Set Body Client Credentials    ${invalid_client_id_OhFw3u}   
+    Set Body Client Credentials    ${client_id_OhFw3u_invalid}   
     ...                            ${client_secret_id_OhFw3u}  
     ...                            ${grant_type} 
     ...                            ${nonce} 
@@ -72,7 +72,7 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     Set Content Header             ${url_client_credentials_dev}
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}   
-    ...                            ${invalid_client_secret_id_OhFw3u}
+    ...                            ${client_secret_id_OhFw3u_invalid}
     ...                            ${grant_type} 
     ...                            ${nonce} 
     Send Request Client Credentials Invalid    401
@@ -92,7 +92,7 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}     
     ...                            ${client_secret_id_OhFw3u}
-    ...                            ${invalid_grant_type}   
+    ...                            ${grant_type_invalid_}   
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400  
     Verify Response Client Credentials Error   unsupported_grant_type
@@ -178,7 +178,7 @@ TST_F7_0_1_008 Verify ClientCredentail With Unknow URL
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${invalid_url_client_credentials_dev} 
+    Set Content Header             ${url_client_credentials_dev_invalid}
     ...                            ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u} 
     ...                            ${client_secret_id_OhFw3u} 
