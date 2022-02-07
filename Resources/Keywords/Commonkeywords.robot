@@ -19,9 +19,3 @@ Set Document Actual Result
     [Arguments]    ${actual_result}
     Set Test Documentation    \r\n ***Actual Result***      Append=True
     Set Test Documentation    \r\n${actual_result}          Append=True
-    
-Append Response Data
-    [Documentation]    Owner: Nakarin
-    [Arguments]     ${header}=${EMPTY}    ${body_response}=${EMPTY}
-    ${response}    Convert To String    ${header}\r\n${body}
-    Set Test Variable    ${RESPONSE_DATA}    ${response}
