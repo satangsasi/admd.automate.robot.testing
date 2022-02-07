@@ -4,27 +4,38 @@ Resource    ./Resource_init.robot
 *** Test Cases ***
 TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233 
     [Documentation]     Owner : sasipen
+    [Tags]    Content provider        
     Open Browser                  ${url_authentication}    ${default_browser}   
-    Fill Username And Password    ${username}              ${password}    
+    Fill Username And Password    ${user_provider}         ${pass_provider}    
     Press Login Button
     Create URL For Get Token
     Open Browser                 ${URL_GET_TOKEN}          ${default_browser}                     
-    Verify Text Access Token 
+    Verify Resource Access Token  
     Take Screenshot Verify Success Scene   
     #Decode Token To JWT
 TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
+    [Documentation]     Owner : sasipen
+    [Tags]    Content provider
     Open Browser And Login 
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
     New Page                 ${url_authentication}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}                   
-    Verify Text Access Token     
+    Verify Resource Access Token    
     Take Screenshot Verify Success Scene  
     #Decode Token To JWT
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider 
-    [Tags]    On-Hold
+    [Documentation]     Owner : sasipen
+    [Tags]    Content provider
+    Open Browser And Login 
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}   
+    Create URL For Get Refresh Token
+    New Page                 ${URL_GET_REFRESH_TOKEN}
+    Verify Resource Access Token 
+    Take Screenshot Verify Success Scene 
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Tags]    On-Hold
