@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
+Test Teardown    
 
 *** Test Cases ***
 TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233 
@@ -338,7 +339,7 @@ TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
     # Open Browser    ${url_authentication}    Firefox
     Open Browser    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/    chromium
     Wait Until Network Is Idle
-    Verify Value At Locator    //pre    {"error":"invalid_request"}
+    Verify Value At Locator    ${lbl_json_response_on_webpage}    {"error":"invalid_request"}
     # Sleep    10s
 TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin

@@ -59,7 +59,8 @@ Send Request Client Credentials Invalid
 Verify Access Token
     ${token}    Get Value Response By Key     access_token
     Should Match Regexp          ${token}       .+  
-    Log     ${token} 
+    Log     ${token}
+    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${token}
 
     
 Verify Response Client Credentials Error

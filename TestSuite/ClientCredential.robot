@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-
+# Test Teardown    Set Document Actual Result    ${ACTUAL_RESULT}
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
     [Documentation]     Owner : sasipen
@@ -19,7 +19,9 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...                            ${nonce}
     Send Request Client Credentials
     Verify Access Token
-    # Decode Token To JWT
+    # Append Response Data    ${RESPONSE.headers}    ${RESPONSE.json()}
+    [Teardown]    Set Document Actual Result    ${RESPONSE.json}
+
 TST_F7_1_1_002 ClientCredentail with client id on browser
     [Documentation]     Owner : sasipen
     ...
