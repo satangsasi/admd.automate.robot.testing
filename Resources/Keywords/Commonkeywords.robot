@@ -12,4 +12,16 @@ Set Documentation Test Header
 
 Set Documentation Test Body
     [Arguments]    ${data_body}
-    Set Test Documentation    \r\n body ${data_body}        Append=True 
+    Set Test Documentation    \r\n body ${data_body}        Append=True
+
+Set Document Actual Result
+    [Documentation]    Owner: Nakarin
+    [Arguments]    ${actual_result}
+    Set Test Documentation    \r\n ***Actual Result***      Append=True
+    Set Test Documentation    \r\n${actual_result}          Append=True
+    
+Append Response Data
+    [Documentation]    Owner: Nakarin
+    [Arguments]     ${header}=${EMPTY}    ${body_response}=${EMPTY}
+    ${response}    Convert To String    ${header}\r\n${body}
+    Set Test Variable    ${RESPONSE_DATA}    ${response}
