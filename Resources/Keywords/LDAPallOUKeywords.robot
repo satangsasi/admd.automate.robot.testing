@@ -15,15 +15,15 @@ Get Code From Authentication
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
 
-Verify Resource Access Token 
+Verify Response Access Token 
     ${message}            Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}       Convert String to JSON    ${message}   
     Log Many     &{json_message}
-    Dictionary Should Contain Key    ${json_message}    access_token 
-    Dictionary Should Contain Key    ${json_message}    id_token 
-    ${token}    Set Variable         ${json_message}[access_token]
+    Dictionary Should Contain Key          ${json_message}    access_token 
+    Dictionary Should Contain Key          ${json_message}    id_token 
+    ${token_value}    Set Variable         ${json_message}[access_token]
     Log      ${token}    
-    Set Test Variable    ${TOKEN}    ${token}         
+    Set Test Variable    ${TOKEN_LDAP}    ${token_value}         
     Take Screenshot Verify Success Scene
 # Get Token From Text Access Token
 #     ${token}    Split String    ${MESSAGE}      "

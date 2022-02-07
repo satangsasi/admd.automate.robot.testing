@@ -56,7 +56,7 @@ Send Request Client Credentials Invalid
     [Arguments]        ${statuscode}    
     Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}   expected_status=${statuscode}    
 
-Verify Access Token
+Verify Response Access Token Client Credentials 
     ${token}    Get Value Response By Key     access_token
     Should Match Regexp          ${token}       .+  
     Log     ${token}
