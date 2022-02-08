@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
+
 *** Keywords ***
 Set Documentation Test Request
     [Arguments]    ${type_request}    ${url}            

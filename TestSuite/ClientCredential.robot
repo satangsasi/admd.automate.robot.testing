@@ -1,6 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
 Test Teardown    Set Document Actual Result    ${TOKEN_CLIENT_CREDENTAIL}
+
+
 *** Test Cases ***
 TST_F7_1_1_001 ClientCredentials with client id on backend
     [Documentation]     Owner : sasipen
@@ -58,7 +60,6 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     Send Request Client Credentials Invalid    401  
     Verify Response Client Credentials Error   invalid_client
     
-
 TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     [Documentation]     Owner : sasipen
     ...
@@ -76,7 +77,6 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     ...                            ${nonce} 
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   invalid_client 
-    
 
 TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     [Documentation]     Owner : sasipen
@@ -95,7 +95,6 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400  
     Verify Response Client Credentials Error   unsupported_grant_type
-    
 
 TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     [Documentation]     Owner : sasipen
@@ -114,7 +113,6 @@ TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     ...                            ${nonce}
     Send Request Client Credentials Invalid    401        
     Verify Response Client Credentials Error   invalid_client    
-    
 
 TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     [Documentation]     Owner : sasipen
@@ -132,7 +130,6 @@ TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400    
     Verify Response Client Credentials Error   invalid_request 
-    
 
 TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     [Documentation]     Owner : sasipen

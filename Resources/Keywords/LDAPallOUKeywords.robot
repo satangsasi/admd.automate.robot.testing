@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
+
 *** Keywords ***
 Create URL For Get Token
     Wait Until Network Is Idle
@@ -16,8 +17,8 @@ Get Code From Authentication
 
 Verify Response Access Token Login LDAP
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
-    ${message}            Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}       evaluate    json.loads('''${message}''')    json      
+    ${message}         Get Text    ${lbl_json_response_on_webpage} 
+    &{json_message}    Evaluate    json.loads('''${message}''')    json      
     Log Many     &{json_message}
     IF    '${key_response_2}' != '${EMPTY}'
         Dictionary Should Contain Key          ${json_message}    access_token 
@@ -39,10 +40,11 @@ Verify Response Access Token Login LDAP
         Take Screenshot Verify Success Scene
     END
     Set Actual Result LDAP    actual_login=${ACTUAL_RESULT_LOGIN}
+
 Verify Response Access Token Refresh LDAP
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
-    ${message}            Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}       evaluate    json.loads('''${message}''')    json      
+    ${message}         Get Text    ${lbl_json_response_on_webpage} 
+    &{json_message}    Evaluate    json.loads('''${message}''')    json      
     Log Many     &{json_message}
     IF    '${key_response_2}' != '${EMPTY}'
         Dictionary Should Contain Key          ${json_message}    access_token 
@@ -64,9 +66,10 @@ Verify Response Access Token Refresh LDAP
         Take Screenshot Verify Success Scene
     END
     Set Actual Result LDAP    ${ACTUAL_RESULT_LOGIN}    ${ACTUAL_RESULT_REFRESH}    
+
 Set Actual Result LDAP    
     [Arguments]            ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
-      Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
+    Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
 Open Browser And Login 
     [Arguments]            ${type_url_authentication}
@@ -76,13 +79,14 @@ Open Browser And Login
     Press Login Button
 
 Get Code From Key Refresh Token 
-    ${message}            Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}       evaluate    json.loads('''${message}''')    json 
-    ${access_token}       Set Variable            ${json_message}[access_token]
+    ${message}         Get Text    ${lbl_json_response_on_webpage} 
+    &{json_message}    Evaluate    json.loads('''${message}''')    json 
+    ${access_token}    Set Variable            ${json_message}[access_token]
     Log     ${access_token}   
     ${code_refresh_token}    Set Variable         ${json_message}[refresh_token]
     Log    ${code_refresh_token}   
     Set Test Variable    ${CODE_REFRESH_TOKEN}    ${code_refresh_token} 
+
 Create URL For Get Refresh Token
     Wait Until Network Is Idle
     Get Code From Key Refresh Token 

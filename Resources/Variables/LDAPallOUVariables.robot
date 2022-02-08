@@ -15,4 +15,3 @@ ${url_get_refresh_token_schema_dev}    https://iot-apivr.ais.co.th/authtest/v3.2
 # Error Message
 ${error_title}           Wrong Username or Password
 ${error_message}         Please check your Username or Password.
-

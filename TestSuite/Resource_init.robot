@@ -1,9 +1,9 @@
 *** Settings ***
-Library    Browser    timeout=0:00:20    run_on_failure=Take Screenshot Failure Specific Name
 Library    Collections
-Library    RequestsLibrary
 Library    String
+Library    RequestsLibrary
 Library    JSONLibrary
+Library    Browser    timeout=0:00:20    run_on_failure=Take Screenshot Failure Specific Name
 # Buffets
 Resource    ../../arcadia.automate.buffet/UIBuffet/BrowserLibrary_UICommonKeywords.robot
 Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APIKeywords.robot
