@@ -8,7 +8,7 @@ Create URL For Get Token
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}    
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-
+    #Set Documentation Test Url Get Token     ${URL_GET_TOKEN}    
 Get Code From Authentication
     ${url_authentication_access}    Get Url 
     ${code}    Split String         ${url_authentication_access}    =
@@ -57,33 +57,33 @@ Verify Value Response LDAP By Key
     Should Match Regexp    ${value}     .+
     [Return]    ${value}
 
-Set Response Login To Actual Result Login  
-    [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
-    IF    '${value_2}' != '${EMPTY}'
-        Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}\r\nid token login LDAP ${value_2}      
-    ELSE
-        Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}
-    END
+# Set Response Login To Actual Result Login  
+#     [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
+#     IF    '${value_2}' != '${EMPTY}'
+#         Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}\r\nid token login LDAP ${value_2}      
+#     ELSE
+#         Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}
+#     END
 
-Set Response Refresh To Actual Result Refresh
-    [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
-    IF    '${value_2}' != '${EMPTY}'
-        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}\r\nid token refresh LDAP ${value_2}      
-    ELSE
-        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}
-    END
+# Set Response Refresh To Actual Result Refresh
+#     [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
+#     IF    '${value_2}' != '${EMPTY}'
+#         Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}\r\nid token refresh LDAP ${value_2}      
+#     ELSE
+#         Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}
+#     END
 
-Append Response Login And Refresh To Actual Result  
-    [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
-    Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
+# Append Response Login And Refresh To Actual Result  
+#     [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
+#     Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
-Open Browser And Login 
-    [Arguments]            ${type_url_authentication}
+Create Browser Session    
+    [Arguments]    ${url}
     Set Up Browser Fullscreen        
-    New Page                      ${type_url_authentication}      
-    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}    
-    Press Login Button
+    New Page                       ${url}      
+    #Set Documentation Test Url Authentication    ${url} 
 
+    
 Get Code From Key Refresh Token 
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
@@ -99,7 +99,7 @@ Create URL For Get Refresh Token
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_dev}    _code_    ${CODE_REFRESH_TOKEN}  
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}   
-
+    #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
 Open Browser Login And Open Page Get Token 
     [Arguments]    ${type_url_authentication}
     Open Browser And Login   ${type_url_authentication}
@@ -390,7 +390,10 @@ Fill Username And Password
     [Tags]    keyword_communicate
     Fill Text    ${txt_username_ldap}    ${user}
     Fill Text    ${txt_password_ldap}    ${pass}
-
+    Set Test Provisioning Data    User : ${user}
+    Set Test Provisioning Data    Password : ${pass}
+    # Set Documentation Test User        ${user}
+    # Set Documentation Test Password    ${pass}    
 Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
