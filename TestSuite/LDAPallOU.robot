@@ -1,10 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-<<<<<<< HEAD
-Test Teardown    Run Keyword And Ignore Error    Set Document Actual Result    ${ACTUAL_RESULT}      
-=======
 Test Teardown    Run Keyword And Ignore Error    Set Document Actual Result        
->>>>>>> d88205119042b1b4255f334c8f130e6a1bd61df3
 
 
 *** Test Cases ***

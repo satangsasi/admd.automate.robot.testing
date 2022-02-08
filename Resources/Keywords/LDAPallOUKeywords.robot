@@ -102,30 +102,15 @@ Create URL For Get Refresh Token
     #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
 Open Browser Login And Open Page Get Token 
     [Arguments]    ${type_url_authentication}
-    Open Browser And Login   ${type_url_authentication}
+    Create Browser Session   ${type_url_authentication}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
 
-<<<<<<< HEAD
- ${access_token_value}    Set Variable         ${json_message}[access_token]
-        ${id_token_value}        Set Variable         ${json_message}[id_token]
-        Set Test Variable    ${ACCESS_TOKEN_LOGIN_LDAP}    ${access_token_value}  
-        Set Test Variable    ${ID_TOKEN_LOGIN_LDAP}        ${id_token_value}
-        Log      ${ACCESS_TOKEN_LOGIN_LDAP}   
-        Log      ${ID_TOKEN_LOGIN_LDAP}  
-        Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${ACCESS_TOKEN_LOGIN_LDAP}\r\nid token login LDAP ${ID_TOKEN_LOGIN_LDAP}      
-        Take Screenshot Verify Success Scene
-
-
-
-
-=======
 Get Value From Access Token
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json        
     ${value_access_token}    Set Variable     ${json_message.access_ken}
     Set Test Variable    ${ACCESS_TOKEN_FOR_LOGOUT}    ${value_access_token} 
->>>>>>> bec5868532241e3ab706848fa65f357e643e8c80
 
 
 
