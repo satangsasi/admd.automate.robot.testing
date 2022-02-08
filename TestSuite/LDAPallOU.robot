@@ -413,7 +413,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
     Set Up Browser Fullscreen
-    New Page    ${url_ldap_authentication}
+    New Page    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    password425
     Press Login Button
     Wait Until Network Is Idle
@@ -424,7 +424,7 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
     Set Up Browser Fullscreen
-    New Page    ${url_ldap_authentication}
+    New Page    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password        426    ${pass_ldap_provider}
     Press Login Button
     Wait Until Network Is Idle
@@ -455,19 +455,20 @@ TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secr
 
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee
-    Open Browser             ${url_authentication}    ${default_browser}
-    Fill Username And Password    ${user_employee}    Nop#3246@Stg!sss
+    [Tags]    Employee    Test
+    Set Up Browser Fullscreen
+    New Page    ${url_authentication_LDAP_${test_site}}
+    Fill Username And Password    ${user_ldap_employee}    Nop#3246@Stg!sss
     Press Login Button
     Wait Until Network Is Idle
     Verify Login Fail
     # Verify Log From Server
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
-    [Tags]    Employee
-    Open Browser             ${url_authentication}    ${default_browser}
-    Fill Username And Password    ${user_employee}    ${pass_employee}
-    # Fill Username And Password    noppararhhh    ${pass_employee}
+    [Tags]    Employee    Test
+    Set Up Browser Fullscreen
+    New Page    ${url_authentication_LDAP_${test_site}}
+    Fill Username And Password    noppararhhh    ${pass_ldap_employee}
     Press Login Button
     Wait Until Network Is Idle
     Verify Login Fail

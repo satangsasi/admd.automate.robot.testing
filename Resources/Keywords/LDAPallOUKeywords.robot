@@ -14,10 +14,10 @@ Get Code From Authentication
     ${code}    Split String         ${url_authentication_access}    =
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
-Get Value Response LDAP By Key 
-    [Arguments]     ${response_key}
-    &{response_value}       Set Variable    ${RESPONSE_JSON_MESSAGE}
-    ${value_${response_key}}    Set Variable    ${response_value.${response_key}}
+# Get Value Response LDAP By Key 
+#     [Arguments]     ${response_key}
+#     &{response_value}       Set Variable    ${RESPONSE_JSON_MESSAGE}
+#     ${value_${response_key}}    Set Variable    ${response_value.${response_key}}
 Verify Response Access Token Login LDAP
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
@@ -25,16 +25,15 @@ Verify Response Access Token Login LDAP
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}     
     IF    '${key_response_2}' != '${EMPTY}'
-        Dictionary Should Contain Key          ${json_message}    access_token 
-        Get Value Response LDAP By Key    access_token
-        Should Match Regexp          ${access_token}       .+  
+        Dictionary Should Contain Key    &{RESPONSE_JSON_MESSAGE}    access_token 
+        ${value_${key_response_1}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_1}}                
+        Log      ${value_${key_response_1}} 
         Dictionary Should Contain Key          ${json_message}    id_token 
-        ${id_token}         Get Value Response LDAP By Key     id_token
-        Should Match Regexp          ${id_token}         .+ 
+        ${value_${key_response_2}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_2}}  
         Take Screenshot Verify Success Scene
     ELSE
         Dictionary Should Contain Key                 ${json_message}    access_token 
-        ${access_token}     Get Value Response By Key LDAP    access_token
+        ${value_${key_response_1}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_1}} 
         # ${access_token_value}    Set Variable         ${json_message}[access_token]
         # Set Test Variable    ${ACCESS_TOKEN_LOGIN_LDAP}    ${access_token_value}  
         # Log      ${ACCESS_TOKEN_LOGIN_LDAP}
@@ -412,3 +411,13 @@ Verify Login Fail
     Verify Value At Locator    ${lbl_error_title}      ${error_title}
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
     Take Screenshot At Verify Point    Fail Login Message
+    Append Text Login Fail To Actual Result
+Append Text Login Fail To Actual Result
+    [Documentation]    Owner: Nakarin
+    # [Arguments]     ${list_variable}    ${locator}
+    ${actual_error_title}      Get Text    ${lbl_error_title}
+    ${actual_error_message}    Get Text    ${lbl_error_message}
+    Set Test Variable    ${ACTUAL_RESULT}    '${actual_error_title}\r\n${actual_error_message}'
+    # ${text}    Get Text     ${locator}
+    # Append To List    ${list_variable}    ${text}
+
