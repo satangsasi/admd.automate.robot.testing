@@ -9,4 +9,4 @@ ${lbl_error_title}          //*[@id='swal2-title']
 ${lbl_error_message}        //*[@id='swal2-content']
 
 # JSON
-${lbl_json_response_on_webpage}    xpath=//pre
+${lbl_json_response_on_webpage}    //pre

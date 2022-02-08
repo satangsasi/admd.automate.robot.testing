@@ -396,7 +396,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    Test
     Open Browser             ${url_authentication}    ${default_browser}
     Fill Username And Password    ${user_provider}    password425
     Press Login Button
@@ -406,7 +406,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
 
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    Test
     Open Browser    ${url_authentication}    ${default_browser}
     Fill Username And Password        426    ${pass_provider}
     Press Login Button
