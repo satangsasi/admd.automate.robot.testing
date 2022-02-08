@@ -18,5 +18,5 @@ Set Documentation Test Body
 Set Document Actual Result
     [Documentation]    Owner: Nakarin
     [Arguments]    ${actual_result}=${EMPTY}
-    Set Test Documentation    \r\n ***Actual Result***      Append=True
+    Set Test Documentation    \r\n***Actual Result***       Append=True
     Set Test Documentation    \r\n${actual_result}          Append=True
