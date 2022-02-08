@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-#Test Teardown    Set Document Actual Result    ${TOKEN_CLIENT_CREDENTAIL}
+Test Teardown    Run Keyword And Ignore Error       Set Document Actual Result    ${TOKEN_CLIENT_CREDENTAIL}
 
 
 *** Test Cases ***
