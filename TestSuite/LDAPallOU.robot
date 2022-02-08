@@ -22,6 +22,7 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     New Page                      ${URL_GET_TOKEN}                             
     Verify Response Access Token Login LDAP    key_response_1=access_token    key_response_2=id_token  
     #Decode Token To JWT
+    
 TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...
@@ -75,6 +76,7 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     Create URL For Get Refresh Token  
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Verify Response Access Token Refresh LDAP     key_response_1=access_token    key_response_2=id_token
+    
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
     ...

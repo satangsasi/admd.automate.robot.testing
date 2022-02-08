@@ -18,6 +18,7 @@ Get Code From Authentication
 #     [Arguments]     ${response_key}
 #     &{response_value}       Set Variable    ${RESPONSE_JSON_MESSAGE}
 #     ${value_${response_key}}    Set Variable    ${response_value.${response_key}}
+
 Verify Response Access Token Login LDAP
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
@@ -101,12 +102,6 @@ Open Browser Login And Open Page Get Token
     Open Browser And Login   ${type_url_authentication}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
-
-
-
-
-
-
 
  ${access_token_value}    Set Variable         ${json_message}[access_token]
         ${id_token_value}        Set Variable         ${json_message}[id_token]
@@ -391,6 +386,7 @@ Open Browser Login And Open Page Get Token
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Fill Username And Password
     [Documentation]    Owner: Nakarin
     ...    Recieve Arguments Username and Password 
@@ -412,12 +408,9 @@ Verify Login Fail
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
     Take Screenshot At Verify Point    Fail Login Message
     Append Text Login Fail To Actual Result
+
 Append Text Login Fail To Actual Result
     [Documentation]    Owner: Nakarin
-    # [Arguments]     ${list_variable}    ${locator}
     ${actual_error_title}      Get Text    ${lbl_error_title}
     ${actual_error_message}    Get Text    ${lbl_error_message}
     Set Test Variable    ${ACTUAL_RESULT}    '${actual_error_title}\r\n${actual_error_message}'
-    # ${text}    Get Text     ${locator}
-    # Append To List    ${list_variable}    ${text}
-

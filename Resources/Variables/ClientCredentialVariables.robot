@@ -22,8 +22,6 @@ ${client_secret_id_OhFw3u}                            cb32b1d1e0f1361881aadb0cc1
 ${client_secret_id_OhFw3u_browser}                    adfea93d79e56e5219eccd63cc884ae3  
 ${client_secret_id_OhFw3u_invalid}                    cb32b1d1e0f1361881aadb 
 ${client_secret_id_another}                           4e95a86d1a09e69365de19ddd5692035
-
 ${grant_type}                                         client_credentials        
 ${grant_type_invalid}                                 client_creden  
-
 ${nonce}                                              robototp_20210322
