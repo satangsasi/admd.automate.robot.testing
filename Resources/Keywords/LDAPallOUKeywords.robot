@@ -417,7 +417,7 @@ Verify Login Fail
     [Tags]    keyword_communicate
     Verify Value At Locator    ${lbl_error_title}      ${error_title}
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
-    Take Screenshot At Verify Point    Fail Login Message
+    Take Screenshot Verify Success Scene
     Append Text Login Fail To Actual Result
 
 Append Text Login Fail To Actual Result
