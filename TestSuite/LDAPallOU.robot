@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Set Document Actual Result    ${ACTUAL_RESULT}      
+Test Teardown    Set Document Actual Result    ${ACTUAL_RESULT}
 
 
 *** Test Cases ***
@@ -13,7 +13,7 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...    \r\n User logins successfully.
     ...
     ...    ***Provisioning data***
-    [Tags]    Content_provider    sasi
+    [Tags]    Content_Provider    sasi
     Set Up Browser Fullscreen        
     New Page                      ${url_authentication_LDAP_dev}    
     Fill Username And Password    ${user_provider}         ${pass_provider}    
@@ -31,7 +31,7 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     ...    \r\n User logins successfully.
     ...
     ...    ***Provisioning data***
-    [Tags]    Content provider     sasi
+    [Tags]    Content_Provider     sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_LDAP_dev}
     New Page                 ${url_authentication_LDAP_dev}
     Create URL For Get Token
@@ -49,7 +49,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     ...    \r\n Successfully login and got access_token. 
     ...
     ...    ***Provisioning data***
-    [Tags]    Content provider    sasi
+    [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_LDAP_Scope_Profile}
     Verify Response Access Token Login LDAP       key_response_1=access_token
     Create URL For Get Refresh Token  
@@ -66,7 +66,7 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     ...    \r\n Successfully login and got access_token. 
     ...
     ...    ***Provisioning data***
-    [Tags]    Content provider    sasi
+    [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_LDAP_Scope_Profile}
     New Page                                      ${url_authentication_LDAP_Scope_Profile}
     Create URL For Get Token
@@ -85,7 +85,7 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     ...    \r\n Successfully login and got access_token. 
     ...
     ...    ***Provisioning data***
-    [Tags]    Content provider    sasi
+    [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_LDAP_Scope_Profile}
     Verify Response Access Token Login LDAP       key_response_1=access_token
     Create URL For Get Refresh Token  
@@ -102,7 +102,7 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     ...    \r\n Successfully login and got access_token. 
     ...
     ...    ***Provisioning data***
-    [Tags]    Content provider    sasi
+    [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_LDAP_No_Scope_Profile}
     New Page                                      ${url_authentication_LDAP_No_Scope_Profile}
     Create URL For Get Token
@@ -413,7 +413,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
     Set Up Browser Fullscreen
-    New Page    ${url_ldap_authentication}
+    New Page    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    password425
     Press Login Button
     Wait Until Network Is Idle
@@ -424,7 +424,7 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
     Set Up Browser Fullscreen
-    New Page    ${url_ldap_authentication}
+    New Page    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password        426    ${pass_ldap_provider}
     Press Login Button
     Wait Until Network Is Idle
@@ -455,19 +455,20 @@ TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secr
 
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee
-    Open Browser             ${url_authentication}    ${default_browser}
-    Fill Username And Password    ${user_employee}    Nop#3246@Stg!sss
+    [Tags]    Employee    Test
+    Set Up Browser Fullscreen
+    New Page    ${url_authentication_LDAP_${test_site}}
+    Fill Username And Password    ${user_ldap_employee}    Nop#3246@Stg!sss
     Press Login Button
     Wait Until Network Is Idle
     Verify Login Fail
     # Verify Log From Server
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
-    [Tags]    Employee
-    Open Browser             ${url_authentication}    ${default_browser}
-    Fill Username And Password    ${user_employee}    ${pass_employee}
-    # Fill Username And Password    noppararhhh    ${pass_employee}
+    [Tags]    Employee    Test
+    Set Up Browser Fullscreen
+    New Page    ${url_authentication_LDAP_${test_site}}
+    Fill Username And Password    noppararhhh    ${pass_ldap_employee}
     Press Login Button
     Wait Until Network Is Idle
     Verify Login Fail

@@ -402,3 +402,13 @@ Verify Login Fail
     Verify Value At Locator    ${lbl_error_title}      ${error_title}
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
     Take Screenshot At Verify Point    Fail Login Message
+    Append Text Login Fail To Actual Result
+Append Text Login Fail To Actual Result
+    [Documentation]    Owner: Nakarin
+    # [Arguments]     ${list_variable}    ${locator}
+    ${actual_error_title}      Get Text    ${lbl_error_title}
+    ${actual_error_message}    Get Text    ${lbl_error_message}
+    Set Test Variable    ${ACTUAL_RESULT}    '${actual_error_title}\r\n${actual_error_message}'
+    # ${text}    Get Text     ${locator}
+    # Append To List    ${list_variable}    ${text}
+
