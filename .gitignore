@@ -4,3 +4,7 @@ TestSuite/report.html
 TestSuite/Result
 Result
 test.robot
+TestSuite/test/log.html
+TestSuite/test
+TestSuite/test1
+TestSuite/test2
