@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
-
 *** Keywords ***
 Create URL For Get Token
     Wait Until Network Is Idle
