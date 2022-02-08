@@ -18,10 +18,6 @@ Set Documentation Test Body
 Set Document Actual Result
     [Documentation]    Owner: Nakarin
     [Arguments]    ${actual_result}=${EMPTY}
-<<<<<<< HEAD
-    Set Test Documentation    \r\n***Actual Result***       Append=True
-    Set Test Documentation    \r\n${actual_result}          Append=True
-=======
     Set Test Documentation    ${DOC_PROVISIONING_DATA}     Append=True
     Set Test Documentation    \r\n***Actual Result***      Append=True
     Set Test Documentation    \r\n${actual_result}         Append=True
@@ -55,4 +51,3 @@ Set Test Provisioning Data
     ${DOC_PROVISIONING_DATA}    Set Variable If    ${status}==False    ${EMPTY}   
     ${provisioning_data}    Set Variable    ${DOC_PROVISIONING_DATA}\r\n${data}
     Set Test Variable    ${DOC_PROVISIONING_DATA}    ${provisioning_data}               
->>>>>>> d88205119042b1b4255f334c8f130e6a1bd61df3
