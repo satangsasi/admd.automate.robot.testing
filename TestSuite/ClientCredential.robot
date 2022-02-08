@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Set Document Actual Result    ${TOKEN_CLIENT_CREDENTAIL}
+#Test Teardown    Set Document Actual Result    ${TOKEN_CLIENT_CREDENTAIL}
 
 
 *** Test Cases ***
@@ -13,8 +13,8 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...    \r\n User can loginB2B success and  recieved Access Token.
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u}
     ...                            ${grant_type}
@@ -32,8 +32,8 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...    \r\n User can loginB2B success and  recieved Access Token.
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_browser}
     ...                            ${client_secret_id_OhFw3u_browser}
     ...                            ${grant_type}
@@ -51,8 +51,8 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_invalid}   
     ...                            ${client_secret_id_OhFw3u}  
     ...                            ${grant_type} 
@@ -69,8 +69,8 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}   
     ...                            ${client_secret_id_OhFw3u_invalid}
     ...                            ${grant_type} 
@@ -87,8 +87,8 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}     
     ...                            ${client_secret_id_OhFw3u}
     ...                            ${grant_type_invalid_}   
@@ -105,8 +105,8 @@ TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}  
     ...                            ${client_secret_id_another}
     ...                            ${grant_type}  
@@ -123,8 +123,8 @@ TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Id    ${client_secret_id_OhFw3u}   
     ...                            ${grant_type}   
     ...                            ${nonce}
@@ -140,8 +140,8 @@ TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Secret    ${client_id_OhFw3u}  
     ...                            ${grant_type}     
     ...                            ${nonce}
@@ -157,8 +157,8 @@ TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Grant Type    ${client_id_OhFw3u}  
     ...                            ${client_secret_id_OhFw3u}
     ...                            ${nonce}
@@ -174,8 +174,8 @@ TST_F7_0_1_008 Verify ClientCredentail With Unknow URL
     ...    \r\n User can't loginB2B
     ...
     ...    ***Provisioning data***
-    Set Content Header             ${url_client_credentials_${test_site}_invalid}
-    ...                            ${content_type_x_www}
+    Set Content Header Client Credentials    ${url_client_credentials_${test_site}_invalid}
+    ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u} 
     ...                            ${client_secret_id_OhFw3u} 
     ...                            ${grant_type}
