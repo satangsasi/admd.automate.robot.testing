@@ -14,35 +14,24 @@ Get Code From Authentication
     ${code}    Split String         ${url_authentication_access}    =
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
-# Get Value Response LDAP By Key 
-#     [Arguments]     ${response_key}
-#     &{response_value}       Set Variable    ${RESPONSE_JSON_MESSAGE}
-#     ${value_${response_key}}    Set Variable    ${response_value.${response_key}}
-
 Verify Response Access Token Login LDAP
-    [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
+    [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY} 
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
-    Log Many             &{RESPONSE_JSON_MESSAGE}     
+    Log Many             &{RESPONSE_JSON_MESSAGE} 
     IF    '${key_response_2}' != '${EMPTY}'
-        Dictionary Should Contain Key    &{RESPONSE_JSON_MESSAGE}    access_token 
-        ${value_${key_response_1}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_1}}                
-        Log      ${value_${key_response_1}} 
-        Dictionary Should Contain Key          ${json_message}    id_token 
-        ${value_${key_response_2}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_2}}  
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}   access_token 
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}   id_token 
+        ${access_token_value_login}   Verify Value Response LDAP By Key   access_token  
+        ${id_token_value_login}       Verify Value Response LDAP By Key   id_token 
         Take Screenshot Verify Success Scene
     ELSE
-        Dictionary Should Contain Key                 ${json_message}    access_token 
-        ${value_${key_response_1}}       Set Variable    ${RESPONSE_JSON_MESSAGE.${key_response_1}} 
-        # ${access_token_value}    Set Variable         ${json_message}[access_token]
-        # Set Test Variable    ${ACCESS_TOKEN_LOGIN_LDAP}    ${access_token_value}  
-        # Log      ${ACCESS_TOKEN_LOGIN_LDAP}
-        # Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${ACCESS_TOKEN_LOGIN_LDAP}
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    access_token 
+        ${access_token_value_login}     Verify Value Response LDAP By Key    access_token  
         Take Screenshot Verify Success Scene
     END
-    #Set Actual Result Access Token Login And Refresh LDAP    actual_login=${ACTUAL_RESULT_LOGIN}
-
+    Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}    
 Verify Response Access Token Refresh LDAP
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
@@ -50,27 +39,41 @@ Verify Response Access Token Refresh LDAP
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     IF    '${key_response_2}' != '${EMPTY}'
-        Dictionary Should Contain Key          ${json_message}    access_token 
-        Dictionary Should Contain Key          ${json_message}    id_token 
-        ${access_token_value}    Set Variable         ${json_message}[access_token]
-        ${id_token_value}        Set Variable         ${json_message}[id_token]
-        Set Test Variable    ${ACCESS_TOKEN_REFRESH_LDAP}    ${access_token_value}  
-        Set Test Variable    ${ID_TOKEN_REFRESH_LDAP}        ${id_token_value}
-        Log      ${ACCESS_TOKEN_REFRESH_LDAP}  
-        Log      ${ID_TOKEN_REFRESH_LDAP}   
-        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${ACCESS_TOKEN_REFRESH_LDAP}\r\nid token refresh LDAP ${ID_TOKEN_REFRESH_LDAP}       
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    access_token 
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    id_token 
+        ${access_token_value_refresh}    Verify Value Response LDAP By Key   access_token  
+        ${id_token_value_refresh}        Verify Value Response LDAP By Key   id_token 
         Take Screenshot Verify Success Scene
     ELSE
-        Dictionary Should Contain Key                 ${json_message}    access_token 
-        ${access_token_value}    Set Variable         ${json_message}[access_token]
-        Set Test Variable    ${ACCESS_TOKEN_REFRESH_LDAP}    ${access_token_value}  
-        Log      ${ACCESS_TOKEN_REFRESH_LDAP}
-        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${ACCESS_TOKEN_REFRESH_LDAP}
+        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}     access_token 
+        ${access_token_value_refresh}    Verify Value Response LDAP By Key   access_token  
         Take Screenshot Verify Success Scene
     END
-    Set Actual Result Access Token Login And Refresh LDAP    ${ACTUAL_RESULT_LOGIN}    ${ACTUAL_RESULT_REFRESH}    
+    Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}  
 
-Set Actual Result Access Token Login And Refresh LDAP    
+Verify Value Response LDAP By Key 
+    [Arguments]   ${key}
+    ${value}    Set Variable    ${RESPONSE_JSON_MESSAGE.${key}} 
+    Should Match Regexp    ${value}     .+
+    [Return]    ${value}
+
+Set Response Login To Actual Result Login  
+    [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
+    IF    '${value_2}' != '${EMPTY}'
+        Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}\r\nid token login LDAP ${value_2}      
+    ELSE
+        Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}
+    END
+
+Set Response Refresh To Actual Result Refresh
+    [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
+    IF    '${value_2}' != '${EMPTY}'
+        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}\r\nid token refresh LDAP ${value_2}      
+    ELSE
+        Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}
+    END
+
+Append Response Login And Refresh To Actual Result  
     [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
     Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
@@ -78,7 +81,7 @@ Open Browser And Login
     [Arguments]            ${type_url_authentication}
     Set Up Browser Fullscreen        
     New Page                      ${type_url_authentication}      
-    Fill Username And Password    ${user_provider}         ${pass_provider}  
+    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}    
     Press Login Button
 
 Get Code From Key Refresh Token 
@@ -103,6 +106,7 @@ Open Browser Login And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
 
+<<<<<<< HEAD
  ${access_token_value}    Set Variable         ${json_message}[access_token]
         ${id_token_value}        Set Variable         ${json_message}[id_token]
         Set Test Variable    ${ACCESS_TOKEN_LOGIN_LDAP}    ${access_token_value}  
@@ -115,6 +119,13 @@ Open Browser Login And Open Page Get Token
 
 
 
+=======
+Get Value From Access Token
+    ${message}         Get Text    ${lbl_json_response_on_webpage} 
+    &{json_message}    Evaluate    json.loads('''${message}''')    json        
+    ${value_access_token}    Set Variable     ${json_message.access_ken}
+    Set Test Variable    ${ACCESS_TOKEN_FOR_LOGOUT}    ${value_access_token} 
+>>>>>>> bec5868532241e3ab706848fa65f357e643e8c80
 
 
 
