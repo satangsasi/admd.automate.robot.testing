@@ -1,6 +1,10 @@
 *** Settings ***
 Resource    ./Resource_init.robot
+<<<<<<< HEAD
 Test Teardown    Run Keyword And Ignore Error    Set Document Actual Result    ${ACTUAL_RESULT}      
+=======
+Test Teardown    Run Keyword And Ignore Error    Set Document Actual Result        
+>>>>>>> d88205119042b1b4255f334c8f130e6a1bd61df3
 
 
 *** Test Cases ***
@@ -13,9 +17,9 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...    \r\n User logins successfully.
     ...
     ...    ***Provisioning data***
+    ...
     [Tags]    Content_Provider    sasi
-    Set Up Browser Fullscreen        
-    New Page                      ${url_authentication_ldap_${test_site}}    
+    Create Browser Session    ${url_authentication_ldap_${test_site}}         
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
     Press Login Button
     Create URL For Get Token

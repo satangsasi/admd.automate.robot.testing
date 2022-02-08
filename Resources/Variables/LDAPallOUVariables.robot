@@ -3,6 +3,8 @@ ${user_ldap_provider}         425
 ${pass_ldap_provider}         password
 ${user_ldap_employee}         nopparar
 ${pass_ldap_employee}         Nop#3246@Stg!
+&{authentication_ldap}        user=425
+
 # Url
 ${url_authentication_ldap_dev}                    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
 ${url_authentication_ldap_iot}                    https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
