@@ -50,13 +50,13 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
     Set Response On Webpage To Json 
-    #Decode Token To Jwt    access_token
+    Decode Token To Jwt    access_token
     Create URL For Get Refresh Token  
     New Page                                      ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify   
     Verify Response Ldap   
-    #Decode Token To Jwt    access_token
-    #Decode Token To Jwt    id_token
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen

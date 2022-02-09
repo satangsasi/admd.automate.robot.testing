@@ -58,19 +58,20 @@ Verify Response Ldap
     Take Screenshot Verify Success Scene 
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
-# Decode Token To Jwt
-#     [Arguments]     ${response_key} 
-#     ${value}     Get Value Response Ldap By Key    ${response_key}  
-#     IF    '${response_key}' == 'access_token'  
-#         ${value}     Get Value Response Ldap By Key    ${response_key}   
-#         Set Test Variable    ${VALUE_ACCESS_TOKEN}     ${value} 
-#         Log    ${VALUE_ACCESS_TOKEN}    
-#     END  
-#     IF    '${response_key}' == 'id_token'  
-#         ${value}     Get Value Response Ldap By Key    ${response_key}   
-#         Set Test Variable    ${VALUE_ID_TOKEN}     ${value}  
-#         Log    ${VALUE_ID_TOKEN}  
-#     END   
+Decode Token To Jwt
+    [Arguments]     ${response_key} 
+    ${value}     Get Value Response Ldap By Key    ${response_key}  
+    IF    '${response_key}' == 'access_token'  
+        ${value}     Get Value Response Ldap By Key    ${response_key}   
+        ${jwt_decode}           Jwt Decode      ${value}
+        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+    END  
+    IF    '${response_key}' == 'id_token'  
+        ${value}     Get Value Response Ldap By Key    ${response_key}   
+        ${jwt_decode}           Jwt Decode      ${value}
+        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+    END
+
 Verify Response Ldap No Scope Profile
     [Documentation]     Owner : sasipen    Editor: Nakarin
     ...    ***Editor Note***
