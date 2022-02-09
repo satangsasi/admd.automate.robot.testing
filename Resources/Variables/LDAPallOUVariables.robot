@@ -16,10 +16,10 @@ ${url_get_refresh_token_schema_dev}    https://iot-apivr.ais.co.th/authtest/v3.2
 ${url_ldap_logout_dev}                https://iot-apivr.ais.co.th/authtest/v3.2/logout
 ${url_ldap_logout_iot}                https://iot-apivr.ais.co.th/auth/v3.2/logout
 
-# header
+# Header
 ${header_ldap_schema}                   {"Content-Type": "_Content-Type_"}
 
-# body
+# Body
 ${body_ldap_schema}                     {"access_token": "_access_token_", "state": "_state_"} 
 ${state_logout_ldap_cp}                 Logout with Ldap CP (1.9)
 ${state_logout_ldap_cp_sso}             Logout with Ldap CP (1.9) (SSO)   
@@ -28,3 +28,9 @@ ${state_logout_ldap_cp_sso}             Logout with Ldap CP (1.9) (SSO)
 # Error Message
 ${error_title}           Wrong Username or Password
 ${error_message}         Please check your Username or Password.
+
+# Response
+${expected_expires_in_ldap}            86400
+${expected_expires_in_no_scope_ldap}    36300
+${expected_refresh_token_expires_in_ldap}    86400
+${expected_refresh_token_expires_in_no_scope_ldap}    36300

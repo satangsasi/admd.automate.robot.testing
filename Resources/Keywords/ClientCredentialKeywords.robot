@@ -57,14 +57,18 @@ Send Request Client Credentials Invalid
     [Arguments]        ${statuscode}    
     Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}   expected_status=${statuscode}    
 
-Verify Response Access Token Client Credentials 
+Verify Response Client Credentials 
+    [Arguments]    ${expected_expires_in}
     ${token}    Get Value Response By Key     access_token
     Should Match Regexp          ${token}       .+  
-    Log     ${token}
-    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${token}
+    Verify Value Response By Key    token_type   ${expected_token_type}
+    Verify Value Response By Key    expires_in   ${expected_expires_in}
+    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}
 
 Verify Response Client Credentials Error
     [Arguments]        ${error_message}
     Verify Value Response By Key    error        ${error_message}  
+    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}
+
 
 # Decode Token To JWT

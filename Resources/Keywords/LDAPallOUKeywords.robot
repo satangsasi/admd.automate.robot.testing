@@ -18,68 +18,74 @@ Get Code From Authentication
     ${code}    Split String         ${url_authentication_access}    =
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
-Verify Response Access Token Login LDAP
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    ***Editor Note***
-    ...    - Add Set Test Actual Result
-    [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY} 
+
+Set Response On Webpage To Json
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE} 
-    IF    '${key_response_2}' != '${EMPTY}'
-        Verify Value Response Ldap By Key   access_token  
-        Verify Value Response Ldap By Key   id_token 
-        Take Screenshot Verify Success Scene
-    ELSE
-        Verify Value Response Ldap By Key    access_token  
-        Take Screenshot Verify Success Scene
-    END
-    Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
-Verify Response Access Token Refresh LDAP
+
+Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
-    [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
-    ${message}         Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}    Evaluate    json.loads('''${message}''')    json        
-    Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
-    Log Many             &{RESPONSE_JSON_MESSAGE}
-    IF    '${key_response_2}' != '${EMPTY}'
-        Verify Value Response Ldap By Key   access_token  
-        Verify Value Response Ldap By Key   id_token 
-        Take Screenshot Verify Success Scene
-    ELSE
-        Verify Value Response Ldap By Key   access_token  
-        Take Screenshot Verify Success Scene
-    END
-    # Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}
-    Set Test Actual Result      Refresh Token : ${RESPONSE_JSON_MESSAGE}
+    [Arguments]        ${response_key}
+    ${value}           Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
+    [Return]     ${value}      
+
+Get Value Response Ldap 
+    ${value_token_type}    Get Value Response Ldap By Key    token_type
+    Set Test Variable    ${ACTUAL_VALUE_TOKEN_TYPE}    ${value_token_type} 
+    ${value_expires_in}    Get Value Response Ldap By Key    expires_in         
+    Set Test Variable    ${ACTUAL_VALUE_EXPIRES_IN}    ${value_expires_in}
+    ${value_refresh_token_expires_in}    Get Value Response Ldap By Key    refresh_token_expires_in       
+    Set Test Variable    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${value_refresh_token_expires_in}
+Set Data Response Ldap For Verify
+    Set Response On Webpage To Json
+    Get Value Response Ldap 
+    
+Verify Response Ldap
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    ***Editor Note***
+    ...    - Add Set Test Actual Result
+    Verify Value Response Ldap By Key   access_token 
+    Verify Value Response Ldap By Key   refresh_token 
+    Verify Value Response Ldap By Key   id_token 
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_TOKEN_TYPE}     ${expected_token_type}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_ldap}    
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}        ${expected_refresh_token_expires_in_ldap}
+    Take Screenshot Verify Success Scene 
+    Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
+
+# Decode Token To Jwt
+#     [Arguments]     ${response_key} 
+#     ${value}     Get Value Response Ldap By Key    ${response_key}  
+#     IF    '${response_key}' == 'access_token'  
+#         ${value}     Get Value Response Ldap By Key    ${response_key}   
+#         Set Test Variable    ${VALUE_ACCESS_TOKEN}     ${value} 
+#         Log    ${VALUE_ACCESS_TOKEN}    
+#     END  
+#     IF    '${response_key}' == 'id_token'  
+#         ${value}     Get Value Response Ldap By Key    ${response_key}   
+#         Set Test Variable    ${VALUE_ID_TOKEN}     ${value}  
+#         Log    ${VALUE_ID_TOKEN}  
+#     END   
+Verify Response Ldap No Scope Profile
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    ***Editor Note***
+    ...    - Add Set Test Actual Result
+    Verify Value Response Ldap By Key   access_token 
+    Verify Value Response Ldap By Key   refresh_token 
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_TOKEN_TYPE}     ${expected_token_type} 
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_no_scope_ldap}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${expected_refresh_token_expires_in_no_scope_ldap}
+    Take Screenshot Verify Success Scene 
+    Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
 Verify Value Response Ldap By Key 
     [Documentation]     Owner : sasipen
-    [Arguments]   ${key}
-    ${value}    Set Variable    ${RESPONSE_JSON_MESSAGE.${key}} 
+    [Arguments]   ${response_key}
+    ${value}     Get Value Response Ldap By Key    ${response_key} 
     Should Match Regexp    ${value}     .+
     Log    ${value}
-
-# Set Response Login To Actual Result Login  
-#     [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
-#     IF    '${value_2}' != '${EMPTY}'
-#         Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}\r\nid token login LDAP ${value_2}      
-#     ELSE
-#         Set Test Variable    ${ACTUAL_RESULT_LOGIN}    access token login LDAP ${value_1}
-#     END
-
-# Set Response Refresh To Actual Result Refresh
-#     [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
-#     IF    '${value_2}' != '${EMPTY}'
-#         Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}\r\nid token refresh LDAP ${value_2}      
-#     ELSE
-#         Set Test Variable    ${ACTUAL_RESULT_REFRESH}    access token refresh LDAP ${value_1}
-#     END
-
-# Append Response Login And Refresh To Actual Result  
-#     [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
-#     Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
 Create Browser Session   
     [Documentation]     Owner : sasipen 
@@ -110,15 +116,6 @@ Open Browser Login And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
 
-
-Get Value Response Ldap By Key
-    [Documentation]     Owner : sasipen
-    [Arguments]        ${response_key}
-    ${message}         Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}    Evaluate    json.loads('''${message}''')    json        
-    ${value}           Set Variable    ${json_message.${response_key}} 
-    [Return]     ${value}             
-    
 Get Value From Key Access Token
     [Documentation]     Owner : sasipen
     ${value}    Get Value Response Ldap By Key    access_token
@@ -145,10 +142,10 @@ Send Request Ldap Logout
     Send Post Request    url=${URL}      headers=${HEADER_LDAP_LOGOUT}    body=${BODY_LDAP_LOGOUT}  
 
 Verify Response State Ldap Logout
-    [Arguments]        ${state} 
-    Verify Value Response By Key    state        ${state} 
-    # ${ACTUAL_RESULT}    Get Value Response By Key    state
-
+    [Arguments]        ${expected_state} 
+    Verify Value Response By Key    state        ${expected_state} 
+    ${autual_value_state}    Get Value Response By Key    state 
+    Set Test Actual Result    "state" : "${autual_value_state}"
 
 
 
