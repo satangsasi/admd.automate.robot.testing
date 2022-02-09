@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown       Run Keyword And Ignore Error    Set Test Documentation Detail      
+Test Teardown    Run Keyword And Ignore Error    LDAP Keywords Teardown
 
 
 *** Test Cases ***
@@ -45,8 +45,6 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    ...
-    ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
     Verify Response Access Token Login LDAP       key_response_1=access_token
