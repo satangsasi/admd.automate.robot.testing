@@ -86,6 +86,7 @@ ClientCredentail Keywords Teardown
     Set Test Provisioning Data    Body : ${API_BODY}
     Set Test Documentation Detail
 
-#Decode Token To Jwt Client Credentials 
-#     ${value}    Get Value Response By Key    access_token
-#     Set Test Variable    ${VALUE_ACCESS_TOKEN}    ${value}
+Decode Token To Jwt Client Credentials 
+    ${value}            Get Value Response By Key    access_token
+    ${jwt_decode}       Jwt Decode      ${value}
+    Set Test Actual Result    Jwt decode : ${jwt_decode}
