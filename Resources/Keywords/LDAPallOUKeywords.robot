@@ -4,10 +4,12 @@ Resource    ../../TestSuite/Resource_init.robot
 
 *** Keywords ***
 Create URL For Get Token
-    [Documentation]     Owner : sasipen
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    ***Editor Note***
+    ...    - Add Set Test Provisioning Data
     Wait Until Network Is Idle
     Get Code From Authentication
-    ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}    
+    ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
     #Set Documentation Test Url Get Token     ${URL_GET_TOKEN}    
 Get Code From Authentication
@@ -17,8 +19,10 @@ Get Code From Authentication
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
 Verify Response Access Token Login LDAP
-    [Documentation]     Owner : sasipen
-    [Arguments]        ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY} 
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    ***Editor Note***
+    ...    - Add Set Test Actual Result
+    [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY} 
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
@@ -31,7 +35,7 @@ Verify Response Access Token Login LDAP
         Verify Value Response Ldap By Key    access_token  
         Take Screenshot Verify Success Scene
     END
-    Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}    
+    Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 Verify Response Access Token Refresh LDAP
     [Documentation]     Owner : sasipen
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
@@ -47,7 +51,8 @@ Verify Response Access Token Refresh LDAP
         Verify Value Response Ldap By Key   access_token  
         Take Screenshot Verify Success Scene
     END
-    Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}  
+    # Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}
+    Set Test Actual Result      Refresh Token : ${RESPONSE_JSON_MESSAGE}
 
 Verify Value Response Ldap By Key 
     [Documentation]     Owner : sasipen
@@ -80,7 +85,8 @@ Create Browser Session
     [Documentation]     Owner : sasipen 
     [Arguments]    ${url}
     Set Up Browser Fullscreen        
-    New Page       ${url}      
+    New Page       ${url}
+    Set Test Variable    ${URL_AUTH}    ${url}
     #Set Documentation Test Url Authentication    ${url} 
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
@@ -93,7 +99,7 @@ Create URL For Get Refresh Token
     Get Code From Key Refresh Token 
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_dev}    _code_    ${CODE_REFRESH_TOKEN}  
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
-    Log    ${URL_GET_REFRESH_TOKEN}   
+    Log    ${URL_GET_REFRESH_TOKEN}
     #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
 Open Browser Login And Open Page Get Token 
     [Documentation]     Owner : sasipen
@@ -413,10 +419,9 @@ Fill Username And Password
     [Tags]    keyword_communicate
     Fill Text    ${txt_username_ldap}    ${user}
     Fill Text    ${txt_password_ldap}    ${pass}
-    Set Test Provisioning Data    User : ${user}
-    # Set Test Provisioning Data    Password : ${pass}
-    # Set Documentation Test User        ${user}
-    # Set Documentation Test Password    ${pass}    
+    Set Test Variable         ${USER}    ${user}
+    Set Test Variable         ${PASS}    ${pass}
+    
 Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
@@ -425,13 +430,20 @@ Press Login Button
 Verify Login Fail
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
+    ${actual_error_title}      Get Text    ${lbl_error_title}
+    ${actual_error_message}    Get Text    ${lbl_error_message}
     Verify Value At Locator    ${lbl_error_title}      ${error_title}
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
     Take Screenshot Verify Success Scene
-    Append Text Login Fail To Actual Result
-
-Append Text Login Fail To Actual Result
+    Set Test Actual Result     ${actual_error_title}
+    Set Test Actual Result     ${actual_error_message}
+    
+LDAP Keywords Teardown
     [Documentation]    Owner: Nakarin
-    ${actual_error_title}      Get Text    ${lbl_error_title}
-    ${actual_error_message}    Get Text    ${lbl_error_message}
-    Set Test Variable    ${ACTUAL_RESULT}    '${actual_error_title}\r\n${actual_error_message}'
+    [Tags]    keyword_communicate
+    Set Test Provisioning Data    User : ${USER}
+    Set Test Provisioning Data    Password : ${PASS}
+    Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
+    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
+    Set Test Documentation Detail

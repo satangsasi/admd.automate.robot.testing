@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Set Document Actual Result        
+Test Teardown    Run Keyword And Ignore Error    LDAP Keywords Teardown
 
 
 *** Test Cases ***
@@ -11,9 +11,6 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    ...
-    ...    ***Provisioning data***
-    ...
     [Tags]    Content_Provider    sasi
     Create Browser Session    ${url_authentication_ldap_${test_site}}         
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
@@ -48,8 +45,6 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    ...
-    ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
     Verify Response Access Token Login LDAP       key_response_1=access_token
