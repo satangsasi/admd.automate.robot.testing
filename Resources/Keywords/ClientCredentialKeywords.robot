@@ -54,10 +54,12 @@ Send Request Client Credentials
     Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}    
 
 Send Request Client Credentials Invalid
+    [Documentation]     Owner : sasipen
     [Arguments]        ${statuscode}    
     Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}   expected_status=${statuscode}    
 
 Verify Response Client Credentials 
+    [Documentation]     Owner : sasipen
     [Arguments]    ${expected_expires_in}
     ${token}    Get Value Response By Key     access_token
     Should Match Regexp          ${token}       .+  
@@ -66,6 +68,7 @@ Verify Response Client Credentials
     Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}
 
 Verify Response Client Credentials Error
+    [Documentation]     Owner : sasipen
     [Arguments]        ${error_message}
     Verify Value Response By Key    error        ${error_message}  
     Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}

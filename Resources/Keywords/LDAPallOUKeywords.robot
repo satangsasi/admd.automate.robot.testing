@@ -20,6 +20,7 @@ Get Code From Authentication
     Set Test Variable    ${CODE}    ${code}
 
 Set Response On Webpage To Json
+    [Documentation]     Owner : sasipen
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
@@ -32,6 +33,7 @@ Get Value Response Ldap By Key
     [Return]     ${value}      
 
 Get Value Response Ldap 
+    [Documentation]     Owner : sasipen
     ${value_token_type}    Get Value Response Ldap By Key    token_type
     Set Test Variable    ${ACTUAL_VALUE_TOKEN_TYPE}    ${value_token_type} 
     ${value_expires_in}    Get Value Response Ldap By Key    expires_in         
@@ -139,9 +141,11 @@ Set Body Ldap Logout
     Set Documentation Test Body    ${BODY_LDAP_LOGOUT}
 
 Send Request Ldap Logout
+    [Documentation]     Owner : sasipen
     Send Post Request    url=${URL}      headers=${HEADER_LDAP_LOGOUT}    body=${BODY_LDAP_LOGOUT}  
 
 Verify Response State Ldap Logout
+    [Documentation]     Owner : sasipen
     [Arguments]        ${expected_state} 
     Verify Value Response By Key    state        ${expected_state} 
     ${autual_value_state}    Get Value Response By Key    state 
