@@ -9,8 +9,6 @@ Set Content Header Client Credentials
     ${headers}           Replace String        ${header_client_credentials_schema}    _Content-Type_    ${content_type}            
     Set Test Variable    ${API_HEADER}    ${headers}
     Set Test Variable    ${API_URL}    ${url}
-    # Set Documentation Test Request    POST    ${URL}    
-    # Set Documentation Test Header    ${HEADER_CLIENT_CREDENTIALS}    
 
 Set Body Client Credentials 
     [Documentation]     Owner : sasipen
@@ -20,8 +18,6 @@ Set Body Client Credentials
     ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type} 
     ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${nonce}        
     Set Test Variable    ${API_BODY}    ${body_nonce}
-    # Set Test Variable        ${BODY_CLIENT_CREDENTIALS}         ${body_nonce}      
-    # Set Documentation Test Body    ${BODY_CLIENT_CREDENTIALS}
 
 Set Body Client Credentials Missing Client Id 
     [Documentation]     Owner : sasipen
@@ -30,8 +26,6 @@ Set Body Client Credentials Missing Client Id
     ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type} 
     ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${nonce}        
     Set Test Variable        ${API_BODY}       ${body_nonce}
-    # Set Test Variable        ${BODY_CLIENT_CREDENTIALS}         ${body_nonce}    
-    # Set Documentation Test Body    ${BODY_CLIENT_CREDENTIALS}
 
 Set Body Client Credentials Missing Client Secret
     [Documentation]     Owner : sasipen
@@ -40,8 +34,6 @@ Set Body Client Credentials Missing Client Secret
     ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type} 
     ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${nonce}        
     Set Test Variable        ${API_BODY}       ${body_nonce}
-    # Set Test Variable        ${BODY_CLIENT_CREDENTIALS}         ${body_nonce}      
-    # Set Documentation Test Body    ${BODY_CLIENT_CREDENTIALS}
 
 Set Body Client Credentials Missing Grant Type
     [Documentation]     Owner : sasipen
@@ -50,20 +42,16 @@ Set Body Client Credentials Missing Grant Type
     ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}    
     ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${nonce}        
     Set Test Variable        ${API_BODY}       ${body_nonce}
-    # Set Test Variable        ${BODY_CLIENT_CREDENTIALS}         ${body_nonce} 
-    # Set Documentation Test Body    ${BODY_CLIENT_CREDENTIALS}
 
 Send Request Client Credentials
     [Documentation]     Owner : sasipen 
     Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
-    # Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}
-
+ 
 Send Request Client Credentials Invalid
     [Documentation]     Owner : sasipen
     [Arguments]        ${statuscode}    
     Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}    expected_status=${statuscode}
-    # Send Post Request    url=${URL}      headers=${HEADER_CLIENT_CREDENTIALS}    body=${BODY_CLIENT_CREDENTIALS}   expected_status=${statuscode}    
-
+ 
 Verify Response Client Credentials 
     [Documentation]     Owner : sasipen
     [Arguments]    ${expected_expires_in}
