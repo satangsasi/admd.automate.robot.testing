@@ -65,7 +65,7 @@ Send Request Client Credentials Invalid
 
 Verify Response Access Token Client Credentials 
     ${token}    Get Value Response By Key     access_token
-    Should Match Regexp          ${token}       .+  
+    Should Match Regexp          ${token}     .+
     Log     ${token}
     Set Test Actual Result    Token : ${token}
     # Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${token}

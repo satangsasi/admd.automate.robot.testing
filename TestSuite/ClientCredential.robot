@@ -47,11 +47,11 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u_invalid}   
-    ...                            ${client_secret_id_OhFw3u}  
-    ...                            ${grant_type} 
-    ...                            ${nonce} 
-    Send Request Client Credentials Invalid    401  
+    Set Body Client Credentials    ${client_id_OhFw3u_invalid}
+    ...                            ${client_secret_id_OhFw3u}
+    ...                            ${grant_type}
+    ...                            ${nonce}
+    Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   invalid_client
     
 TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
@@ -63,12 +63,12 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u}   
+    Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u_invalid}
-    ...                            ${grant_type} 
-    ...                            ${nonce} 
+    ...                            ${grant_type}
+    ...                            ${nonce}
     Send Request Client Credentials Invalid    401
-    Verify Response Client Credentials Error   invalid_client 
+    Verify Response Client Credentials Error   invalid_client
 
 TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     [Documentation]     Owner : sasipen
@@ -79,11 +79,11 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u}     
+    Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u}
-    ...                            ${grant_type_invalid_}   
+    ...                            ${grant_type_invalid_}
     ...                            ${nonce}
-    Send Request Client Credentials Invalid    400  
+    Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   unsupported_grant_type
 
 TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
@@ -95,12 +95,12 @@ TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials    ${client_id_OhFw3u}  
+    Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_another}
-    ...                            ${grant_type}  
+    ...                            ${grant_type}
     ...                            ${nonce}
-    Send Request Client Credentials Invalid    401        
-    Verify Response Client Credentials Error   invalid_client    
+    Send Request Client Credentials Invalid    401
+    Verify Response Client Credentials Error   invalid_client
 
 TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     [Documentation]     Owner : sasipen
@@ -111,11 +111,11 @@ TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials Missing Client Id    ${client_secret_id_OhFw3u}   
-    ...                            ${grant_type}   
+    Set Body Client Credentials Missing Client Id    ${client_secret_id_OhFw3u}
+    ...                            ${grant_type}
     ...                            ${nonce}
-    Send Request Client Credentials Invalid    400    
-    Verify Response Client Credentials Error   invalid_request 
+    Send Request Client Credentials Invalid    400
+    Verify Response Client Credentials Error   invalid_request
 
 TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     [Documentation]     Owner : sasipen
@@ -141,10 +141,10 @@ TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
     ...    \r\n User can't loginB2B
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
-    Set Body Client Credentials Missing Grant Type    ${client_id_OhFw3u}  
+    Set Body Client Credentials Missing Grant Type    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u}
     ...                            ${nonce}
-    Send Request Client Credentials Invalid    400    
+    Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   invalid_request
     
 TST_F7_0_1_008 Verify ClientCredentail With Unknow URL

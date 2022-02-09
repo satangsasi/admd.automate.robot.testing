@@ -12,11 +12,11 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider    sasi
-    Create Browser Session    ${url_authentication_ldap_${test_site}}         
-    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
+    Create Browser Session    ${url_authentication_ldap_${test_site}}
+    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Create URL For Get Token
-    New Page                      ${URL_GET_TOKEN}                             
+    New Page                      ${URL_GET_TOKEN}
     Verify Response Access Token Login LDAP    key_response_1=access_token    key_response_2=id_token  
     #Decode Token To JWT
     
@@ -30,21 +30,21 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     ...
     ...    ***Provisioning data***
     [Tags]    Content_Provider     sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}   
+    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     New Page                 ${url_authentication_ldap_${test_site}} 
     Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}                   
-    Verify Response Access Token Login LDAP    key_response_1=access_token    key_response_2=id_token 
+    New Page                 ${URL_GET_TOKEN}
+    Verify Response Access Token Login LDAP    key_response_1=access_token    key_response_2=id_token
     #Decode Token To JWT
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider 
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
-    ...    \r\n Scope = Profile 
+    ...    \r\n Scope = Profile
     ...
     ...    ***Expected Result***
-    ...    \r\n Successfully login and got access_token. 
+    ...    \r\n Successfully login and got access_token.
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
     Verify Response Access Token Login LDAP       key_response_1=access_token
@@ -63,15 +63,15 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     ...
     ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
-    New Page                                      ${url_authentication_ldap_scope_profile} 
+    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile}
+    New Page                                      ${url_authentication_ldap_scope_profile}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
     Verify Response Access Token Login LDAP       key_response_1=access_token
     Create URL For Get Refresh Token  
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Verify Response Access Token Refresh LDAP     key_response_1=access_token    key_response_2=id_token
-    
+
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
     ...
@@ -79,15 +79,15 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     ...    \r\n don't have Scope = Profile
     ...
     ...    ***Expected Result***
-    ...    \r\n Successfully login and got access_token. 
+    ...    \r\n Successfully login and got access_token.
     ...
     ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
+    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile}
     Verify Response Access Token Login LDAP       key_response_1=access_token
-    Create URL For Get Refresh Token  
+    Create URL For Get Refresh Token
     New Page                                      ${URL_GET_REFRESH_TOKEN}
-    Verify Response Access Token Refresh LDAP     key_response_1=access_token 
+    Verify Response Access Token Refresh LDAP     key_response_1=access_token
 
 TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -96,14 +96,14 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     ...    \r\n don't have Scope = Profile
     ...
     ...    ***Expected Result***
-    ...    \r\n Successfully login and got access_token. 
+    ...    \r\n Successfully login and got access_token.
     ...
     ...    ***Provisioning data***
     [Tags]    On-Hold    
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_no_scope_profile}
     New Page                                      ${url_authentication_ldap_no_scope_profile}
     Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}   
+    New Page                 ${URL_GET_TOKEN}
     Verify Response Access Token Login LDAP       key_response_1=access_token
     Create URL For Get Refresh Token
     New Page                 ${URL_GET_REFRESH_TOKEN}
@@ -132,11 +132,11 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     Get Value From Key Access Token
-    Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
-    ...                               ${content_type_x_www}
-    Set Body Ldap Logout              ${state_logout_ldap_cp}  
+    Set Content Header Ldap Logout       ${url_ldap_logout_${test_site}}
+    ...                                  ${content_type_x_www}
+    Set Body Ldap Logout                 ${state_logout_ldap_cp}
     Send Request Ldap Logout
-    Verify Response State Ldap Logout    ${state_logout_ldap_cp}  
+    Verify Response State Ldap Logout    ${state_logout_ldap_cp}
 
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -149,17 +149,17 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     ...
     ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}   
+    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     New Page                 ${url_authentication_ldap_${test_site}} 
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN} 
     Get Value From Key Access Token
-    Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
-    ...                               ${content_type_x_www}
-    Set Body Ldap Logout              ${state_logout_ldap_cp_sso}  
+    Set Content Header Ldap Logout       ${url_ldap_logout_${test_site}}    
+    ...                                  ${content_type_x_www}
+    Set Body Ldap Logout                 ${state_logout_ldap_cp_sso}  
     Send Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
-    
+
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Tags]    On-Hold
 
@@ -444,7 +444,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
-    Create Browser Session    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    password425
     Press Login Button
     Wait Until Network Is Idle
@@ -454,8 +454,8 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
-    Create Browser Session    ${url_authentication_LDAP_${test_site}}
-    Fill Username And Password        426    ${pass_ldap_provider}
+    Create Browser Session        ${url_authentication_LDAP_${test_site}}
+    Fill Username And Password    426    ${pass_ldap_provider}
     Press Login Button
     Wait Until Network Is Idle
     Verify Login Fail
@@ -484,7 +484,7 @@ TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secr
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
     [Tags]    Employee    Test
-    Create Browser Session    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    Nop#3246@Stg!sss
     Press Login Button
     Wait Until Network Is Idle
@@ -494,7 +494,7 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
     [Documentation]    Owner: Nakarin
     [Tags]    Employee    Test
-    Create Browser Session    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    noppararhhh    ${pass_ldap_employee}
     Press Login Button
     Wait Until Network Is Idle
