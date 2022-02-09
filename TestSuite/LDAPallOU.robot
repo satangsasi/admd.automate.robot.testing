@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    LDAP Keywords Teardown
+Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 
 
 *** Test Cases ***
@@ -133,8 +133,6 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    ...
-    ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     Set Response On Webpage To Json 
@@ -153,8 +151,6 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    ...
-    ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     New Page                 ${url_authentication_ldap_${test_site}} 

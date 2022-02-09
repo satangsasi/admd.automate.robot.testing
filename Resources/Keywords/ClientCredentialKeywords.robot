@@ -71,14 +71,13 @@ Verify Response Client Credentials
     Should Match Regexp          ${token}       .+  
     Verify Value Response By Key    token_type   ${expected_token_type}
     Verify Value Response By Key    expires_in   ${expected_expires_in}
-    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}
+    Set Test Actual Result    Token : ${RESPONSE.json()}
 
 Verify Response Client Credentials Error
     [Documentation]     Owner : sasipen
     [Arguments]        ${error_message}
-    Verify Value Response By Key    error        ${error_message}  
-    Set Test Variable    ${TOKEN_CLIENT_CREDENTAIL}    ${RESPONSE.json()}
-
+    Verify Value Response By Key    error        ${error_message}
+    Set Test Actual Result    Token : ${RESPONSE.json()}
 
 ClientCredentail Keywords Teardown
     [Documentation]    Owner: Nakarin

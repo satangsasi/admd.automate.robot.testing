@@ -11,7 +11,6 @@ Create URL For Get Token
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-    # Set Documentation Test Url Get Token     ${URL_GET_TOKEN}
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
@@ -41,6 +40,7 @@ Get Value Response Ldap
     Set Test Variable    ${ACTUAL_VALUE_EXPIRES_IN}    ${value_expires_in}
     ${value_refresh_token_expires_in}    Get Value Response Ldap By Key    refresh_token_expires_in       
     Set Test Variable    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${value_refresh_token_expires_in}
+
 Set Data Response Ldap For Verify
     Set Response On Webpage To Json
     Get Value Response Ldap 
@@ -90,15 +90,12 @@ Verify Value Response Ldap By Key
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
-
-
 Create Browser Session
     [Documentation]     Owner : sasipen 
     [Arguments]    ${url}
     Set Up Browser Fullscreen        
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
-    #Set Documentation Test Url Authentication    ${url}
 
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
@@ -112,7 +109,6 @@ Create URL For Get Refresh Token
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_dev}    _code_    ${CODE_REFRESH_TOKEN}  
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}
-    #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
 
 Open Browser Login And Open Page Get Token 
     [Documentation]     Owner : sasipen
@@ -132,22 +128,18 @@ Set Content Header Ldap Logout
     [Documentation]     Owner : sasipen
     [Arguments]          ${url}    ${content_type}
     ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}            
-    Set Test Variable    ${HEADER_LDAP_LOGOUT}    ${headers}
-    Set Test Variable    ${URL}    ${url}
-    Set Documentation Test Request    POST    ${URL}    
-    Set Documentation Test Header    ${HEADER_LDAP_LOGOUT}
+    Set Test Variable    ${API_HEADER}    ${headers}
+    Set Test Variable    ${API_URL}       ${url}
 
 Set Body Ldap Logout
     [Documentation]     Owner : sasipen             {"access_token": "_access_token_", "state": "_state_"} 
     [Arguments]        ${state}    
-    ${body_access_token_logout}        Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
-    ${body_state}                      Replace String    ${body_access_token_logout}    _state_            ${state}           
-    Set Test Variable        ${BODY_LDAP_LOGOUT}         ${body_state}      
-    Set Documentation Test Body    ${BODY_LDAP_LOGOUT}
-
+    ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
+    ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}            
+    Set Test Variable              ${API_BODY}       ${body_state}
 Send Request Ldap Logout
     [Documentation]     Owner : sasipen
-    Send Post Request    url=${URL}      headers=${HEADER_LDAP_LOGOUT}    body=${BODY_LDAP_LOGOUT}  
+    Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}  
 
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
@@ -443,12 +435,4 @@ Verify Login Fail
     Set Test Actual Result     ${actual_error_title}
     Set Test Actual Result     ${actual_error_message}
     
-LDAP Keywords Teardown
-    [Documentation]    Owner: Nakarin
-    [Tags]    keyword_communicate
-    Set Test Provisioning Data    User : ${USER}
-    Set Test Provisioning Data    Password : ${PASS}
-    Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
-    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
-    Set Test Documentation Detail
+

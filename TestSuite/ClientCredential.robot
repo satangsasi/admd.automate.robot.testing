@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore error    ClientCredentail Keywords Teardown
+Test Teardown    Run Keyword And Ignore error    Append To Document Teardown
 
 
 *** Test Cases ***
