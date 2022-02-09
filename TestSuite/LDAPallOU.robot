@@ -101,7 +101,7 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     ...    \r\n Successfully login and got access_token. 
     ...
     ...    ***Provisioning data***
-    [Tags]    Content_Provider    sasi
+    [Tags]    On-Hold    
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_no_scope_profile}
     New Page                                      ${url_authentication_ldap_no_scope_profile}
     Create URL For Get Token
@@ -134,10 +134,33 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
     Get Value From Access Token
+    Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
+    ...                               ${content_type_x_www}
+    Set Body Ldap Logout              ${state_logout_ldap_cp}  
+    Send Request Ldap Logout
+    Verify Response State Ldap Logout    ${state_logout_ldap_cp}  
 
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
-    [Tags]    On-Hold
-
+    [Documentation]     Owner : sasipen
+    ...
+    ...    ***Condition***
+    ...    \r\n 
+    ...
+    ...    ***Expected Result***
+    ...    \r\n Successfully logout
+    ...
+    ...    ***Provisioning data***
+    [Tags]    Content_Provider    sasi
+    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}   
+    New Page                 ${url_authentication_ldap_${test_site}} 
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN} 
+    Get Value From Access Token 
+    Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
+    ...                               ${content_type_x_www}
+    Set Body Ldap Logout              ${state_logout_ldap_cp_sso}  
+    Send Request Ldap Logout
+    Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Tags]    On-Hold
 

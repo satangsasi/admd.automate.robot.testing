@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Set Content Header
+Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     [Arguments]          ${url}    ${content_type}
     ${headers}           Replace String        ${header_client_credentials_schema}    _Content-Type_    ${content_type}            

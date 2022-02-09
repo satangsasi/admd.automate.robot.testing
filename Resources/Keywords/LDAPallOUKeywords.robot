@@ -4,17 +4,20 @@ Resource    ../../TestSuite/Resource_init.robot
 
 *** Keywords ***
 Create URL For Get Token
+    [Documentation]     Owner : sasipen
     Wait Until Network Is Idle
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}    
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
     #Set Documentation Test Url Get Token     ${URL_GET_TOKEN}    
 Get Code From Authentication
+    [Documentation]     Owner : sasipen
     ${url_authentication_access}    Get Url 
     ${code}    Split String         ${url_authentication_access}    =
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
 Verify Response Access Token Login LDAP
+    [Documentation]     Owner : sasipen
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY} 
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
@@ -33,6 +36,7 @@ Verify Response Access Token Login LDAP
     END
     Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}    
 Verify Response Access Token Refresh LDAP
+    [Documentation]     Owner : sasipen
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json        
@@ -52,6 +56,7 @@ Verify Response Access Token Refresh LDAP
     Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}  
 
 Verify Value Response LDAP By Key 
+    [Documentation]     Owner : sasipen
     [Arguments]   ${key}
     ${value}    Set Variable    ${RESPONSE_JSON_MESSAGE.${key}} 
     Should Match Regexp    ${value}     .+
@@ -77,14 +82,14 @@ Verify Value Response LDAP By Key
 #     [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
 #     Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
-Create Browser Session    
+Create Browser Session   
+    [Documentation]     Owner : sasipen 
     [Arguments]    ${url}
     Set Up Browser Fullscreen        
-    New Page                       ${url}      
+    New Page       ${url}      
     #Set Documentation Test Url Authentication    ${url} 
-
-    
 Get Code From Key Refresh Token 
+    [Documentation]     Owner : sasipen
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json 
     ${access_token}    Set Variable            ${json_message}[access_token]
@@ -94,6 +99,7 @@ Get Code From Key Refresh Token
     Set Test Variable    ${CODE_REFRESH_TOKEN}    ${code_refresh_token} 
 
 Create URL For Get Refresh Token
+    [Documentation]     Owner : sasipen
     Wait Until Network Is Idle
     Get Code From Key Refresh Token 
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_dev}    _code_    ${CODE_REFRESH_TOKEN}  
@@ -101,25 +107,50 @@ Create URL For Get Refresh Token
     Log    ${URL_GET_REFRESH_TOKEN}   
     #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
 Open Browser Login And Open Page Get Token 
-    [Arguments]    ${type_url_authentication}
-    Create Browser Session   ${type_url_authentication}
+    [Documentation]     Owner : sasipen
+    [Arguments]    ${url}
+    Create Browser Session   ${url}
+    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
+    Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
 
 Get Value From Access Token
+    [Documentation]     Owner : sasipen
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json        
-    ${value_access_token}    Set Variable     ${json_message.access_ken}
-    Set Test Variable    ${ACCESS_TOKEN_FOR_LOGOUT}    ${value_access_token} 
+    ${value}        Set Variable    ${json_message.access_token} 
+    Set Test Variable    ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    ${value} 
 
+Set Content Header Ldap Logout
+    [Documentation]     Owner : sasipen
+    [Arguments]          ${url}    ${content_type}
+    ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}            
+    Set Test Variable    ${HEADER_LDAP_LOGOUT}    ${headers}
+    Set Test Variable    ${URL}    ${url}
+    Set Documentation Test Request    POST    ${URL}    
+    Set Documentation Test Header    ${HEADER_LDAP_LOGOUT}
 
+Set Body Ldap Logout
+    [Documentation]     Owner : sasipen             {"access_token": "_access_token_", "state": "_state_"} 
+    [Arguments]        ${state}    
+    ${body_access_token_logout}        Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
+    ${body_state}                      Replace String    ${body_access_token_logout}    _state_            ${state}           
+    Set Test Variable        ${BODY_LDAP_LOGOUT}         ${body_state}      
+    Set Documentation Test Body    ${BODY_LDAP_LOGOUT}
 
+Send Request Ldap Logout
+    Send Post Request    url=${URL}      headers=${HEADER_LDAP_LOGOUT}    body=${BODY_LDAP_LOGOUT}  
 
+# Verify Response State Ldap Logout
+#     ${state_message}    Get Value Response By Key     state
+#     Should Match Regexp          ${state_message}       .+  
+#     Log     ${state_message}
 
-
-
-
-
+Verify Response State Ldap Logout
+    [Arguments]        ${state} 
+    Verify Value Response By Key    state        ${state} 
+    # ${ACTUAL_RESULT}    Get Value Response By Key    state
 
 
 
@@ -392,7 +423,7 @@ Fill Username And Password
     Fill Text    ${txt_username_ldap}    ${user}
     Fill Text    ${txt_password_ldap}    ${pass}
     Set Test Provisioning Data    User : ${user}
-    Set Test Provisioning Data    Password : ${pass}
+    # Set Test Provisioning Data    Password : ${pass}
     # Set Documentation Test User        ${user}
     # Set Documentation Test Password    ${pass}    
 Press Login Button
