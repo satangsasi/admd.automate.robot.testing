@@ -11,13 +11,15 @@ Create URL For Get Token
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-    #Set Documentation Test Url Get Token     ${URL_GET_TOKEN}    
+    # Set Documentation Test Url Get Token     ${URL_GET_TOKEN}
+
 Get Code From Authentication
     [Documentation]     Owner : sasipen
     ${url_authentication_access}    Get Url 
     ${code}    Split String         ${url_authentication_access}    =
     ${code}    Set Variable         ${code}[1]     
     Set Test Variable    ${CODE}    ${code}
+
 Verify Response Access Token Login LDAP
     [Documentation]     Owner : sasipen    Editor: Nakarin
     ...    ***Editor Note***
@@ -36,6 +38,7 @@ Verify Response Access Token Login LDAP
         Take Screenshot Verify Success Scene
     END
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
+
 Verify Response Access Token Refresh LDAP
     [Documentation]     Owner : sasipen
     [Arguments]           ${key_response_1}=${EMPTY}        ${key_response_2}=${EMPTY}            
@@ -87,7 +90,8 @@ Create Browser Session
     Set Up Browser Fullscreen        
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
-    #Set Documentation Test Url Authentication    ${url} 
+    #Set Documentation Test Url Authentication    ${url}
+
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
     ${code_refresh_token}    Get Value Response Ldap By Key    refresh_token
@@ -101,6 +105,7 @@ Create URL For Get Refresh Token
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}
     #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
+
 Open Browser Login And Open Page Get Token 
     [Documentation]     Owner : sasipen
     [Arguments]    ${url}
@@ -109,7 +114,6 @@ Open Browser Login And Open Page Get Token
     Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
-
 
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
@@ -410,7 +414,6 @@ Verify Response State Ldap Logout
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Fill Username And Password
     [Documentation]    Owner: Nakarin
     ...    Recieve Arguments Username and Password 

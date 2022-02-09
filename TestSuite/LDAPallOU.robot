@@ -131,7 +131,7 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     ...    ***Provisioning data***
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
-    Get Value From Access Token
+    Get Value From Key Access Token
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp}  
@@ -153,12 +153,13 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     New Page                 ${url_authentication_ldap_${test_site}} 
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN} 
-    Get Value From Access Token 
+    Get Value From Key Access Token
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}  
     Send Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
+    
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Tags]    On-Hold
 
