@@ -7,7 +7,7 @@ Library    Browser    timeout=0:00:20    run_on_failure=Take Screenshot Failure 
 # Buffets
 Resource    ../../arcadia.automate.buffet/UIBuffet/BrowserLibrary_UICommonKeywords.robot
 Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APICommonKeywords.robot
-Resource    ../../arcadia.automate.buffet/RobotBuffet/BuiltinLibrary_CommonKeyword.robot
+Resource    ../../arcadia.automate.buffet/RobotBuffet/BuiltinLibrary_CommonKeywords.robot
 # Keywords
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
