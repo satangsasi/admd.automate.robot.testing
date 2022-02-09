@@ -19,6 +19,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...                            ${nonce}
     Send Request Client Credentials
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_backend}
+    #Decode Token To Jwt Client Credentials  
     # [Teardown]    Set Document Actual Result    ${RESPONSE.json()}
 
 TST_F7_1_1_002 ClientCredentail with client id on browser
@@ -36,7 +37,7 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     ...                            ${nonce}
     Send Request Client Credentials
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_browser}
-    # Decode Token To JWT
+    #Decode Token To Jwt Client Credentials 
 
 TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     [Documentation]     Owner : sasipen
