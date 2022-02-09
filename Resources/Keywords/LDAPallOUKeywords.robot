@@ -28,14 +28,11 @@ Verify Response Access Token Login LDAP
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE} 
     IF    '${key_response_2}' != '${EMPTY}'
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}   access_token 
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}   id_token 
-        ${access_token_value_login}   Verify Value Response LDAP By Key   access_token  
-        ${id_token_value_login}       Verify Value Response LDAP By Key   id_token 
+        Verify Value Response Ldap By Key   access_token  
+        Verify Value Response Ldap By Key   id_token 
         Take Screenshot Verify Success Scene
     ELSE
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    access_token 
-        ${access_token_value_login}     Verify Value Response LDAP By Key    access_token  
+        Verify Value Response Ldap By Key    access_token  
         Take Screenshot Verify Success Scene
     END
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
@@ -47,25 +44,22 @@ Verify Response Access Token Refresh LDAP
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     IF    '${key_response_2}' != '${EMPTY}'
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    access_token 
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}    id_token 
-        ${access_token_value_refresh}    Verify Value Response LDAP By Key   access_token  
-        ${id_token_value_refresh}        Verify Value Response LDAP By Key   id_token 
+        Verify Value Response Ldap By Key   access_token  
+        Verify Value Response Ldap By Key   id_token 
         Take Screenshot Verify Success Scene
     ELSE
-        Dictionary Should Contain Key    ${RESPONSE_JSON_MESSAGE}     access_token 
-        ${access_token_value_refresh}    Verify Value Response LDAP By Key   access_token  
+        Verify Value Response Ldap By Key   access_token  
         Take Screenshot Verify Success Scene
     END
     # Set Test Variable    ${ACTUAL_RESULT}        &{RESPONSE_JSON_MESSAGE}
     Set Test Actual Result      Refresh Token : ${RESPONSE_JSON_MESSAGE}
 
-Verify Value Response LDAP By Key 
+Verify Value Response Ldap By Key 
     [Documentation]     Owner : sasipen
     [Arguments]   ${key}
     ${value}    Set Variable    ${RESPONSE_JSON_MESSAGE.${key}} 
     Should Match Regexp    ${value}     .+
-    [Return]    ${value}
+    Log    ${value}
 
 # Set Response Login To Actual Result Login  
 #     [Arguments]    ${value_1}=${EMPTY}        ${value_2}=${EMPTY}    
@@ -96,12 +90,7 @@ Create Browser Session
     #Set Documentation Test Url Authentication    ${url} 
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
-    ${message}         Get Text    ${lbl_json_response_on_webpage} 
-    &{json_message}    Evaluate    json.loads('''${message}''')    json 
-    ${access_token}    Set Variable            ${json_message}[access_token]
-    Log     ${access_token}   
-    ${code_refresh_token}    Set Variable         ${json_message}[refresh_token]
-    Log    ${code_refresh_token}   
+    ${code_refresh_token}    Get Value Response Ldap By Key    refresh_token
     Set Test Variable    ${CODE_REFRESH_TOKEN}    ${code_refresh_token} 
 
 Create URL For Get Refresh Token
@@ -121,11 +110,18 @@ Open Browser Login And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
 
-Get Value From Access Token
+
+Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
+    [Arguments]        ${response_key}
     ${message}         Get Text    ${lbl_json_response_on_webpage} 
     &{json_message}    Evaluate    json.loads('''${message}''')    json        
-    ${value}        Set Variable    ${json_message.access_token} 
+    ${value}           Set Variable    ${json_message.${response_key}} 
+    [Return]     ${value}             
+    
+Get Value From Key Access Token
+    [Documentation]     Owner : sasipen
+    ${value}    Get Value Response Ldap By Key    access_token
     Set Test Variable    ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    ${value} 
 
 Set Content Header Ldap Logout
@@ -147,11 +143,6 @@ Set Body Ldap Logout
 
 Send Request Ldap Logout
     Send Post Request    url=${URL}      headers=${HEADER_LDAP_LOGOUT}    body=${BODY_LDAP_LOGOUT}  
-
-# Verify Response State Ldap Logout
-#     ${state_message}    Get Value Response By Key     state
-#     Should Match Regexp          ${state_message}       .+  
-#     Log     ${state_message}
 
 Verify Response State Ldap Logout
     [Arguments]        ${state} 
