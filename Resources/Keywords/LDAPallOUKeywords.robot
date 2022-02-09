@@ -11,7 +11,8 @@ Create URL For Get Token
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-    #Set Documentation Test Url Get Token     ${URL_GET_TOKEN}    
+    # Set Documentation Test Url Get Token     ${URL_GET_TOKEN}
+
 Get Code From Authentication
     [Documentation]     Owner : sasipen
     ${url_authentication_access}    Get Url 
@@ -89,13 +90,16 @@ Verify Value Response Ldap By Key
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
-Create Browser Session   
+
+
+Create Browser Session
     [Documentation]     Owner : sasipen 
     [Arguments]    ${url}
     Set Up Browser Fullscreen        
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
-    #Set Documentation Test Url Authentication    ${url} 
+    #Set Documentation Test Url Authentication    ${url}
+
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
     ${code_refresh_token}    Get Value Response Ldap By Key    refresh_token
@@ -109,6 +113,7 @@ Create URL For Get Refresh Token
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}
     #Set Documentation Test Url Get Refresh Token    ${URL_GET_REFRESH_TOKEN}
+
 Open Browser Login And Open Page Get Token 
     [Documentation]     Owner : sasipen
     [Arguments]    ${url}
@@ -411,7 +416,6 @@ Verify Response State Ldap Logout
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Fill Username And Password
     [Documentation]    Owner: Nakarin
     ...    Recieve Arguments Username and Password 

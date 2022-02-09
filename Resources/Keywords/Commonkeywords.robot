@@ -41,13 +41,3 @@ Set Documentation Test Url Get Token
 Set Documentation Test Url Get Refresh Token
     [Arguments]    ${url}=${EMPTY} 
     Set Test Variable    ${PRO_URL_GET_REFRESH_TOKEN}    \r\n URL for get refresh token : ${url}    Append=True
-
-# Set Documentation Test Provisioning Data 
-#     Set Test Variable    ${PROVISIONING_DATA}    \r\n${PRO_USER}\r\n$${PRO_PASSWD}
-
-# Set Test Provisioning Data 
-#     [Arguments]    ${data}  
-#     ${status}    Run Keyword And Return Status    Variable Should Exist    ${DOC_PROVISIONING_DATA}
-#     ${DOC_PROVISIONING_DATA}    Set Variable If    ${status}==False    ${EMPTY}   
-#     ${provisioning_data}    Set Variable    ${DOC_PROVISIONING_DATA}\r\n${data}
-#     Set Test Variable    ${DOC_PROVISIONING_DATA}    ${provisioning_data}               
