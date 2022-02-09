@@ -443,8 +443,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
-    Set Up Browser Fullscreen
-    New Page    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    password425
     Press Login Button
     Wait Until Network Is Idle
@@ -454,8 +453,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    Test
-    Set Up Browser Fullscreen
-    New Page    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password        426    ${pass_ldap_provider}
     Press Login Button
     Wait Until Network Is Idle
@@ -465,11 +463,9 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
 TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider    On-Hold
-    # Open Browser    ${url_authentication}    Firefox
-    Open Browser    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/    chromium
+    Create Browser Session
     Wait Until Network Is Idle
     Verify Value At Locator    ${lbl_json_response_on_webpage}    {"error":"invalid_request"}
-    # Sleep    10s
 
 TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
@@ -487,8 +483,7 @@ TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secr
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
     [Tags]    Employee    Test
-    Set Up Browser Fullscreen
-    New Page    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    Nop#3246@Stg!sss
     Press Login Button
     Wait Until Network Is Idle
@@ -496,9 +491,9 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
     # Verify Log From Server
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
+    [Documentation]    Owner: Nakarin
     [Tags]    Employee    Test
-    Set Up Browser Fullscreen
-    New Page    ${url_authentication_LDAP_${test_site}}
+    Create Browser Session    ${url_authentication_LDAP_${test_site}}
     Fill Username And Password    noppararhhh    ${pass_ldap_employee}
     Press Login Button
     Wait Until Network Is Idle

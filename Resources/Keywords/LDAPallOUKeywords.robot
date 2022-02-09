@@ -87,7 +87,7 @@ Verify Value Response LDAP By Key
 #     [Arguments]          ${actual_login}=${EMPTY}        ${actual_refresh}=${EMPTY} 
 #     Set Test Variable    ${ACTUAL_RESULT}         ${actual_login}\r\n${actual_refresh}    
 
-Create Browser Session   
+Create Browser Session
     [Documentation]     Owner : sasipen 
     [Arguments]    ${url}
     Set Up Browser Fullscreen        
