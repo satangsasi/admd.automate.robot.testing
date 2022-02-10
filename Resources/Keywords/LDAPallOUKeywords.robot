@@ -7,15 +7,13 @@ Create URL For Get Token
     [Documentation]     Owner : sasipen    Editor: Nakarin
     ...    ***Editor Note***
     ...    - Add Set Test Provisioning Data
-    # Wait Until Network Is Idle
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
-    Wait Until Network Is Idle
-    ${url_auth_access}    Get Url 
+    ${url_auth_access}    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Variable    ${CODE}    ${code}
@@ -434,6 +432,7 @@ Wait For Authentication Code Expire
     [Tags]    keyword_communicate
     # Sleep    5m
     Run Keyword And Ignore Error    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
+
 Verify Login Fail
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate

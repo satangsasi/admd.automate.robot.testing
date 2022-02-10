@@ -471,7 +471,6 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button
-    Wait Until Network Is Idle
     Verify Login Fail
     # Verify Log From Server
 
@@ -536,7 +535,7 @@ TST_F10_0_1_009 Verify Login ldap employee with missing parameter
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Verify Invalid Request On Webpage
-    
+
 TST_F10_0_1_010 Verlify get token ldap employee with authhcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Employee    Test
@@ -554,7 +553,7 @@ TST_F10_0_1_011 Verlify get token ldap employee with client_id and client_secret
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Verify Invalid Grant On Webpage
 
-TST_F10_0_1_012 Verlify get token ldap employee with invalid client_secret 
+TST_F10_0_1_012 Verlify get token ldap employee with invalid client_secret
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
