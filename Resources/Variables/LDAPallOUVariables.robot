@@ -37,13 +37,12 @@ ${url_auth_ldap__employee_no_scope_profile}    https://iot-apivr.ais.co.th/autht
 
 
 # Header
-${header_ldap_schema}                   {"Content-Type": "_Content-Type_"}
+${header_ldap_schema}    {"Content-Type": "_Content-Type_"}
 
 # Body
-${body_ldap_schema}                     {"access_token": "_access_token_", "state": "_state_"} 
-${state_logout_ldap_cp}                 Logout with Ldap CP (1.9)
-${state_logout_ldap_cp_sso}             Logout with Ldap CP (1.9) (SSO)   
-
+${body_ldap_schema}            {"access_token": "_access_token_", "state": "_state_"} 
+${state_logout_ldap_cp}        Logout with Ldap CP (1.9)
+${state_logout_ldap_cp_sso}    Logout with Ldap CP (1.9) (SSO)   
 
 # Error Message
 ${error_title}                           Wrong Username or Password
