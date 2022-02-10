@@ -14,8 +14,8 @@ Create URL For Get Token
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
-    ${url_authentication_access}    Get Url 
-    ${code}    Split String         ${url_authentication_access}    =
+    ${url_auth_access}    Get Url 
+    ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Variable    ${CODE}    ${code}
 

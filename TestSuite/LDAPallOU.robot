@@ -12,7 +12,7 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider    sasi
-    Create Browser Session    ${url_authentication_ldap_${test_site}}
+    Create Browser Session    ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Create URL For Get Token
@@ -30,8 +30,8 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider     sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
-    New Page                 ${url_authentication_ldap_${test_site}} 
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
+    New Page                 ${url_auth_ldap_${test_site}} 
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}                 
     Set Data Response Ldap For Verify              
@@ -48,7 +48,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile} 
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile} 
     Set Response On Webpage To Json 
     Decode Token To Jwt    access_token
     Create URL For Get Refresh Token  
@@ -67,8 +67,8 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_scope_profile}
-    New Page                                      ${url_authentication_ldap_scope_profile}
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile}
+    New Page                                      ${url_auth_ldap_scope_profile}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
     Set Response On Webpage To Json 
@@ -89,7 +89,7 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_no_scope_profile}
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
     Set Response On Webpage To Json 
     Decode Token To Jwt    access_token
     Create URL For Get Refresh Token  
@@ -107,8 +107,8 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
     [Tags]    Content_Provider    sasi  
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_no_scope_profile}
-    New Page                                      ${url_authentication_ldap_no_scope_profile}
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
+    New Page                                      ${url_auth_ldap_no_scope_profile}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
     Set Response On Webpage To Json 
@@ -138,7 +138,7 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
     Set Response On Webpage To Json 
     Get Value From Key Access Token
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}    
@@ -157,8 +157,8 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     ...    ***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Content_Provider    sasi
-    Open Browser Login And Open Page Get Token    ${url_authentication_ldap_${test_site}}
-    New Page                 ${url_authentication_ldap_${test_site}} 
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
+    New Page                 ${url_auth_ldap_${test_site}} 
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN} 
     Set Response On Webpage To Json 
@@ -454,7 +454,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider
-    Create Browser Session        ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button
     Wait Until Network Is Idle
@@ -464,7 +464,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider
-    Create Browser Session        ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${invalid_user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Verify Login Fail
@@ -473,13 +473,13 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
 TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider
-    Create Browser Session    ${url_authentication_miss_parameter_ldap_${test_site}}
+    Create Browser Session    ${url_auth_miss_parameter_ldap_${test_site}}
     Verify Invalid Request On Webpage
 
 TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Content_Provider    Test
-    Create Browser Session        ${url_authentication_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Create URL For Get Token
@@ -502,7 +502,7 @@ TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secr
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
-    Create Browser Session        ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${invalid_user_ldap_employee}
     Press Login Button
     Verify Login Fail
@@ -511,7 +511,7 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
-    Create Browser Session        ${url_authentication_LDAP_${test_site}}
+    Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${invalid_pass_ldap_employee}    ${pass_ldap_employee}
     Press Login Button
     Verify Login Fail
@@ -520,13 +520,13 @@ TST_F10_0_1_008 Verify Login ldap employee with invalid user
 TST_F10_0_1_009 Verify Login ldap employee with missing parameter
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
-    Create Browser Session    ${url_authentication_miss_parameter_ldap_${test_site}}
+    Create Browser Session    ${url_auth_miss_parameter_ldap_${test_site}}
     Verify Invalid Request On Webpage
     
 TST_F10_0_1_010 Verlify get token ldap employee with authhcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Employee    On-Hold
-    Create Browser Session        ${url_authentication_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button
     Create URL For Get Token
