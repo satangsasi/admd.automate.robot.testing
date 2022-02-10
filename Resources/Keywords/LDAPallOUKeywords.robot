@@ -13,7 +13,7 @@ Create URL For Get Token
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
-    ${url_auth_access}    Get Url    matches    .*code=
+    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}     0.1s    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Variable    ${CODE}    ${code}
@@ -63,12 +63,12 @@ Decode Token To Jwt
     IF    '${response_key}' == 'access_token'  
         ${value}     Get Value Response Ldap By Key    ${response_key}   
         ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+        Set Test Actual Result    Access token jwt decode : ${jwt_decode}  
     END  
     IF    '${response_key}' == 'id_token'  
         ${value}     Get Value Response Ldap By Key    ${response_key}   
         ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+        Set Test Actual Result    Id token jwt decode : ${jwt_decode}  
     END
 
 Verify Response Ldap No Scope Profile
@@ -150,7 +150,14 @@ Verify Response State Ldap Logout
     ${autual_value_state}    Get Value Response By Key    state
     Set Test Actual Result    "state" : "${autual_value_state}"
 
-
+Open Browser Login Employee And Open Page Get Token
+    [Documentation]     Owner : sasipen
+    [Arguments]    ${url}
+    Create Browser Session   ${url}
+    Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}   
+    Press Login Button
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}
 
 
 
