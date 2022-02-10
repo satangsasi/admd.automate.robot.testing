@@ -171,8 +171,22 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     # expected result show stete ..............
     
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
-    [Tags]    On-Hold
-
+    [Documentation]     Owner : sasipen
+    ...
+    ...    ***Condition***
+    ...
+    ...    ***Expected Result***
+    ...    \r\n User logins successfully.
+    [Tags]    Content_Provider    sasi
+    Create Browser Session        ${url_auth_ldap_employee_${test_site}}
+    Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
+    Press Login Button
+    # Create URL For Get Token
+    # New Page                      ${URL_GET_TOKEN}
+    # Set Data Response Ldap For Verify                 
+    # Verify Response Ldap
+    # Decode Token To Jwt    access_token
+    # Decode Token To Jwt    id_token
 TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
     [Tags]    On-Hold
 
