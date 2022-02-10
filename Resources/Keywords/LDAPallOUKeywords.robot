@@ -14,6 +14,7 @@ Create URL For Get Token
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
+    Wait Until Network Is Idle
     ${url_auth_access}    Get Url 
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
@@ -108,7 +109,7 @@ Create URL For Get Refresh Token
     [Documentation]     Owner : sasipen
     Wait Until Network Is Idle
     Get Code From Key Refresh Token
-    ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_dev}    _code_    ${CODE_REFRESH_TOKEN}
+    ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_${test_site}}    _code_    ${CODE_REFRESH_TOKEN}
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}
 
