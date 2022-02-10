@@ -432,8 +432,7 @@ Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     # Sleep    5m
-    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
-
+    Run Keyword And Ignore Error    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
 Verify Login Fail
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
