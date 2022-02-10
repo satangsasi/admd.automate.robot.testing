@@ -6,6 +6,7 @@ Resource    ../../TestSuite/Resource_init.robot
 Append To Document Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
+    Run Keyword If Test Failed    Take Screenshot Failure Specific Name
     Set Test Provisioning Data    Request ${REQUEST_TYPE} : ${API_URL}
     Set Test Provisioning Data    Header : ${API_HEADER}
     Set Test Provisioning Data    Body : ${API_BODY}

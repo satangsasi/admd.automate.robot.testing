@@ -1,21 +1,29 @@
 *** Variables ***
-${user_ldap_provider}         425
-${pass_ldap_provider}         password
-${user_ldap_employee}         nopparar
-${pass_ldap_employee}         Nop#3246@Stg!
-&{authentication_ldap}        user=425
+# User Provider
+${user_ldap_provider}            425
+${pass_ldap_provider}            password
+${invalid_user_ldap_provider}    426
+${invalid_pass_ldap_provider}    password425
+
+# User Employee
+${user_ldap_employee}            nopparar
+${pass_ldap_employee}            Nop#3246@Stg!
+${invalid_user_ldap_employee}    noppararhhh
+${invalid_pass_ldap_employee}    Nop#3246@Stg!sss
 
 # Url
 ${url_authentication_ldap_dev}                    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
 ${url_authentication_ldap_iot}                    https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
 ${url_authentication_miss_parameter_ldap_dev}     https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
-${url_get_token_schema}                       https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=_code_
-${url_authentication_ldap_scope_profile}      https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/&scope=profile 
-${url_authentication_ldap_no_scope_profile}   https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
-${url_get_refresh_token_schema_iot}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
-${url_get_refresh_token_schema_dev}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
-${url_ldap_logout_dev}                https://iot-apivr.ais.co.th/authtest/v3.2/logout
-${url_ldap_logout_iot}                https://iot-apivr.ais.co.th/auth/v3.2/logout
+${url_client_secret_no_match_ldap_dev}            https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=51R98t28kK1JJs1iFOXvy2l5jj0dVBWqCeGPmpFDCICk
+${url_invalid_client_secret_ldap_dev}             https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientt&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=sUzaI0YmAtQM60qG7152o51X3ji0o30RpvdR018u5e5W
+${url_get_token_schema}                           https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=_code_
+${url_authentication_ldap_scope_profile}          https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/&scope=profile 
+${url_authentication_ldap_no_scope_profile}       https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
+${url_get_refresh_token_schema_iot}               https://iot-apivr.ais.co.th/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
+${url_get_refresh_token_schema_dev}               https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
+${url_ldap_logout_dev}                            https://iot-apivr.ais.co.th/authtest/v3.2/logout
+${url_ldap_logout_iot}                            https://iot-apivr.ais.co.th/auth/v3.2/logout
 
 # Header
 ${header_ldap_schema}                   {"Content-Type": "_Content-Type_"}
@@ -27,11 +35,13 @@ ${state_logout_ldap_cp_sso}             Logout with Ldap CP (1.9) (SSO)
 
 
 # Error Message
-${error_title}           Wrong Username or Password
-${error_message}         Please check your Username or Password.
+${error_title}                           Wrong Username or Password
+${error_message}                         Please check your Username or Password.
+${json_error_message_invalid_grant}      {"error":"invalid_grant"}
+${json_error_message_invalid_request}    {"error":"invalid_request"}
 
 # Response
-${expected_expires_in_ldap}            86400
-${expected_expires_in_no_scope_ldap}    36300
-${expected_refresh_token_expires_in_ldap}    86400
+${expected_expires_in_ldap}                           86400
+${expected_expires_in_no_scope_ldap}                  36300
+${expected_refresh_token_expires_in_ldap}             86400
 ${expected_refresh_token_expires_in_no_scope_ldap}    36300
