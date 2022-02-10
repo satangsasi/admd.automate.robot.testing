@@ -139,6 +139,7 @@ Set Body Ldap Logout
     ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
     ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
     Set Test Variable              ${API_BODY}       ${body_state}
+    
 Send Request Ldap Logout
     [Documentation]     Owner : sasipen
     Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
