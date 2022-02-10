@@ -14,8 +14,7 @@ Create URL For Get Token
 
 Get Code From Authentication
     [Documentation]     Owner : sasipen
-    Wait Until Network Is Idle
-    ${url_auth_access}    Get Url 
+    ${url_auth_access}         Get Url    matches        .+code= 
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Variable    ${CODE}    ${code}
@@ -60,7 +59,7 @@ Verify Response Ldap
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
 Decode Token To Jwt
-    [Arguments]     ${response_key} 
+    [Arguments]  ${response_key} 
     ${value}     Get Value Response Ldap By Key    ${response_key}  
     IF    '${response_key}' == 'access_token'  
         ${value}     Get Value Response Ldap By Key    ${response_key}   
@@ -427,7 +426,7 @@ Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    Wait Until Network Is Idle
+    # Wait Until Network Is Idle
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
