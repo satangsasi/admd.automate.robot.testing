@@ -24,7 +24,6 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     
 TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
-    ...
     ...    ***Condition***
     ...
     ...    ***Expected Result***
@@ -41,7 +40,6 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
     ...    ***Condition***
     ...    \r\n Scope = Profile
     ...
@@ -60,7 +58,6 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
     ...    ***Condition***
     ...    \r\n Scope = Profile 
     ...
@@ -82,7 +79,6 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
     ...    ***Condition***
     ...    \r\n don't have Scope = Profile
     ...
@@ -100,7 +96,6 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
 
 TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
     ...    ***Condition***
     ...    \r\n don't have Scope = Profile
     ...
@@ -131,10 +126,6 @@ TST_F10_1_1_008 Verify Decrypted PID ldap Content provider camel case
 
 TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
-    ...    ***Condition***
-    ...    \r\n 
-    ...
     ...    ***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Content_Provider    sasi
@@ -150,10 +141,6 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
-    ...
-    ...    ***Condition***
-    ...    \r\n 
-    ...
     ...    ***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Content_Provider    sasi
@@ -172,9 +159,6 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
-    ...
-    ...    ***Condition***
-    ...
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider    sasi
@@ -188,16 +172,68 @@ TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     Decode Token To Jwt    access_token
     Decode Token To Jwt    id_token
 TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
-    [Tags]    On-Hold
+    [Documentation]     Owner : sasipen
+    ...
+    ...    ***Condition***
+    ...
+    ...    ***Expected Result***
+    ...    \r\n User sso successfully.
+    [Tags]    Content_Provider    sasi
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
+    New Page                 ${url_auth_ldap_employee_${test_site}} 
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}                 
+    Set Data Response Ldap For Verify              
+    Verify Response Ldap    
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
 
 TST_F10_1_1_013 Verify Refresh Token with login ldap employee
-    [Tags]    On-Hold
-
+    [Documentation]     Owner : sasipen
+    ...    ***Condition***
+    ...    \r\n Scope = Profile
+    ...
+    ...    ***Expected Result***
+    ...    \r\n Successfully login and got access_token. 
+    [Tags]    Content_Provider    sasi
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
+    Set Response On Webpage To Json 
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
+    Create URL For Get Refresh Token  
+    New Page                                      ${URL_GET_REFRESH_TOKEN}
+    Set Data Response Ldap For Verify   
+    Verify Response Ldap
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
-    [Tags]    On-Hold
+    [Documentation]     Owner : sasipen
+    ...    ***Condition***
+    ...    \r\n Scope = Profile
+    ...
+    ...    ***Expected Result***
+    ...    \r\n Successfully login and got access_token. 
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
+    New Page                 ${url_auth_ldap_employee_${test_site}}
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}   
+    Set Response On Webpage To Json 
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
+    Create URL For Get Refresh Token  
+    New Page                 ${URL_GET_REFRESH_TOKEN}
+    Set Data Response Ldap For Verify   
+    Verify Response Ldap 
+    Decode Token To Jwt    access_token
+    Decode Token To Jwt    id_token
 
 TST_F10_1_1_015 Verify Refresh Token with login ldap employee
-    [Tags]    On-Hold
+    [Documentation]     Owner : sasipen
+    ...    ***Condition***
+    ...    \r\n don't have Scope = Profile
+    ...
+    ...    ***Expected Result***
+    ...    \r\n Successfully login and got access_token. 
 
 TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     [Tags]    On-Hold

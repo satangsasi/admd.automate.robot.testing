@@ -62,17 +62,17 @@ Verify Response Ldap
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
 Decode Token To Jwt
-    [Arguments]     ${response_key} 
+    [Arguments]  ${response_key} 
     ${value}     Get Value Response Ldap By Key    ${response_key}  
     IF    '${response_key}' == 'access_token'  
         ${value}     Get Value Response Ldap By Key    ${response_key}   
         ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+        Set Test Actual Result    Access token jwt decode : ${jwt_decode}  
     END  
     IF    '${response_key}' == 'id_token'  
         ${value}     Get Value Response Ldap By Key    ${response_key}   
         ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Jwt decode : ${jwt_decode}  
+        Set Test Actual Result    Id token jwt decode : ${jwt_decode}  
     END
 
 Verify Response Ldap No Scope Profile
@@ -154,7 +154,14 @@ Verify Response State Ldap Logout
     ${autual_value_state}    Get Value Response By Key    state
     Set Test Actual Result    "state" : "${autual_value_state}"
 
-
+Open Browser Login Employee And Open Page Get Token
+    [Documentation]     Owner : sasipen
+    [Arguments]    ${url}
+    Create Browser Session   ${url}
+    Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}   
+    Press Login Button
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}
 
 
 
@@ -429,7 +436,7 @@ Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    Wait Until Network Is Idle
+    # Wait Until Network Is Idle
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
