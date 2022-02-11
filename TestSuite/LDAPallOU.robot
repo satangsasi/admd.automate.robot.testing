@@ -577,14 +577,14 @@ TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
 
 TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Content_Provider    Test
+    [Tags]    Content_Provider
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Create URL For Get Token
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}
-    Verify Invalid Request On Webpage
+    Verify Invalid Grant On Webpage
 
 TST_F10_0_1_005 Verlify get token Ldap Content provider with client_id and client_secret no match
     [Documentation]    Owner: Nakarin
@@ -631,7 +631,7 @@ TST_F10_0_1_010 Verlify get token ldap employee with authhcode expire
     Create URL For Get Token
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}
-    Verify Invalid Request On Webpage
+    Verify Invalid Grant On Webpage
 
 TST_F10_0_1_011 Verlify get token ldap employee with client_id and client_secret no match
     [Documentation]    Owner: Nakarin

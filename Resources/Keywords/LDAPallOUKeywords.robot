@@ -578,8 +578,7 @@ Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
     ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
-    Sleep    6m
-    # Run Keyword And Ignore Error    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
+    Sleep    5m
 
 Verify Login Fail
     [Documentation]    Owner: Nakarin
