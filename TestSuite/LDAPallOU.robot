@@ -12,15 +12,17 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider    sasi
-    Create Browser Session    ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Create URL For Get Token
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify                 
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login    Content Provider
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token      login    Content Provider
     
 TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
@@ -35,8 +37,10 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     New Page                 ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso    Content Provider
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token        sso    Content Provider
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -48,13 +52,16 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile}
     Set Response On Webpage To Json 
-    Decode Token To Jwt    access_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login    Content Provider
     Create URL For Get Refresh Token  
     New Page                                      ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider    
+    Decode Refresh Token To Jwt By Key Id Token
+    Verify Response Decode Refresh Token By Key ID Token        Content Provider
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -69,14 +76,17 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
-    Decode Token To Jwt    access_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso    Content Provider
     Create URL For Get Refresh Token  
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
-    
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider    
+    Decode Refresh Token To Jwt By Key Id Token
+    Verify Response Decode Refresh Token By Key ID Token        Content Provider
+
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -87,13 +97,14 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Tags]    Content_Provider    sasi
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
     Set Response On Webpage To Json 
-    Decode Token To Jwt    access_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login    Content Provider
     Create URL For Get Refresh Token  
     New Page    ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
-    Decode Token To Jwt    access_token
-
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider  
 TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -107,19 +118,17 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
     Set Response On Webpage To Json
-    Decode Token To Jwt    access_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso    Content Provider
     Create URL For Get Refresh Token
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
-    Decode Token To Jwt    access_token
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider  
 
 TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
     [Tags]    On-Hold
-    # Open Browser        https://jwt.io/            ${default_browser}
-    # Wait Until Network Is Idle
-    # Scroll To    0,1500
-    # Clear Text        xpath=//*[@class="editor-warning warning js-editor-warnings hidden"]
 
 TST_F10_1_1_008 Verify Decrypted PID ldap Content provider camel case
     [Tags]    On-Hold
@@ -137,7 +146,6 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     Set Body Ldap Logout              ${state_logout_ldap_cp}  
     Send Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp}
-    # expected result show stete ..............
     
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -155,7 +163,6 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
     Send Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
-    # expected result show stete ..............
     
 TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
@@ -169,8 +176,10 @@ TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login    Employee
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token        login    Employee
 TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...
@@ -180,13 +189,15 @@ TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
     ...    \r\n User sso successfully.
     [Tags]    Content_Provider    sasi
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
-    New Page                 ${url_auth_ldap_employee_${test_site}} 
+    New Page               ${url_auth_ldap_employee_${test_site}} 
     Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}                 
+    New Page               ${URL_GET_TOKEN}                 
     Set Data Response Ldap For Verify              
     Verify Response Ldap    
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso    Employee
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token        sso    Employee
 
 TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     [Documentation]     Owner : sasipen
@@ -198,14 +209,18 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     [Tags]    Content_Provider    sasi
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     Set Response On Webpage To Json 
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login    Employee
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token        login    Employee
     Create URL For Get Refresh Token  
-    New Page                                      ${URL_GET_REFRESH_TOKEN}
+    New Page               ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify   
     Verify Response Ldap
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Employee    
+    Decode Refresh Token To Jwt By Key Id Token
+    Verify Response Decode Refresh Token By Key ID Token        Employee
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -213,19 +228,24 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
+    [Tags]    Content_Provider    sasi
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page                 ${url_auth_ldap_employee_${test_site}}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}   
     Set Response On Webpage To Json 
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso   Employee
+    Decode Login Token To Jwt By Key Id Token
+    Verify Response Decode Login Token By Key ID Token        sso   Employee
     Create URL For Get Refresh Token  
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify   
     Verify Response Ldap 
-    Decode Token To Jwt    access_token
-    Decode Token To Jwt    id_token
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Employee    
+    Decode Refresh Token To Jwt By Key Id Token
+    Verify Response Decode Refresh Token By Key ID Token        Employee   
 
 TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     [Documentation]     Owner : sasipen
@@ -233,10 +253,40 @@ TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     ...    \r\n don't have Scope = Profile
     ...
     ...    ***Expected Result***
-    ...    \r\n Successfully login and got access_token. 
+    ...    \r\n Successfully login and got access_token.
+    [Tags]    Content_Provider    sasi
+    Open Browser Login Employee And Open Page Get Token   ${url_auth_ldap_employee_no_scope_profile}
+    Set Response On Webpage To Json 
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    login   Employee
+    Create URL For Get Refresh Token  
+    New Page    ${URL_GET_REFRESH_TOKEN}
+    Set Data Response Ldap For Verify
+    Verify Response Ldap No Scope Profile
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Employee    
 
 TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
-    [Tags]    On-Hold
+    [Documentation]     Owner : sasipen
+    ...    ***Condition***
+    ...    \r\n don't have Scope = Profile
+    ...
+    ...    ***Expected Result***
+    ...    \r\n Successfully login and got access_token. 
+    [Tags]    Content_Provider    sasi
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_no_scope_profile}
+    New Page    ${url_auth_ldap_employee_no_scope_profile}
+    Create URL For Get Token
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Decode Login Token Jwt By Key Access Token
+    Verify Response Decode Login Token By Key Access Token    sso   Employee
+    Create URL For Get Refresh Token
+    New Page    ${URL_GET_REFRESH_TOKEN}
+    Set Data Response Ldap For Verify
+    Verify Response Ldap No Scope Profile
+    Decode Refresh Token To Jwt By Key Access Token
+    Verify Response Decode Refresh Token By Key Access Token    Employee   
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Tags]    On-Hold

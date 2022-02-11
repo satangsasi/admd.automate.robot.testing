@@ -47,6 +47,10 @@ ${json_error_message_invalid_request}    {"error":"invalid_request"}
 
 # Response
 ${expected_expires_in_ldap}                           86400
-${expected_expires_in_no_scope_ldap}                  36300
 ${expected_refresh_token_expires_in_ldap}             86400
-${expected_refresh_token_expires_in_no_scope_ldap}    36300
+${expected_action_refresh}                            refresh
+${expected_value_login_subtype_cp}                    ldapCp
+${expected_value_login_subtype_employee}              ldapEmployee
+${expected_action_login}                              login
+${expected_action_sso}                                sso
+

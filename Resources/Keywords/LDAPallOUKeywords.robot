@@ -60,20 +60,52 @@ Verify Response Ldap
     Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}        ${expected_refresh_token_expires_in_ldap}
     Take Screenshot Verify Success Scene
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
+    
+Decode Login Token Jwt By Key Access Token
+    ${value}         Get Value Response Ldap By Key    access_token
+    ${jwt_decode}    Jwt Decode      ${value} 
+    Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
+    Set Test Actual Result    Login access token jwt decode : ${jwt_decode} 
 
-Decode Token To Jwt
-    [Arguments]  ${response_key} 
-    ${value}     Get Value Response Ldap By Key    ${response_key}  
-    IF    '${response_key}' == 'access_token'  
-        ${value}     Get Value Response Ldap By Key    ${response_key}   
-        ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Access token jwt decode : ${jwt_decode}  
-    END  
-    IF    '${response_key}' == 'id_token'  
-        ${value}     Get Value Response Ldap By Key    ${response_key}   
-        ${jwt_decode}           Jwt Decode      ${value}
-        Set Test Actual Result    Id token jwt decode : ${jwt_decode}  
-    END
+Decode Login Token To Jwt By Key Id Token
+    ${value}         Get Value Response Ldap By Key    id_token 
+    ${jwt_decode}    Jwt Decode      ${value}
+    Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
+    Set Test Actual Result    Login id token jwt decode : ${jwt_decode}  
+
+Decode Refresh Token To Jwt By Key Access Token
+    ${value}         Get Value Response Ldap By Key    access_token
+    ${jwt_decode}    Jwt Decode      ${value} 
+    Set Test Variable         ${JWT_DECODE_REFRESH__ACCESS_TOKEN}      ${jwt_decode} 
+    Set Test Actual Result    Login access token jwt decode : ${jwt_decode} 
+
+Decode Refresh Token To Jwt By Key Id Token
+    ${value}         Get Value Response Ldap By Key    id_token 
+    ${jwt_decode}    Jwt Decode      ${value}
+    Set Test Actual Result    Login id token jwt decode : ${jwt_decode}  
+    Set Test Variable         ${JWT_DECODE_REFRESH__ID_TOKEN}      ${jwt_decode}
+
+Verify Response Decode Refresh Token By Key Access Token
+    [Arguments]    ${Content_Provider_or_Employee}  
+    ${actual_value_action}    Get Refresh Value Response Jwt By key Access Token    action
+    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+    Verify Response Role Test Decode Jwt    acess_token    ${Content_Provider_or_Employee}    refresh
+
+Verify Response Decode Refresh Token By Key ID Token 
+    [Arguments]    ${Content_Provider_or_Employee}
+    ${actual_value_action}    Get Refresh Value Response Jwt By key Id Token    action
+    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+    Verify Response Role Test Decode Jwt    id_token    ${Content_Provider_or_Employee}    refresh
+
+Verify Response Decode Login Token By Key Access Token
+    [Arguments]    ${type_login_or_sso}      ${Content_Provider_or_Employee}     
+    Verify Response Action Type Decode Jwt By Key    access_token    ${type_login_or_sso}
+    Verify Response Role Test Decode Jwt    access_token    ${Content_Provider_or_Employee}    login  
+
+Verify Response Decode Login Token By Key ID Token
+    [Arguments]    ${type_login_or_sso}      ${Content_Provider_or_Employee}     
+    Verify Response Action Type Decode Jwt By Key    id_token    ${type_login_or_sso}
+    Verify Response Role Test Decode Jwt    id_token    ${Content_Provider_or_Employee}    login 
 
 Verify Response Ldap No Scope Profile
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -82,8 +114,8 @@ Verify Response Ldap No Scope Profile
     Verify Value Response Ldap By Key   access_token 
     Verify Value Response Ldap By Key   refresh_token 
     Verify Value Should Be Equal    ${ACTUAL_VALUE_TOKEN_TYPE}     ${expected_token_type} 
-    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_no_scope_ldap}
-    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${expected_refresh_token_expires_in_no_scope_ldap}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_ldap}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${expected_refresh_token_expires_in_ldap}
     Take Screenshot Verify Success Scene 
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
@@ -163,18 +195,122 @@ Open Browser Login Employee And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
+Get Value Response Jwt By key Access Token 
+    [Arguments]       ${response_key} 
+    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ACCESS_TOKEN}      
+    Log Many    &{response_jwt}[aut]
+    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
+    ${value}           Set Variable    ${jwt_access_token.${response_key}}
+    [Return]     ${value}
+    
+Get Value Response Jwt By key ID Token
+    [Arguments]       ${response_key}    
+    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ID_TOKEN}      
+    Log Many    &{response_jwt}[aut]
+    ${jwt_id_token}    Set Variable        ${response_jwt}[aut]
+    ${value}           Set Variable    ${jwt_id_token.${response_key}}
+    [Return]     ${value}
+
+Get Refresh Value Response Jwt By key Access Token 
+    [Arguments]       ${response_key} 
+    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ACCESS_TOKEN}      
+    Log Many    &{response_jwt}[aut]
+    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
+    ${value}           Set Variable    ${jwt_access_token.${response_key}}
+    [Return]     ${value}
+
+Get Refresh Value Response Jwt By key Id Token 
+    [Arguments]       ${response_key} 
+    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ID_TOKEN}      
+    Log Many    &{response_jwt}[aut]
+    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
+    ${value}           Set Variable    ${jwt_access_token.${response_key}}
+    [Return]     ${value}
+
+# Verify Refresh Decode Response Jwt 
+#     [Arguments]    ${response_key}    ${role_test} 
+#     IF    '${response_key}' == 'access_token'      
+#         ${actual_value_action}    Get Value Response Jwt Access Token By key    action
+#         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+#         Verify Response Role Test Decode Jwt    ${role_test}
+#     END
+#     IF    '${response_key}' == 'id_token'      
+#         ${actual_value_action}    Get Value Response Jwt ID Token By key    action
+#         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+#         Verify Response Role Test Decode Jwt    ${role_test}
+#     END
+
+# Verify Login Decode Response Jwt 
+#     [Arguments]    ${response_key}    ${type_login_or_sso}    ${role_test}      
+#     Verify Response Action Type Decode Jwt By Key    ${response_key}    ${type_login_or_sso}
+#     Verify Response Role Test Decode Jwt    ${role_test}     
+
+Verify Response Role Test Decode Jwt
+    [Arguments]    ${response_key}    ${Content_Provider_or_Employee}    ${state_test}
+    IF    '${Content_Provider_or_Employee}' == 'Content Provider'
+        IF     '${response_key}' == 'access_token' 
+            ${actual_value_login_subtype}    Validate State Test For Get Value Access Token    ${state_test}
+            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_cp}
+        END
+        IF     '${response_key}' == 'id_token' 
+            ${actual_value_login_subtype}    Validate State Test For Get Value Id Token    ${state_test}
+            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_cp}
+        END
+    END  
+    IF    '${Content_Provider_or_Employee}' == 'Employee'
+        IF     '${response_key}' == 'access_token' 
+            ${actual_value_login_subtype}    Validate State Test For Get Value Access Token    ${state_test}
+            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
+        END
+        IF     '${response_key}' == 'id_token' 
+            ${actual_value_login_subtype}    Validate State Test For Get Value Id Token    ${state_test}
+            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
+        END    
+    END
+Validate State Test For Get Value Access Token
+    [Arguments]    ${state_test} 
+    IF    '${state_test}' == 'login'
+        ${actual_value_login_subtype}    Get Value Response Jwt By key Access Token     login_subtype
+    END
+    IF    '${state_test}' == 'refresh'
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Access Token      login_subtype
+    END     
+    [Return]    ${actual_value_login_subtype}
+
+Validate State Test For Get Value Id Token
+    [Arguments]    ${state_test} 
+    IF    '${state_test}' == 'login'
+        ${actual_value_login_subtype}    Get Value Response Jwt By key Id Token     login_subtype
+    END
+    IF    '${state_test}' == 'refresh'
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Id Token      login_subtype
+    END     
+    [Return]   ${actual_value_login_subtype}
 
 
 
 
 
-
-
-
-
-
-
-
+Verify Response Action Type Decode Jwt By Key
+    [Arguments]    ${response_key}    ${type_login_or_sso}
+    IF    '${response_key}' == 'access_token'
+        ${actual_value_action}    Get Value Response Jwt By key Access Token    action
+        IF    '${type_login_or_sso}' == 'login'     
+        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
+        END  
+        IF    '${type_login_or_sso}' == 'sso'      
+        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+        END  
+    END  
+    IF    '${response_key}' == 'id_token'      
+        ${actual_value_action}    Get Value Response Jwt By key ID Token    action
+        IF    '${type_login_or_sso}' == 'login'     
+        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
+        END  
+        IF    '${type_login_or_sso}' == 'sso'      
+        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+        END  
+    END   
 
 
 
