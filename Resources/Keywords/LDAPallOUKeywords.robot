@@ -5,15 +5,19 @@ Resource    ../../TestSuite/Resource_init.robot
 *** Keywords ***
 Create URL For Get Token
     [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    Append Token(get from Auth Url) to get Token(API) Url
     ...    ***Editor Note***
-    ...    - Add Set Test Provisioning Data
+    ...    - Add Set Test Variable (Provisioning Data)
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
 
 Get Code From Authentication
-    [Documentation]     Owner : sasipen
-    ${url_auth_access}    Get Url    matches    .*code=
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
+    ...    ***Editor Note***
+    ...    - Add Set Test Variable (Provisioning Data)
+    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}    10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Variable    ${CODE}    ${code}
@@ -48,13 +52,13 @@ Verify Response Ldap
     [Documentation]     Owner : sasipen    Editor: Nakarin
     ...    ***Editor Note***
     ...    - Add Set Test Actual Result
-    Verify Value Response Ldap By Key   access_token 
+    Verify Value Response Ldap By Key   access_token
     Verify Value Response Ldap By Key   refresh_token 
     Verify Value Response Ldap By Key   id_token 
     Verify Value Should Be Equal    ${ACTUAL_VALUE_TOKEN_TYPE}     ${expected_token_type}
     Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_ldap}    
     Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}        ${expected_refresh_token_expires_in_ldap}
-    Take Screenshot Verify Success Scene 
+    Take Screenshot Verify Success Scene
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
 
 Decode Token To Jwt
@@ -133,7 +137,7 @@ Set Content Header Ldap Logout
     Set Test Variable    ${API_URL}       ${url}
 
 Set Body Ldap Logout
-    [Documentation]     Owner : sasipen             {"access_token": "_access_token_", "state": "_state_"}
+    [Documentation]     Owner : sasipen
     [Arguments]        ${state}
     ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
     ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
@@ -420,7 +424,7 @@ Fill Username And Password
     Fill Text    ${txt_password_ldap}    ${pass}
     Set Test Variable         ${USER}    ${user}
     Set Test Variable         ${PASS}    ${pass}
-    
+
 Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
@@ -429,12 +433,16 @@ Press Login Button
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
+    ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
-    # Sleep    5m
-    Run Keyword And Ignore Error    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
+    Sleep    6m
+    # Run Keyword And Ignore Error    Wait For Elements State    ${lbl_json_response_on_webpage}    state=visible    timeout=5m
 
 Verify Login Fail
     [Documentation]    Owner: Nakarin
+    ...    Verify Text shown on webpage
+    ...    Title: "Wrong Username or Password"
+    ...    Message: "Please check your Username or Password."
     [Tags]    keyword_communicate
     ${actual_error_title}      Get Text    ${lbl_error_title}
     ${actual_error_message}    Get Text    ${lbl_error_message}
@@ -446,6 +454,7 @@ Verify Login Fail
 
 Verify Invalid Request On Webpage
     [Documentation]    Owner: Nakarin
+    ...    Verify Text of json show on webpage : {"error":"invalid_request"}
     [Tags]    keyword_communicate
     ${json_error_message}      Get Text    ${lbl_json_response_on_webpage}
     Verify Value At Locator    ${lbl_json_response_on_webpage}    ${json_error_message_invalid_request}
@@ -454,6 +463,7 @@ Verify Invalid Request On Webpage
 
 Verify Invalid Grant On Webpage
     [Documentation]    Owner: Nakarin
+    ...    Verify Text of json show on webpage : {"error":"invalid_grant"}
     [Tags]    keyword_communicate
     ${json_error_message}      Get Text    ${lbl_json_response_on_webpage}
     Verify Value At Locator    ${lbl_json_response_on_webpage}    ${json_error_message_invalid_grant}
