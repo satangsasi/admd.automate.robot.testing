@@ -6,9 +6,6 @@ Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 *** Test Cases ***
 TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
-    ...
-    ...    ***Condition***
-    ...
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider    sasi
@@ -26,8 +23,6 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     
 TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
-    ...    ***Condition***
-    ...
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider     sasi
@@ -182,9 +177,6 @@ TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     Verify Response Decode Login Token By Key ID Token        login    Employee
 TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
-    ...
-    ...    ***Condition***
-    ...
     ...    ***Expected Result***
     ...    \r\n User sso successfully.
     [Tags]    Content_Provider    sasi
