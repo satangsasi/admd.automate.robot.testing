@@ -5,7 +5,6 @@ ${url_client_credentials_iot}                         https://iot-apivr.ais.co.t
 ${url_client_credentials_dev_invalid}                 https://iot-apivr.ais.co.th/authtest/v3.2/oauth/tokennnnnn
 ${url_client_credentials_iot_invalid}                 https://iot-apivr.ais.co.th/auth/v3.2/oauth/tokennnnnn
 
-
 ${header_client_credentials_schema}                   {"Content-Type": "_Content-Type_"}
 
 ${body_client_credentials_schema}                     {"client_id": "_client_id_", "client_secret": "_client_secret_", "grant_type": "_grant_type_", "nonce": "_nonce_" }
