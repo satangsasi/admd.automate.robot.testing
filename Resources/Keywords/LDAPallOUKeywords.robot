@@ -227,24 +227,6 @@ Get Refresh Value Response Jwt By key Id Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
 
-# Verify Refresh Decode Response Jwt 
-#     [Arguments]    ${response_key}    ${role_test} 
-#     IF    '${response_key}' == 'access_token'      
-#         ${actual_value_action}    Get Value Response Jwt Access Token By key    action
-#         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
-#         Verify Response Role Test Decode Jwt    ${role_test}
-#     END
-#     IF    '${response_key}' == 'id_token'      
-#         ${actual_value_action}    Get Value Response Jwt ID Token By key    action
-#         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
-#         Verify Response Role Test Decode Jwt    ${role_test}
-#     END
-
-# Verify Login Decode Response Jwt 
-#     [Arguments]    ${response_key}    ${type_login_or_sso}    ${role_test}      
-#     Verify Response Action Type Decode Jwt By Key    ${response_key}    ${type_login_or_sso}
-#     Verify Response Role Test Decode Jwt    ${role_test}     
-
 Verify Response Role Test Decode Jwt
     [Arguments]    ${response_key}    ${Content_Provider_or_Employee}    ${state_test}
     IF    '${Content_Provider_or_Employee}' == 'Content Provider'
@@ -286,10 +268,6 @@ Validate State Test For Get Value Id Token
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Id Token      login_subtype
     END     
     [Return]   ${actual_value_login_subtype}
-
-
-
-
 
 Verify Response Action Type Decode Jwt By Key
     [Arguments]    ${response_key}    ${type_login_or_sso}

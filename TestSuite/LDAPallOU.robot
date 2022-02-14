@@ -8,7 +8,7 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
@@ -25,7 +25,7 @@ TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    [Tags]    Content_Provider     sasi
+    [Tags]    Content_Provider     demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
     New Page                 ${url_auth_ldap_${test_site}}
     Create URL For Get Token
@@ -44,7 +44,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -65,7 +65,7 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile}
     New Page                                      ${url_auth_ldap_scope_profile}
     Create URL For Get Token
@@ -89,7 +89,7 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -107,7 +107,7 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    sasi  
+    [Tags]    Content_Provider    demo 
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
     New Page                                      ${url_auth_ldap_no_scope_profile}
     Create URL For Get Token
@@ -132,7 +132,7 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
     Set Response On Webpage To Json
     Get Value From Key Access Token
@@ -146,7 +146,7 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
     New Page                 ${url_auth_ldap_${test_site}} 
     Create URL For Get Token
@@ -163,7 +163,7 @@ TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button
@@ -179,7 +179,7 @@ TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User sso successfully.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page               ${url_auth_ldap_employee_${test_site}} 
     Create URL For Get Token
@@ -198,7 +198,7 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -220,7 +220,7 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page                 ${url_auth_ldap_employee_${test_site}}
     Create URL For Get Token
@@ -246,7 +246,7 @@ TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login Employee And Open Page Get Token   ${url_auth_ldap_employee_no_scope_profile}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -265,7 +265,7 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_no_scope_profile}
     New Page    ${url_auth_ldap_employee_no_scope_profile}
     Create URL For Get Token
