@@ -330,7 +330,9 @@ Get Value From Login Subtype For Verify Response Id Token
 
 Verify Response Action Type Decode Jwt By Key
     [Documentation]     Owner : sasipen
-    ...    Verify value by key action form key access token or id token type login or sso in json message=expected
+    ...    Verify value by key action form key access token or id token type login or sso in json message
+    ...    value by key acton of login = login
+    ...    value by key acton of sso = sso
     [Arguments]    ${response_key}    ${action_type}
     IF    '${response_key}' == 'access_token'
         ${actual_value_action}    Get Value Response Jwt By key Access Token    action
