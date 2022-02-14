@@ -4,7 +4,7 @@ Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 
 
 *** Test Cases ***
-TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
+TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
@@ -21,7 +21,7 @@ TST_F10_1_1_001 LDAP all OU Verlify login Ldap Content provider partnerId 30233
     Decode Login Token To Jwt By Key Id Token
     Verify Response Decode Login Token By Key ID Token      login    Content Provider
     
-TST_F10_1_1_002 Verlify sso Ldap Content provider partnerId 30233
+TST_F10_1_1_002 Verify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
@@ -159,7 +159,7 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     Send Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
     
-TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
+TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
@@ -175,7 +175,7 @@ TST_F10_1_1_011 Verlify login Ldap employee partnerId 30233
     Verify Response Decode Login Token By Key Access Token    login    Employee
     Decode Login Token To Jwt By Key Id Token
     Verify Response Decode Login Token By Key ID Token        login    Employee
-TST_F10_1_1_012 Verlify sso Ldap employee partnerId 30233
+TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User sso successfully.
@@ -567,7 +567,7 @@ TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
     Create Browser Session    ${url_auth_miss_parameter_ldap_${test_site}}
     Verify Invalid Request On Webpage
 
-TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
+TST_F10_0_1_004 Verify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Content_Provider
     Create Browser Session        ${url_auth_ldap_${test_site}}
@@ -578,13 +578,13 @@ TST_F10_0_1_004 Verlify get token Ldap Content provider with authhcode expire
     New Page                      ${URL_GET_TOKEN}
     Verify Invalid Grant On Webpage
 
-TST_F10_0_1_005 Verlify get token Ldap Content provider with client_id and client_secret no match
+TST_F10_0_1_005 Verify get token Ldap Content provider with client_id and client_secret no match
     [Documentation]    Owner: Nakarin
     [Tags]    Content_Provider
     Create Browser Session    ${url_client_secret_no_match_ldap_${test_site}}
     Verify Invalid Grant On Webpage
 
-TST_F10_0_1_006 Verlify get token Ldap Content provider with invalid client_secret
+TST_F10_0_1_006 Verify get token Ldap Content provider with invalid client_secret
     [Documentation]    Owner: Nakarin
     [Tags]    Content_Provider
     Create Browser Session    ${url_invalid_client_secret_ldap_${test_site}}
@@ -614,7 +614,7 @@ TST_F10_0_1_009 Verify Login ldap employee with missing parameter
     Create Browser Session        ${url_auth_miss_parameter_ldap_${test_site}}
     Verify Invalid Request On Webpage
 
-TST_F10_0_1_010 Verlify get token ldap employee with authhcode expire
+TST_F10_0_1_010 Verify get token ldap employee with authhcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
@@ -625,13 +625,13 @@ TST_F10_0_1_010 Verlify get token ldap employee with authhcode expire
     New Page                      ${URL_GET_TOKEN}
     Verify Invalid Grant On Webpage
 
-TST_F10_0_1_011 Verlify get token ldap employee with client_id and client_secret no match
+TST_F10_0_1_011 Verify get token ldap employee with client_id and client_secret no match
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
     Create Browser Session        ${url_client_secret_no_match_ldap_${test_site}}
     Verify Invalid Grant On Webpage
 
-TST_F10_0_1_012 Verlify get token ldap employee with invalid client_secret
+TST_F10_0_1_012 Verify get token ldap employee with invalid client_secret
     [Documentation]    Owner: Nakarin
     [Tags]    Employee
     Create Browser Session        ${url_invalid_client_secret_ldap_${test_site}}
