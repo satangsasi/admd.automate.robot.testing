@@ -104,14 +104,14 @@ Decode Refresh Token To Jwt By Key Id Token
 
 Verify Response Decode Refresh Token By Key Access Token
     [Documentation]     Owner : sasipen
-    [Arguments]    ${Content_Provider_or_Employee}  
+    [Arguments]    ${login_subtype}  
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    acess_token    ${login_subtype}    refresh
 
 Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
-    [Arguments]    ${Content_Provider_or_Employee}
+    [Arguments]    ${login_subtype}
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    refresh
@@ -241,50 +241,39 @@ Get Value Response Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt to json message 
     ...    Get value By Key...in key aut form access toeken in json message 
-    [Arguments]       ${response_key} 
-    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ACCESS_TOKEN}
-    Log Many    &{response_jwt}[aut]
-    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
-    ${value}           Set Variable    ${jwt_access_token.${response_key}}
-    [Return]     ${value}
+    [Arguments]    ${response_key} 
+    ${value}       Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}    aut.${response_key}
+    [Return]       ${value}
     
 Get Value Response Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state login to json message 
     ...    Get value By Key...in key aut form id toeken in json message 
-    [Arguments]       ${response_key}    
-    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ID_TOKEN}
-    Log Many    &{response_jwt}[aut]
-    ${jwt_id_token}    Set Variable        ${response_jwt}[aut]
-    ${value}           Set Variable    ${jwt_id_token.${response_key}}
-    [Return]     ${value}
+    [Arguments]    ${response_key}    
+    ${value}       Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}    aut.${response_key}
+    [Return]       ${value}
 
 Get Refresh Value Response Jwt By Key Access Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form access toeken in json message 
-    [Arguments]       ${response_key} 
-    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ACCESS_TOKEN}
-    Log Many    &{response_jwt}[aut]
-    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
-    ${value}           Set Variable    ${jwt_access_token.${response_key}}
-    [Return]     ${value}
+    [Arguments]    ${response_key} 
+    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    aut.${response_key}   
+    [Return]       ${value}
 
 Get Refresh Value Response Jwt By Key Id Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form id toeken in json message 
-    [Arguments]       ${response_key} 
-    &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ID_TOKEN}
-    Log Many    &{response_jwt}[aut]
-    ${jwt_access_token}    Set Variable        ${response_jwt}[aut]
-    ${value}           Set Variable    ${jwt_access_token.${response_key}}
-    [Return]     ${value}
+    [Arguments]    ${response_key} 
+    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ID_TOKEN}    aut.${response_key}
+    [Return]       ${value}
 
 Verify Response Login Subtype Decode Jwt
     [Documentation]     Owner : sasipen
     ...    Verify value by login subtype and then verify   
-    ...    
+    ...    Value by key login subtype of Content Provider = ldapCp
+    ...    Value by key login subtype of Employee = ldapEmployee 
     [Arguments]    ${response_key}    ${login_subtype}    ${state_test}
     IF    '${login_subtype}' == 'Content Provider'
         IF     '${response_key}' == 'access_token'
@@ -329,8 +318,8 @@ Get Value From Login Subtype For Verify Response Id Token
 Verify Response Action Type Decode Jwt By Key
     [Documentation]     Owner : sasipen
     ...    Verify value By Key action form key access token or id token type login or sso in json message
-    ...    value By Key acton of login = login
-    ...    value By Key acton of sso = sso
+    ...    Value By Key action of login = login
+    ...    Value By Key action of sso = sso
     [Arguments]    ${response_key}    ${action_type}
     IF    '${response_key}' == 'access_token'
         ${actual_value_action}    Get Value Response Jwt By Key Access Token    action
