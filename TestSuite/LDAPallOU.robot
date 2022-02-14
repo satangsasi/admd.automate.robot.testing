@@ -14,7 +14,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     Press Login Button
     Create URL For Get Token
     New Page                      ${URL_GET_TOKEN}
-    Set Data Response Ldap For Verify                 
+    Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Content Provider
@@ -54,7 +54,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Content Provider    
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider
     Decode Refresh Token To Jwt By Key Id Token
     Verify Response Decode Refresh Token By Key Id Token        Content Provider
     
@@ -78,7 +78,7 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Content Provider    
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider
     Decode Refresh Token To Jwt By Key Id Token
     Verify Response Decode Refresh Token By Key Id Token        Content Provider
 
@@ -121,7 +121,7 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Content Provider  
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider
 
 TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
     [Tags]    On-Hold
@@ -185,9 +185,9 @@ TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page               ${url_auth_ldap_employee_${test_site}} 
     Create URL For Get Token
-    New Page               ${URL_GET_TOKEN}                 
-    Set Data Response Ldap For Verify              
-    Verify Response Ldap    
+    New Page               ${URL_GET_TOKEN}
+    Set Data Response Ldap For Verify
+    Verify Response Ldap
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso    Employee
     Decode Login Token To Jwt By Key Id Token
@@ -209,13 +209,13 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     Verify Response Decode Login Token By Key Id Token        login    Employee
     Create URL For Get Refresh Token  
     New Page               ${URL_GET_REFRESH_TOKEN}
-    Set Data Response Ldap For Verify   
+    Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Employee    
+    Verify Response Decode Refresh Token By Key Access Token    Employee
     Decode Refresh Token To Jwt By Key Id Token
     Verify Response Decode Refresh Token By Key Id Token        Employee
-    
+
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -238,9 +238,9 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     Set Data Response Ldap For Verify   
     Verify Response Ldap 
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Employee    
+    Verify Response Decode Refresh Token By Key Access Token    Employee
     Decode Refresh Token To Jwt By Key Id Token
-    Verify Response Decode Refresh Token By Key Id Token        Employee   
+    Verify Response Decode Refresh Token By Key Id Token        Employee
 
 TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     [Documentation]     Owner : sasipen
@@ -259,7 +259,7 @@ TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Employee    
+    Verify Response Decode Refresh Token By Key Access Token    Employee
 
 TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     [Documentation]     Owner : sasipen
@@ -281,7 +281,7 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Employee   
+    Verify Response Decode Refresh Token By Key Access Token    Employee
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Tags]    On-Hold
