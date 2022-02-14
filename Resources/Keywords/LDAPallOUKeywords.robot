@@ -92,14 +92,14 @@ Decode Refresh Token To Jwt By Key Id Token
 Verify Response Decode Refresh Token By Key Access Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${Content_Provider_or_Employee}  
-    ${actual_value_action}    Get Refresh Value Response Jwt By key Access Token    action
+    ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Role Test Decode Jwt    acess_token    ${Content_Provider_or_Employee}    refresh
 
 Verify Response Decode Refresh Token By Key ID Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${Content_Provider_or_Employee}
-    ${actual_value_action}    Get Refresh Value Response Jwt By key Id Token    action
+    ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Role Test Decode Jwt    id_token    ${Content_Provider_or_Employee}    refresh
 
@@ -203,7 +203,7 @@ Open Browser Login Employee And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
-Get Value Response Jwt By key Access Token 
+Get Value Response Jwt By Key Access Token 
     [Documentation]     Owner : sasipen
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ACCESS_TOKEN}
@@ -212,7 +212,7 @@ Get Value Response Jwt By key Access Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
     
-Get Value Response Jwt By key ID Token
+Get Value Response Jwt By Key ID Token
     [Arguments]       ${response_key}    
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ID_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -220,7 +220,7 @@ Get Value Response Jwt By key ID Token
     ${value}           Set Variable    ${jwt_id_token.${response_key}}
     [Return]     ${value}
 
-Get Refresh Value Response Jwt By key Access Token 
+Get Refresh Value Response Jwt By Key Access Token
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ACCESS_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -228,7 +228,7 @@ Get Refresh Value Response Jwt By key Access Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
 
-Get Refresh Value Response Jwt By key Id Token 
+Get Refresh Value Response Jwt By Key Id Token 
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ID_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -262,27 +262,27 @@ Verify Response Role Test Decode Jwt
 Validate State Test For Get Value Access Token
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By key Access Token     login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     login_subtype
     END
     IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Access Token      login_subtype
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      login_subtype
     END     
     [Return]    ${actual_value_login_subtype}
 
 Validate State Test For Get Value Id Token
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By key Id Token     login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By Key ID Token     login_subtype
     END
     IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Id Token      login_subtype
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      login_subtype
     END     
     [Return]   ${actual_value_login_subtype}
 
 Verify Response Action Type Decode Jwt By Key
     [Arguments]    ${response_key}    ${type_login_or_sso}
     IF    '${response_key}' == 'access_token'
-        ${actual_value_action}    Get Value Response Jwt By key Access Token    action
+        ${actual_value_action}    Get Value Response Jwt By Key Access Token    action
         IF    '${type_login_or_sso}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         END  
@@ -291,14 +291,14 @@ Verify Response Action Type Decode Jwt By Key
         END  
     END  
     IF    '${response_key}' == 'id_token'      
-        ${actual_value_action}    Get Value Response Jwt By key ID Token    action
+        ${actual_value_action}    Get Value Response Jwt By Key ID Token    action
         IF    '${type_login_or_sso}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         END  
         IF    '${type_login_or_sso}' == 'sso'      
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
-        END  
-    END   
+        END
+    END
 
 Fill Username And Password
     [Documentation]    Owner: Nakarin
@@ -339,7 +339,7 @@ Verify Login Fail
 Verify Invalid Request On Webpage
     [Documentation]    Owner: Nakarin
     ...    Verify Text of json show on webpage : {"error":"invalid_request"}
-    [Tags]    keyword_communicate
+    [Tags]    keyword_communicate   
     ${json_error_message}      Get Text    ${lbl_json_response_on_webpage}
     Verify Value At Locator    ${lbl_json_response_on_webpage}    ${json_error_message_invalid_request}
     Take Screenshot Verify Success Scene

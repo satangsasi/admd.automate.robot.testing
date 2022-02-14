@@ -49,7 +49,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Content Provider
-    Create URL For Get Refresh Token  
+    Create URL For Get Refresh Token
     New Page                                      ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
@@ -99,7 +99,8 @@ TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     Set Data Response Ldap For Verify
     Verify Response Ldap No Scope Profile
     Decode Refresh Token To Jwt By Key Access Token
-    Verify Response Decode Refresh Token By Key Access Token    Content Provider  
+    Verify Response Decode Refresh Token By Key Access Token    Content Provider
+
 TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -175,6 +176,7 @@ TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     Verify Response Decode Login Token By Key Access Token    login    Employee
     Decode Login Token To Jwt By Key Id Token
     Verify Response Decode Login Token By Key ID Token        login    Employee
+
 TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
@@ -213,6 +215,7 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     Verify Response Decode Refresh Token By Key Access Token    Employee    
     Decode Refresh Token To Jwt By Key Id Token
     Verify Response Decode Refresh Token By Key ID Token        Employee
+
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -292,257 +295,6 @@ TST_F10_1_1_019 Verify Logout with Ldap Employee
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     [Tags]    On-Hold
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
     [Tags]    Content_Provider

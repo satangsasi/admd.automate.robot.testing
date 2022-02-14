@@ -53,4 +53,3 @@ ${expected_value_login_subtype_cp}                    ldapCp
 ${expected_value_login_subtype_employee}              ldapEmployee
 ${expected_action_login}                              login
 ${expected_action_sso}                                sso
-
