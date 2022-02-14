@@ -24,6 +24,7 @@ Get Code From Authentication
 
 Set Response On Webpage To Json
     [Documentation]     Owner : sasipen
+    ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
     ${message}           Get Text    ${lbl_json_response_on_webpage}
     &{json_message}      Evaluate    json.loads('''${message}''')    json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
@@ -31,12 +32,15 @@ Set Response On Webpage To Json
 
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
+    ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
     [Arguments]    ${response_key}
     ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
     [Return]       ${value}
 
 Get Value Response Ldap 
-    [Documentation]     Owner : sasipen
+    [Documentation]     Owner : sasipenkey 
+    ...    Get value by key in &{RESPONSE_JSON_MESSAGE} Then Return to ${value_token_type}
+    ...    Set value to global for use in keyword verify
     ${value_token_type}    Get Value Response Ldap By Key    token_type
     Set Test Variable    ${ACTUAL_VALUE_TOKEN_TYPE}    ${value_token_type} 
     ${value_expires_in}    Get Value Response Ldap By Key    expires_in
@@ -45,11 +49,16 @@ Get Value Response Ldap
     Set Test Variable    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${value_refresh_token_expires_in}
 
 Set Data Response Ldap For Verify
+    [Documentation]     Owner : sasipen
+    ...    group keyword for set data before use keyword verify
     Set Response On Webpage To Json
     Get Value Response Ldap 
     
 Verify Response Ldap
     [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    login with scope=profile
+    ...    Verify value (change) by key access token,refresh token,id token use Should Match Regexp
+    ...    Verify value (fix) by text actual=expected
     ...    ***Editor Note***
     ...    - Add Set Test Actual Result
     Verify Value Response Ldap By Key   access_token
@@ -63,6 +72,7 @@ Verify Response Ldap
     
 Decode Login Token Jwt By Key Access Token
     [Documentation]     Owner : sasipen
+    ...    Get value state login by key access token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
@@ -70,6 +80,7 @@ Decode Login Token Jwt By Key Access Token
 
 Decode Login Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
+    ...    Get value state login by key id token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
@@ -77,6 +88,7 @@ Decode Login Token To Jwt By Key Id Token
 
 Decode Refresh Token To Jwt By Key Access Token
     [Documentation]     Owner : sasipen
+    ...    Get value state refresh by key access token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_REFRESH__ACCESS_TOKEN}      ${jwt_decode} 
@@ -84,6 +96,7 @@ Decode Refresh Token To Jwt By Key Access Token
 
 Decode Refresh Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
+    ...    Get value state refresh by key id token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Actual Result    Login id token jwt decode : ${jwt_decode}  
@@ -94,29 +107,34 @@ Verify Response Decode Refresh Token By Key Access Token
     [Arguments]    ${Content_Provider_or_Employee}  
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
-    Verify Response Role Test Decode Jwt    acess_token    ${Content_Provider_or_Employee}    refresh
+    Verify Response Login Subtype Decode Jwt    acess_token    ${login_subtype}    refresh
 
-Verify Response Decode Refresh Token By Key ID Token
+Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${Content_Provider_or_Employee}
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
-    Verify Response Role Test Decode Jwt    id_token    ${Content_Provider_or_Employee}    refresh
+    Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    refresh
 
 Verify Response Decode Login Token By Key Access Token
     [Documentation]     Owner : sasipen
-    [Arguments]    ${type_login_or_sso}      ${Content_Provider_or_Employee}
-    Verify Response Action Type Decode Jwt By Key    access_token    ${type_login_or_sso}
-    Verify Response Role Test Decode Jwt    access_token    ${Content_Provider_or_Employee}    login  
+    ...    verify text value by key action form value access token state login = expected text 
+    [Arguments]    ${action_type}      ${login_subtype}
+    Verify Response Action Type Decode Jwt By Key    access_token    ${action_type}
+    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login  
 
-Verify Response Decode Login Token By Key ID Token
+Verify Response Decode Login Token By Key Id Token
     [Documentation]     Owner : sasipen
-    [Arguments]    ${type_login_or_sso}      ${Content_Provider_or_Employee}
-    Verify Response Action Type Decode Jwt By Key    id_token    ${type_login_or_sso}
-    Verify Response Role Test Decode Jwt    id_token    ${Content_Provider_or_Employee}    login
+    ...    verify text value by key action form value id token state login = expected text 
+    [Arguments]    ${action_type}      ${login_subtype}
+    Verify Response Action Type Decode Jwt By Key    id_token    ${action_type}
+    Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    login
 
 Verify Response Ldap No Scope Profile
     [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    login with don't have scope=profile
+    ...    Verify value (change) by key access token,refresh token use should match regexp
+    ...    Verify value (fix) by text actual=expected
     ...    ***Editor Note***
     ...    - Add Set Test Actual Result
     Verify Value Response Ldap By Key   access_token 
@@ -129,6 +147,7 @@ Verify Response Ldap No Scope Profile
 
 Verify Value Response Ldap By Key 
     [Documentation]     Owner : sasipen
+    ...    After get text and change to json message verify value by key use should match regexp
     [Arguments]   ${response_key}
     ${value}     Get Value Response Ldap By Key    ${response_key}
     Should Match Regexp    ${value}     .+
@@ -136,6 +155,8 @@ Verify Value Response Ldap By Key
 
 Create Browser Session
     [Documentation]     Owner : sasipen
+    ...    Setting browser and open url 
+    ...    Set url to global for create provisioning data
     [Arguments]    ${url}
     Set Up Browser Fullscreen
     New Page       ${url}
@@ -144,11 +165,14 @@ Create Browser Session
 
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
+    ...    Get value by key refresh token after use link get token
+    ...    Set value to global for create link get refresh token
     ${code_refresh_token}    Get Value Response Ldap By Key    refresh_token
     Set Test Variable    ${CODE_REFRESH_TOKEN}    ${code_refresh_token} 
 
 Create URL For Get Refresh Token
     [Documentation]     Owner : sasipen
+    ...    Append ${CODE_REFRESH_TOKEN}(link get refresh token) to get refresh token Url 
     Wait Until Network Is Idle
     Get Code From Key Refresh Token
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_${test_site}}    _code_    ${CODE_REFRESH_TOKEN}
@@ -157,6 +181,7 @@ Create URL For Get Refresh Token
 
 Open Browser Login And Open Page Get Token
     [Documentation]     Owner : sasipen
+    ...    Group keyword open url, fill uesr and pass , press login. create url for get token of content provider  
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
@@ -166,11 +191,14 @@ Open Browser Login And Open Page Get Token
 
 Get Value From Key Access Token
     [Documentation]     Owner : sasipen
+    ...    Get value by key access token form file json message state logout
     ${value}    Get Value Response Ldap By Key    access_token
     Set Test Variable    ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    ${value} 
 
 Set Content Header Ldap Logout
     [Documentation]     Owner : sasipen
+    ...    Append valiable to set header schema state logout 
+    ...    Set url to global for create provisioning data
     [Arguments]          ${url}    ${content_type}
     ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}
     Set Test Variable    ${API_HEADER}    ${headers}
@@ -178,17 +206,22 @@ Set Content Header Ldap Logout
 
 Set Body Ldap Logout
     [Documentation]     Owner : sasipen
+    ...   Append value by key access token to set body schema state logout 
+    ...   Set url to global for create provisioning data
     [Arguments]        ${state}
     ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
     ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
     Set Test Variable              ${API_BODY}       ${body_state}
 
-Send Request Ldap Logout
+Send Post Request Ldap Logout
     [Documentation]     Owner : sasipen
+    ...    send request api form data
     Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
 
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
+    ...    Verify value by key state = expected
+    ...    Set respones to Actual Result 
     [Arguments]        ${expected_state}
     Verify Value Response By Key    state        ${expected_state}
     ${autual_value_state}    Get Value Response By Key    state
@@ -196,6 +229,7 @@ Verify Response State Ldap Logout
 
 Open Browser Login Employee And Open Page Get Token
     [Documentation]     Owner : sasipen
+    ...    Group keyword open url, fill uesr and pass , press login. create url for get token of employee
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
@@ -205,6 +239,8 @@ Open Browser Login Employee And Open Page Get Token
 
 Get Value Response Jwt By Key Access Token 
     [Documentation]     Owner : sasipen
+    ...    Change response form jwt to json message 
+    ...    Get value by key...in key aut form access toeken in json message 
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ACCESS_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -212,7 +248,10 @@ Get Value Response Jwt By Key Access Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
     
-Get Value Response Jwt By Key ID Token
+Get Value Response Jwt By key Id Token
+    [Documentation]     Owner : sasipen
+    ...    Change response form jwt state login to json message 
+    ...    Get value by key...in key aut form id toeken in json message 
     [Arguments]       ${response_key}    
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_ID_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -220,7 +259,10 @@ Get Value Response Jwt By Key ID Token
     ${value}           Set Variable    ${jwt_id_token.${response_key}}
     [Return]     ${value}
 
-Get Refresh Value Response Jwt By Key Access Token
+Get Refresh Value Response Jwt By key Access Token 
+    [Documentation]     Owner : sasipen
+    ...    Change response form jwt state refresh to json message 
+    ...    Get value by key...in key aut form access toeken in json message 
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ACCESS_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -228,7 +270,10 @@ Get Refresh Value Response Jwt By Key Access Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
 
-Get Refresh Value Response Jwt By Key Id Token 
+Get Refresh Value Response Jwt By key Id Token 
+    [Documentation]     Owner : sasipen
+    ...    Change response form jwt state refresh to json message 
+    ...    Get value by key...in key aut form id toeken in json message 
     [Arguments]       ${response_key} 
     &{response_jwt}    Convert To Dictionary    ${JWT_DECODE_REFRESH_ID_TOKEN}
     Log Many    &{response_jwt}[aut]
@@ -236,66 +281,69 @@ Get Refresh Value Response Jwt By Key Id Token
     ${value}           Set Variable    ${jwt_access_token.${response_key}}
     [Return]     ${value}
 
-Verify Response Role Test Decode Jwt
-    [Arguments]    ${response_key}    ${Content_Provider_or_Employee}    ${state_test}
-    IF    '${Content_Provider_or_Employee}' == 'Content Provider'
+Verify Response Login Subtype Decode Jwt
+    [Documentation]     Owner : sasipen
+    ...    Verify value by login subtype and then verify   
+    ...    
+    [Arguments]    ${response_key}    ${login_subtype}    ${state_test}
+    IF    '${login_subtype}' == 'Content Provider'
         IF     '${response_key}' == 'access_token'
-            ${actual_value_login_subtype}    Validate State Test For Get Value Access Token    ${state_test}
+            ${actual_value_login_subtype}    Get Value From Login Subtype For Verify Response Access Token     ${state_test}
+            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_cp}
+        ELSE IF     '${response_key}' == 'id_token'
+            ${actual_value_login_subtype}    Get Value From Login Subtype For Verify Response Id Token     ${state_test}
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_cp}
         END
-        IF     '${response_key}' == 'id_token'
-            ${actual_value_login_subtype}    Validate State Test For Get Value Id Token    ${state_test}
-            Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_cp}
-        END
-    END  
-    IF    '${Content_Provider_or_Employee}' == 'Employee'
+    ELSE IF  '${login_subtype}' == 'Employee'
         IF     '${response_key}' == 'access_token' 
-            ${actual_value_login_subtype}    Validate State Test For Get Value Access Token    ${state_test}
+            ${actual_value_login_subtype}    Get Value From Login Subtype For Verify Response Access Token     ${state_test}
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
-        END
-        IF     '${response_key}' == 'id_token' 
-            ${actual_value_login_subtype}    Validate State Test For Get Value Id Token    ${state_test}
+        ELSE IF    '${response_key}' == 'id_token' 
+            ${actual_value_login_subtype}    Get Value From Login Subtype For Verify Response Id Token     ${state_test}
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
         END    
     END
 
-Validate State Test For Get Value Access Token
+Get Value From Login Subtype For Verify Response Access Token 
+    [Documentation]     Owner : sasipen
+    ...    Get value by key login subtype form access toekn state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     login_subtype
-    END
-    IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By key Access Token     login_subtype
+    ELSE IF    '${state_test}' == 'refresh'
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Access Token      login_subtype
     END     
     [Return]    ${actual_value_login_subtype}
 
-Validate State Test For Get Value Id Token
+Get Value From Login Subtype For Verify Response Id Token 
+    [Documentation]     Owner : sasipen
+    ...    Get value by key login subtype form id toekn state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By Key ID Token     login_subtype
-    END
-    IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By key Id Token     login_subtype
+    ELSE IF    '${state_test}' == 'refresh'
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By key Id Token      login_subtype
     END     
     [Return]   ${actual_value_login_subtype}
 
 Verify Response Action Type Decode Jwt By Key
-    [Arguments]    ${response_key}    ${type_login_or_sso}
+    [Documentation]     Owner : sasipen
+    ...    Verify value by key action form key access token or id token type login or sso in json message
+    ...    value by key acton of login = login
+    ...    value by key acton of sso = sso
+    [Arguments]    ${response_key}    ${action_type}
     IF    '${response_key}' == 'access_token'
-        ${actual_value_action}    Get Value Response Jwt By Key Access Token    action
-        IF    '${type_login_or_sso}' == 'login'     
+        ${actual_value_action}    Get Value Response Jwt By key Access Token    action
+        IF    '${action_type}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
-        END  
-        IF    '${type_login_or_sso}' == 'sso'      
+        ELSE IF    '${action_type}' == 'sso'      
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
         END  
-    END  
-    IF    '${response_key}' == 'id_token'      
-        ${actual_value_action}    Get Value Response Jwt By Key ID Token    action
-        IF    '${type_login_or_sso}' == 'login'     
+    ELSE IF    '${response_key}' == 'id_token'      
+        ${actual_value_action}    Get Value Response Jwt By key Id Token    action
+        IF    '${action_type}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
-        END  
-        IF    '${type_login_or_sso}' == 'sso'      
+        ELSE IF   '${action_type}' == 'sso'      
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
         END
     END

@@ -19,7 +19,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Content Provider
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token      login    Content Provider
+    Verify Response Decode Login Token By Key Id Token      login    Content Provider
     
 TST_F10_1_1_002 Verify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
@@ -35,7 +35,7 @@ TST_F10_1_1_002 Verify sso Ldap Content provider partnerId 30233
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso    Content Provider
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token        sso    Content Provider
+    Verify Response Decode Login Token By Key Id Token        sso    Content Provider
         
 TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -56,7 +56,7 @@ TST_F10_1_1_003 Verify Refresh Token with login Ldap Content provider
     Decode Refresh Token To Jwt By Key Access Token
     Verify Response Decode Refresh Token By Key Access Token    Content Provider    
     Decode Refresh Token To Jwt By Key Id Token
-    Verify Response Decode Refresh Token By Key ID Token        Content Provider
+    Verify Response Decode Refresh Token By Key Id Token        Content Provider
     
 TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -80,7 +80,7 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     Decode Refresh Token To Jwt By Key Access Token
     Verify Response Decode Refresh Token By Key Access Token    Content Provider    
     Decode Refresh Token To Jwt By Key Id Token
-    Verify Response Decode Refresh Token By Key ID Token        Content Provider
+    Verify Response Decode Refresh Token By Key Id Token        Content Provider
 
 TST_F10_1_1_005 Verify Refresh Token with login Ldap Content provider
     [Documentation]     Owner : sasipen
@@ -140,7 +140,7 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp}  
-    Send Request Ldap Logout
+    Send Post Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp}
     
 TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
@@ -157,7 +157,7 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
-    Send Request Ldap Logout
+    Send Post Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
     
 TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
@@ -175,8 +175,7 @@ TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Employee
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token        login    Employee
-
+    Verify Response Decode Login Token By Key Id Token        login    Employee
 TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
@@ -191,7 +190,7 @@ TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso    Employee
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token        sso    Employee
+    Verify Response Decode Login Token By Key Id Token        sso    Employee
 
 TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     [Documentation]     Owner : sasipen
@@ -206,7 +205,7 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Employee
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token        login    Employee
+    Verify Response Decode Login Token By Key Id Token        login    Employee
     Create URL For Get Refresh Token  
     New Page               ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify   
@@ -214,8 +213,7 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     Decode Refresh Token To Jwt By Key Access Token
     Verify Response Decode Refresh Token By Key Access Token    Employee    
     Decode Refresh Token To Jwt By Key Id Token
-    Verify Response Decode Refresh Token By Key ID Token        Employee
-
+    Verify Response Decode Refresh Token By Key Id Token        Employee
 TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     [Documentation]     Owner : sasipen
     ...    ***Condition***
@@ -232,7 +230,7 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso   Employee
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key ID Token        sso   Employee
+    Verify Response Decode Login Token By Key Id Token        sso   Employee
     Create URL For Get Refresh Token  
     New Page                 ${URL_GET_REFRESH_TOKEN}
     Set Data Response Ldap For Verify   
@@ -240,7 +238,7 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     Decode Refresh Token To Jwt By Key Access Token
     Verify Response Decode Refresh Token By Key Access Token    Employee    
     Decode Refresh Token To Jwt By Key Id Token
-    Verify Response Decode Refresh Token By Key ID Token        Employee   
+    Verify Response Decode Refresh Token By Key Id Token        Employee   
 
 TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     [Documentation]     Owner : sasipen
