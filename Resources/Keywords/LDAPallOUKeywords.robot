@@ -105,30 +105,49 @@ Decode Refresh Token To Jwt By Key Id Token
 Verify Response Decode Refresh Token By Key Access Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${login_subtype}  
-    ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    action
+    ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    aut.action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    refresh
+    Verify Refresh Value Response Access Token Decode Jwt by Key    iss
+    Verify Refresh Value Response Access Token Decode Jwt by Key    sub
+    Verify Refresh Value Response Access Token Decode Jwt by Key    aud
+    Verify Refresh Value Response Access Token Decode Jwt by Key    iat
+    Verify Refresh Value Response Access Token Decode Jwt by Key    pid
 
 Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${login_subtype}
-    ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    action
+    ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    aut.action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    refresh
+    Verify Refresh Value Response Id Token Decode Jwt by Key    iss
+    Verify Refresh Value Response Id Token Decode Jwt by Key    sub
+    Verify Refresh Value Response Id Token Decode Jwt by Key    aud
+    Verify Refresh Value Response Id Token Decode Jwt by Key    iat
 
 Verify Response Decode Login Token By Key Access Token
     [Documentation]     Owner : sasipen
     ...    verify text value By Key action form value access token state login = expected text 
     [Arguments]    ${action_type}      ${login_subtype}
     Verify Response Action Type Decode Jwt By Key    access_token    ${action_type}
-    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login  
+    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login 
+    Verify Value Response Access Token Decode Jwt by Key    iss
+    Verify Value Response Access Token Decode Jwt by Key    sub
+    Verify Value Response Access Token Decode Jwt by Key    aud
+    Verify Value Response Access Token Decode Jwt by Key    iat
+    Verify Value Response Access Token Decode Jwt by Key    pid
 
+    
 Verify Response Decode Login Token By Key Id Token
     [Documentation]     Owner : sasipen
     ...    verify text value By Key action form value id token state login = expected text 
     [Arguments]    ${action_type}      ${login_subtype}
     Verify Response Action Type Decode Jwt By Key    id_token    ${action_type}
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    login
+    Verify Value Response Id Token Decode Jwt by Key    iss
+    Verify Value Response Id Token Decode Jwt by Key    sub
+    Verify Value Response Id Token Decode Jwt by Key    aud
+    Verify Value Response Id Token Decode Jwt by Key    iat
 
 Verify Response Ldap No Scope Profile
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -237,37 +256,65 @@ Open Browser Login Employee And Open Page Get Token
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
-Get Value Response Jwt By Key Access Token 
+Get Value Response Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt to json message 
     ...    Get value By Key...in key aut form access toeken in json message 
     [Arguments]    ${response_key} 
-    ${value}       Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}    aut.${response_key}
+    ${value}       Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}    ${response_key}
     [Return]       ${value}
+    
+Verify Value Response Access Token Decode Jwt by Key
+    [Arguments]    ${response_key}
+    ${value}    Get Value Response Jwt By Key Access Token    ${response_key}
+    ${value}    Convert To String    ${value}
+    Should Match Regexp    ${value}     .+
+    Log    ${value}
     
 Get Value Response Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state login to json message 
     ...    Get value By Key...in key aut form id toeken in json message 
     [Arguments]    ${response_key}    
-    ${value}       Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}    aut.${response_key}
+    ${value}       Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}    ${response_key}
     [Return]       ${value}
+
+Verify Value Response Id Token Decode Jwt by Key
+    [Arguments]    ${response_key}
+    ${value}    Get Value Response Jwt By Key Id Token    ${response_key}
+    ${value}    Convert To String    ${value}
+    Should Match Regexp    ${value}     .+
+    Log    ${value}
 
 Get Refresh Value Response Jwt By Key Access Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form access toeken in json message 
     [Arguments]    ${response_key} 
-    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    aut.${response_key}   
+    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    ${response_key}   
     [Return]       ${value}
+
+Verify Refresh Value Response Access Token Decode Jwt by Key
+    [Arguments]    ${response_key}
+    ${value}       Get Refresh Value Response Jwt By Key Access Token    ${response_key}
+    ${value}    Convert To String    ${value}
+    Should Match Regexp    ${value}     .+
+    Log    ${value}
 
 Get Refresh Value Response Jwt By Key Id Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form id toeken in json message 
     [Arguments]    ${response_key} 
-    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ID_TOKEN}    aut.${response_key}
+    ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ID_TOKEN}    ${response_key}
     [Return]       ${value}
+
+Verify Refresh Value Response Id Token Decode Jwt by Key
+    [Arguments]    ${response_key}
+    ${value}       Get Refresh Value Response Jwt By Key Id Token    ${response_key}
+    ${value}    Convert To String    ${value}
+    Should Match Regexp    ${value}     .+
+    Log    ${value}
 
 Verify Response Login Subtype Decode Jwt
     [Documentation]     Owner : sasipen
@@ -298,9 +345,9 @@ Get Value From Login Subtype For Verify Response Access Token
     ...    Get value By Key login subtype form access toekn state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     aut.login_subtype
     ELSE IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      login_subtype
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      aut.login_subtype
     END     
     [Return]    ${actual_value_login_subtype}
 
@@ -309,9 +356,9 @@ Get Value From Login Subtype For Verify Response Id Token
     ...    Get value By Key login subtype form id toekn state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
-        ${actual_value_login_subtype}    Get Value Response Jwt By Key Id Token     login_subtype
+        ${actual_value_login_subtype}    Get Value Response Jwt By Key Id Token     aut.login_subtype
     ELSE IF    '${state_test}' == 'refresh'
-        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      login_subtype
+        ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      aut.login_subtype
     END     
     [Return]   ${actual_value_login_subtype}
 
@@ -322,14 +369,14 @@ Verify Response Action Type Decode Jwt By Key
     ...    Value By Key action of sso = sso
     [Arguments]    ${response_key}    ${action_type}
     IF    '${response_key}' == 'access_token'
-        ${actual_value_action}    Get Value Response Jwt By Key Access Token    action
+        ${actual_value_action}    Get Value Response Jwt By Key Access Token    aut.action
         IF    '${action_type}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         ELSE IF    '${action_type}' == 'sso'      
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
         END  
     ELSE IF    '${response_key}' == 'id_token'      
-        ${actual_value_action}    Get Value Response Jwt By Key Id Token    action
+        ${actual_value_action}    Get Value Response Jwt By Key Id Token    aut.action
         IF    '${action_type}' == 'login'     
         Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         ELSE IF   '${action_type}' == 'sso'      
