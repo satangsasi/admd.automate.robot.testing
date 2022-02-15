@@ -3,6 +3,10 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
+Get Time Nonce           
+    [Documentation]    Owner: Satangsasi
+    ${Datetime}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f      
+    Set Test Variable       ${DATETIME}         ${Datetime}
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     [Arguments]          ${url}           ${content_type}
@@ -13,34 +17,38 @@ Set Content Header Client Credentials
 Set Body Client Credentials 
     [Documentation]     Owner : sasipen
     [Arguments]              ${client_id}      ${client_secret}    ${grant_type}   ${nonce}
+    Get Time Nonce
     ${body_client_id}        Replace String    ${body_client_credentials_schema}   _client_id_         ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                   _client_secret_     ${client_secret}
     ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${nonce}
+    ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${DATETIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Id
     [Documentation]     Owner : sasipen
     [Arguments]              ${client_secret}  ${grant_type}     ${nonce}
+    Get Time Nonce
     ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
     ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${nonce}
+    ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATETIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Secret
     [Documentation]     Owner : sasipen
     [Arguments]              ${client_id}      ${grant_type}    ${nonce}
+    Get Time Nonce
     ${body_client_id}        Replace String    ${body_client_credentials_missing_secret_schema}   _client_id_         ${client_id}
     ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${nonce}
+    ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATETIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Grant Type
     [Documentation]     Owner : sasipen
     [Arguments]              ${client_id}      ${client_secret}    ${nonce}
+    Get Time Nonce
     ${body_client_id}        Replace String    ${body_client_credentials_missing_grant_type_schema}   _client_id_         ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}
-    ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${nonce}
+    ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATETIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Send Request Client Credentials

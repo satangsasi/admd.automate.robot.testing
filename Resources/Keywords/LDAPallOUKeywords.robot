@@ -29,7 +29,7 @@ Set Response On Webpage To Json
     &{json_message}      Evaluate    json.loads('''${message}''')    json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
-
+    Take Screenshot Verify Success Scene
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
@@ -92,14 +92,14 @@ Decode Refresh Token To Jwt By Key Access Token
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_REFRESH__ACCESS_TOKEN}      ${jwt_decode} 
-    Set Test Actual Result    Login access token jwt decode : ${jwt_decode} 
+    Set Test Actual Result    Refresh access token jwt decode : ${jwt_decode} 
 
 Decode Refresh Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state refresh By Key id token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
-    Set Test Actual Result    Login id token jwt decode : ${jwt_decode}  
+    Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}  
     Set Test Variable         ${JWT_DECODE_REFRESH__ID_TOKEN}      ${jwt_decode}
 
 Verify Response Decode Refresh Token By Key Access Token
@@ -107,7 +107,7 @@ Verify Response Decode Refresh Token By Key Access Token
     [Arguments]    ${login_subtype}  
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
-    Verify Response Login Subtype Decode Jwt    acess_token    ${login_subtype}    refresh
+    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    refresh
 
 Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
