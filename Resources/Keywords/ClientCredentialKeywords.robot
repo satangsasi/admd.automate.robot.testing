@@ -7,7 +7,13 @@ Get Time Nonce
     [Documentation]    Owner: Satangsasi
     ${Datetime}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f      
     Set Test Variable       ${DATETIME}         ${Datetime}
+<<<<<<< HEAD
 Set Content Header Client Credentials
+=======
+
+    
+Set Content Header Client Credentials 
+>>>>>>> Sprint1
     [Documentation]     Owner : sasipen
     [Arguments]          ${url}           ${content_type}
     ${headers}           Replace String   ${header_client_credentials_schema}    _Content-Type_    ${content_type}
