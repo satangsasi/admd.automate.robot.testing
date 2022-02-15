@@ -14,9 +14,11 @@ Library     ../../arcadia.automate.buffet/Library/decode_data.py
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/Commonkeywords.robot
+Resource    ../Resources/Keywords/Mobileid_(iot)Keywords.robot
 # Variables
 Resource    ../Resources/Variables/CommonVariable.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot
+Resource    ../Resources/Variables/Mobileid_(iot)Variable.robot
 # Repositories
 Resource    ../Resources/Repositories/LDAPallOURepository.robot
