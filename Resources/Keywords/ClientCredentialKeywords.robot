@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Get Time Nonce           
+Get Time Nonce        
     [Documentation]    Owner: Satangsasi
     ${Datetime}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f      
     Set Test Variable       ${DATETIME}         ${Datetime}
