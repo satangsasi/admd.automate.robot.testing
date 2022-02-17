@@ -603,13 +603,21 @@ Send Get Request LDAP
     [Arguments]          ${url}
     Send Get Request     url=${url}
     Set Test Variable    ${API_URL}       ${url}
-
-Verify Response Decrypted Pid Ldap Employee
+Verify Response Decrypted Pid Ldap Employee Snake Case
+    [Documentation]     Owner : sasipen 
+    Verify Value Response By Key    result_code          ${expected_result_code_pass}
+    Verify Value Response By Key    developer_message    ${expected_develope_messagee_pass} 
+    Verify Value Response By Key    private_id           ${expected_private_id_pass}  
+    Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
+    Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
+    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+Verify Response Decrypted Pid Ldap Employee Camel Case
+    [Documentation]     Owner : sasipen 
     Verify Value Response By Key    resultCode          ${expected_result_code_pass}
     Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass} 
     Verify Value Response By Key    privateId           ${expected_private_id_pass}  
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
-    Verify Value Response By Key    publicId            ${expected_public_id_pass}     
+    Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
     Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 Send Post Request LDAP
     [Documentation]     Owner : sasipen 

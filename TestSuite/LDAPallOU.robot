@@ -552,14 +552,14 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Tags]    Employee    test
     Send Get Request LDAP    ${url_decrypted_ldap_employee_snake_case}
-    Verify Response Decrypted Pid Ldap Employee
+    Verify Response Decrypted Pid Ldap Employee Snake Case
 
 
 
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
     [Tags]    Employee    test
     Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
-    Verify Response Decrypted Pid Ldap Employee
+    Verify Response Decrypted Pid Ldap Employee Camel Case
 
 
 TST_F10_1_1_019 Verify Logout with Ldap Employee
