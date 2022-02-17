@@ -164,7 +164,7 @@ TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button
@@ -181,7 +181,7 @@ TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User sso successfully.
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page               ${url_auth_ldap_employee_${test_site}} 
     Create URL For Get Token
@@ -200,7 +200,7 @@ TST_F10_1_1_013 Verify Refresh Token with login ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -223,7 +223,7 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     New Page                 ${url_auth_ldap_employee_${test_site}}
     Create URL For Get Token
@@ -249,7 +249,7 @@ TST_F10_1_1_015 Verify Refresh Token with login ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token.
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Open Browser Login Employee And Open Page Get Token   ${url_auth_ldap_employee_no_scope_profile}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
@@ -268,7 +268,7 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     ...
     ...    ***Expected Result***
     ...    \r\n Successfully login and got access_token. 
-    [Tags]    Content_Provider    demo
+    [Tags]    Employee    demo
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_no_scope_profile}
     New Page    ${url_auth_ldap_employee_no_scope_profile}
     Create URL For Get Token
@@ -283,8 +283,272 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     Decode Refresh Token To Jwt By Key Access Token
     Verify Response Decode Refresh Token By Key Access Token    Employee
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
-    [Tags]    On-Hold
+    [Tags]    Employee
 
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
     [Tags]    On-Hold
