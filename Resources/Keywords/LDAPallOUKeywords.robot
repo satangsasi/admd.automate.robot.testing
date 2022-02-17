@@ -438,18 +438,25 @@ Verify Invalid Grant On Webpage
     Take Screenshot Verify Success Scene
     Set Test Actual Result     ${json_error_message}
 
-Set API Header Content Type
+Verify Response Decrypted Pid Ldap Content Provider Snake Case
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    [Arguments]    ${url}    ${content_type}=${EMPTY}
-    ${content_header}    Set Variable     {"Content-Type": "${content_type}"} 
-    Set Test Variable    ${API_URL}       ${url}
-    Set Test Variable    ${API_HEADER}    ${conter_header}
+    Verify Value Response By Key    result_code          ${expected_result_code_pass}
+    Verify Value Response By Key    developer_message    ${expected_develope_messagee_pass}
+    Verify Value Response By Key    private_id           ${expected_private_id_cp_pass}
+    Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
+    Verify Value Response By Key    public_id            ${expected_public_id_cp_pass}
+    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
-Set API Body
+Verify Response Decrypted Pid Ldap Content Provider Camel Case
     [Documentation]    Owner: Nakarin
-    [Arguments]    ${client_id}    ${client_secret}    ${grant_type}    ${nonce}
-    
+    [Tags]    keyword_communicate
+    Verify Value Response By Key    resultCode          ${expected_result_code_pass}
+    Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass}
+    Verify Value Response By Key    privateId           ${expected_private_id_cp_pass}
+    Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
+    Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
+    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
 
 
