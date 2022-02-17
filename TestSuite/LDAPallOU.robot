@@ -124,11 +124,12 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     Verify Response Decode Refresh Token By Key Access Token    Content Provider
 
 TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
-    [Tags]    Content_Provider
-    
+    [Tags]    Content_Provider    VPN
+    Send Get Request    ${url_decrypted_ldap_content_provider_snake_case}
 
 TST_F10_1_1_008 Verify Decrypted PID ldap Content provider camel case
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    VPN
+    Send Get Request    ${url_decrypted_ldap_content_provider_camel_case}
 
 TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Documentation]     Owner : sasipen
