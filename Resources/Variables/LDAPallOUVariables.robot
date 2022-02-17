@@ -62,7 +62,8 @@ ${expected_action_login}                              login
 ${expected_action_sso}                                sso
 ${expected_result_code_pass}                          20000
 ${expected_develope_messagee_pass}                    success
-${expected_private_id_pass}                           PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMlhGdmFEd0FJdTRVNjVJQVE9PQ==1111111111111
+${expected_private_id_cp_pass}                        PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELW9sWXJBNTdHMHEvU0FGWFZ3SlQ1SFE9PQ==1111111111111
+${expected_private_id_emp_pass}                       PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMlhGdmFEd0FJdTRVNjVJQVE9PQ==1111111111111
 ${expected_partner_id_pass}                           30238
 ${expected_public_id_emp_pass}                        nopparar
 ${expected_public_id_cp_pass}                         425
