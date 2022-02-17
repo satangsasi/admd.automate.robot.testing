@@ -438,8 +438,18 @@ Verify Invalid Grant On Webpage
     Take Screenshot Verify Success Scene
     Set Test Actual Result     ${json_error_message}
 
+Set API Header Content Type
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    [Arguments]    ${url}    ${content_type}=${EMPTY}
+    ${content_header}    Set Variable     {"Content-Type": "${content_type}"} 
+    Set Test Variable    ${API_URL}       ${url}
+    Set Test Variable    ${API_HEADER}    ${conter_header}
 
-
+Set API Body
+    [Documentation]    Owner: Nakarin
+    [Arguments]    ${client_id}    ${client_secret}    ${grant_type}    ${nonce}
+    
 
 
 
