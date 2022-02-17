@@ -598,3 +598,15 @@ Verify Invalid Grant On Webpage
 
 
 #------------------------------sasipen-------------------------
+Send Get Request LDAP 
+    [Documentation]     Owner : sasipen 
+    [Arguments]          ${url}
+    Send Get Request     url=${url}
+    Set Test Variable    ${API_URL}       ${url}
+
+Verify Response Decrypted Pid Ldap Employee Camel Case
+
+Send Post Request LDAP
+    [Documentation]     Owner : sasipen 
+    Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    

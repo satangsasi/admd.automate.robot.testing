@@ -551,6 +551,9 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Tags]    Employee
+    Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
+    
+
 
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
     [Tags]    On-Hold

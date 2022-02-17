@@ -58,3 +58,9 @@ ${expected_value_login_subtype_cp}                    ldapCp
 ${expected_value_login_subtype_employee}              ldapEmployee
 ${expected_action_login}                              login
 ${expected_action_sso}                                sso
+${expected_result_code_pass}                          20000
+${expected_develope_messagee_pass}                    success
+${expected_private_id_pass}                           PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMlhGdmFEd0FJdTRVNjVJQVE9PQ==1111111111111
+${expected_partner_id_pass}                           30238
+${expected_public_id_pass}                            nopparar
+
