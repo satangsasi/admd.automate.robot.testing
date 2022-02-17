@@ -8,7 +8,6 @@ Get Time Nonce
     ${Datetime}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f
     Set Test Variable       ${DATETIME}         ${Datetime}
 
-    
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     [Arguments]          ${url}           ${content_type}
