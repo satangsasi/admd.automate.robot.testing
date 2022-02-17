@@ -604,8 +604,13 @@ Send Get Request LDAP
     Send Get Request     url=${url}
     Set Test Variable    ${API_URL}       ${url}
 
-Verify Response Decrypted Pid Ldap Employee Camel Case
-
+Verify Response Decrypted Pid Ldap Employee
+    Verify Value Response By Key    resultCode          ${expected_result_code_pass}
+    Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass} 
+    Verify Value Response By Key    privateId           ${expected_private_id_pass}  
+    Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
+    Verify Value Response By Key    publicId            ${expected_public_id_pass}     
+    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 Send Post Request LDAP
     [Documentation]     Owner : sasipen 
     Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
