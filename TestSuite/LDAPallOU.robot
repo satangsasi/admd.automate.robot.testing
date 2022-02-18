@@ -552,22 +552,28 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
 
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
+    ...    ***Expected Result***
+    ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
     [Tags]    Employee    test
     Send Get Request LDAP    ${url_decrypted_ldap_employee_snake_case}
     Verify Response Decrypted Pid Ldap Employee Snake Case
 
-
-
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
+    ...    ***Expected Result***
+    ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
     [Tags]    Employee    test
     Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
     Verify Response Decrypted Pid Ldap Employee Camel Case
 
 
 TST_F10_1_1_019 Verify Logout with Ldap Employee
-    [Tags]    On-Hold
+    ...    ***Expected Result***
+    ...    \r\n Successfully logout
+    [Tags]    Employee    test
 
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
+    ...    ***Expected Result***
+    ...    \r\n Successfully logout
     [Tags]    On-Hold
 
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
