@@ -5,6 +5,7 @@ Resource    ./Resource_init.robot
 *** Test Cases ***
 TST_F4_1_1_001 Verify login with EmailOTP
     [Documentation]     Owner : sasipen
+    SSH Connect To 10.137.30.22
 TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input session_id or transaction_id
 TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract session_id or transaction_id
 TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong type (type = 0)

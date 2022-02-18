@@ -4,7 +4,7 @@ Library    String
 Library    DateTime
 Library    RequestsLibrary
 Library    JSONLibrary
-Library    SSHLibrary
+Library    SSHLibrary    20s
 Library    Browser    timeout=00:00:20   run_on_failure=Take Screenshot Failure Specific Name
 # Buffets
 Resource    ../../arcadia.automate.buffet/UIBuffet/BrowserLibrary_UICommonKeywords.robot
