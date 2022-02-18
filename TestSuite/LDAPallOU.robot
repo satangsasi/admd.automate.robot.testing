@@ -587,8 +587,8 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     ...    ***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Employee    test1
-    Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
-    New Page                 ${url_auth_ldap_${test_site}} 
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
+    New Page                 ${url_auth_ldap_employee_${test_site}}
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
