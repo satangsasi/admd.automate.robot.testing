@@ -552,29 +552,53 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
 
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
+    [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
-    [Tags]    Employee    test
+    [Tags]    Employee    test1
     Send Get Request LDAP    ${url_decrypted_ldap_employee_snake_case}
     Verify Response Decrypted Pid Ldap Employee Snake Case
 
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
+    [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
-    [Tags]    Employee    test
+    [Tags]    Employee    test1
     Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
     Verify Response Decrypted Pid Ldap Employee Camel Case
 
 
 TST_F10_1_1_019 Verify Logout with Ldap Employee
+    [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Employee    test
+    [Tags]    Employee    test1
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
+    Set Response On Webpage To Json 
+    Get Value From Key Access Token
+    Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
+    ...                               ${content_type_x_www}
+    Set Body Ldap Logout              ${state_logout_ldap_cp} 
+    Send Post Request Ldap Logout
+    Verify Response State Ldap Logout    ${state_logout_ldap_cp}
 
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
+    [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    On-Hold
+    [Tags]    Employee    test1
+    Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
+    New Page                 ${url_auth_ldap_${test_site}} 
+    Create URL For Get Token
+    New Page                 ${URL_GET_TOKEN}
+    Set Response On Webpage To Json 
+    Get Value From Key Access Token
+    Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
+    ...                               ${content_type_x_www}
+    Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
+    Send Post Request Ldap Logout
+    Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
+    
 
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
