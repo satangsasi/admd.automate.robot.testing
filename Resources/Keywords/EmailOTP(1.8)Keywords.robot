@@ -9,20 +9,22 @@ SSH Connect To 10.137.30.22
     [Tags]    keyword_command
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass}
-    ${json}    Get Json Log    WFxqpBzOkjphfYv3kQ
-    Log    ${json.Data.oneTimePassword}
+    ${json}    Get Json Log    huuZxUrIINiGcAOGmo
+    ${password}    Get Value Json By Key    ${json}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
+    Log    ${password} 
+
 
 Get Json Log
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_command
     [Arguments]    ${transaction_id}
-    ${log1}    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
-    Log    ${log1}
-    ${log2}    Write    cd logs/detail/
-    Log    ${log2}
-    ${log3}    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
-    Log    ${log3}
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
+    Write    cd logs/detail/
+    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
     ${string}    Read    delay=1s
-    Log    ${string}
-    # ${json}    Convert String to JSON    ${string}
-    [Return]    ${json}
+    Log         ${string}
+    ${json_format}    Get Regexp Matches    ${string}    {.*   
+    Log     ${json_format}  
+    ${json_expect}    Convert String to JSON    ${json_format}[0]
+    Log    ${json_expect}   
+    [Return]    ${json_expect}
