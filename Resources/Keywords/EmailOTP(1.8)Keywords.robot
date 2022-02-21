@@ -25,7 +25,7 @@ Get Json Log
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     ${json_expect}    Convert String to JSON    ${json_format}[0]
-    Log    ${json_expect}   
+    Log    ${json_expect}
     [Return]    ${json_expect}
 
 Get OTP From Json
