@@ -3,18 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-SSH Connect To 10.137.30.22
-    [Documentation]    Owner: Nakarin    Editor: Sasipen
-    ...    Connected to 10.137.30.22 to get OTP Log via SSH
-    ...    *** Variables ***
-    ...    ${ssh_ip_address}    10.137.30.22
-    ...    ${ssh_user}          serveradm
-    ...    ${ssh_pass}          R3dh@t!@#
-    [Tags]    keyword_commands
-    Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
-    Login    ${ssh_user}     ${ssh_pass}  
-
-Get Json Log
+Get Json Log Email Otp
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Get Json Log From output of SSH Command
     [Tags]    keyword_commands
@@ -44,7 +33,7 @@ Get Email OTP Password
     [Tags]    keyword_action
     [Arguments]    ${transaction_id}
     SSH Connect To 10.137.30.22
-    ${json_log}        Get Json Log             ${transaction_id}
+    ${json_log}        Get Json Log Email Otp   ${transaction_id}
     ${otp_password}    Get OTP From Json        ${json_log}
     Set Test Variable  ${EMAIL_OTP_PASSWORD}    ${otp_password}
 
