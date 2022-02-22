@@ -55,7 +55,7 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     ...                            ${grant_type}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    401
-    Verify Response Client Credentials Error   invalid_client
+    Verify Response Client Credentials Error   ${error_message_invalid_client}
     
 TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     [Documentation]     Owner : sasipen
@@ -72,7 +72,7 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     ...                            ${grant_type}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    401
-    Verify Response Client Credentials Error   invalid_client
+    Verify Response Client Credentials Error   ${error_message_invalid_client}
 
 TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     [Documentation]     Owner : sasipen
@@ -89,7 +89,7 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     ...                            ${grant_type_invalid_}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400
-    Verify Response Client Credentials Error   unsupported_grant_type
+    Verify Response Client Credentials Error   ${error_message_unsupported_grant_type}
 
 TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     [Documentation]     Owner : sasipen
@@ -106,7 +106,7 @@ TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     ...                            ${grant_type}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    401
-    Verify Response Client Credentials Error   invalid_client
+    Verify Response Client Credentials Error   ${error_message_invalid_client}
 
 TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     [Documentation]     Owner : sasipen
@@ -122,7 +122,7 @@ TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     ...                            ${grant_type}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400
-    Verify Response Client Credentials Error   invalid_request
+    Verify Response Client Credentials Error   ${error_message_invalid_request}
 
 TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     [Documentation]     Owner : sasipen
@@ -138,7 +138,7 @@ TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     ...                            ${grant_type}     
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400
-    Verify Response Client Credentials Error   invalid_request
+    Verify Response Client Credentials Error   ${error_message_invalid_request}
     
 TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
     [Documentation]     Owner : sasipen
@@ -154,7 +154,7 @@ TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
     ...                            ${client_secret_id_OhFw3u}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400
-    Verify Response Client Credentials Error   invalid_request
+    Verify Response Client Credentials Error   ${error_message_invalid_request}
     
 TST_F7_0_1_008 Verify ClientCredentail With Unknow URL
     [Documentation]     Owner : sasipen
@@ -171,5 +171,5 @@ TST_F7_0_1_008 Verify ClientCredentail With Unknow URL
     ...                            ${grant_type}
     ...                            ${nonce}
     Send Request Client Credentials Invalid    400    
-    Verify Response Client Credentials Error   invalid_request
+    Verify Response Client Credentials Error   ${error_message_invalid_request}
     
