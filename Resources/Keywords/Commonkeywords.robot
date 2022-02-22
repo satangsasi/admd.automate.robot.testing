@@ -17,3 +17,13 @@ Append To Document Teardown
     Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
     Set Test Documentation Detail
     
+SSH Connect To 10.137.30.22
+    [Documentation]    Owner: Nakarin    Editor: Sasipen
+    ...    Connected to 10.137.30.22 to get OTP Log via SSH
+    ...    *** Variables ***
+    ...    ${ssh_ip_address}    10.137.30.22
+    ...    ${ssh_user}          serveradm
+    ...    ${ssh_pass}          R3dh@t!@#
+    [Tags]    keyword_commands
+    Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
+    Login    ${ssh_user}     ${ssh_pass}  
