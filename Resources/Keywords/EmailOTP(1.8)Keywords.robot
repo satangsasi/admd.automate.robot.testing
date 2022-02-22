@@ -118,7 +118,7 @@ Verify Response Get Token Email Otp
     Verify Value Response By Key               token_type                  ${expected_token_type}
     Verify Value Response By Key               expires_in                  ${expected_expires_in_email_otp}
     Verify Value Response By Key               refresh_token_expires_in    ${expected_refresh_token_expires_in_email_otp}
-    Set Test Actual Result    Token : ${RESPONSE.json()}
+    Set Test Actual Result    Response Get Token : ${RESPONSE.json()}
 
 Set Body Get Token Email Otp No Session And Transaction Id  
     [Documentation]     Owner : sasipen
@@ -145,4 +145,10 @@ Verify Response Get Token Email Otp Error
     ...    Verify response form value(fix) by key
     [Arguments]    ${error_message}
     Verify Value Response By Key    error    ${error_message}
-    Set Test Actual Result    Token : ${RESPONSE.json()}
+    Set Test Actual Result    Response Get Token : ${RESPONSE.json()}
+
+Wait For Password Expire
+    [Documentation]    Owner: Nakarin
+    ...    Wait for Token(from Auth Url) Expire about in 5 min
+    [Tags]    keyword_communicate
+    Sleep    5m

@@ -16,13 +16,17 @@ ${body_request_email_otp_schema}      {"client_id": "_client_id_", "public_id": 
 ${body_get_token_email_otp_schema}    {"client_id": "_client_id_", "client_secret": "_client_secret_", "grant_type": "_grant_type_", "username": "_username_", "password": "_password_", "type": "_type_", "scope": "_scope_", "session_id": "_session_id_", "transaction_id": "_transaction_id_"}
 ${body_get_token_email_otp_no_session_transaction_id_schema}    {"client_id": "_client_id_", "client_secret": "_client_secret_", "grant_type": "_grant_type_", "username": "_username_", "password": "_password_", "type": "_type_", "scope": "_scope_"}
 
-${grant_type_email_otp}         password
-${type_get_token_email_otp}     1
-${scope_get_token_email_otp}    profile
-${session_id_invalid}           aaabbbbccccccdddddd
+${grant_type_email_otp}                 password
+${type_get_token_email_otp}             1
+${invalid_type_get_token_email_otp}     0
+${scope_get_token_email_otp}            profile
+${invalid_session_id}                   aaabbbbccccccdddddd
+${invalid_password}                     418899
+
 
 #response
 ${expected_result_code_email_otp}                 20000
 ${expected_developer_message}                     success
 ${expected_expires_in_email_otp}                  86400
 ${expected_refresh_token_expires_in_email_otp}    86400
+  
