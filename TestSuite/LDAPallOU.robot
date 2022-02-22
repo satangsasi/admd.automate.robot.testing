@@ -602,12 +602,13 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    sasi
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button
     Verify Login Fail
-    # Verify Log From Server
+    Get Json Log Ldap From Server 
+    Verify Value Log Error From Server    ${error_message_invalid_user_or_password} 
 
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin

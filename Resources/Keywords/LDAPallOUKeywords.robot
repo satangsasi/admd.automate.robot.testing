@@ -458,7 +458,49 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
     Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
+Get Json Log Ldap From Server 
+    [Documentation]    Owner: Nakarin    Editor: Sasipen
+    ...    Get Json Log From output of SSH Command
+    ...    edit message grep > error
+    [Tags]    keyword_commands
+    SSH Connect To 10.137.30.22
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
+    Write    cd logs/detail/
+    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep error   
+    ${string}   Read    delay=1s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    ${json_expect}    Convert String to JSON    ${json_format}[0]
+    Log    ${json_expect}
+    Set Test Variable    ${JSON_EXPECT}    ${json_expect}
 
+Verify Value Log Error From Server 
+    [Documentation]    Owner: Sasipen
+    ...    verify Value from key error by Json file from SSH Command
+    [Tags]    keyword_commands
+    [Arguments]    ${error_message}
+    Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
+    
+        
+
+# Get OTP From Json
+#     [Documentation]    Owner: Nakarin    Editor: Sasipen
+#     ...     Get OTP Value from Json that return from SSH Command
+#     [Tags]    keyword_commands
+#     [Arguments]    ${json}
+#     ${otp_password}    Get Value Json By Key    ${json}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
+#     Should Match Regexp    ${otp_password}    \\d+
+#     Log    ${otp_password}
+#     [Return]    ${otp_password}
+    
+# Get Email OTP Password
+#     [Documentation]    Owner: Nakarin
+#     ...    Get Email OTP Password and return Test Variable    ${EMAIL_OTP_PASSWORD}
+#     [Tags]    keyword_action
+#     [Arguments]    ${transaction_id}
+#     SSH Connect To 10.137.30.22
+#     ${json_log}        Get Json Log Email Otp   ${transaction_id}
+#     ${otp_password}    Get OTP From Json        ${json_log}
+#     Set Test Variable  ${EMAIL_OTP_PASSWORD}    ${otp_password}
 
 
 

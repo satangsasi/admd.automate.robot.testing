@@ -51,7 +51,7 @@ ${error_title}                           Wrong Username or Password
 ${error_message}                         Please check your Username or Password.
 ${json_error_message_invalid_grant}      {"error":"invalid_grant"}
 ${json_error_message_invalid_request}    {"error":"invalid_request"}
-
+${error_message_invalid_user_or_password}    invalid_user_or_password
 # Response
 ${expected_expires_in_ldap}                           86400
 ${expected_refresh_token_expires_in_ldap}             86400
