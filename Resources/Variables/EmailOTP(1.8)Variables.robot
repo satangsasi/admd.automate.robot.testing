@@ -21,12 +21,17 @@ ${type_get_token_email_otp}             1
 ${invalid_type_get_token_email_otp}     0
 ${scope_get_token_email_otp}            profile
 ${invalid_session_id}                   aaabbbbccccccdddddd
+${invalid_transaction_id}               P2wX4vUiF3Raaaaaaa
 ${invalid_password}                     418899
-
+${invalid_public_id}                    testais0000000001@gmail.com
+${invalid_client_id_ABCDEF}             ABCDEFGHIJKL123456PBHpmnSUamXM/Wcuomo2pVYgUOjPoOLgg==
+${invalid_client_secret}                12345679a935d9bdd70c0845f7a5dbe5
+${invalid_grant_type_email_otp}                   password12345
 
 #response
 ${expected_result_code_email_otp}                 20000
 ${expected_developer_message}                     success
 ${expected_expires_in_email_otp}                  86400
 ${expected_refresh_token_expires_in_email_otp}    86400
-  
+${expected_invalid_result_code_email_otp}         50300  
+${expected_invalid_developer_message}             server_busy

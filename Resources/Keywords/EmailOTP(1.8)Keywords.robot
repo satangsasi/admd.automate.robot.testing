@@ -12,9 +12,9 @@ Get Json Log Email Otp
     Write    cd logs/detail/
     Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
     ${string}   Read    delay=1s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    ${json_expect}    Convert String to JSON    ${json_format}[0]
-    Log    ${json_expect}
+    ${json_format}    Get Regexp Matches        ${string}    {.*
+    ${json_expect}    Convert String To JSON    ${json_format}[0]
+    Log         ${json_expect}
     [Return]    ${json_expect}
 
 Get OTP From Json
@@ -22,9 +22,9 @@ Get OTP From Json
     ...     Get OTP Value from Json that return from SSH Command
     [Tags]    keyword_commands
     [Arguments]    ${json}
-    ${otp_password}    Get Value Json By Key    ${json}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
+    ${otp_password}        Get Value Json By Key    ${json}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
     Should Match Regexp    ${otp_password}    \\d+
-    Log    ${otp_password}
+    Log         ${otp_password}
     [Return]    ${otp_password}
     
 Get Email OTP Password
@@ -46,6 +46,7 @@ Set Content Header Request Email Otp
     Set Test Variable    ${API_URL_REQUEST_EMAIL_OTP}       ${url}
     Set Test Provisioning Data    Request Otp Url : ${API_URL_REQUEST_EMAIL_OTP}
     Set Test Provisioning Data    Header : ${API_HEADER_REQUEST_EMAIL_OTP}
+
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,publicid,reference to formate body 
@@ -55,6 +56,7 @@ Set Body Request Email Otp
     ${body_reference}        Replace String    ${body_public_id}                   _reference_         ${reference}
     Set Test Variable        ${API_BODY_REQUEST_EMAIL_OTP}       ${body_reference}
     Set Test Provisioning Data    Body : ${API_BODY_REQUEST_EMAIL_OTP}
+
 Send Post Request Email Otp
     Send Post Request    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
 
@@ -76,11 +78,11 @@ Verify Response Request Email Otp
 
 Get Value Response Request Email Otp By Key Session Id   
     ${value_session_id}    Get Value Response By Key     session_id
-    Set Test Variable      ${ACTUAL_VALUE_SESSION_ID}    ${value_session_id}
+    Set Test Variable    ${ACTUAL_VALUE_SESSION_ID}    ${value_session_id}
 
 Get Value Response Request Email Otp By Key Transaction Id  
     ${value_transaction_id}    Get Value Response By Key     transaction_id
-    Set Test Variable      ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
+    Set Test Variable    ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
 
 Set Content Header Get Token Email Otp 
     [Documentation]     Owner : sasipen
@@ -91,6 +93,7 @@ Set Content Header Get Token Email Otp
     Set Test Variable    ${API_URL_GET_TOKEN_EMAIL_OTP}       ${url}
     Set Test Provisioning Data    Get Token Url : ${API_URL_GET_TOKEN_EMAIL_OTP} 
     Set Test Provisioning Data    Header Get Token : ${API_HEADER_GET_TOKEN_EMAIL_OTP}
+
 Set Body Get Token Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,publicid,reference to formate body 
@@ -104,9 +107,12 @@ Set Body Get Token Email Otp
     ${body_scope}            Replace String    ${body_type}                          _scope_            ${scope}       
     ${body_session_id}       Replace String    ${body_scope}                         _session_id_       ${session_id}
     ${body_transaction_id}   Replace String    ${body_session_id}                    _transaction_id_   ${transaction_id}
-    Set Test Variable        ${API_BODY_GET_TOEKN}       ${body_transaction_id}
+    Set Test Variable        ${API_BODY_GET_TOEKN}    ${body_transaction_id}
     Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN} 
+
 Send Post Request Get Token Email Otp
+    [Documentation]     Owner : sasipen
+    ...    send request Post for get token 
     Send Post Request    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
 
 Verify Response Get Token Email Otp
@@ -137,7 +143,7 @@ Set Body Get Token Email Otp No Session And Transaction Id
 Send Post Request Get Token Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}    
+    [Arguments]        ${statuscode}
     Send Post Request    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOEKN}    expected_status=${statuscode}
 
 Verify Response Get Token Email Otp Error
@@ -152,3 +158,14 @@ Wait For Password Expire
     ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
     Sleep    5m
+
+Verify Response Invalid Request Email Otp
+    Verify Value Response By Key    result_code          ${expected_invalid_result_code_email_otp} 
+    Verify Value Response By Key    developer_message    ${expected_invalid_developer_message} 
+    Set Test Actual Result    Request OTP :\r\n${RESPONSE.json()}
+
+Send Post Request Email Otp Invalid
+    [Documentation]     Owner : sasipen
+    ...     Send request Post to api
+    [Arguments]        ${statuscode}
+    Send Post Request    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${statuscode}

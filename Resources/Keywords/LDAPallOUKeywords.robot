@@ -30,6 +30,7 @@ Set Response On Webpage To Json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     Take Screenshot Verify Success Scene
+
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
@@ -108,11 +109,11 @@ Verify Response Decode Refresh Token By Key Access Token
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    aut.action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    refresh
-    Verify Refresh Value Response Access Token Decode Jwt by Key    iss
-    Verify Refresh Value Response Access Token Decode Jwt by Key    sub
-    Verify Refresh Value Response Access Token Decode Jwt by Key    aud
-    Verify Refresh Value Response Access Token Decode Jwt by Key    iat
-    Verify Refresh Value Response Access Token Decode Jwt by Key    pid
+    Verify Refresh Value Response Access Token Decode Jwt By Key    iss
+    Verify Refresh Value Response Access Token Decode Jwt By Key    sub
+    Verify Refresh Value Response Access Token Decode Jwt By Key    aud
+    Verify Refresh Value Response Access Token Decode Jwt By Key    iat
+    Verify Refresh Value Response Access Token Decode Jwt By Key    pid
 
 Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
@@ -120,10 +121,10 @@ Verify Response Decode Refresh Token By Key Id Token
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    aut.action
     Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    refresh
-    Verify Refresh Value Response Id Token Decode Jwt by Key    iss
-    Verify Refresh Value Response Id Token Decode Jwt by Key    sub
-    Verify Refresh Value Response Id Token Decode Jwt by Key    aud
-    Verify Refresh Value Response Id Token Decode Jwt by Key    iat
+    Verify Refresh Value Response Id Token Decode Jwt By Key    iss
+    Verify Refresh Value Response Id Token Decode Jwt By Key    sub
+    Verify Refresh Value Response Id Token Decode Jwt By Key    aud
+    Verify Refresh Value Response Id Token Decode Jwt By Key    iat
 
 Verify Response Decode Login Token By Key Access Token
     [Documentation]     Owner : sasipen
@@ -131,23 +132,22 @@ Verify Response Decode Login Token By Key Access Token
     [Arguments]    ${action_type}      ${login_subtype}
     Verify Response Action Type Decode Jwt By Key    access_token    ${action_type}
     Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login 
-    Verify Value Response Access Token Decode Jwt by Key    iss
-    Verify Value Response Access Token Decode Jwt by Key    sub
-    Verify Value Response Access Token Decode Jwt by Key    aud
-    Verify Value Response Access Token Decode Jwt by Key    iat
-    Verify Value Response Access Token Decode Jwt by Key    pid
+    Verify Value Response Access Token Decode Jwt By Key    iss
+    Verify Value Response Access Token Decode Jwt By Key    sub
+    Verify Value Response Access Token Decode Jwt By Key    aud
+    Verify Value Response Access Token Decode Jwt By Key    iat
+    Verify Value Response Access Token Decode Jwt By Key    pid
 
-    
 Verify Response Decode Login Token By Key Id Token
     [Documentation]     Owner : sasipen
     ...    verify text value By Key action form value id token state login = expected text 
     [Arguments]    ${action_type}      ${login_subtype}
     Verify Response Action Type Decode Jwt By Key    id_token    ${action_type}
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    login
-    Verify Value Response Id Token Decode Jwt by Key    iss
-    Verify Value Response Id Token Decode Jwt by Key    sub
-    Verify Value Response Id Token Decode Jwt by Key    aud
-    Verify Value Response Id Token Decode Jwt by Key    iat
+    Verify Value Response Id Token Decode Jwt By Key    iss
+    Verify Value Response Id Token Decode Jwt By Key    sub
+    Verify Value Response Id Token Decode Jwt By Key    aud
+    Verify Value Response Id Token Decode Jwt By Key    iat
 
 Verify Response Ldap No Scope Profile
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -177,7 +177,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen
+    Set Up Browser Fullscreen    
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
     Wait Until Network Is Idle
@@ -264,7 +264,7 @@ Get Value Response Jwt By Key Access Token
     ${value}       Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}    ${response_key}
     [Return]       ${value}
     
-Verify Value Response Access Token Decode Jwt by Key
+Verify Value Response Access Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}    Get Value Response Jwt By Key Access Token    ${response_key}
     ${value}    Convert To String    ${value}
@@ -279,7 +279,7 @@ Get Value Response Jwt By Key Id Token
     ${value}       Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}    ${response_key}
     [Return]       ${value}
 
-Verify Value Response Id Token Decode Jwt by Key
+Verify Value Response Id Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}    Get Value Response Jwt By Key Id Token    ${response_key}
     ${value}    Convert To String    ${value}
@@ -294,7 +294,7 @@ Get Refresh Value Response Jwt By Key Access Token
     ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    ${response_key}   
     [Return]       ${value}
 
-Verify Refresh Value Response Access Token Decode Jwt by Key
+Verify Refresh Value Response Access Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}       Get Refresh Value Response Jwt By Key Access Token    ${response_key}
     ${value}    Convert To String    ${value}
@@ -309,7 +309,7 @@ Get Refresh Value Response Jwt By Key Id Token
     ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ID_TOKEN}    ${response_key}
     [Return]       ${value}
 
-Verify Refresh Value Response Id Token Decode Jwt by Key
+Verify Refresh Value Response Id Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}       Get Refresh Value Response Jwt By Key Id Token    ${response_key}
     ${value}    Convert To String    ${value}
@@ -473,7 +473,7 @@ Get Json Log Ldap From Server
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
-    ${json_expect}    Convert String to JSON    ${json_format}[-1]
+    ${json_expect}    Convert String To JSON    ${json_format}[-1]
     Log    ${json_expect}
     Set Test Variable    ${JSON_EXPECT}    ${json_expect}
 
@@ -484,185 +484,36 @@ Verify Value Log Error From Server
     [Arguments]    ${error_message}
     Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#------------------------------sasipen-------------------------
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
+    ...     Send request Get to api
     [Arguments]          ${url}
     Send Get Request     url=${url}
     Set Test Variable    ${API_URL}       ${url}
+
 Verify Response Decrypted Pid Ldap Employee Snake Case
     [Documentation]     Owner : sasipen 
+    ...    verify Value message(fix) from key and add response to actual result
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
     Verify Value Response By Key    developer_message    ${expected_develope_messagee_pass} 
     Verify Value Response By Key    private_id           ${expected_private_id_emp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
     Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+
 Verify Response Decrypted Pid Ldap Employee Camel Case
     [Documentation]     Owner : sasipen 
+    ...    verify Value message(fix) from key and add response to actual result
     Verify Value Response By Key    resultCode          ${expected_result_code_pass}
     Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass} 
     Verify Value Response By Key    privateId           ${expected_private_id_emp_pass} 
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
     Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    
 Send Post Request LDAP
     [Documentation]     Owner : sasipen 
+    ...     Send request Post to api
     Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
     
    
