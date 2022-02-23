@@ -466,7 +466,7 @@ Get Json Log Ldap From Server
     SSH Connect To 10.137.30.22
     Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep error   
+    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "aaf.post_authenticate_ldap.*error"   
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     ${json_expect}    Convert String to JSON    ${json_format}[0]
