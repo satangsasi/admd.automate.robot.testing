@@ -137,7 +137,6 @@ Verify Response Decode Login Token By Key Access Token
     Verify Value Response Access Token Decode Jwt by Key    iat
     Verify Value Response Access Token Decode Jwt by Key    pid
 
-    
 Verify Response Decode Login Token By Key Id Token
     [Documentation]     Owner : sasipen
     ...    verify text value By Key action form value id token state login = expected text 
@@ -177,7 +176,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen
+    Set Up Browser Fullscreen    
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
     Wait Until Network Is Idle
