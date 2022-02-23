@@ -67,4 +67,3 @@ ${expected_private_id_emp_pass}                       PQnds4&R2RkeTl1SlFqRXJiOGI
 ${expected_partner_id_pass}                           30238
 ${expected_public_id_emp_pass}                        nopparar
 ${expected_public_id_cp_pass}                         425
-
