@@ -12,14 +12,14 @@ Resource    ../../arcadia.automate.buffet/APIBuffet/RequestLibrary_APICommonKeyw
 Resource    ../../arcadia.automate.buffet/RobotBuffet/BuiltinLibrary_CommonKeywords.robot
 Library     ../../arcadia.automate.buffet/Library/decode_data.py
 # Keywords
-Resource    ../Resources/Keywords/EmailOTP(1.8)Keywords.robot
+Resource    ../Resources/Keywords/EmailOTPKeywords.robot
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/Commonkeywords.robot
 Resource    ../Resources/Keywords/Mobileid_(iot)Keywords.robot
 Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 # Variables
-Resource    ../Resources/Variables/EmailOTP(1.8)Variables.robot
+Resource    ../Resources/Variables/EmailOTPVariables.robot
 Resource    ../Resources/Variables/CommonVariable.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot

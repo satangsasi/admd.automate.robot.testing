@@ -24,5 +24,5 @@ ${grant_type}                                         client_credentials
 ${grant_type_invalid}                                 client_creden  
 ${nonce}                                              robototp_20210322
 
-${expected_expires_in_client_credentials_backend}    3600
-${expected_expires_in_client_credentials_browser}    86400
+${expected_expires_in_client_credentials_backend}     3600
+${expected_expires_in_client_credentials_browser}     86400
