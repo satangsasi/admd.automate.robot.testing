@@ -13,7 +13,7 @@ Get Json Log Email Otp
     Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
-    ${json_expect}    Convert String to JSON    ${json_format}[0]
+    ${json_expect}    Convert String To JSON    ${json_format}[0]
     Log    ${json_expect}
     [Return]    ${json_expect}
 
@@ -46,6 +46,7 @@ Set Content Header Request Email Otp
     Set Test Variable    ${API_URL_REQUEST_EMAIL_OTP}       ${url}
     Set Test Provisioning Data    Request Otp Url : ${API_URL_REQUEST_EMAIL_OTP}
     Set Test Provisioning Data    Header : ${API_HEADER_REQUEST_EMAIL_OTP}
+
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,publicid,reference to formate body 
@@ -55,6 +56,7 @@ Set Body Request Email Otp
     ${body_reference}        Replace String    ${body_public_id}                   _reference_         ${reference}
     Set Test Variable        ${API_BODY_REQUEST_EMAIL_OTP}       ${body_reference}
     Set Test Provisioning Data    Body : ${API_BODY_REQUEST_EMAIL_OTP}
+
 Send Post Request Email Otp
     Send Post Request    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
 
@@ -91,6 +93,7 @@ Set Content Header Get Token Email Otp
     Set Test Variable    ${API_URL_GET_TOKEN_EMAIL_OTP}       ${url}
     Set Test Provisioning Data    Get Token Url : ${API_URL_GET_TOKEN_EMAIL_OTP} 
     Set Test Provisioning Data    Header Get Token : ${API_HEADER_GET_TOKEN_EMAIL_OTP}
+
 Set Body Get Token Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,publicid,reference to formate body 
@@ -106,6 +109,7 @@ Set Body Get Token Email Otp
     ${body_transaction_id}   Replace String    ${body_session_id}                    _transaction_id_   ${transaction_id}
     Set Test Variable        ${API_BODY_GET_TOEKN}       ${body_transaction_id}
     Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN} 
+
 Send Post Request Get Token Email Otp
     Send Post Request    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
 

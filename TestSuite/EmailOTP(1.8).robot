@@ -54,6 +54,7 @@ TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input ses
     ...                              ${scope_get_token_email_otp}
     Send Post Request Get Token Email Otp Invalid    400
     Verify Response Get Token Email Otp Error        ${error_message_invalid_request}
+
 TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract session_id or transaction_id
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp    Test
@@ -80,6 +81,7 @@ TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract se
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp Invalid    400
     Verify Response Get Token Email Otp Error        ${error_message_invalid_request}
+
 TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong type (type = 0)
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp    Test
@@ -106,6 +108,7 @@ TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong 
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp Invalid    401
     Verify Response Get Token Email Otp Error        ${error_message_invalid_user_or_password}
+
 TST_F4_0_1_004 Verify getting token fail with wrong password
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp    Test
@@ -132,6 +135,7 @@ TST_F4_0_1_004 Verify getting token fail with wrong password
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp Invalid    401
     Verify Response Get Token Email Otp Error        ${error_message_invalid_user_or_password}
+
 TST_F4_0_1_005 Verify getting token fail with expired password
 TST_F4_0_1_006 Verify request OTP with use email that without a profile 
 TST_F4_0_1_007 Verify getting token fail
