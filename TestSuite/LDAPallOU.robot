@@ -602,22 +602,23 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
 
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider    sasi
+    [Tags]    Content_Provider    rerun
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button
     Verify Login Fail
     Get Json Log Ldap From Server 
-    Verify Value Log Error From Server    ${error_message_invalid_user_or_password} 
+    Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    rerun
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${invalid_user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button
     Verify Login Fail
-    # Verify Log From Server
+    Get Json Log Ldap From Server 
+    Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
     [Documentation]     Owner: Nakarin
@@ -655,7 +656,8 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
     Fill Username And Password    ${user_ldap_employee}    ${invalid_user_ldap_employee}
     Press Login Button
     Verify Login Fail
-    # Verify Log From Server
+    Get Json Log Ldap From Server 
+    Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
     [Documentation]    Owner: Nakarin
@@ -664,7 +666,8 @@ TST_F10_0_1_008 Verify Login ldap employee with invalid user
     Fill Username And Password    ${invalid_pass_ldap_employee}    ${pass_ldap_employee}
     Press Login Button
     Verify Login Fail
-    # Verify Log From Server
+    Get Json Log Ldap From Server 
+    Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_009 Verify Login ldap employee with missing parameter
     [Documentation]    Owner: Nakarin
