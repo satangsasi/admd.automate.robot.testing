@@ -26,4 +26,5 @@ SSH Connect To 10.137.30.22
     ...    ${ssh_pass}          R3dh@t!@#
     [Tags]    keyword_commands
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
-    Login    ${ssh_user}     ${ssh_pass}  
+    Login    ${ssh_user}     ${ssh_pass} 
+ 
