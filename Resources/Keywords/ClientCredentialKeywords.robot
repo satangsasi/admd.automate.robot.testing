@@ -7,7 +7,6 @@ Get Time Nonce
     [Documentation]    Owner : sasipen        
     ...    Get the current date and time in format YYYYmmddHHMMSS
     ${currentDateTime}      Get Current Date      result_format=%Y%m%d%H%M%S
-    Log To Console          ${currentDateTime}
     Set Test Variable       ${DATETIME}         ${currentDateTime}
 
 Set Content Header Client Credentials 
