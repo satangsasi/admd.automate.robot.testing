@@ -417,6 +417,7 @@ Verify Login Fail
     [Tags]    keyword_communicate
     ${actual_error_title}      Get Text    ${lbl_error_title}
     ${actual_error_message}    Get Text    ${lbl_error_message}
+    # Verify Value Should Be Equal    ${actual_error_title}    Pass
     Verify Value At Locator    ${lbl_error_title}      ${error_title}
     Verify Value At Locator    ${lbl_error_message}    ${error_message}
     Take Screenshot Verify Success Scene
