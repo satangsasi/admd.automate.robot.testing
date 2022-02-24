@@ -2,6 +2,7 @@
 Library    Collections
 Library    String
 Library    DateTime
+Library    OperatingSystem
 Library    RequestsLibrary
 Library    JSONLibrary
 Library    SSHLibrary    20s
