@@ -1,7 +1,7 @@
 {
-	"client_id": "OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX/w5SmiwOO7UU=",
-	"token": {
-		"type": "access_token",
-		"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlRiNjJJc2c0TGMifQ.eyJpc3MiOiJzcmYuYWlzLmNvLnRoL2FkbWQiLCJzdWIiOiJ0b2tlbl9hdXRoZW50aWNhdGlvbl9jb2RlIiwiYXVkIjoiT2hGdzN1QVFnTWRNQ2JjbzhENE1BTzBITlNJN1Z1WC93NVNtaXdPTzdVVT0iLCJleHAiOjE2MzYxNjYzOTIsImlhdCI6MTYzNjA3OTk5MiwianRpIjoieGw1ZFc4d3V2MVBXMnRyZ2dQU1ZmcSIsInBpZCI6IkRXRXJJUVdQc1hDMHhiY2tBU1h4SHRpTlpBb0hwWmQxTENYZy9MNGduYjQ9IiwiY2xpZW50IjoiTXpBeU16Z3NjbTlpYjNSdmRIQjhRbkp2ZDNObGNud3hMakF1TUE9PSIsInNzaWQiOiJKdjY5NE5wZTJobXFBNE8yTng0TmlEIiwidWlkIjoiNjYxNjMwMDE4NTQ5MjU0IiwiYXV0Ijp7InR5cGUiOiJtc2lzZG4iLCJhY3Rpb24iOiJsb2dpbiIsImxvZ2luX2NoYW5uZWwiOiJhdXRvIiwibmV0d29yayI6ImFpcyJ9fQ.btOJf31immxeH8FvdptPAoT0X-f256AjNjjp7JkCoZmzybPSiXS8PTYrtImY6NjmsE6NmFbjKBkoS8yudGMplSesMBi4-4aLrFsJHPSsqwOejV7-YozweEoB3UMlV9KJZmARVfDsAILlJev2AUFsvPdAt-8z3STt6--Jc2A4hYU"
-	}
+    "client_id": " ", 
+    "token": {
+        "type": "access_token",
+        "value": " "
+    }
 }

@@ -7,8 +7,6 @@ TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
     [Tags]    Success
-    Get Access Token ClientCredential
-    Set Provisioning Data From Authorization Code
     
 TST_F6_1_1_002 verify validate success CURL
     [Documentation]    Owner: Nakarin
@@ -18,6 +16,10 @@ TST_F6_1_1_002 verify validate success CURL
 TST_F6_1_1_003 verify validate success login by client credentials
     [Documentation]    Owner: Nakarin
     [Tags]    Success
+    Get Access Token ClientCredential
+    Set API Header Login By Client Credential
+    Set API Body Login By Client Credential
+    Send Post Request Validate Token
 
 TST_F6_1_1_004 verify validate success with profile have gupimpi more than one object 
     [Documentation]    Owner: Nakarin
