@@ -1,0 +1,7 @@
+{
+    "client_id":"_client_id_",
+    "token":{
+        "type":"_type_",  
+        "value":"_value_"
+    }
+}
