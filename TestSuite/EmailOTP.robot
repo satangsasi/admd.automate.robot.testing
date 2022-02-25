@@ -6,7 +6,7 @@ Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 *** Test Cases ***
 TST_F4_1_1_001 Verify login with EmailOTP
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -33,7 +33,7 @@ TST_F4_1_1_001 Verify login with EmailOTP
 
 TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input session_id or transaction_id
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -58,7 +58,7 @@ TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input ses
 
 TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract session_id or transaction_id
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -85,7 +85,7 @@ TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract se
 
 TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong type (type = 0)
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -112,7 +112,7 @@ TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong 
 
 TST_F4_0_1_004 Verify getting token fail with wrong password
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -139,7 +139,7 @@ TST_F4_0_1_004 Verify getting token fail with wrong password
 
 TST_F4_0_1_005 Verify getting token fail with expired password
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -167,7 +167,7 @@ TST_F4_0_1_005 Verify getting token fail with expired password
 
 TST_F4_0_1_006 Verify request OTP with use email that without a profile
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test1
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -178,7 +178,7 @@ TST_F4_0_1_006 Verify request OTP with use email that without a profile
 
 TST_F4_0_1_007 Verify getting token fail
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -204,7 +204,7 @@ TST_F4_0_1_007 Verify getting token fail
     Verify Response Get Token Email Otp Error        ${error_message_invalid_request}
 
 TST_F4_0_1_008 Verify getting token fail with Invalid client_id
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -231,7 +231,7 @@ TST_F4_0_1_008 Verify getting token fail with Invalid client_id
 
 TST_F4_0_1_009 Verify getting token fail with Invalid grant_type
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
@@ -258,7 +258,7 @@ TST_F4_0_1_009 Verify getting token fail with Invalid grant_type
 
 TST_F4_0_1_010 Verify getting token fail with Invalid client_Secret
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp    Test
+    [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}    
