@@ -7,10 +7,9 @@ TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
     [Tags]    Success
-    Set Content API Header    key=Content-Type    value=application/json
-    Set Content API Header    key=X-Tid           value=login by msisdn OTP
-    Set Content API Body
-    Send Post Request    10.137.30.22:31191/v3.2/token/validate
+    Get Access Token ClientCredential
+    Set Provisioning Data From Authorization Code
+    
 TST_F6_1_1_002 verify validate success CURL
     [Documentation]    Owner: Nakarin
     ...    login by auto FBB
