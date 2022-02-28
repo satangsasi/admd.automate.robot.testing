@@ -8,9 +8,9 @@ Get Json Log Email Otp
     ...    Get Json Log From output of SSH Command
     [Tags]    keyword_commands
     [Arguments]    ${transaction_id}
-    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
+    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
     ${json_expect}    Convert String To JSON    ${json_format}[0]
