@@ -58,6 +58,7 @@ Set Body Request Email Otp
     Set Test Provisioning Data    Body : ${API_BODY_REQUEST_EMAIL_OTP}
 
 Send Post Request Email Otp
+    [Documentation]    Owner : sasipen
     Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
 
 Verify Value Response Email Otp By Key 
@@ -69,6 +70,7 @@ Verify Value Response Email Otp By Key
     Log    ${value}
     
 Verify Response Request Email Otp
+    [Documentation]    Owner : sasipen
     Verify Value Response By Key    result_code          ${expected_result_code_email_otp}
     Verify Value Response By Key    developer_message    ${expected_developer_message}
     Verify Value Response Email Otp By Key    session_id
@@ -77,10 +79,12 @@ Verify Response Request Email Otp
     Set Test Actual Result    Request OTP :\r\n${RESPONSE.json()}
 
 Get Value Response Request Email Otp By Key Session Id   
+    [Documentation]    Owner : sasipen
     ${value_session_id}    Get Value Response By Key     session_id
     Set Test Variable    ${ACTUAL_VALUE_SESSION_ID}    ${value_session_id}
 
 Get Value Response Request Email Otp By Key Transaction Id  
+    [Documentation]    Owner : sasipen
     ${value_transaction_id}    Get Value Response By Key     transaction_id
     Set Test Variable    ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
 
