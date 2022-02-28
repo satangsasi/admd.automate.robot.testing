@@ -30,7 +30,7 @@ Set Body Client Credentials
 
 Set Body Client Credentials Missing Client Id
     [Documentation]     Owner : sasipen
-    ...    Set client secret,grant type, nonce to formate body 
+    ...    Set client secret,grant type, nonce to formate body
     [Arguments]              ${client_secret}  ${grant_type}     ${nonce}
     Get Time Nonce
     ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
@@ -66,8 +66,8 @@ Send Request Client Credentials
 Send Request Client Credentials Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}    
-    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${statuscode}
+    [Arguments]        ${status_code}    
+    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
  
 Verify Response Client Credentials
     [Documentation]     Owner : sasipen

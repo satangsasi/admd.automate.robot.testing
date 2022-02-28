@@ -58,6 +58,7 @@ Set Body Request Email Otp
     Set Test Provisioning Data    Body : ${API_BODY_REQUEST_EMAIL_OTP}
 
 Send Post Request Email Otp
+    [Documentation]    Owner : sasipen
     Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
 
 Verify Value Response Email Otp By Key 
@@ -69,6 +70,7 @@ Verify Value Response Email Otp By Key
     Log    ${value}
     
 Verify Response Request Email Otp
+    [Documentation]    Owner : sasipen
     Verify Value Response By Key    result_code          ${expected_result_code_email_otp}
     Verify Value Response By Key    developer_message    ${expected_developer_message}
     Verify Value Response Email Otp By Key    session_id
@@ -77,10 +79,12 @@ Verify Response Request Email Otp
     Set Test Actual Result    Request OTP :\r\n${RESPONSE.json()}
 
 Get Value Response Request Email Otp By Key Session Id   
+    [Documentation]    Owner : sasipen
     ${value_session_id}    Get Value Response By Key     session_id
     Set Test Variable    ${ACTUAL_VALUE_SESSION_ID}    ${value_session_id}
 
 Get Value Response Request Email Otp By Key Transaction Id  
+    [Documentation]    Owner : sasipen
     ${value_transaction_id}    Get Value Response By Key     transaction_id
     Set Test Variable    ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
 
@@ -107,13 +111,13 @@ Set Body Get Token Email Otp
     ${body_scope}            Replace String    ${body_type}                          _scope_            ${scope}       
     ${body_session_id}       Replace String    ${body_scope}                         _session_id_       ${session_id}
     ${body_transaction_id}   Replace String    ${body_session_id}                    _transaction_id_   ${transaction_id}
-    Set Test Variable        ${API_BODY_GET_TOEKN}    ${body_transaction_id}
-    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN} 
+    Set Test Variable        ${API_BODY_GET_TOKEN}    ${body_transaction_id}
+    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOKEN} 
 
 Send Post Request Get Token Email Otp
     [Documentation]     Owner : sasipen
     ...    send request Post for get token 
-    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOKEN}
 
 Verify Response Get Token Email Otp
     [Documentation]     Owner : sasipen
@@ -137,14 +141,14 @@ Set Body Get Token Email Otp No Session And Transaction Id
     ${body_password}         Replace String    ${body_username}                      _password_         ${password}
     ${body_type}             Replace String    ${body_password}                      _type_             ${type}       
     ${body_scope}            Replace String    ${body_type}                          _scope_            ${scope}       
-    Set Test Variable        ${API_BODY_GET_TOEKN}       ${body_scope}   
-    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN}     
+    Set Test Variable        ${API_BODY_GET_TOKEN}       ${body_scope}   
+    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOKEN}     
 
 Send Post Request Get Token Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}
-    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOEKN}    expected_status=${statuscode}
+    [Arguments]        ${status_code}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOKEN}    expected_status=${status_code}
 
 Verify Response Get Token Email Otp Error
     [Documentation]     Owner : sasipen
@@ -167,5 +171,5 @@ Verify Response Invalid Request Email Otp
 Send Post Request Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}
-    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${statuscode}
+    [Arguments]        ${status_code}
+    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${status_code}

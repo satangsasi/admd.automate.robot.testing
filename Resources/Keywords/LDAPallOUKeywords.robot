@@ -399,7 +399,7 @@ Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    ${current_date_time}    Get Current Date    result_format=%Y-%m-%dT%H:%M
+    ${current_date_time}     Get Current Date    result_format=%Y-%m-%dT%H:%M
     ${current_date_times}    Get Current Date    result_format=%Y-%m-%dT%H:%M:%S
     Set Test Variable    ${TIME_STAMP}    ${current_date_time}
 
@@ -467,9 +467,9 @@ Get Json Log Ldap From Server
     ...    edit message grep > error
     [Tags]    keyword_commands
     SSH Connect To 10.137.30.22
-    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "error"
+    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "error"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
@@ -483,14 +483,14 @@ Verify Value Log Error From Server
     [Tags]    keyword_commands
     [Arguments]    ${error_message}
     Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
-    Set Test Actual Result      ${JSON_EXPECT}
+    Set Test Actual Result      ${JSON_EXPECT.custom.Output[0].Data.Body.error}
     
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
     ...     Send request Get to api
     [Arguments]     ${url}
-    Send Request    GET  url=${url}
-    Set Test Variable    ${API_URL}       ${url}
+    Send Request    GET     url=${url}
+    Set Test Variable       ${API_URL}    ${url}
 
 Verify Response Decrypted Pid Ldap Employee Snake Case
     [Documentation]     Owner : sasipen 
