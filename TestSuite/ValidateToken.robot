@@ -34,8 +34,11 @@ TST_F6_1_1_004 verify validate success with profile have gupimpi more than one o
     [Tags]    Success    On-Hold
 
 TST_F6_0_1_001 erify validate fail with no access token received from loging by msisdn which is no profile
-    [Documentation]    Owner:
+    [Documentation]    Owner: Sasipen
     [Tags]    Fail
+    Set API Header Request Otp Validate Token
+    Set API Body Request Otp Validate Token
+    Send Post Request Otp Validate Token
 
 TST_F6_0_1_002 verify validate fail with incorrect client id
     [Documentation]    Owner:
