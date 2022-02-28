@@ -9,7 +9,7 @@ ${clientid_request_otp_validate_token}       PK+WUAlHhnhgy9yNCzAk4PBHpmnSUamXM/W
 ${public_id_request_otp_validate_token}      66981721044
 ${client_secret_get_token_validate_token}    a67dd929a935d9bdd70c0845f7a5dbe5
 ${url_login_by_fbb}                          https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
-
+${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
 
 ${grant_type_validate_token}         password
 ${type_get_token_validate_token}     1
