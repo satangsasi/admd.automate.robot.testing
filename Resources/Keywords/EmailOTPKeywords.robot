@@ -8,9 +8,9 @@ Get Json Log Email Otp
     ...    Get Json Log From output of SSH Command
     [Tags]    keyword_commands
     [Arguments]    ${transaction_id}
-    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-ddlgw -n admd sh
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-ddlgw_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
+    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
     ${json_expect}    Convert String To JSON    ${json_format}[0]
@@ -107,13 +107,13 @@ Set Body Get Token Email Otp
     ${body_scope}            Replace String    ${body_type}                          _scope_            ${scope}       
     ${body_session_id}       Replace String    ${body_scope}                         _session_id_       ${session_id}
     ${body_transaction_id}   Replace String    ${body_session_id}                    _transaction_id_   ${transaction_id}
-    Set Test Variable        ${API_BODY_GET_TOEKN}    ${body_transaction_id}
-    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN} 
+    Set Test Variable        ${API_BODY_GET_TOKEN}    ${body_transaction_id}
+    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOKEN} 
 
 Send Post Request Get Token Email Otp
     [Documentation]     Owner : sasipen
     ...    send request Post for get token 
-    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOKEN}
 
 Verify Response Get Token Email Otp
     [Documentation]     Owner : sasipen
@@ -137,14 +137,14 @@ Set Body Get Token Email Otp No Session And Transaction Id
     ${body_password}         Replace String    ${body_username}                      _password_         ${password}
     ${body_type}             Replace String    ${body_password}                      _type_             ${type}       
     ${body_scope}            Replace String    ${body_type}                          _scope_            ${scope}       
-    Set Test Variable        ${API_BODY_GET_TOEKN}       ${body_scope}   
-    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOEKN}     
+    Set Test Variable        ${API_BODY_GET_TOKEN}       ${body_scope}   
+    Set Test Provisioning Data    Body Get Token : ${API_BODY_GET_TOKEN}     
 
 Send Post Request Get Token Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}
-    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOEKN}    expected_status=${statuscode}
+    [Arguments]        ${status_code}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOKEN}    expected_status=${status_code}
 
 Verify Response Get Token Email Otp Error
     [Documentation]     Owner : sasipen
@@ -167,5 +167,5 @@ Verify Response Invalid Request Email Otp
 Send Post Request Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
-    [Arguments]        ${statuscode}
-    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${statuscode}
+    [Arguments]        ${status_code}
+    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${status_code}
