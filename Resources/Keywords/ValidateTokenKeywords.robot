@@ -66,7 +66,7 @@ Send Post Request Validate Token
     [Documentation]    Owner: Nakarin
     ...    Send Post request 
     [Tags]    keyword_communicate
-    Send Post Request    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
 
 Check Variable Type
     [Documentation]    Owner: Nakarin
