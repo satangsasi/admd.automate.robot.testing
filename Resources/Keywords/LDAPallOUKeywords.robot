@@ -235,7 +235,7 @@ Set Body Ldap Logout
 Send Post Request Ldap Logout
     [Documentation]     Owner : sasipen
     ...    send request api form data
-    Send Post Request    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
+    Send Request    POST    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
 
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
@@ -483,6 +483,7 @@ Verify Value Log Error From Server
     [Tags]    keyword_commands
     [Arguments]    ${error_message}
     Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
+    Set Test Actual Result      ${JSON_EXPECT}
     
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
@@ -514,5 +515,5 @@ Verify Response Decrypted Pid Ldap Employee Camel Case
 Send Post Request LDAP
     [Documentation]     Owner : sasipen 
     ...     Send request Post to api
-    Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
     

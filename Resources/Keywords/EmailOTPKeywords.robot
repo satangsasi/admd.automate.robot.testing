@@ -58,7 +58,7 @@ Set Body Request Email Otp
     Set Test Provisioning Data    Body : ${API_BODY_REQUEST_EMAIL_OTP}
 
 Send Post Request Email Otp
-    Send Post Request    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
+    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}
 
 Verify Value Response Email Otp By Key 
     [Documentation]     Owner : sasipen
@@ -113,7 +113,7 @@ Set Body Get Token Email Otp
 Send Post Request Get Token Email Otp
     [Documentation]     Owner : sasipen
     ...    send request Post for get token 
-    Send Post Request    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}    headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}    body=${API_BODY_GET_TOEKN}
 
 Verify Response Get Token Email Otp
     [Documentation]     Owner : sasipen
@@ -144,7 +144,7 @@ Send Post Request Get Token Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${statuscode}
-    Send Post Request    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOEKN}    expected_status=${statuscode}
+    Send Request    POST    url=${API_URL_GET_TOKEN_EMAIL_OTP}   headers=${API_HEADER_GET_TOKEN_EMAIL_OTP}     body=${API_BODY_GET_TOEKN}    expected_status=${statuscode}
 
 Verify Response Get Token Email Otp Error
     [Documentation]     Owner : sasipen
@@ -168,4 +168,4 @@ Send Post Request Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${statuscode}
-    Send Post Request    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${statuscode}
+    Send Request    POST    url=${API_URL_REQUEST_EMAIL_OTP}    headers=${API_HEADER_REQUEST_EMAIL_OTP}    body=${API_BODY_REQUEST_EMAIL_OTP}    expected_status=${statuscode}
