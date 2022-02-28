@@ -19,7 +19,7 @@ Append To Document Teardown
     
 SSH Connect To 10.137.30.22
     [Documentation]    Owner: Nakarin    Editor: Sasipen
-    ...    Connected to 10.137.30.22 to get OTP Log via SSH
+    ...    Connected to 10.137.30.22
     ...    *** Variables ***
     ...    ${ssh_ip_address}    10.137.30.22
     ...    ${ssh_user}          serveradm
