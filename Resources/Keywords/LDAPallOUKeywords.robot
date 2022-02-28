@@ -488,8 +488,8 @@ Verify Value Log Error From Server
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
     ...     Send request Get to api
-    [Arguments]          ${url}
-    Send Get Request     url=${url}
+    [Arguments]     ${url}
+    Send Request    GET  url=${url}
     Set Test Variable    ${API_URL}       ${url}
 
 Verify Response Decrypted Pid Ldap Employee Snake Case
