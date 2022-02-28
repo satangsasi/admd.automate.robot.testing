@@ -61,13 +61,13 @@ Set Body Client Credentials Missing Grant Type
 Send Request Client Credentials
     [Documentation]     Owner : sasipen 
     ...     Send request Post to api
-    Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
  
 Send Request Client Credentials Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${statuscode}    
-    Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${statuscode}
+    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${statuscode}
  
 Verify Response Client Credentials
     [Documentation]     Owner : sasipen

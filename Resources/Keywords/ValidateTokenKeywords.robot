@@ -68,18 +68,9 @@ Send Post Request Validate Token
     [Tags]    keyword_communicate
     Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
 
-Check Variable Type
-    [Documentation]    Owner: Nakarin
-    ...    Receive [Argument] for check type of Variable then return type of Variable as Sting
-    [Tags]    keyword_action
-    [Arguments]    ${var}
-    ${type}    Evaluate    type($var)
-    Log    ${type}
-    [Return]    ${type}
-
 Get Access Token ClientCredential
     [Documentation]    Editor: Nakarin
-    ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREENTIAL}
+    ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREDNTIAL}
     [Tags]    keyword_communicate
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
@@ -101,6 +92,46 @@ Set Body Validate Token Test
     Log    ${body_api}
     Set Test Variable        ${API_BODY}       ${body_api}
 
+Fill FBB Username 
+    [Documentation]    Owner: Nakarin
+    # Fill Text    ${txt_fbb_user}    ${fbb_user}
+    Type Text    ${txt_fbb_user}    ${fbb_user}    delay=0.1s
+
+Click Request OTP
+    [Documentation]    Owner: Nakarin
+    Click    ${btn_fbb_request_otp}
+    Wait Until Network Is Idle
+
+Fill FBB OTP Password
+    [Documentation]    Owner: Nakarin
+    ...    Website can detect character while typing
+    # Fill Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}
+    Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
+
+Press Login Button
+    [Documentation]    Owner: Nakarin
+    Click    ${btn_fbb_login}
+    Wait Until Network Is Idle
+
+Get FBB OTP
+    [Documentation]    Owner: Nakarin
+    ...    Get OTP Password From Server Log
+    ...    Then Set Test Variable ${FBB_OTP_PASS}
+    SSH Connect To 10.137.30.22
+    ${server_log}        Get Json Log FBB OTP
+    ${otp_password}      Get OTP From Json    ${server_log}
+    Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
+
+Get Json Log FBB OTP
+    [Documentation]    Owner: Nakarin
+    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
+    Write    cd logs/detail/
+    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "oneTimePassword"
+    ${string}   Read    delay=1s
+    ${json_format}    Get Regexp Matches        ${string}    {.*
+    ${json_expect}    Convert String To JSON    ${json_format}[-1]
+    Log         ${json_expect}
+    [Return]    ${json_expect}
 
 
 

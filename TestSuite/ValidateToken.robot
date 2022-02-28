@@ -7,7 +7,13 @@ Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success
+    [Tags]    Success    On-Hold
+    Create Browser Session    ${url_login_by_fbb}
+    Fill FBB Username
+    Click Request OTP
+    Get FBB OTP
+    Fill FBB OTP Password
+    ValidateTokenKeywords.Press Login Button
     
 TST_F6_1_1_002 verify validate success CURL
     [Documentation]    Owner: Nakarin

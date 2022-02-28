@@ -385,17 +385,17 @@ TST_F10_0_1_006 Verify get token Ldap Content provider with invalid client_secre
 
 TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee
+    [Tags]    Employee    Sprint2
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${invalid_user_ldap_employee}
-    Press Login Button
+    LDAPallOUKeywords.Press Login Button
     Verify Login Fail
     Get Json Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee
+    [Tags]    Employee    Sprint2
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${invalid_pass_ldap_employee}    ${pass_ldap_employee}
     Press Login Button

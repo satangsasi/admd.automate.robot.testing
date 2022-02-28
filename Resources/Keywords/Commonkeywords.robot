@@ -7,7 +7,7 @@ Append To Document Teardown
     [Documentation]    Owner: Nakarin
     ...    Create Document of Provisioning Data(in order list) and Actual Result
     [Tags]    keyword_communicate
-    Set Test Provisioning Data    Request ${REQUEST_TYPE} : ${API_URL}
+    Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
     Set Test Provisioning Data    Header : ${API_HEADER}
     Set Test Provisioning Data    Body : ${API_BODY}
     Set Test Provisioning Data    User : ${USER}
@@ -27,4 +27,12 @@ SSH Connect To 10.137.30.22
     [Tags]    keyword_commands
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass} 
- 
+
+Check Variable Type
+    [Documentation]    Owner: Nakarin
+    ...    Receive [Argument] for check type of Variable then return type of Variable as Sting
+    [Tags]    keyword_action
+    [Arguments]    ${var}
+    ${type}    Evaluate    type($var)
+    Log    ${type}
+    [Return]    ${type}

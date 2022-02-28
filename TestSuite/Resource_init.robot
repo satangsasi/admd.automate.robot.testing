@@ -30,3 +30,4 @@ Resource    ../Resources/Variables/ValidateTokenVariables.robot
 Resource    ../Resources/Variables/FBBOTPVariable.robot
 # Repositories
 Resource    ../Resources/Repositories/LDAPallOURepository.robot
+Resource    ../Resources/Repositories/ValidateTokenRepositories.robot
