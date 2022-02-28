@@ -22,17 +22,18 @@ TST_F6_1_1_002 verify validate success CURL
 
 TST_F6_1_1_003 verify validate success login by client credentials
     [Documentation]    Owner: Nakarin
-    [Tags]    Success
+    [Tags]    Success    Sprint2
     Get Access Token ClientCredential
     Set API Header Login By Client Credential
     Set API Body Login By Client Credential
     Send Post Request Validate Token
+    Verify Response Success Login Client Credentials
 
 TST_F6_1_1_004 verify validate success with profile have gupimpi more than one object 
     [Documentation]    Owner: Nakarin
     ...    - config gupcommon is multi-sequence
     ...    ** ใช้โปรไฟล์ที่ Dup มาจาก Prod by SI and TS**"
-    [Tags]    Success    On-Hold
+    [Tags]    Success
 
 TST_F6_0_1_001 erify validate fail with no access token received from loging by msisdn which is no profile
     [Documentation]    Owner: Sasipen
