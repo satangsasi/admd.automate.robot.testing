@@ -91,3 +91,261 @@ Set Body Validate Token Test
     ${body_api}              Replace String    ${body_value}        _nonce_        ${nonce}
     Log    ${body_api}
     Set Test Variable        ${API_BODY}       ${body_api}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Set API Header Request Otp Validate Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Log    ${API_HEADER}
+    Check Variable Type    ${API_HEADER}
+
+Set API Body Request Otp Validate Token
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    ${json}    Get API Body From Json File        ${body_request_otp_validate_token_schema}
+    Set To Dictionary    ${json}                  client_id=${clientid_request_otp_validate_token} 
+    Set To Dictionary    ${json}                  public_id=${public_id_request_otp_validate_token}    
+    Set To Dictionary    ${json}                  reference=${reference}       
+    Log    ${json}
+    ${json_string}    Convert To String    ${json}
+    ${json_string}    Replace String    ${json_string}    '    "
+    ${json_string}    Remove String    ${json_string}    \n
+    Log    ${json_string}
+    Set Test Variable    ${API_BODY}    ${json_string}
+
+Send Post Request Otp Validate Token 
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+
+Set API Header Get Token Validate Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Set Content API Header    key=${header_content_type}    value=${content_type_x_www}    append=False
+    Log    ${API_HEADER}
+    Check Variable Type    ${API_HEADER}
+
+Set API Body Get Token Validate Token
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    ${json}    Get API Body From Json File        ${body_get_token_validate_token_schema}
+    Set To Dictionary    ${json}                  client_id=${clientid_request_otp_validate_token} 
+    Set To Dictionary    ${json}                  client_secret=${client_secret_get_token_validate_token}     
+    Set To Dictionary    ${json}                  grant_type=${grant_type_validate_token}     
+    Set To Dictionary    ${json}                  username=${public_id_request_otp_validate_token}    
+    Set To Dictionary    ${json}                  password=${grant_type_validate_token}     
+    Set To Dictionary    ${json}                  type=${type_get_token_validate_token}    
+    Set To Dictionary    ${json}                  scope=${scope_get_token_validate_token}  
+    Set To Dictionary    ${json}                  session_id=${scope_get_token_validate_token}  
+    Set To Dictionary    ${json}                  transaction_id=${scope_get_token_validate_token}  
+    Log    ${json}
+    ${json_string}    Convert To String    ${json}
+    ${json_string}    Replace String    ${json_string}    '    "
+    ${json_string}    Remove String    ${json_string}    \n
+    Log    ${json_string}
+    Set Test Variable    ${API_BODY}    ${json_string}
