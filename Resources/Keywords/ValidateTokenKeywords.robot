@@ -48,10 +48,10 @@ Set API Body Login By Client Credential
     Set To Dictionary    ${json.token}      value=${ACCESS_TOKEN_CLIENTCREDENTIAL}
     Log    ${json}
     ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String       ${json_string}    '    "
-    ${json_string}    Remove String        ${json_string}    \n
+    ${json_string}    Replace String     ${json_string}    '    "
+    ${json_string}    Remove String      ${json_string}    \n
     Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
+    Set Test Variable    ${API_BODY}     ${json_string}
     # ${json_string}    OperatingSystem.Get File    ${body_validate_token_schema}
     # ${json_string}    Remove String    ${json_string}    \n
     # Check Variable Type    ${json_string}
@@ -66,8 +66,12 @@ Send Post Request Validate Token
     [Documentation]    Owner: Nakarin
     ...    Send Post request 
     [Tags]    keyword_communicate
-    Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-
+    ${message}    Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    ${message}
+    Set Test Actual Result    URL: ${RESPONSE.url}
+    Set Test Actual Result    HEADERS: ${RESPONSE.headers}
+    Set Test Actual Result    BODY: ${RESPONSE.json()}
+    
 Get Access Token ClientCredential
     [Documentation]    Editor: Nakarin
     ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREDNTIAL}
@@ -133,7 +137,10 @@ Get Json Log FBB OTP
     Log         ${json_expect}
     [Return]    ${json_expect}
 
-
+Verify Response Success Login Client Credentials
+    [Documentation]    Owner: Nakarin
+    Verify Value Response By Key    result_code          ${expected_result_code_pass}
+    Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
 
 
 
@@ -354,7 +361,7 @@ Set API Body Request Otp Validate Token
     Log    ${json}
     ${json_string}    Convert To String    ${json}
     ${json_string}    Replace String    ${json_string}    '    "
-    ${json_string}    Remove String    ${json_string}    \n
+    ${json_string}    Remove String     ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
 

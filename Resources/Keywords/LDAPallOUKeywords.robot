@@ -399,7 +399,7 @@ Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    ${current_date_time}    Get Current Date    result_format=%Y-%m-%dT%H:%M
+    ${current_date_time}     Get Current Date    result_format=%Y-%m-%dT%H:%M
     ${current_date_times}    Get Current Date    result_format=%Y-%m-%dT%H:%M:%S
     Set Test Variable    ${TIME_STAMP}    ${current_date_time}
 
@@ -483,7 +483,7 @@ Verify Value Log Error From Server
     [Tags]    keyword_commands
     [Arguments]    ${error_message}
     Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
-    Set Test Actual Result      ${JSON_EXPECT}
+    Set Test Actual Result      ${JSON_EXPECT.custom.Output[0].Data.Body.error}
     
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
