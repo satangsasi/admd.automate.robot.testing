@@ -417,9 +417,8 @@ Verify Login Fail
     [Tags]    keyword_communicate
     ${actual_error_title}      Get Text    ${lbl_error_title}
     ${actual_error_message}    Get Text    ${lbl_error_message}
-    # Verify Value Should Be Equal    ${actual_error_title}    Pass
-    Verify Value At Locator    ${lbl_error_title}      ${error_title}
-    Verify Value At Locator    ${lbl_error_message}    ${error_message}
+    Verify Value Should Be Equal    ${actual_error_title}      ${error_title}
+    Verify Value Should Be Equal    ${actual_error_message}    ${error_message}
     Take Screenshot Verify Success Scene
     Set Test Actual Result     ${actual_error_title}
     Set Test Actual Result     ${actual_error_message}
@@ -446,21 +445,21 @@ Verify Response Decrypted Pid Ldap Content Provider Snake Case
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
-    Verify Value Response By Key    developer_message    ${expected_develope_messagee_pass}
+    Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
     Verify Value Response By Key    private_id           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_cp_pass}
-    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
 Verify Response Decrypted Pid Ldap Content Provider Camel Case
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Verify Value Response By Key    resultCode          ${expected_result_code_pass}
-    Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass}
+    Verify Value Response By Key    developerMessage    ${expected_develope_message_pass}
     Verify Value Response By Key    privateId           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
-    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
 Get Json Log Ldap From Server 
     [Documentation]    Owner: Nakarin    Editor: Sasipen
@@ -496,25 +495,24 @@ Verify Response Decrypted Pid Ldap Employee Snake Case
     [Documentation]     Owner : sasipen 
     ...    verify Value message(fix) from key and add response to actual result
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
-    Verify Value Response By Key    developer_message    ${expected_develope_messagee_pass} 
+    Verify Value Response By Key    developer_message    ${expected_develope_message_pass} 
     Verify Value Response By Key    private_id           ${expected_private_id_emp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
-    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
 Verify Response Decrypted Pid Ldap Employee Camel Case
     [Documentation]     Owner : sasipen 
     ...    verify Value message(fix) from key and add response to actual result
     Verify Value Response By Key    resultCode          ${expected_result_code_pass}
-    Verify Value Response By Key    developerMessage    ${expected_develope_messagee_pass} 
+    Verify Value Response By Key    developerMessage    ${expected_develope_message_pass} 
     Verify Value Response By Key    privateId           ${expected_private_id_emp_pass} 
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
-    Set Test Actual Result          DecyptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
     
 Send Post Request LDAP
     [Documentation]     Owner : sasipen 
     ...     Send request Post to api
     Send Post Request    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
     
-   
