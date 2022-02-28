@@ -1,0 +1,11 @@
+{
+    "client_id" : "_client_id_",
+    "client_secret" : "_client_secret_",
+    "grant_type" : "_grant_type_",
+    "username" : "_username_",
+    "password": "_password_",
+    "type" : "_type_",
+    "scope" : "_scope_",
+    "session_id": "_session_id_",
+    "transaction_id" : "_transaction_id_"
+}
