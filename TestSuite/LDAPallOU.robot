@@ -142,7 +142,7 @@ TST_F10_1_1_009 Verify Logout with Ldap Content provider
     [Tags]    Content_Provider
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
     Set Response On Webpage To Json
-    Get Value From Key Access Token
+    Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp}  
@@ -159,7 +159,7 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
-    Get Value From Key Access Token
+    Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
@@ -312,7 +312,7 @@ TST_F10_1_1_019 Verify Logout with Ldap Employee
     [Tags]    Employee    test1
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
     Set Response On Webpage To Json 
-    Get Value From Key Access Token
+    Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp} 
@@ -329,7 +329,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
-    Get Value From Key Access Token
+    Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
