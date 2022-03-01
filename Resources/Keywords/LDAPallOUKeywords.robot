@@ -204,7 +204,7 @@ Open Browser Login And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
-    Press Login Button
+    LDAPallOUKeywords.Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
@@ -252,7 +252,7 @@ Open Browser Login Employee And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
-    Press Login Button
+    LDAPallOUKeywords.Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
