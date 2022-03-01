@@ -74,7 +74,7 @@ Send Post Request Validate Token
     
 Get Access Token ClientCredential
     [Documentation]    Editor: Nakarin
-    ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREDNTIAL}
+    ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREDENTIAL}
     [Tags]    keyword_communicate
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
@@ -130,10 +130,12 @@ Get Json Log FBB OTP
     [Documentation]    Owner: Nakarin
     Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "oneTimePassword"
+    ${mobile_number}    Replace String    ${fbb_user}    0    66    count=1
+    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
-    ${json_expect}    Convert String To JSON    ${json_format}[-1]
+    Log Many    @{json_format}
+    ${json_expect}    Convert String To JSON    ${json_format}[0]
     Log         ${json_expect}
     [Return]    ${json_expect}
 
@@ -370,11 +372,11 @@ Set API Header Request Otp Validate Token
 Set API Body Request Otp Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    # Set Content API Body    key=client_id    value=${clientid_request_otp_validate_token} 
+    # Set Content API Body    key=client_id    value=${client_id_request_otp_validate_token} 
     # Set Content API Body    key=public_id    value=${public_id_request_otp_validate_token}    
     # Set Content API Body    key=reference    value=${reference}  
     ${json}    Get API Body From Json File        ${body_request_otp_validate_token_schema}
-    Set To Dictionary    ${json}                  client_id=${clientid_request_otp_validate_token}
+    Set To Dictionary    ${json}                  client_id=${client_id_request_otp_validate_token}
     Set To Dictionary    ${json}                  public_id=${public_id_request_otp_validate_token} 
     Set To Dictionary    ${json}                  reference=${reference}  
     Log    ${json}
@@ -400,7 +402,7 @@ Set API Body Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     ${json}    Get API Body From Json File        ${body_get_token_validate_token_schema}
-    Set To Dictionary    ${json}                  client_id=${clientid_request_otp_validate_token} 
+    Set To Dictionary    ${json}                  client_id=${client_id_request_otp_validate_token} 
     Set To Dictionary    ${json}                  client_secret=${client_secret_get_token_validate_token}     
     Set To Dictionary    ${json}                  grant_type=${grant_type_validate_token}     
     Set To Dictionary    ${json}                  username=${public_id_request_otp_validate_token}    
@@ -437,7 +439,7 @@ Set API Body Validate Token
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
     ${json}    Get API Body From Json File    ${body_validate_token_schema}
-    Set To Dictionary    ${json}              client_id=${clientid_request_otp_validate_token}
+    Set To Dictionary    ${json}              client_id=${client_id_request_otp_validate_token}
     Set To Dictionary    ${json.token}        value=${ACTUAL_VALUE_ACCESS_TOKEN}
     Log    ${json}
     ${json_string}    Convert To String    ${json}

@@ -56,7 +56,7 @@ TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input ses
     Send Post Request Get Token Email Otp Invalid    400
     Verify Response Get Token Email Otp Error        ${error_message_invalid_request}
 
-TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorract session_id or transaction_id
+TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorrect session_id or transaction_id
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}
