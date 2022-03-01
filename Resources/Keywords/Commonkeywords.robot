@@ -27,13 +27,3 @@ SSH Connect To 10.137.30.22
     [Tags]    keyword_commands
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass} 
-
-Check Variable Type
-    [Documentation]    Owner: Nakarin
-    ...    Receive [Argument] for check type of Variable then return type of Variable as Sting
-    [Tags]    keyword_action
-    [Arguments]    ${var}
-    ${type}    Evaluate    type($var)
-    Log    ${type}
-    [Return]    ${type}
-    
