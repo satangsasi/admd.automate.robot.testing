@@ -48,14 +48,31 @@ TST_F6_0_1_001 Verify validate fail with no access token received from loging by
     Set API Body Get Token Validate Token
     Send Post Request Get Token Validate Token
     Get Value Response Get Token By Key Access Token
+    Set API Header Delete Sub Scriber
+    Set API Body Delete Sub Scriber
+    Send Post Request Delete Sub Scriber
     Set API Header Validate Token
     Set API Body Validate Token
-    Send Post Request Validate Token
+    Send Post Request Validate Token No Profile    404
+    Verify Response Validate Token No Profile
 
 TST_F6_0_1_002 verify validate fail with incorrect client id
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     [Tags]    Fail
-
+    Set API Header Request Otp Validate Token
+    Set API Body Request Otp Validate Token
+    Send Post Request Otp Validate Token
+    Get Value Response Request Email Otp By Key Session Id 
+    Get Value Response Request Email Otp By Key Transaction Id
+    Get Email OTP Password    ${ACTUAL_VALUE_TRANSACTION_ID}
+    Set API Header Get Token Validate Token
+    Set API Body Get Token Validate Token
+    Send Post Request Get Token Validate Token
+    Get Value Response Get Token By Key Access Token
+    Set API Header Validate Token Invalid Client Id
+    Set API Body Validate Token Invalid Client Id
+    Send Post Request Validate Token Invalid Client Id    401
+    Verify Response Validate Token Invalid Client Id
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:
     [Tags]    Fail
