@@ -49,7 +49,7 @@ Set Content Header Request Email Otp
 
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
-    ...    Set client id,publicid,reference to formate body 
+    ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${public_id}    ${reference}    
     ${body_client_id}        Replace String    ${body_request_email_otp_schema}    _client_id_         ${client_id}
     ${body_public_id}        Replace String    ${body_client_id}                   _public_id_         ${public_id}
@@ -100,7 +100,7 @@ Set Content Header Get Token Email Otp
 
 Set Body Get Token Email Otp  
     [Documentation]     Owner : sasipen
-    ...    Set client id,publicid,reference to formate body 
+    ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${client_secret}    ${grant_type}    ${username}    ${password}    ${type}    ${scope}    ${session_id}    ${transaction_id}   
     ${body_client_id}        Replace String    ${body_get_token_email_otp_schema}    _client_id_        ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                     _client_secret_    ${client_secret}
@@ -132,7 +132,7 @@ Verify Response Get Token Email Otp
 
 Set Body Get Token Email Otp No Session And Transaction Id  
     [Documentation]     Owner : sasipen
-    ...    Set client id,publicid,reference to formate body 
+    ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${client_secret}    ${grant_type}    ${username}    ${password}    ${type}    ${scope}     
     ${body_client_id}        Replace String    ${body_get_token_email_otp_no_session_transaction_id_schema}    _client_id_        ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                     _client_secret_    ${client_secret}

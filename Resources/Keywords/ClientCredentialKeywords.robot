@@ -7,7 +7,7 @@ Get Time Nonce
     [Documentation]    Owner : sasipen        
     ...    Get the current date and time in format YYYYmmddHHMMSS
     ${currentDateTime}      Get Current Date      result_format=%Y%m%d%H%M%S
-    Set Test Variable       ${DATETIME}         ${currentDateTime}
+    Set Test Variable       ${DATE_TIME}         ${currentDateTime}
 
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
@@ -25,7 +25,7 @@ Set Body Client Credentials
     ${body_client_id}        Replace String    ${body_client_credentials_schema}   _client_id_         ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                   _client_secret_     ${client_secret}
     ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${DATETIME}
+    ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${DATE_TIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Id
@@ -35,7 +35,7 @@ Set Body Client Credentials Missing Client Id
     Get Time Nonce
     ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
     ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATETIME}
+    ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATE_TIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Secret
@@ -45,7 +45,7 @@ Set Body Client Credentials Missing Client Secret
     Get Time Nonce
     ${body_client_id}        Replace String    ${body_client_credentials_missing_secret_schema}   _client_id_         ${client_id}
     ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATETIME}
+    ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATE_TIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Grant Type
@@ -55,7 +55,7 @@ Set Body Client Credentials Missing Grant Type
     Get Time Nonce
     ${body_client_id}        Replace String    ${body_client_credentials_missing_grant_type_schema}   _client_id_         ${client_id}
     ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}
-    ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATETIME}
+    ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATE_TIME}
     Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Send Request Client Credentials

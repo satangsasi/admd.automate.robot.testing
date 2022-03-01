@@ -11,7 +11,7 @@ Append To Document Teardown
     # Set Test Provisioning Data    Header : ${API_HEADER}
     # Set Test Provisioning Data    Body : ${API_BODY}
     # Set Test Provisioning Data    User : ${USER}
-    Set Test Provisioning Data    Password : ${PASS}
+    # Set Test Provisioning Data    Password : ${PASS}
     Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
     Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
     Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
@@ -27,13 +27,3 @@ SSH Connect To 10.137.30.22
     [Tags]    keyword_commands
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass} 
-
-Check Variable Type
-    [Documentation]    Owner: Nakarin
-    ...    Receive [Argument] for check type of Variable then return type of Variable as Sting
-    [Tags]    keyword_action
-    [Arguments]    ${var}
-    ${type}    Evaluate    type($var)
-    Log    ${type}
-    [Return]    ${type}
-    

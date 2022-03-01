@@ -10,7 +10,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...    ***Condition***
     ...
     ...    ***Expected Result***
-    ...    \r\n User can loginB2B success and  recieved Access Token.
+    ...    \r\n User can loginB2B success and  received Access Token.
     [Tags]    Client_Credentials
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
@@ -22,13 +22,13 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_backend}
     Decode Token To Jwt Client Credentials
 
-TST_F7_1_1_002 ClientCredentail with client id on browser
+TST_F7_1_1_002 ClientCredentials with client id on browser
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
     ...
     ...    ***Expected Result***
-    ...    \r\n User can loginB2B success and  recieved Access Token.
+    ...    \r\n User can loginB2B success and  received Access Token.
     [Tags]    Client_Credentials
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
@@ -40,7 +40,7 @@ TST_F7_1_1_002 ClientCredentail with client id on browser
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_browser}
     Decode Token To Jwt Client Credentials 
 
-TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
+TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -57,7 +57,7 @@ TST_F7_0_1_001 Verify ClientCredentail with Invalid client_id
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   ${error_message_invalid_client}
     
-TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
+TST_F7_0_1_002 Verify ClientCredentials with Invalid client_secret
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -74,7 +74,7 @@ TST_F7_0_1_002 Verify ClientCredentail with Invalid client_secret
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   ${error_message_invalid_client}
 
-TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
+TST_F7_0_1_003 Verify ClientCredentials with Invalid grant_type
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -91,7 +91,7 @@ TST_F7_0_1_003 Verify ClientCredentail with Invalid grant_type
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_unsupported_grant_type}
 
-TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
+TST_F7_0_1_004 Verify ClientCredentials with No match client_id and client_secret
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -108,7 +108,7 @@ TST_F7_0_1_004 Verify ClientCredentail with No match client_id and client_secret
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   ${error_message_invalid_client}
 
-TST_F7_0_1_005 Verify ClientCredentail with missing client_id
+TST_F7_0_1_005 Verify ClientCredentials with missing client_id
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -124,7 +124,7 @@ TST_F7_0_1_005 Verify ClientCredentail with missing client_id
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
 
-TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
+TST_F7_0_1_006 Verify ClientCredentials with missing client_secret
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -140,7 +140,7 @@ TST_F7_0_1_006 Verify ClientCredentail with missing client_secret
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
     
-TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
+TST_F7_0_1_007 Verify ClientCredentials with missing grant_type
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***
@@ -156,7 +156,7 @@ TST_F7_0_1_007 Verify ClientCredentail with missing grant_type
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
     
-TST_F7_0_1_008 Verify ClientCredentail With Unknow URL
+TST_F7_0_1_008 Verify ClientCredentials With Unknow URL
     [Documentation]     Owner : sasipen
     ...
     ...    ***Condition***

@@ -39,7 +39,7 @@ Get Value Response Ldap By Key
     [Return]       ${value}
 
 Get Value Response Ldap 
-    [Documentation]     Owner : sasipenkey 
+    [Documentation]     Owner : sasipen
     ...    Get value By Key in &{RESPONSE_JSON_MESSAGE} Then Return to ${value_token_type}
     ...    Set value to global for use in keyword verify
     ${value_token_type}    Get Value Response Ldap By Key    token_type
@@ -73,7 +73,7 @@ Verify Response Ldap
     
 Decode Login Token Jwt By Key Access Token
     [Documentation]     Owner : sasipen
-    ...    Get value state login By Key access token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
+    ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
@@ -81,7 +81,7 @@ Decode Login Token Jwt By Key Access Token
 
 Decode Login Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
-    ...    Get value state login By Key id token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
+    ...    Get value state login By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
@@ -89,7 +89,7 @@ Decode Login Token To Jwt By Key Id Token
 
 Decode Refresh Token To Jwt By Key Access Token
     [Documentation]     Owner : sasipen
-    ...    Get value state refresh By Key access token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
+    ...    Get value state refresh By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_REFRESH__ACCESS_TOKEN}      ${jwt_decode} 
@@ -97,7 +97,7 @@ Decode Refresh Token To Jwt By Key Access Token
 
 Decode Refresh Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
-    ...    Get value state refresh By Key id token for decode in keywode Jwt Decode form BuiltinLibrary_CommonKeywords
+    ...    Get value state refresh By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}  
@@ -177,7 +177,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    
+    Set Up Browser Fullscreen  
     New Page       ${url}
     Set Test Variable    ${URL_AUTH}    ${url}
     Wait Until Network Is Idle
@@ -200,7 +200,7 @@ Create URL For Get Refresh Token
 
 Open Browser Login And Open Page Get Token
     [Documentation]     Owner : sasipen
-    ...    Group keyword open url, fill uesr and pass , press login. create url for get token of content provider  
+    ...    Group keyword open url, fill user and pass , press login. create url for get token of content provider  
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
@@ -216,7 +216,7 @@ Get Value From Key Access Token Log Out
 
 Set Content Header Ldap Logout
     [Documentation]     Owner : sasipen
-    ...    Append valiable to set header schema state logout 
+    ...    Append variable to set header schema state logout 
     ...    Set url to global for create provisioning data
     [Arguments]          ${url}    ${content_type}
     ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}
@@ -240,15 +240,15 @@ Send Post Request Ldap Logout
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
     ...    Verify value By Key state = expected
-    ...    Set respones to Actual Result 
+    ...    Set response to Actual Result 
     [Arguments]        ${expected_state}
     Verify Value Response By Key    state        ${expected_state}
-    ${autual_value_state}    Get Value Response By Key    state
-    Set Test Actual Result    "state" : "${autual_value_state}"
+    ${actual_value_state}    Get Value Response By Key    state
+    Set Test Actual Result    "state" : "${actual_value_state}"
 
 Open Browser Login Employee And Open Page Get Token
     [Documentation]     Owner : sasipen
-    ...    Group keyword open url, fill uesr and pass , press login. create url for get token of employee
+    ...    Group keyword open url, fill user and pass , press login. create url for get token of employee
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
@@ -259,7 +259,7 @@ Open Browser Login Employee And Open Page Get Token
 Get Value Response Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt to json message 
-    ...    Get value By Key...in key aut form access toeken in json message 
+    ...    Get value By Key...in key aut form access token in json message 
     [Arguments]    ${response_key} 
     ${value}       Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}    ${response_key}
     [Return]       ${value}
@@ -274,7 +274,7 @@ Verify Value Response Access Token Decode Jwt By Key
 Get Value Response Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state login to json message 
-    ...    Get value By Key...in key aut form id toeken in json message 
+    ...    Get value By Key...in key aut form id token in json message 
     [Arguments]    ${response_key}    
     ${value}       Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}    ${response_key}
     [Return]       ${value}
@@ -289,7 +289,7 @@ Verify Value Response Id Token Decode Jwt By Key
 Get Refresh Value Response Jwt By Key Access Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
-    ...    Get value By Key...in key aut form access toeken in json message 
+    ...    Get value By Key...in key aut form access token in json message 
     [Arguments]    ${response_key} 
     ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    ${response_key}   
     [Return]       ${value}
@@ -304,7 +304,7 @@ Verify Refresh Value Response Access Token Decode Jwt By Key
 Get Refresh Value Response Jwt By Key Id Token 
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
-    ...    Get value By Key...in key aut form id toeken in json message 
+    ...    Get value By Key...in key aut form id token in json message 
     [Arguments]    ${response_key} 
     ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ID_TOKEN}    ${response_key}
     [Return]       ${value}
@@ -344,7 +344,7 @@ Verify Response Login Subtype Decode Jwt
 
 Get Value From Login Subtype For Verify Response Access Token 
     [Documentation]     Owner : sasipen
-    ...    Get value By Key login subtype form access toekn state login or refresh
+    ...    Get value By Key login subtype form access token state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
         ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     aut.login_subtype
@@ -357,7 +357,7 @@ Get Value From Login Subtype For Verify Response Access Token
 
 Get Value From Login Subtype For Verify Response Id Token 
     [Documentation]     Owner : sasipen
-    ...    Get value By Key login subtype form id toekn state login or refresh
+    ...    Get value By Key login subtype form id token state login or refresh
     [Arguments]    ${state_test} 
     IF    '${state_test}' == 'login'
         ${actual_value_login_subtype}    Get Value Response Jwt By Key Id Token     aut.login_subtype
@@ -396,7 +396,7 @@ Verify Response Action Type Decode Jwt By Key
 
 Fill Username And Password
     [Documentation]    Owner: Nakarin
-    ...    Recieve Arguments Username and Password
+    ...    Receive Arguments Username and Password
     ...    Then fill it into text username and password text box
     [Arguments]  ${user}    ${pass}
     [Tags]    keyword_communicate
@@ -409,9 +409,7 @@ Press Login Button
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    ${current_date_time}     Get Current Date    result_format=%Y-%m-%dT%H:%M
-    ${current_date_times}    Get Current Date    result_format=%Y-%m-%dT%H:%M:%S
-    Set Test Variable    ${TIME_STAMP}    ${current_date_time}
+    Wait Until Network Is Idle
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
@@ -471,7 +469,7 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
     Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
-Get Json Log Ldap From Server 
+Get Json Log Ldap From Server
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
