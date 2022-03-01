@@ -367,7 +367,8 @@ Set API Header Request Otp Validate Token
     [Tags]    keyword_communicate
     Set Content API Header    key=${header_content_type}    value=${content_type_json}
     Log    ${API_HEADER}
-    Check Variable Type    ${API_HEADER}
+    Set Test Provisioning Data    Header Request OTP : ${API_HEADER}
+    #Check Variable Type    ${API_HEADER}
 
 Set API Body Request Otp Validate Token
     [Documentation]    Owner: sasipen
@@ -385,18 +386,19 @@ Set API Body Request Otp Validate Token
     ${json_string}    Remove String     ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
-
+    Set Test Provisioning Data    Body Request OTP : ${API_BODY} 
 Send Post Request Otp Validate Token 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-
+    Set Test Actual Result    Request OTP :\r\n${RESPONSE.json()}
 Set API Header Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Set Content API Header    key=${header_content_type}    value=${content_type_x_www}    append=False
     Log    ${API_HEADER}
-    Check Variable Type    ${API_HEADER}
+    Set Test Provisioning Data    Header Get Token : ${API_HEADER}
+    #Check Variable Type    ${API_HEADER}
 
 Set API Body Get Token Validate Token
     [Documentation]    Owner: sasipen
@@ -417,12 +419,12 @@ Set API Body Get Token Validate Token
     ${json_string}    Remove String    ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
-
+    Set Test Provisioning Data    Body Get Token : ${API_BODY}
 Send Post Request Get Token Validate Token 
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-
+    Set Test Actual Result    Get Token :\r\n${RESPONSE.json()}
 Get Value Response Get Token By Key Access Token
     ${value_access_token}    Get Value Response By Key     access_token
     Set Test Variable    ${ACTUAL_VALUE_ACCESS_TOKEN}      ${value_access_token}
@@ -432,8 +434,8 @@ Set API Header Delete Sub Scriber
     [Tags]    keyword_communicate
     Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
     Log    ${API_HEADER}
-    Check Variable Type    ${API_HEADER}
-
+    #Check Variable Type    ${API_HEADER}
+    Set Test Provisioning Data    Header Delete Sub Scriber : ${API_HEADER}
 Set API Body Delete Sub Scriber
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
@@ -446,12 +448,12 @@ Set API Body Delete Sub Scriber
     ${json_string}    Remove String        ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
-
+    Set Test Provisioning Data    Body Delete Sub Scriber : ${API_BODY}
 Send Post Request Delete Sub Scriber
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}
-
+    Set Test Actual Result    Delete Sub Scriber :\r\n${RESPONSE.json()}
 Set API Header Validate Token
     [Documentation]    Owner: Nakarin
     ...    Set API Header for send request of Client Credential
@@ -459,6 +461,7 @@ Set API Header Validate Token
     Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
     Set Content API Header    key=${header_x_tid}          value=validate_2
     Log    ${API_HEADER}
+    Set Test Provisioning Data    Header Validate Token : ${API_HEADER}
 Set API Body Validate Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
@@ -472,12 +475,13 @@ Set API Body Validate Token
     ${json_string}    Remove String        ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
-
+    Set Test Provisioning Data    Body Validate Token : ${API_BODY}
 Send Post Request Validate Token No Profile
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
     Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Actual Result    Validate Token No Profile :\r\n${RESPONSE.json()}
 Verify Response Validate Token No Profile 
     Verify Value Response By Key    result_code            ${expected_result_code_no_profile}
     Verify Value Response By Key    developer_message      ${error_message_subscriber_not_found}
@@ -489,7 +493,7 @@ Set API Header Validate Token Invalid Client Id
     Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
     Set Content API Header    key=${header_x_tid}          value=login msisdn by grant type = password (nowebview)
     Log    ${API_HEADER}
-
+    Set Test Provisioning Data    Header Validate Token Invalid Client Id : ${API_HEADER}
 Set API Body Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
@@ -503,13 +507,14 @@ Set API Body Validate Token Invalid Client Id
     ${json_string}    Remove String        ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
+    Set Test Provisioning Data    Body Validate Token Invalid Client Id : ${API_BODY}
 
 Send Post Request Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
     Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
-
+    Set Test Actual Result    Validate Token Invalid Client Id :\r\n${RESPONSE.json()}
 Verify Response Validate Token Invalid Client Id
     Verify Value Response By Key    result_code            ${expected_result_code_invalid_client_id}
     Verify Value Response By Key    developer_message      ${error_message_invalid_client} 
@@ -521,23 +526,30 @@ Set API Header Validate Token Invalid Access Token
     Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
     Set Content API Header    key=${header_x_tid}          value=validate_2
     Log    ${API_HEADER}
+    Set Test Provisioning Data    Header Validate Token Invalid Access Token : ${API_HEADER}
 
-Set API Body Validate Token Invalid Client Id
+Set API Body Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
     ${json}    Get API Body From Json File    ${body_validate_token_schema}
     Set To Dictionary    ${json}              client_id=${clientid_validate_token_invalid}
-    Set To Dictionary    ${json.token}        value=${Invaild${ACTUAL_VALUE_ACCESS_TOKEN}}
+    Set To Dictionary    ${json.token}        value=${test}
     Log    ${json}
     ${json_string}    Convert To String    ${json}
     ${json_string}    Replace String       ${json_string}    '    "
     ${json_string}    Remove String        ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}    ${json_string}
+    Set Test Provisioning Data    Body Validate Token Invalid Access Token : ${API_BODY} 
 
-Send Post Request Validate Token Invalid Client Id
+Send Post Request Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
     Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Actual Result    Validate Token Invalid Access Token :\r\n${RESPONSE.json()}
+
+Verify Response Validate Token Invalid Access Token
+    Verify Value Response By Key    result_code            ${expected_result_code_invalid_access_token} 
+    Verify Value Response By Key    developer_message      ${error_message_invalid_code}
