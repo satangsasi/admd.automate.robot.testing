@@ -54,15 +54,6 @@ Set API Body Login By Client Credential
     ${json_string}    Remove String      ${json_string}    \n
     Log    ${json_string}
     Set Test Variable    ${API_BODY}     ${json_string}
-    # ${json_string}    OperatingSystem.Get File    ${body_validate_token_schema}
-    # ${json_string}    Remove String    ${json_string}    \n
-    # Check Variable Type    ${json_string}
-    # Set Test Variable    ${API_BODY}    ${json_string}
-    # Set Test Variable    ${API_BODY}    ${json_string_var}
-    # Set Body Validate Token Test    client_id=${client_id_OhFw3u_browser}    value=${ACCESS_TOKEN_CLIENTCREDENTIAL}    nonce=1234567890
-    # ${json_string}    Convert To String    ${json}
-    # ${string}    Remove String    ${json_string}    ${\n}
-    # Set Test Variable    ${API_BODY}    ${json}
 
 Send Post Request Validate Token
     [Documentation]    Owner: Nakarin
@@ -100,7 +91,6 @@ Set Body Validate Token Test
 
 Fill FBB Username 
     [Documentation]    Owner: Nakarin
-    # Fill Text    ${txt_fbb_user}    ${fbb_user}
     Type Text    ${txt_fbb_user}    ${fbb_user}    delay=0.1s
 
 Click Request OTP
@@ -111,7 +101,6 @@ Click Request OTP
 Fill FBB OTP Password
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing
-    # Fill Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}
     Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
 
 Press Login Button

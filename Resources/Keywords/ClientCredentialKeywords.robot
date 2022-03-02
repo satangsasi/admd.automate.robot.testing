@@ -4,25 +4,18 @@ Resource    ../../TestSuite/Resource_init.robot
 
 *** Keywords ***
 Get Time Nonce
-<<<<<<< HEAD
-    [Documentation]    Owner: Satangsasi
-    ${Datetime}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f      
-    Set Test Variable       ${DATETIME}         ${Datetime}
-<<<<<<< HEAD
+    [Documentation]   Owner : sasipen
+    ${current_date_time}             Get Current Date        result_format=%Y%m%d %H:%M:%S.%f      
+    Set Test Variable       ${DATE_TIME}         ${current_date_time}
+
 Set Content Header Client Credentials
-=======
-=======
     [Documentation]    Owner : sasipen        
     ...    Get the current date and time in format YYYYmmddHHMMSS
-    ${currentDateTime}      Get Current Date      result_format=%Y%m%d%H%M%S
-    Set Test Variable       ${DATE_TIME}         ${currentDateTime}
->>>>>>> Sprint2
+    ${current_date_time}      Get Current Date      result_format=%Y%m%d%H%M%S
+    Set Test Variable       ${DATE_TIME}         ${current_date_time}
+
 
 Set Content Header Client Credentials 
-<<<<<<< HEAD
->>>>>>> Sprint1
-=======
->>>>>>> Sprint2
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
     [Arguments]          ${url}           ${content_type}
