@@ -204,11 +204,11 @@ Open Browser Login And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
-    Press Login Button
+    LDAPallOUKeywords.Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
-Get Value From Key Access Token
+Get Value From Key Access Token Log Out
     [Documentation]     Owner : sasipen
     ...    Get value By Key access token form file json message state logout
     ${value}    Get Value Response Ldap By Key    access_token
@@ -252,7 +252,7 @@ Open Browser Login Employee And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
-    Press Login Button
+    LDAPallOUKeywords.Press Login Button
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
@@ -338,6 +338,8 @@ Verify Response Login Subtype Decode Jwt
             ${actual_value_login_subtype}    Get Value From Login Subtype For Verify Response Id Token     ${state_test}
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
         END    
+    ELSE     
+            Fail    login subtype not equal "Content Provider" or "Employee"  
     END
 
 Get Value From Login Subtype For Verify Response Access Token 
@@ -348,6 +350,8 @@ Get Value From Login Subtype For Verify Response Access Token
         ${actual_value_login_subtype}    Get Value Response Jwt By Key Access Token     aut.login_subtype
     ELSE IF    '${state_test}' == 'refresh'
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      aut.login_subtype
+    ELSE     
+            Fail    state test not equal "login" or "refresh"  
     END     
     [Return]    ${actual_value_login_subtype}
 
@@ -359,6 +363,8 @@ Get Value From Login Subtype For Verify Response Id Token
         ${actual_value_login_subtype}    Get Value Response Jwt By Key Id Token     aut.login_subtype
     ELSE IF    '${state_test}' == 'refresh'
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      aut.login_subtype
+    ELSE     
+            Fail    statetest not equal "login" or "refresh"   
     END     
     [Return]   ${actual_value_login_subtype}
 
@@ -371,16 +377,20 @@ Verify Response Action Type Decode Jwt By Key
     IF    '${response_key}' == 'access_token'
         ${actual_value_action}    Get Value Response Jwt By Key Access Token    aut.action
         IF    '${action_type}' == 'login'     
-        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
+            Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         ELSE IF    '${action_type}' == 'sso'      
-        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+            Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+        ELSE     
+            Fail    action type not equal "login" or "sso"    
         END  
     ELSE IF    '${response_key}' == 'id_token'      
         ${actual_value_action}    Get Value Response Jwt By Key Id Token    aut.action
         IF    '${action_type}' == 'login'     
-        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
+            Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_login} 
         ELSE IF   '${action_type}' == 'sso'      
-        Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+            Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_sso}
+        ELSE     
+            Fail    action type not equal "login" or "sso"    
         END
     END
 
