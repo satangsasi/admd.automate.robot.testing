@@ -291,7 +291,7 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
 
 TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Documentation]     Owner : sasipen
-    ...    ***Expected Result***
+    ...    \r\n***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
     [Tags]    Employee    demosprint2
     Send Get Request LDAP    ${url_decrypted_ldap_employee_snake_case}
@@ -299,7 +299,7 @@ TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
 
 TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
     [Documentation]     Owner : sasipen
-    ...    ***Expected Result***
+    ...    \r\n***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
     [Tags]    Employee    demosprint2
     Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
@@ -307,7 +307,7 @@ TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
 
 TST_F10_1_1_019 Verify Logout with Ldap Employee
     [Documentation]     Owner : sasipen
-    ...    ***Expected Result***
+    ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Employee    demosprint2
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
@@ -321,7 +321,7 @@ TST_F10_1_1_019 Verify Logout with Ldap Employee
 
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     [Documentation]     Owner : sasipen
-    ...    ***Expected Result***
+    ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
     [Tags]    Employee    demosprint2
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
