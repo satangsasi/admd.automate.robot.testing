@@ -43,9 +43,11 @@ Set API Body Login By Client Credential
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
+    Get Time Nonce
     ${json}    Get API Body From Json File        ${body_validate_token_schema}
     Set To Dictionary    ${json}        client_id=${client_id_OhFw3u_browser}
     Set To Dictionary    ${json.token}      value=${ACCESS_TOKEN_CLIENTCREDENTIAL}
+    Set To Dictionary    ${json}            nonce=${DATE_TIME}
     Log    ${json}
     ${json_string}    Convert To String    ${json}
     ${json_string}    Replace String     ${json_string}    '    "
@@ -68,9 +70,9 @@ Send Post Request Validate Token
     [Tags]    keyword_communicate
     ${message}    Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
     Set Test Provisioning Data    ${message}
-    Set Test Actual Result    URL: ${RESPONSE.url}
-    Set Test Actual Result    HEADERS: ${RESPONSE.headers}
-    Set Test Actual Result    BODY: ${RESPONSE.json()}
+    # Set Test Actual Result    URL: ${RESPONSE.url}
+    # Set Test Actual Result    HEADERS: ${RESPONSE.headers}
+    # Set Test Actual Result    BODY: ${RESPONSE.json()}
     
 Get Access Token ClientCredential
     [Documentation]    Editor: Nakarin
@@ -128,10 +130,10 @@ Get FBB OTP
 
 Get Json Log FBB OTP
     [Documentation]    Owner: Nakarin
-    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
+    Write    kubectl exec -it ${admd_path} -n admd sh
     Write    cd logs/detail/
     ${mobile_number}    Replace String    ${fbb_user}    0    66    count=1
-    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "${mobile_number}.*oneTimePassword"
+    Write    cat ${admd_path}_admd.0.detail | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
     Log Many    @{json_format}
@@ -143,6 +145,7 @@ Verify Response Success Login Client Credentials
     [Documentation]    Owner: Nakarin
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
     Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
+    Append Response Value To Actual Document
 
 
 

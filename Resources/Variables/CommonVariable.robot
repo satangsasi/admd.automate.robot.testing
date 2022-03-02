@@ -18,3 +18,6 @@ ${error_message_unsupported_grant_type}      unsupported_grant_type
 ${error_message_request_timeout}             request_timeout
 ${error_message_server_error}                server_error
 ${error_message_subscriber_not_found}        subscriber_not_found
+
+# Command
+${admd_path}    admd-v3-2-dev-686b4cc7-fqtl5

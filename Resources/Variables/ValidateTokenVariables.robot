@@ -1,6 +1,6 @@
 *** Variables ***
 #Url
-${url_validate_token}                       http://10.137.30.22:31191/v3.2/token/validate
+${url_validate_token}                        http://10.137.30.22:31191/v3.2/token/validate
 ${url_request_otp_validate_token}            http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
 ${url_login_by_fbb}                          https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
 ${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
@@ -308,7 +308,7 @@ ${test}        eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImZmTXVMUXdZME8ifQ.ey
 
 
 
-${body_validate_token_schema}               ../Resources/Schemas/ValidateTokenSchema.json
-${body_request_otp_validate_token_schema}    ../Resources/Schemas/BodyRequestOtpValidateTokenSchema.json
-${body_get_token_validate_token_schema}      ../Resources/Schemas/ฺBodyGetTokenValidateTokenSchema.json
-${body_delete_sub_scriber_schema}            ../Resources/Schemas/ฺBodyDeleteSubScriber.json
+${body_validate_token_schema}                Resources/Schemas/ValidateTokenSchema.json
+${body_request_otp_validate_token_schema}    Resources/Schemas/BodyRequestOtpValidateTokenSchema.json
+${body_get_token_validate_token_schema}      Resources/Schemas/ฺBodyGetTokenValidateTokenSchema.json
+${body_delete_sub_scriber_schema}            Resources/Schemas/ฺBodyDeleteSubScriber.json

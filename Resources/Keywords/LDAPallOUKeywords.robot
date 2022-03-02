@@ -457,7 +457,7 @@ Verify Response Decrypted Pid Ldap Content Provider Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_cp_pass}
-    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Append Response Value To Actual Document
 
 Verify Response Decrypted Pid Ldap Content Provider Camel Case
     [Documentation]    Owner: Nakarin
@@ -467,7 +467,7 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
-    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    Append Response Value To Actual Document
 
 Get Json Log Ldap From Server
     [Documentation]    Owner: Nakarin    Editor: Sasipen
@@ -475,9 +475,9 @@ Get Json Log Ldap From Server
     ...    edit message grep > error
     [Tags]    keyword_commands
     SSH Connect To 10.137.30.22
-    Write    kubectl exec -it admd-v3-2-dev-686b4cc7-fqtl5 -n admd sh
+    Write    kubectl exec -it ${admd_path} -n admd sh
     Write    cd logs/detail/
-    Write    cat admd-v3-2-dev-686b4cc7-fqtl5_admd.0.detail | grep -E "error"
+    Write    cat ${admd_path}_admd.0.detail | grep -E "error"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
@@ -524,4 +524,13 @@ Send Post Request LDAP
     [Documentation]     Owner : sasipen 
     ...     Send request Post to api
     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
-    
+
+Append Response Value To Actual Document
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_command
+    &{response_value}    Set Variable    ${RESPONSE.json()}
+    Log Many    &{response_value}
+    @{key}    Get Dictionary Keys    ${response_value}
+    FOR    ${element}    IN    @{key}
+        Set Test Actual Result    ${element} : ${response_value}[${element}] 
+    END
