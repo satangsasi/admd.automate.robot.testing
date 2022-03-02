@@ -25,9 +25,9 @@ Resource    ../Resources/Variables/EmailOTPVariables.robot
 Resource    ../Resources/Variables/CommonVariable.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot
-Resource    ../Resources/Variables/Mobileid_(iot)Variable.robot
+# Resource    ../Resources/Variables/Mobileid_(iot)Variable.robot
 Resource    ../Resources/Variables/ValidateTokenVariables.robot
-Resource    ../Resources/Variables/FBBOTPVariable.robot
+# Resource    ../Resources/Variables/FBBOTPVariable.robot
 # Repositories
 Resource    ../Resources/Repositories/LDAPallOURepository.robot
 Resource    ../Resources/Repositories/ValidateTokenRepositories.robot

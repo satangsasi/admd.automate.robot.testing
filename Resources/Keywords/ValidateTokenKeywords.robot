@@ -43,9 +43,11 @@ Set API Body Login By Client Credential
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
+    Get Time Nonce
     ${json}    Get API Body From Json File        ${body_validate_token_schema}
     Set To Dictionary    ${json}        client_id=${client_id_OhFw3u_browser}
     Set To Dictionary    ${json.token}      value=${ACCESS_TOKEN_CLIENTCREDENTIAL}
+    Set To Dictionary    ${json}            nonce=${DATE_TIME}
     Log    ${json}
     ${json_string}    Convert To String    ${json}
     ${json_string}    Replace String     ${json_string}    '    "
