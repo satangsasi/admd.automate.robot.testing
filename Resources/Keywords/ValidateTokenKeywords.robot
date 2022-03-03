@@ -3,32 +3,32 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Set Content API Header
-    [Documentation]    Owner: Nakarin
-    ...    Receive [Argument] key and value or append=True to Used in ${API_HEADER}
-    ...    append Use for append new key and value in to ${API_HEADER} 
-    [Tags]    keyword_command
-    [Arguments]    ${key}    ${value}    ${append}=True
-    ${status}    Run Keyword And Return Status    Variable Should Exist    ${API_HEADER}
-    IF  ${status} == True and ${append} == True
-        ${header}    Set Variable    ${API_HEADER}
-    ELSE
-        ${header}    Create Dictionary
-    END
-    Set To Dictionary    ${header}    ${key}=${value}
-    Log    ${header}
-    Set Test Variable    ${API_HEADER}    ${header}
+# Set Content API Header
+#     [Documentation]    Owner: Nakarin
+#     ...    Receive [Argument] key and value or append=True to Used in ${API_HEADER}
+#     ...    append Use for append new key and value in to ${API_HEADER} 
+#     [Tags]    keyword_command
+#     [Arguments]    ${key}    ${value}    ${append}=True
+#     ${status}    Run Keyword And Return Status    Variable Should Exist    ${API_HEADER}
+#     IF  ${status} == True and ${append} == True
+#         ${header}    Set Variable    ${API_HEADER}
+#     ELSE
+#         ${header}    Create Dictionary
+#     END
+#     Set To Dictionary    ${header}    ${key}=${value}
+#     Log    ${header}
+#     Set Test Variable    ${API_HEADER}    ${header}
 
-Get API Body From Json File 
-    [Documentation]    Owner: Nakarin
-    ...    Get json file and convert in to object type then return ${json_object}
-    [Tags]    keyword_command
-    [Arguments]    ${path}
-    ${json_string}    OperatingSystem.Get File             ${path}
-    ${json_object}    Convert Variable Type To Dot Dict    ${json_string}
-    # Check Variable Type    ${json_object}
-    Log    ${json_object}
-    [Return]    ${json_object}
+# Get API Body From Json File 
+#     [Documentation]    Owner: Nakarin
+#     ...    Get json file and convert in to object type then return ${json_object}
+#     [Tags]    keyword_command
+#     [Arguments]    ${path}
+#     ${json_string}    OperatingSystem.Get File             ${path}
+#     ${json_object}    Convert Variable Type To Dot Dict    ${json_string}
+#     # Check Variable Type    ${json_object}
+#     Log    ${json_object}
+#     [Return]    ${json_object}
 
 Set API Header Login By Client Credential
     [Documentation]    Owner: Nakarin
@@ -44,23 +44,27 @@ Set API Body Login By Client Credential
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${json}    Get API Body From Json File        ${body_validate_token_schema}
-    Set To Dictionary    ${json}        client_id=${client_id_OhFw3u_browser}
-    Set To Dictionary    ${json.token}      value=${ACCESS_TOKEN_CLIENTCREDENTIAL}
-    Set To Dictionary    ${json}            nonce=${DATE_TIME}
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String     ${json_string}    '    "
-    ${json_string}    Remove String      ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}     ${json_string}
+    Set Schema API Body        ${body_validate_token_schema}
+    Set Content API Body    $..client_id      ${client_id_OhFw3u_browser}
+    Set Content API Body    $..token.value    ${ACCESS_TOKEN_CLIENTCREDENTIAL}
+    Set Content API Body    $..nonce          ${DATE_TIME}
+    # Set To Dictionary    ${json}        client_id=${client_id_OhFw3u_browser}
+    # Set To Dictionary    ${json.token}      value=${ACCESS_TOKEN_CLIENTCREDENTIAL}
+    # Set To Dictionary    ${json}            nonce=${DATE_TIME}
+    # Log    ${json}
+    # ${json_string}    Convert To String    ${json}
+    # ${json_string}    Replace String     ${json_string}    '    "
+    # ${json_string}    Remove String      ${json_string}    \n
+    # Log    ${json_string}
+    # Set Test Variable    ${API_BODY}     ${json_string}
 
 Send Post Request Validate Token
     [Documentation]    Owner: Nakarin
     ...    Send Post request 
     [Tags]    keyword_communicate
     ${message}    Send Request    POST    ${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-    Set Test Provisioning Data    ${message}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
     # Set Test Actual Result    URL: ${RESPONSE.url}
     # Set Test Actual Result    HEADERS: ${RESPONSE.headers}
     # Set Test Actual Result    BODY: ${RESPONSE.json()}
@@ -119,10 +123,9 @@ Get FBB OTP
 
 Get Json Log FBB OTP
     [Documentation]    Owner: Nakarin
-    Write    kubectl exec -it ${admd_path} -n admd sh
-    Write    cd logs/detail/
+    ${admd_path}    Change Directory Path To Get Log
     ${mobile_number}    Replace String    ${fbb_user}    0    66    count=1
-    Write    cat ${admd_path}_admd.0.detail | grep -E "${mobile_number}.*oneTimePassword"
+    Write    cat ${admd_path} | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
     Log Many    @{json_format}
@@ -134,7 +137,7 @@ Verify Response Success Login Client Credentials
     [Documentation]    Owner: Nakarin
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
     Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
-    Append Response Value To Actual Document
+    # Append Response Value To Actual Document
 
 
 
@@ -338,21 +341,21 @@ Verify Response Success Login Client Credentials
 
 
 
-Set Content API Body
-    [Documentation]    Owner: Nakarin
-    ...    Receive [Argument] key and value or append=True to Used in ${API_HEADER}
-    ...    append Use for append new key and value in to ${API_HEADER} 
-    [Tags]    keyword_command
-    [Arguments]    ${key}    ${value}    ${append}=True
-    ${status}    Run Keyword And Return Status    Variable Should Exist    ${API_BODY}
-    IF  ${status} == True and ${append} == True
-        ${body}    Set Variable    ${API_BODY}
-    ELSE
-        ${body}    Create Dictionary
-    END
-    Set To Dictionary    ${body}   ${key}=${value}
-    Log    ${body}
-    Set Test Variable    ${API_BODY}   ${body}
+# Set Content API Body
+#     [Documentation]    Owner: Nakarin
+#     ...    Receive [Argument] key and value or append=True to Used in ${API_HEADER}
+#     ...    append Use for append new key and value in to ${API_HEADER} 
+#     [Tags]    keyword_command
+#     [Arguments]    ${key}    ${value}    ${append}=True
+#     ${status}    Run Keyword And Return Status    Variable Should Exist    ${API_BODY}
+#     IF  ${status} == True and ${append} == True
+#         ${body}    Set Variable    ${API_BODY}
+#     ELSE
+#         ${body}    Create Dictionary
+#     END
+#     Set To Dictionary    ${body}   ${key}=${value}
+#     Log    ${body}
+#     Set Test Variable    ${API_BODY}   ${body}
 
 Set API Header Request Otp Validate Token
     [Documentation]    Owner: sasipen

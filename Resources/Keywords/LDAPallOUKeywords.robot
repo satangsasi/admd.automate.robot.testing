@@ -477,9 +477,8 @@ Get Json Log Ldap From Server
     ...    edit message grep > error
     [Tags]    keyword_commands
     SSH Connect To 10.137.30.22
-    Write    kubectl exec -it ${admd_path} -n admd sh
-    Write    cd logs/detail/
-    Write    cat ${admd_path}_admd.0.detail | grep -E "error"
+    ${admd_path}    Change Directory Path To Get Log
+    Write    cat ${admd_path} | grep -E "error"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}

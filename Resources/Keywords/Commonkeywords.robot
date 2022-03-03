@@ -27,3 +27,25 @@ SSH Connect To 10.137.30.22
     [Tags]    keyword_commands
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass} 
+
+Change Directory Path To Get Log
+    [Documentation]    Owner: Nakarin
+    ...    Change to get log directory although path old was change
+    ...    [Return] the admd path to get log with grep ...
+    [Tags]    keyword_command
+    Write    kubectl get pod -n admd
+    ${output}    Read    delay=1s
+    Log    ${output}
+    @{output}    Split To Lines    ${output}
+    @{kubectl_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
+    Log Many    @{kubectl_path}
+    Write    reset
+    Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
+    Write    cd logs/detail/
+    Write    ls -lrt | tail
+    ${output}    Read    delay=1s
+    @{output}    Split To Lines    ${output}
+    @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
+    Write    reset
+    Read    delay=1s
+    [Return]    ${cat_path}[-1]
