@@ -45,8 +45,6 @@ ${state_logout_ldap_cp}        Logout with Ldap CP (1.9)
 ${state_logout_ldap_cp_sso}    Logout with Ldap CP (1.9) (SSO)   
 
 # Error Message
-${error_title}                               Wrong Username or Password
-${error_message}                             Please check your Username or Password.
 ${json_error_message_invalid_grant}          {"error":"invalid_grant"}
 ${json_error_message_invalid_request}        {"error":"invalid_request"}
 ${error_message_invalid_user_or_password}    invalid_user_or_password
