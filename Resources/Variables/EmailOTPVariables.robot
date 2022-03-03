@@ -25,7 +25,7 @@ ${invalid_password}                     418899
 ${invalid_public_id}                    testais0000000001@gmail.com
 ${invalid_client_id_ABCDEF}             ABCDEFGHIJKL123456PBHpmnSUamXM/Wcuomo2pVYgUOjPoOLgg==
 ${invalid_client_secret}                12345679a935d9bdd70c0845f7a5dbe5
-${invalid_grant_type_email_otp}                   password12345
+${invalid_grant_type_email_otp}         password12345
 
 #response
 ${expected_result_code_email_otp}                 20000

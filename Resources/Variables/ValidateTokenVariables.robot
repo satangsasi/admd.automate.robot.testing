@@ -6,7 +6,6 @@ ${url_login_by_fbb}                          https://iot-apivr.ais.co.th/authtes
 ${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
 ${url_delete_sub_scriber}                    http://10.138.36.227:9600/v1/method/deleteSubscriber.json
 
-
 #Body
 ${clientid_validate_token}                   OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX/w5SmiwOO7UU=
 ${clientid_validate_token_invalid}           PK+WUAlHhnhgy9yNCzAk4PBHpmnSUamXM/Wcuomo2pVYgUOj

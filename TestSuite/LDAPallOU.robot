@@ -19,7 +19,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    login    Content Provider
     Decode Login Token To Jwt By Key Id Token
-    Verify Response Decode Login Token By Key Id Token      login    Content Provider
+    Verify Response Decode Login Token By Key Id Token        login    Content Provider
     
 TST_F10_1_1_002 Verify sso Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
@@ -343,8 +343,8 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     LDAPallOUKeywords.Press Login Button
     Verify Login Fail
-    Get Json Log Ldap From Server 
-    Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
+    # Get Json Log Ldap From Server
+    # Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Documentation]     Owner: Nakarin
