@@ -103,7 +103,7 @@ Fill FBB OTP Password
     ...    Website can detect character while typing
     Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
 
-Press Login Button
+Press Login Button In Validate Token
     [Documentation]    Owner: Nakarin
     Click    ${btn_fbb_login}
     Wait Until Network Is Idle

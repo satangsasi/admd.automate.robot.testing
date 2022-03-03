@@ -13,7 +13,7 @@ TST_F6_1_1_001 verify validate success B2C
     Click Request OTP
     Get FBB OTP
     Fill FBB OTP Password
-    ValidateTokenKeywords.Press Login Button
+    Press Login Button In Validate Token
     
 TST_F6_1_1_002 verify validate success CURL
     [Documentation]    Owner: Nakarin

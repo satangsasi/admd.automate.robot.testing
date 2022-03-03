@@ -204,7 +204,7 @@ Open Browser Login And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
@@ -252,7 +252,7 @@ Open Browser Login Employee And Open Page Get Token
     [Arguments]    ${url}
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
 
@@ -364,7 +364,7 @@ Get Value From Login Subtype For Verify Response Id Token
     ELSE IF    '${state_test}' == 'refresh'
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      aut.login_subtype
     ELSE     
-            Fail    statetest not equal "login" or "refresh"   
+            Fail    state test not equal "login" or "refresh"   
     END     
     [Return]   ${actual_value_login_subtype}
 
@@ -405,7 +405,7 @@ Fill Username And Password
     Set Test Variable         ${USER}    ${user}
     Set Test Variable         ${PASS}    ${pass}
 
-Press Login Button
+Press Login Button In LDAP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
