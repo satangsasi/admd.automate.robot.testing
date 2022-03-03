@@ -11,7 +11,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     [Tags]    Content_Provider
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
@@ -173,7 +173,7 @@ TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
@@ -341,7 +341,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Tags]    Content_Provider    rerun
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Verify Login Fail
     # Get Json Log Ldap From Server
     # Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
@@ -351,7 +351,7 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     [Tags]    Content_Provider
     Create Browser Session        ${url_auth_LDAP_${test_site}}
     Fill Username And Password    ${invalid_user_ldap_provider}    ${pass_ldap_provider}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Verify Login Fail
     Get Json Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
@@ -367,7 +367,7 @@ TST_F10_0_1_004 Verify get token Ldap Content provider with authhcode expire
     [Tags]    Content_Provider
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}
@@ -390,7 +390,7 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${invalid_user_ldap_employee}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Verify Login Fail
     Get Json Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
@@ -400,7 +400,7 @@ TST_F10_0_1_008 Verify Login ldap employee with invalid user
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${invalid_pass_ldap_employee}    ${pass_ldap_employee}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Verify Login Fail
     Get Json Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
@@ -416,7 +416,7 @@ TST_F10_0_1_010 Verify get token ldap employee with authhcode expire
     [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
-    LDAPallOUKeywords.Press Login Button
+    Press Login Button In LDAP
     Create URL For Get Token
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}

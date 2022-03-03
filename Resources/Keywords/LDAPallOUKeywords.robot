@@ -235,7 +235,9 @@ Set Body Ldap Logout
 Send Post Request Ldap Logout
     [Documentation]     Owner : sasipen
     ...    send request api form data
-    Send Request    POST    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
 
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
