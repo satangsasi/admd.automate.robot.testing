@@ -8,19 +8,14 @@ Get Time Nonce
     ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
     Set Test Variable       ${DATE_TIME}    ${current_date_time}
 
-Set Content Header Client Credentials
-    [Documentation]    Owner : sasipen        
-    ...    Get the current date and time in format YYYYmmddHHMMSS
-    ${current_date_time}      Get Current Date      result_format=%Y%m%d%H%M%S
-    Set Test Variable       ${DATE_TIME}         ${current_date_time}
-
-
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
     [Arguments]          ${url}           ${content_type}
-    ${headers}           Replace String   ${header_client_credentials_schema}    _Content-Type_    ${content_type}
-    Set Test Variable    ${API_HEADER}    ${headers}
+    RequestLibrary_APICommonKeywords.Set Schema API Header    ${header_client_credentials_schema}
+    RequestLibrary_APICommonKeywords.Set Content API Header    Content-Type    ${content_type}    append=False
+    # ${headers}           Replace String   ${header_client_credentials_schema}    _Content-Type_    ${content_type}
+    # Set Test Variable    ${API_HEADER}    ${headers}
     Set Test Variable    ${API_URL}       ${url}
 
 Set Body Client Credentials
@@ -28,52 +23,74 @@ Set Body Client Credentials
     ...    Set client id,client secret,grant type, nonce to formate body 
     [Arguments]              ${client_id}      ${client_secret}    ${grant_type}   ${nonce}
     Get Time Nonce
-    ${body_client_id}        Replace String    ${body_client_credentials_schema}   _client_id_         ${client_id}
-    ${body_client_secret}    Replace String    ${body_client_id}                   _client_secret_     ${client_secret}
-    ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${DATE_TIME}
-    Set Test Variable        ${API_BODY}       ${body_nonce}
+    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_schema}    jsonfile=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_id        ${client_id}    append=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}
+    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type       ${grant_type}
+    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    # ${body_client_id}        Replace String    ${body_client_credentials_schema}   _client_id_         ${client_id}
+    # ${body_client_secret}    Replace String    ${body_client_id}                   _client_secret_     ${client_secret}
+    # ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type}
+    # ${body_nonce}            Replace String    ${body_grant_type}                  _nonce_             ${DATE_TIME}
+    # Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Id
     [Documentation]     Owner : sasipen
     ...    Set client secret,grant type, nonce to formate body
     [Arguments]              ${client_secret}  ${grant_type}     ${nonce}
     Get Time Nonce
-    ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
-    ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATE_TIME}
-    Set Test Variable        ${API_BODY}       ${body_nonce}
+    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_missing_id_schema}    jsonfile=False
+    # RequestLibrary_APICommonKeywords.Set Content API Body    client_id    ${client_id}
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}    append=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type       ${grant_type}
+    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    # ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
+    # ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type}
+    # ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATE_TIME}
+    # Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Client Secret
     [Documentation]     Owner : sasipen
     ...    Set client id,grant type, nonce to formate body 
     [Arguments]              ${client_id}      ${grant_type}    ${nonce}
     Get Time Nonce
-    ${body_client_id}        Replace String    ${body_client_credentials_missing_secret_schema}   _client_id_         ${client_id}
-    ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type}
-    ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATE_TIME}
-    Set Test Variable        ${API_BODY}       ${body_nonce}
+    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_missing_secret_schema}    jsonfile=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_id    ${client_id}    append=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type   ${grant_type}
+    RequestLibrary_APICommonKeywords.Set Content API Body    nonce        ${DATE_TIME}
+    # ${body_client_id}        Replace String    ${body_client_credentials_missing_secret_schema}   _client_id_         ${client_id}
+    # ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type}
+    # ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATE_TIME}
+    # Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Set Body Client Credentials Missing Grant Type
     [Documentation]     Owner : sasipen
     ...    Set client id,client secret,nonce to formate body 
     [Arguments]              ${client_id}      ${client_secret}    ${nonce}
     Get Time Nonce
-    ${body_client_id}        Replace String    ${body_client_credentials_missing_grant_type_schema}   _client_id_         ${client_id}
-    ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}
-    ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATE_TIME}
-    Set Test Variable        ${API_BODY}       ${body_nonce}
+    # RequestLibrary_APICommonKeywords.Set Schema API Body     ${body_client_credentials_missing_grant_type_schema}    jsonfile=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_id        ${client_id}    append=False
+    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}
+    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    # ${body_client_id}        Replace String    ${body_client_credentials_missing_grant_type_schema}   _client_id_         ${client_id}
+    # ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}
+    # ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATE_TIME}
+    # Set Test Variable        ${API_BODY}       ${body_nonce}
 
 Send Request Client Credentials
     [Documentation]     Owner : sasipen 
     ...     Send request Post to api
-    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
  
 Send Request Client Credentials Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${status_code}    
-    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    ${message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
  
 Verify Response Client Credentials
     [Documentation]     Owner : sasipen
@@ -83,14 +100,14 @@ Verify Response Client Credentials
     Should Match Regexp             ${token}     .+  
     Verify Value Response By Key    token_type   ${expected_token_type}
     Verify Value Response By Key    expires_in   ${expected_expires_in}
-    Set Test Actual Result    Token : ${RESPONSE.json()}
+    # Set Test Actual Result    Token : ${RESPONSE.json()}
 
 Verify Response Client Credentials Error
     [Documentation]     Owner : sasipen
     ...    Verify response form value(fix) by key
     [Arguments]    ${error_message}
     Verify Value Response By Key    error    ${error_message}
-    Set Test Actual Result    Token : ${RESPONSE.json()}
+    # Set Test Actual Result    Token : ${RESPONSE.json()}
 
 Decode Token To Jwt Client Credentials
     [Documentation]     Owner : sasipen
