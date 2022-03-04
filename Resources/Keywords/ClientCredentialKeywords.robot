@@ -12,7 +12,7 @@ Set Content Header Client Credentials
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
     [Arguments]          ${url}           ${content_type}
-    Set Schema API Header     ${header_client_credentials_schema}    jsonfile=False
+    Set Schema API Header     ${header_client_credentials_schema}    
     Set Content API Header    Content-Type    ${content_type}        append=False
     # ${headers}           Replace String   ${header_client_credentials_schema}    _Content-Type_    ${content_type}
     # Set Test Variable    ${API_HEADER}    ${headers}
