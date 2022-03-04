@@ -47,3 +47,36 @@ Change Directory Path To Get Log
     Write    reset
     Read    delay=1s
     [Return]    ${cat_path}[-1]
+
+Get Json Log Email Otp
+    [Documentation]    Owner: Nakarin    Editor: Sasipen
+    ...    Get Json Log From output of SSH Command
+    [Tags]    keyword_commands
+    [Arguments]    ${transaction_id}
+    ${admd_path}    Change Directory Path To Get Log
+    Write    cat ${admd_path} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"   
+    ${string}   Read    delay=1s
+    ${json_format}    Get Regexp Matches        ${string}    {.*
+    ${json_expect}    Convert String To JSON    ${json_format}[0]
+    Log         ${json_expect}
+    [Return]    ${json_expect}
+
+Get OTP From Json
+    [Documentation]    Owner: Nakarin    Editor: Sasipen
+    ...     Get OTP Value from Json that return from SSH Command
+    [Tags]    keyword_commands
+    [Arguments]    ${json}
+    ${otp_password}        Get Value Json By Key    ${json}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
+    Should Match Regexp    ${otp_password}    \\d+
+    Log         ${otp_password}
+    [Return]    ${otp_password}
+    
+Get Email OTP Password
+    [Documentation]    Owner: Nakarin
+    ...    Get Email OTP Password and return Test Variable    ${EMAIL_OTP_PASSWORD}
+    [Tags]    keyword_action
+    [Arguments]    ${transaction_id}
+    SSH Connect To 10.137.30.22
+    ${json_log}        Get Json Log Email Otp   ${transaction_id}
+    ${otp_password}    Get OTP From Json        ${json_log}
+    Set Test Variable  ${EMAIL_OTP_PASSWORD}    ${otp_password}
