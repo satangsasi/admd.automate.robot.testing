@@ -41,7 +41,7 @@ Change Directory Path To Get Log
     Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
     Write    cd logs/detail/
     Write    ls -lrt | tail
-    ${output}      Read    delay=1s
+    ${output}      Read    delay=2s
     @{output}      Split To Lines        ${output}
     @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset
