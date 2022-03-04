@@ -12,8 +12,8 @@ Set Content Header Client Credentials
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
     [Arguments]          ${url}           ${content_type}
-    RequestLibrary_APICommonKeywords.Set Schema API Header    ${header_client_credentials_schema}
-    RequestLibrary_APICommonKeywords.Set Content API Header    Content-Type    ${content_type}    append=False
+    Set Schema API Header     ${header_client_credentials_schema}    jsonfile=False
+    Set Content API Header    Content-Type    ${content_type}        append=False
     # ${headers}           Replace String   ${header_client_credentials_schema}    _Content-Type_    ${content_type}
     # Set Test Variable    ${API_HEADER}    ${headers}
     Set Test Variable    ${API_URL}       ${url}
@@ -23,11 +23,11 @@ Set Body Client Credentials
     ...    Set client id,client secret,grant type, nonce to formate body 
     [Arguments]              ${client_id}      ${client_secret}    ${grant_type}   ${nonce}
     Get Time Nonce
-    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_schema}    jsonfile=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_id        ${client_id}    append=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}
-    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type       ${grant_type}
-    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    Set Schema API Body     ${body_client_credentials_schema}    jsonfile=False
+    Set Content API Body    client_id        ${client_id}        append=False
+    Set Content API Body    client_secret    ${client_secret}
+    Set Content API Body    grant_type       ${grant_type}
+    Set Content API Body    nonce            ${DATE_TIME}
     # ${body_client_id}        Replace String    ${body_client_credentials_schema}   _client_id_         ${client_id}
     # ${body_client_secret}    Replace String    ${body_client_id}                   _client_secret_     ${client_secret}
     # ${body_grant_type}       Replace String    ${body_client_secret}               _grant_type_        ${grant_type}
@@ -39,11 +39,10 @@ Set Body Client Credentials Missing Client Id
     ...    Set client secret,grant type, nonce to formate body
     [Arguments]              ${client_secret}  ${grant_type}     ${nonce}
     Get Time Nonce
-    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_missing_id_schema}    jsonfile=False
-    # RequestLibrary_APICommonKeywords.Set Content API Body    client_id    ${client_id}
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}    append=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type       ${grant_type}
-    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    Set Schema API Body     ${body_client_credentials_missing_id_schema}    jsonfile=False
+    Set Content API Body    client_secret    ${client_secret}               append=False
+    Set Content API Body    grant_type       ${grant_type}
+    Set Content API Body    nonce            ${DATE_TIME}
     # ${body_client_secret}    Replace String    ${body_client_credentials_missing_id_schema}    _client_secret_     ${client_secret}
     # ${body_grant_type}       Replace String    ${body_client_secret}                           _grant_type_        ${grant_type}
     # ${body_nonce}            Replace String    ${body_grant_type}                              _nonce_             ${DATE_TIME}
@@ -54,10 +53,10 @@ Set Body Client Credentials Missing Client Secret
     ...    Set client id,grant type, nonce to formate body 
     [Arguments]              ${client_id}      ${grant_type}    ${nonce}
     Get Time Nonce
-    # RequestLibrary_APICommonKeywords.Set Schema API Body    ${body_client_credentials_missing_secret_schema}    jsonfile=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_id    ${client_id}    append=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    grant_type   ${grant_type}
-    RequestLibrary_APICommonKeywords.Set Content API Body    nonce        ${DATE_TIME}
+    Set Schema API Body     ${body_client_credentials_missing_secret_schema}    jsonfile=False
+    Set Content API Body    client_id    ${client_id}                           append=False
+    Set Content API Body    grant_type   ${grant_type}
+    Set Content API Body    nonce        ${DATE_TIME}
     # ${body_client_id}        Replace String    ${body_client_credentials_missing_secret_schema}   _client_id_         ${client_id}
     # ${body_grant_type}       Replace String    ${body_client_id}                                  _grant_type_        ${grant_type}
     # ${body_nonce}            Replace String    ${body_grant_type}                                 _nonce_             ${DATE_TIME}
@@ -68,10 +67,10 @@ Set Body Client Credentials Missing Grant Type
     ...    Set client id,client secret,nonce to formate body 
     [Arguments]              ${client_id}      ${client_secret}    ${nonce}
     Get Time Nonce
-    # RequestLibrary_APICommonKeywords.Set Schema API Body     ${body_client_credentials_missing_grant_type_schema}    jsonfile=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_id        ${client_id}    append=False
-    RequestLibrary_APICommonKeywords.Set Content API Body    client_secret    ${client_secret}
-    RequestLibrary_APICommonKeywords.Set Content API Body    nonce            ${DATE_TIME}
+    Set Schema API Body     ${body_client_credentials_missing_grant_type_schema}    jsonfile=False
+    Set Content API Body    client_id        ${client_id}                           append=False
+    Set Content API Body    client_secret    ${client_secret}
+    Set Content API Body    nonce            ${DATE_TIME}
     # ${body_client_id}        Replace String    ${body_client_credentials_missing_grant_type_schema}   _client_id_         ${client_id}
     # ${body_client_secret}    Replace String    ${body_client_id}                                      _client_secret_     ${client_secret}
     # ${body_nonce}            Replace String    ${body_client_secret}                                  _nonce_             ${DATE_TIME}
