@@ -30,6 +30,10 @@ TST_F4_1_1_001 Verify login with EmailOTP
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp
     Verify Response Get Token Email Otp
+    Decode Get Token Email Otp Jwt By Key Access Token
+    Verify Response Decode Get Token Email Otp By Key Access Token
+    Decode Get Token Email Otp Jwt By Key Id Token
+    Verify Response Decode Get Token Email Otp By Key Id Token
 
 TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input session_id or transaction_id
     [Documentation]     Owner : sasipen

@@ -119,6 +119,41 @@ Verify Response Get Token Email Otp
     Verify Value Response By Key               expires_in                  ${expected_expires_in_email_otp}
     Verify Value Response By Key               refresh_token_expires_in    ${expected_refresh_token_expires_in_email_otp}
     # Set Test Actual Result    Response Get Token : ${RESPONSE.json()}
+Decode Get Token Email Otp Jwt By Key Access Token
+    [Documentation]     Owner : sasipen
+    ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
+    ${value}         Get Value Response By Key    access_token
+    ${jwt_decode}    Jwt Decode      ${value} 
+    Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
+    Set Test Actual Result    Jwt decode Access Token : ${JWT_DECODE_ACCESS_TOKEN}
+
+Decode Get Token Email Otp Jwt By Key Id Token
+    [Documentation]     Owner : sasipen
+    ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
+    ${value}         Get Value Response By Key    id_token
+    ${jwt_decode}    Jwt Decode      ${value} 
+    Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode} 
+    Set Test Actual Result    Jwt decode Id Token : ${JWT_DECODE_ID_TOKEN}
+
+Verify Response Decode Get Token Email Otp By Key Access Token
+    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.type
+    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.action
+    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.login_channel
+    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.network
+    Verify Value Should Be Equal    ${actual_value_type}             email 
+    Verify Value Should Be Equal    ${actual_value_action}           login
+    Verify Value Should Be Equal    ${actual_value_login_channel}    otp
+    Verify Value Should Be Equal    ${actual_value_network}          anonymous
+
+Verify Response Decode Get Token Email Otp By Key Id Token
+    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.type
+    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.action
+    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.login_channel
+    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.network
+    Verify Value Should Be Equal    ${actual_value_type}             email 
+    Verify Value Should Be Equal    ${actual_value_action}           login
+    Verify Value Should Be Equal    ${actual_value_login_channel}    otp
+    Verify Value Should Be Equal    ${actual_value_network}          anonymous
 
 Set Body Get Token Email Otp No Session And Transaction Id  
     [Documentation]     Owner : sasipen
