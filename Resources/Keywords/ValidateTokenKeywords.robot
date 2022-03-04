@@ -327,7 +327,7 @@ Set API Body Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Set Schema API Body     ${body_get_token_validate_token_schema}
-    Set Content API Body    client_id        ${client_id_request_otp_validate_token}         append=False
+    Set Content API Body    client_id        ${client_id_request_otp_validate_token}         
     Set Content API Body    client_secret    ${client_secret_get_token_validate_token}           
     Set Content API Body    grant_type       ${grant_type_validate_token} 
     Set Content API Body    username         ${public_id_request_otp_validate_token}
@@ -358,7 +358,7 @@ Set API Body Delete Sub Scriber
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
     Set Schema API Body     ${body_delete_sub_scriber_schema}
-    Set Content API Body    msisdn    ${public_id_request_otp_validate_token}         append=False
+    Set Content API Body    msisdn    ${public_id_request_otp_validate_token}         
     
 Send Post Request Delete Sub Scriber
     [Documentation]    Owner: Nakarin
@@ -373,14 +373,15 @@ Set API Header Validate Token
     Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
     Set Content API Header    ${header_x_tid}           validate_2   
 
-
 Set API Body Validate Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
+    Get Time Nonce
     Set Schema API Body     ${body_validate_token_schema}
-    Set Content API Body    client_id    ${client_id_request_otp_validate_token}    append=False
-    Set Content API Body    value        ${ACTUAL_VALUE_ACCESS_TOKEN}
+    Set Content API Body    $..client_id      ${client_id_request_otp_validate_token}    
+    Set Content API Body    $..token.value    ${ACTUAL_VALUE_ACCESS_TOKEN}
+    Set Content API Body    $..nonce          ${DATE_TIME}
 
 Send Post Request Validate Token No Profile
     [Documentation]    Owner: Nakarin
@@ -405,9 +406,11 @@ Set API Body Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
+    Get Time Nonce
     Set Schema API Body     ${body_validate_token_schema}
-    Set Content API Body    client_id    ${clientid_validate_token_invalid}    append=False
-    Set Content API Body    value        ${ACTUAL_VALUE_ACCESS_TOKEN}
+    Set Content API Body    $..client_id    ${clientid_validate_token_invalid}    
+    Set Content API Body    $..token.value        ${ACTUAL_VALUE_ACCESS_TOKEN}
+    Set Content API Body    $..nonce          ${DATE_TIME}
 
 Send Post Request Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
@@ -432,9 +435,11 @@ Set API Body Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
+    Get Time Nonce
     Set Schema API Body     ${body_validate_token_schema}   
-    Set Content API Body    client_id    ${clientid_validate_token_invalid}    append=False
-    Set Content API Body    value        ${access_token_invalid}
+    Set Content API Body    $..client_id    ${clientid_validate_token_invalid}    
+    Set Content API Body    $..token.value        ${access_token_invalid}
+    Set Content API Body    $..nonce          ${DATE_TIME}
 Send Post Request Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
