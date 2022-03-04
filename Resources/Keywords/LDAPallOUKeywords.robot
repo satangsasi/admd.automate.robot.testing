@@ -219,8 +219,10 @@ Set Content Header Ldap Logout
     ...    Append variable to set header schema state logout 
     ...    Set url to global for create provisioning data
     [Arguments]          ${url}    ${content_type}
-    ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}
-    Set Test Variable    ${API_HEADER}    ${headers}
+    # ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}
+    # Set Test Variable    ${API_HEADER}    ${headers}
+    Set Schema API Header     ${header_ldap_schema}
+    Set Content API Header    Content-Type    ${content_type}    append=False
     Set Test Variable    ${API_URL}       ${url}
 
 Set Body Ldap Logout
@@ -228,16 +230,19 @@ Set Body Ldap Logout
     ...   Append value By Key access token to set body schema state logout 
     ...   Set url to global for create provisioning data
     [Arguments]        ${state}
-    ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
-    ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
-    Set Test Variable              ${API_BODY}       ${body_state}
+    # ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
+    # ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
+    # Set Test Variable              ${API_BODY}       ${body_state}
+    Set Schema API Body     ${body_ldap_schema}    jsonfile=False
+    Set Content API Body    access_token       ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    append=False
+    Set Content API Body    state              ${state}
 
 Send Post Request Ldap Logout
     [Documentation]     Owner : sasipen
     ...    send request api form data
     &{message}    Send Request    POST    url=${API_URL}      headers=${API_HEADER}    body=${API_BODY}
-    Set Test Provisioning Data    ${message}[request]
-    Set Test Actual Result        ${message}[response]
+    Set Test Provisioning Data    Request Logout : ${message}[request]
+    Set Test Actual Result        Request Logout : ${message}[response]
 
 Verify Response State Ldap Logout
     [Documentation]     Owner : sasipen
@@ -246,7 +251,7 @@ Verify Response State Ldap Logout
     [Arguments]        ${expected_state}
     Verify Value Response By Key    state        ${expected_state}
     ${actual_value_state}    Get Value Response By Key    state
-    Set Test Actual Result    "state" : "${actual_value_state}"
+    # Set Test Actual Result    "state" : "${actual_value_state}"
 
 Open Browser Login Employee And Open Page Get Token
     [Documentation]     Owner : sasipen
@@ -268,8 +273,8 @@ Get Value Response Jwt By Key Access Token
     
 Verify Value Response Access Token Decode Jwt By Key
     [Arguments]    ${response_key}
-    ${value}    Get Value Response Jwt By Key Access Token    ${response_key}
-    ${value}    Convert To String    ${value}
+    ${value}       Get Value Response Jwt By Key Access Token    ${response_key}
+    ${value}       Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}
     
@@ -283,8 +288,8 @@ Get Value Response Jwt By Key Id Token
 
 Verify Value Response Id Token Decode Jwt By Key
     [Arguments]    ${response_key}
-    ${value}    Get Value Response Jwt By Key Id Token    ${response_key}
-    ${value}    Convert To String    ${value}
+    ${value}       Get Value Response Jwt By Key Id Token    ${response_key}
+    ${value}       Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
@@ -299,7 +304,7 @@ Get Refresh Value Response Jwt By Key Access Token
 Verify Refresh Value Response Access Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}       Get Refresh Value Response Jwt By Key Access Token    ${response_key}
-    ${value}    Convert To String    ${value}
+    ${value}       Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
@@ -314,7 +319,7 @@ Get Refresh Value Response Jwt By Key Id Token
 Verify Refresh Value Response Id Token Decode Jwt By Key
     [Arguments]    ${response_key}
     ${value}       Get Refresh Value Response Jwt By Key Id Token    ${response_key}
-    ${value}    Convert To String    ${value}
+    ${value}       Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
@@ -459,7 +464,7 @@ Verify Response Decrypted Pid Ldap Content Provider Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_cp_pass}
-    Append Response Value To Actual Document
+    # Append Response Value To Actual Document
 
 Verify Response Decrypted Pid Ldap Content Provider Camel Case
     [Documentation]    Owner: Nakarin
@@ -469,7 +474,7 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
-    Append Response Value To Actual Document
+    # Append Response Value To Actual Document
 
 Get Json Log Ldap From Server
     [Documentation]    Owner: Nakarin    Editor: Sasipen
@@ -498,8 +503,10 @@ Send Get Request LDAP
     [Documentation]     Owner : sasipen 
     ...     Send request Get to api
     [Arguments]     ${url}
-    Send Request    GET     url=${url}
+    &{message}    Send Request    GET     url=${url}
     Set Test Variable       ${API_URL}    ${url}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
 
 Verify Response Decrypted Pid Ldap Employee Snake Case
     [Documentation]     Owner : sasipen 
@@ -509,7 +516,7 @@ Verify Response Decrypted Pid Ldap Employee Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_emp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
-    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    # Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
 
 Verify Response Decrypted Pid Ldap Employee Camel Case
     [Documentation]     Owner : sasipen 
@@ -519,12 +526,14 @@ Verify Response Decrypted Pid Ldap Employee Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_emp_pass} 
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
-    Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+    # Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
     
-Send Post Request LDAP
-    [Documentation]     Owner : sasipen 
-    ...     Send request Post to api
-    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+# Send Post Request LDAP
+#     [Documentation]     Owner : sasipen 
+#     ...     Send request Post to api
+#     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+#     Set Test Provisioning Data    ${message}[request]
+#     Set Test Actual Result        ${message}[response]
 
 Append Response Value To Actual Document
     [Documentation]    Owner: Nakarin
