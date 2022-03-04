@@ -43,15 +43,15 @@ Get Access Token ClientCredential
     Log    ${RESPONSE.json()}[access_token]
     Set Test Variable    ${ACCESS_TOKEN_CLIENTCREDENTIAL}    ${RESPONSE.json()}[access_token]
 
-Set Body Validate Token Test
-    [Documentation]     Owner : sasipen
-    ...    Set client id,grant type, nonce to formate body
-    [Arguments]              ${client_id}      ${value}    ${nonce}
-    ${body_client_id}        Replace String    ${API_BODY}          _client_id_    ${client_id}
-    ${body_value}            Replace String    ${body_client_id}    _value_        ${value}
-    ${body_api}              Replace String    ${body_value}        _nonce_        ${nonce}
-    Log    ${body_api}
-    Set Test Variable        ${API_BODY}       ${body_api}
+# Set Body Validate Token Test
+#     [Documentation]     Owner : sasipen
+#     ...    Set client id,grant type, nonce to formate body
+#     [Arguments]              ${client_id}      ${value}    ${nonce}
+#     ${body_client_id}        Replace String    ${API_BODY}          _client_id_    ${client_id}
+#     ${body_value}            Replace String    ${body_client_id}    _value_        ${value}
+#     ${body_api}              Replace String    ${body_value}        _nonce_        ${nonce}
+#     Log    ${body_api}
+#     Set Test Variable        ${API_BODY}       ${body_api}
 
 Fill FBB Username 
     [Documentation]    Owner: Nakarin
@@ -297,88 +297,52 @@ Verify Response Success Login Client Credentials
 
 
 
-
-
-
-# Set Content API Body
-#     [Documentation]    Owner: Nakarin
-#     ...    Receive [Argument] key and value or append=True to Used in ${API_HEADER}
-#     ...    append Use for append new key and value in to ${API_HEADER} 
-#     [Tags]    keyword_command
-#     [Arguments]    ${key}    ${value}    ${append}=True
-#     ${status}    Run Keyword And Return Status    Variable Should Exist    ${API_BODY}
-#     IF  ${status} == True and ${append} == True
-#         ${body}    Set Variable    ${API_BODY}
-#     ELSE
-#         ${body}    Create Dictionary
-#     END
-#     Set To Dictionary    ${body}   ${key}=${value}
-#     Log    ${body}
-#     Set Test Variable    ${API_BODY}   ${body}
-
 Set API Header Request Otp Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}    value=${content_type_json}
-    Log    ${API_HEADER}
-    Set Test Provisioning Data    Header Request OTP : ${API_HEADER}
-    #Check Variable Type    ${API_HEADER}
+    Set Schema API Header     ${header_only_content_type_schema}
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
 
 Set API Body Request Otp Validate Token
     [Documentation]    Owner: sasipen
-    [Tags]    keyword_communicate
-    # Set Content API Body    key=client_id    value=${client_id_request_otp_validate_token} 
-    # Set Content API Body    key=public_id    value=${public_id_request_otp_validate_token}    
-    # Set Content API Body    key=reference    value=${reference}  
-    ${json}    Get API Body From Json File        ${body_request_otp_validate_token_schema}    # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}                  client_id=${client_id_request_otp_validate_token}
-    Set To Dictionary    ${json}                  public_id=${public_id_request_otp_validate_token} 
-    Set To Dictionary    ${json}                  reference=${reference}  
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String    ${json_string}    '    "
-    ${json_string}    Remove String     ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Request OTP : ${API_BODY} 
+    [Tags]    keyword_communicate    
+    Set Schema API Body     ${body_request_otp_validate_token_schema}
+    Set Content API Body    client_id    ${client_id_request_otp_validate_token}        append=False
+    Set Content API Body    public_id    ${public_id_request_otp_validate_token}        
+    Set Content API Body    reference    ${reference}  
+
 Send Post Request Otp Validate Token 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-    Set Test Actual Result    Request OTP :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    Requset OTP : ${message}[request]
+    Set Test Actual Result        Requset OTP : ${message}[response]
 Set API Header Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}    value=${content_type_x_www}    append=False
-    Log    ${API_HEADER}
-    Set Test Provisioning Data    Header Get Token : ${API_HEADER}
-    #Check Variable Type    ${API_HEADER}
+    Set Schema API Header     ${header_only_content_type_schema}
+    Set Content API Header    ${header_content_type}    ${content_type_x_www}    append=False
 
 Set API Body Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    ${json}    Get API Body From Json File        ${body_get_token_validate_token_schema}    # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}                  client_id=${client_id_request_otp_validate_token} 
-    Set To Dictionary    ${json}                  client_secret=${client_secret_get_token_validate_token}     
-    Set To Dictionary    ${json}                  grant_type=${grant_type_validate_token}     
-    Set To Dictionary    ${json}                  username=${public_id_request_otp_validate_token}    
-    Set To Dictionary    ${json}                  password=${EMAIL_OTP_PASSWORD}     
-    Set To Dictionary    ${json}                  type=${type_get_token_validate_token}    
-    Set To Dictionary    ${json}                  scope=${scope_get_token_validate_token}  
-    Set To Dictionary    ${json}                  session_id=${ACTUAL_VALUE_SESSION_ID}  
-    Set To Dictionary    ${json}                  transaction_id=${ACTUAL_VALUE_TRANSACTION_ID} 
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String    ${json_string}    '    "
-    ${json_string}    Remove String    ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Get Token : ${API_BODY}
+    Set Schema API Body     ${body_get_token_validate_token_schema}
+    Set Content API Body    client_id        ${client_id_request_otp_validate_token}         append=False
+    Set Content API Body    client_secret    ${client_secret_get_token_validate_token}           
+    Set Content API Body    grant_type       ${grant_type_validate_token} 
+    Set Content API Body    username         ${public_id_request_otp_validate_token}
+    Set Content API Body    password         ${EMAIL_OTP_PASSWORD} 
+    Set Content API Body    type             ${type_get_token_validate_token}    
+    Set Content API Body    scope            ${scope_get_token_validate_token} 
+    Set Content API Body    session_id       ${ACTUAL_VALUE_SESSION_ID}  
+    Set Content API Body    transaction_id   ${ACTUAL_VALUE_TRANSACTION_ID} 
+
 Send Post Request Get Token Validate Token 
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-    Set Test Actual Result    Get Token :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    Get Token : ${message}[request]
+    Set Test Actual Result        Get Token : ${message}[response]
 Get Value Response Get Token By Key Access Token
     ${value_access_token}    Get Value Response By Key     access_token
     Set Test Variable    ${ACTUAL_VALUE_ACCESS_TOKEN}      ${value_access_token}
@@ -386,58 +350,46 @@ Get Value Response Get Token By Key Access Token
 Set API Header Delete Sub Scriber
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
-    Log    ${API_HEADER}
-    #Check Variable Type    ${API_HEADER}
-    Set Test Provisioning Data    Header Delete Sub Scriber : ${API_HEADER}
+    Set Schema API Header     ${header_only_content_type_schema}
+    Set Content API Header    ${header_content_type}   ${content_type_json}    append=False
+
 Set API Body Delete Sub Scriber
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
-    ${json}    Get API Body From Json File   ${body_delete_sub_scriber_schema}     # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}              msisdn=${public_id_request_otp_validate_token}
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String       ${json_string}    '    "
-    ${json_string}    Remove String        ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Delete Sub Scriber : ${API_BODY}
+    Set Schema API Body     ${body_delete_sub_scriber_schema}
+    Set Content API Body    msisdn    ${public_id_request_otp_validate_token}         append=False
+    
 Send Post Request Delete Sub Scriber
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}
-    Set Test Actual Result    Delete Sub Scriber :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}
+    Set Test Provisioning Data    Delete Sub Scriber : ${message}[request]
+    Set Test Actual Result        Delete Sub Scriber : ${message}[response]
 Set API Header Validate Token
     [Documentation]    Owner: Nakarin
     ...    Set API Header for send request of Client Credential
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
-    Set Content API Header    key=${header_x_tid}          value=validate_2
-    Log    ${API_HEADER}
-    Set Test Provisioning Data    Header Validate Token : ${API_HEADER}
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
+    Set Content API Header    ${header_x_tid}           validate_2   
+
 
 Set API Body Validate Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
-    ${json}    Get API Body From Json File    ${body_validate_token_schema}    # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}              client_id=${client_id_request_otp_validate_token}
-    Set To Dictionary    ${json.token}        value=${ACTUAL_VALUE_ACCESS_TOKEN}
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String       ${json_string}    '    "
-    ${json_string}    Remove String        ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Validate Token : ${API_BODY}
+    Set Schema API Body     ${body_validate_token_schema}
+    Set Content API Body    client_id    ${client_id_request_otp_validate_token}    append=False
+    Set Content API Body    value        ${ACTUAL_VALUE_ACCESS_TOKEN}
 
 Send Post Request Validate Token No Profile
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
-    Set Test Actual Result    Validate Token No Profile :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    Request Validate Token No Profile : ${message}[request]
+    Set Test Actual Result        Request Validate Token No Profile : ${message}[response]
+
 Verify Response Validate Token No Profile 
     Verify Value Response By Key    result_code            ${expected_result_code_no_profile}
     Verify Value Response By Key    developer_message      ${error_message_subscriber_not_found}
@@ -446,32 +398,24 @@ Set API Header Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     ...    Set API Header for send request of Client Credential
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
-    Set Content API Header    key=${header_x_tid}          value=login msisdn by grant type = password (nowebview)
-    Log    ${API_HEADER}
-    Set Test Provisioning Data    Header Validate Token Invalid Client Id : ${API_HEADER}
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
+    Set Content API Header    ${header_x_tid}           login msisdn by grant type = password (nowebview)
 
 Set API Body Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
-    ${json}    Get API Body From Json File    ${body_validate_token_schema}    # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}              client_id=${clientid_validate_token_invalid}
-    Set To Dictionary    ${json.token}        value=${ACTUAL_VALUE_ACCESS_TOKEN}
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String       ${json_string}    '    "
-    ${json_string}    Remove String        ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Validate Token Invalid Client Id : ${API_BODY}
+    Set Schema API Body     ${body_validate_token_schema}
+    Set Content API Body    client_id    ${clientid_validate_token_invalid}    append=False
+    Set Content API Body    value        ${ACTUAL_VALUE_ACCESS_TOKEN}
 
 Send Post Request Validate Token Invalid Client Id
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
-    Set Test Actual Result    Validate Token Invalid Client Id :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    Request Validate Invalid Client Id : ${message}[request]
+    Set Test Actual Result        Request Validate Invalid Client Id : ${message}[response]
 
 Verify Response Validate Token Invalid Client Id
     Verify Value Response By Key    result_code            ${expected_result_code_invalid_client_id}
@@ -481,32 +425,24 @@ Set API Header Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     ...    Set API Header for send request of Client Credential
     [Tags]    keyword_communicate
-    Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
-    Set Content API Header    key=${header_x_tid}          value=validate_2
-    Log    ${API_HEADER}
-    Set Test Provisioning Data    Header Validate Token Invalid Access Token : ${API_HEADER}
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
+    Set Content API Header    ${header_x_tid}           validate_2
 
 Set API Body Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
-    ${json}    Get API Body From Json File    ${body_validate_token_schema}    # Get API Body From Json File พี่แม็คไม่ได้ใช้แล้ว
-    Set To Dictionary    ${json}              client_id=${clientid_validate_token_invalid}
-    Set To Dictionary    ${json.token}        value=${test}
-    Log    ${json}
-    ${json_string}    Convert To String    ${json}
-    ${json_string}    Replace String       ${json_string}    '    "
-    ${json_string}    Remove String        ${json_string}    \n
-    Log    ${json_string}
-    Set Test Variable    ${API_BODY}    ${json_string}
-    Set Test Provisioning Data    Body Validate Token Invalid Access Token : ${API_BODY} 
-
+    Set Schema API Body     ${body_validate_token_schema}   
+    Set Content API Body    client_id    ${clientid_validate_token_invalid}    append=False
+    Set Content API Body    value        ${access_token_invalid}
 Send Post Request Validate Token Invalid Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
-    Set Test Actual Result    Validate Token Invalid Access Token :\r\n${RESPONSE.json()}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    Request Validate Invalid Access Token : ${message}[request]
+    Set Test Actual Result        Request Validate Invalid Access Token : ${message}[response]
+
 
 Verify Response Validate Token Invalid Access Token
     Verify Value Response By Key    result_code            ${expected_result_code_invalid_access_token} 
