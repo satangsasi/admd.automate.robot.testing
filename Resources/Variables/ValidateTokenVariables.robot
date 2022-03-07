@@ -16,7 +16,7 @@ ${client_secret_get_token_validate_token}    a67dd929a935d9bdd70c0845f7a5dbe5
 ${grant_type_validate_token}                 password
 ${type_get_token_validate_token}             1
 ${scope_get_token_validate_token}            profile
-${fbb_user}                                  0930455569
+${fbb_user_validate_token}                   0930455569
 
 #Respone
 ${expected_result_code_no_profile}              40402

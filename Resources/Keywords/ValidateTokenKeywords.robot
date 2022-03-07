@@ -55,8 +55,8 @@ Get Access Token ClientCredential
 
 Fill Username FBB
     [Documentation]    Owner: Nakarin
-    Type Text    ${txt_fbb_user}    ${fbb_user}    delay=0.1s
-    Set Test Provisioning Data   Username: ${fbb_user}
+    Type Text    ${txt_fbb_user}    ${fbb_user_validate_token}    delay=0.1s
+    Set Test Provisioning Data   Username: ${fbb_user_validate_token}
 
 Fill OTP Password FBB 
     [Documentation]    Owner: Nakarin
@@ -86,7 +86,7 @@ Get OTP Password FBB
 Get Json OTP Password Log FBB
     [Documentation]    Owner: Nakarin
     ${admd_path}     Change Directory Path To Get Log
-    ${mobile_number}    Replace String    ${fbb_user}    0    66    count=1
+    ${mobile_number}    Replace String    ${fbb_user_validate_token}    0    66    count=1
     Write    cat ${admd_path} | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
     ${json_log}    Get Regexp Matches        ${string}    {.*
