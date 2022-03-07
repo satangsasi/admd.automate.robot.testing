@@ -53,7 +53,7 @@ Get Access Token ClientCredential
 #     Log    ${body_api}
 #     Set Test Variable        ${API_BODY}       ${body_api}
 
-Fill FBB Username 
+Fill Username FBB
     [Documentation]    Owner: Nakarin
     Type Text    ${txt_fbb_user}    ${fbb_user}    delay=0.1s
 
@@ -62,7 +62,7 @@ Click Request OTP
     Click    ${btn_fbb_request_otp}
     Wait Until Network Is Idle
 
-Fill FBB OTP Password
+Fill OTP Password FBB 
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing
     Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
@@ -72,26 +72,26 @@ Press Login Button In Validate Token
     Click    ${btn_fbb_login}
     Wait Until Network Is Idle
 
-Get FBB OTP
+Get OTP Password FBB
     [Documentation]    Owner: Nakarin
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
     SSH Connect To 10.137.30.22
-    ${server_log}        Get Json Log FBB OTP
-    ${otp_password}      Get OTP From Json    ${server_log}
+    ${json_otp_log}      Get Json OTP Password Log FBB
+    ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
 
-Get Json Log FBB OTP
+Get Json OTP Password Log FBB
     [Documentation]    Owner: Nakarin
-    ${admd_path}    Change Directory Path To Get Log
+    ${admd_path}     Change Directory Path To Get Log
     ${mobile_number}    Replace String    ${fbb_user}    0    66    count=1
     Write    cat ${admd_path} | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
-    ${json_format}    Get Regexp Matches        ${string}    {.*
-    Log Many    @{json_format}
-    ${json_expect}    Convert String To JSON    ${json_format}[0]
-    Log         ${json_expect}
-    [Return]    ${json_expect}
+    ${json_log}    Get Regexp Matches        ${string}    {.*
+    Log Many    @{json_log}
+    ${json_otp_log}    Convert String To JSON    ${json_log}[0]
+    Log         ${json_otp_log}
+    [Return]    ${json_otp_log}
 
 Verify Response Success Login Client Credentials
     [Documentation]    Owner: Nakarin
@@ -315,8 +315,8 @@ Send Post Request Otp Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     &{message}    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
-    Set Test Provisioning Data    Requset OTP : ${message}[request]
-    Set Test Actual Result        Requset OTP : ${message}[response]
+    Set Test Provisioning Data    Request OTP : ${message}[request]
+    Set Test Actual Result        Request OTP : ${message}[response]
 Set API Header Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate

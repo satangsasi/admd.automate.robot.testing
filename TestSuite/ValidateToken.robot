@@ -11,7 +11,7 @@ TST_F6_1_1_001 verify validate success B2C
     Create Browser Session    ${url_login_by_fbb}
     Fill FBB Username
     Click Request OTP
-    Get FBB OTP
+    Get OTP Password FBB
     Fill FBB OTP Password
     Press Login Button In Validate Token
     
