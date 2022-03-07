@@ -17,9 +17,11 @@ Get Code From Authentication
     ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
+    ...    - Add Set Test Provisioning Data
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}    10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
+    Set Test Provisioning Data    Authentication Code: ${code}
     Set Test Variable    ${CODE}    ${code}
 
 Set Response On Webpage To Json
