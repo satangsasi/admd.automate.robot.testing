@@ -55,3 +55,13 @@ Get OTP Password From Json
     Should Match Regexp    ${otp_password}    \\d+
     Log         ${otp_password}
     [Return]    ${otp_password}
+
+Create Browser Session
+    [Documentation]     Owner : sasipen
+    ...    Setting browser and open url 
+    ...    Set url to global for create provisioning data
+    [Arguments]    ${url}
+    Set Up Browser Fullscreen  
+    New Page       ${url}
+    Set Test Provisioning Data    Authentication URL : ${url}
+    Wait Until Network Is Idle

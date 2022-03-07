@@ -75,7 +75,8 @@ Decode Login Token Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
     ${value}         Get Value Response Ldap By Key    access_token
-    ${jwt_decode}    Jwt Decode      ${value} 
+    ${jwt_decode}    Jwt Decode      ${value}
+    Log    ${jwt_decode}
     Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
     Set Test Actual Result    Login access token jwt decode : ${jwt_decode} 
 
@@ -171,16 +172,6 @@ Verify Value Response Ldap By Key
     ${value}     Get Value Response Ldap By Key    ${response_key}
     Should Match Regexp    ${value}     .+
     Log    ${value}
-
-Create Browser Session
-    [Documentation]     Owner : sasipen
-    ...    Setting browser and open url 
-    ...    Set url to global for create provisioning data
-    [Arguments]    ${url}
-    Set Up Browser Fullscreen  
-    New Page       ${url}
-    Set Test Variable    ${URL_AUTH}    ${url}
-    Wait Until Network Is Idle
 
 Get Code From Key Refresh Token 
     [Documentation]     Owner : sasipen
