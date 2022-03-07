@@ -43,58 +43,6 @@ Get Access Token ClientCredential
     Log    ${RESPONSE.json()}[access_token]
     Set Test Variable    ${ACCESS_TOKEN_CLIENTCREDENTIAL}    ${RESPONSE.json()}[access_token]
 
-# Set Body Validate Token Test
-#     [Documentation]     Owner : sasipen
-#     ...    Set client id,grant type, nonce to formate body
-#     [Arguments]              ${client_id}      ${value}    ${nonce}
-#     ${body_client_id}        Replace String    ${API_BODY}          _client_id_    ${client_id}
-#     ${body_value}            Replace String    ${body_client_id}    _value_        ${value}
-#     ${body_api}              Replace String    ${body_value}        _nonce_        ${nonce}
-#     Log    ${body_api}
-#     Set Test Variable        ${API_BODY}       ${body_api}
-
-Fill Username FBB
-    [Documentation]    Owner: Nakarin
-    Type Text    ${txt_fbb_user}    ${fbb_user_validate_token}    delay=0.1s
-    Set Test Provisioning Data   Username: ${fbb_user_validate_token}
-
-Fill OTP Password FBB 
-    [Documentation]    Owner: Nakarin
-    ...    Website can detect character while typing
-    Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
-    Set Test Provisioning Data   OTP Password: ${FBB_OTP_PASS}
-
-Click Request OTP
-    [Documentation]    Owner: Nakarin
-    Click    ${btn_fbb_request_otp}
-    Wait Until Network Is Idle
-
-Press Login Button In Validate Token
-    [Documentation]    Owner: Nakarin
-    Click    ${btn_fbb_login}
-    # Wait Until Network Is Idle
-
-Get OTP Password FBB
-    [Documentation]    Owner: Nakarin
-    ...    Get OTP Password From Server Log
-    ...    Then Set Test Variable ${FBB_OTP_PASS}
-    SSH Connect To 10.137.30.22
-    ${json_otp_log}      Get Json OTP Password Log FBB
-    ${otp_password}      Get OTP Password From Json    ${json_otp_log}
-    Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
-
-Get Json OTP Password Log FBB
-    [Documentation]    Owner: Nakarin
-    ${admd_path}     Change Directory Path To Get Log
-    ${mobile_number}    Replace String    ${fbb_user_validate_token}    0    66    count=1
-    Write    cat ${admd_path} | grep -E "${mobile_number}.*oneTimePassword"
-    ${string}   Read    delay=1s
-    ${json_log}    Get Regexp Matches        ${string}    {.*
-    Log Many    @{json_log}
-    ${json_otp_log}    Convert String To JSON    ${json_log}[-1]
-    Log         ${json_otp_log}
-    [Return]    ${json_otp_log}
-
 Verify Response Success Validate Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
@@ -106,7 +54,7 @@ Create URL For Get Token Validate Token
     ...    Append Token(get from Auth Url) to get Token(API) Url
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
-    ...    Change Variable to ${url_for_token_validate_token}
+    ...    - Change Variable to ${url_for_token_validate_token}
     [Tags]    keyword_communicate
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_for_token_validate_token}    _code_    ${CODE}
@@ -121,7 +69,7 @@ Set API Header B2C
 
 Set API Body B2C
     [Documentation]    Owner: Nakarin
-    ...    ${CODE} was token.value from access_token
+    ...    
     [Tags]    keyword_communicate
     Get Time Nonce
     Set Schema API Body     ${body_validate_token_schema}
