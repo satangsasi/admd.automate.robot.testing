@@ -1,33 +1,40 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
+Test Teardown    Run Keyword And Ignore Error    Set Test Documentation Detail
 
 
 *** Test Cases ***
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success    On-Hold
+    [Tags]    Success    Sprint3
     Create Browser Session    ${url_login_by_fbb}
-    Fill FBB Username
+    Fill Username FBB
     Click Request OTP
     Get OTP Password FBB
-    Fill FBB OTP Password
+    Fill OTP Password FBB
     Press Login Button In Validate Token
-    
+    Create URL For Get Token Validate Token
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Set API Header B2C
+    Set API Body B2C
+    Send Post Request Validate Token
+    Verify Response Success Validate Token
+
 TST_F6_1_1_002 verify validate success CURL
     [Documentation]    Owner: Nakarin
     ...    login by auto FBB
-    [Tags]    Success
+    [Tags]    Success    Sprint3
 
 TST_F6_1_1_003 verify validate success login by client credentials
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    Sprint2
+    [Tags]    Success    Sprint2    Test1
     Get Access Token ClientCredential
     Set API Header Login By Client Credential
     Set API Body Login By Client Credential
     Send Post Request Validate Token
-    Verify Response Success Login Client Credentials
+    Verify Response Success Validate Token
 
 TST_F6_1_1_004 verify validate success with profile have gupimpi more than one object 
     [Documentation]    Owner: Nakarin
@@ -64,7 +71,7 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
-    Get Value Response Request Email Otp By Key Session Id 
+    Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id
     Get Email OTP Password    ${ACTUAL_VALUE_TRANSACTION_ID}
     Set API Header Get Token Validate Token
