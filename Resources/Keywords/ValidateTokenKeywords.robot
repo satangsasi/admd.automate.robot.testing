@@ -56,21 +56,23 @@ Get Access Token ClientCredential
 Fill Username FBB
     [Documentation]    Owner: Nakarin
     Type Text    ${txt_fbb_user}    ${fbb_user}    delay=0.1s
+    Set Test Provisioning Data   Username: ${fbb_user}
+
+Fill OTP Password FBB 
+    [Documentation]    Owner: Nakarin
+    ...    Website can detect character while typing
+    Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
+    Set Test Provisioning Data   OTP Password: ${FBB_OTP_PASS}
 
 Click Request OTP
     [Documentation]    Owner: Nakarin
     Click    ${btn_fbb_request_otp}
     Wait Until Network Is Idle
 
-Fill OTP Password FBB 
-    [Documentation]    Owner: Nakarin
-    ...    Website can detect character while typing
-    Type Text    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
-
 Press Login Button In Validate Token
     [Documentation]    Owner: Nakarin
     Click    ${btn_fbb_login}
-    Wait Until Network Is Idle
+    # Wait Until Network Is Idle
 
 Get OTP Password FBB
     [Documentation]    Owner: Nakarin
@@ -89,18 +91,43 @@ Get Json OTP Password Log FBB
     ${string}   Read    delay=1s
     ${json_log}    Get Regexp Matches        ${string}    {.*
     Log Many    @{json_log}
-    ${json_otp_log}    Convert String To JSON    ${json_log}[0]
+    ${json_otp_log}    Convert String To JSON    ${json_log}[-1]
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Verify Response Success Login Client Credentials
+Verify Response Success Validate Token
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
     Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
 
+Create URL For Get Token Validate Token
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    Append Token(get from Auth Url) to get Token(API) Url
+    ...    ***Editor Note***
+    ...    - Add Set Test Variable (Provisioning Data)
+    ...    Change Variable to ${url_for_token_validate_token}
+    [Tags]    keyword_communicate
+    Get Code From Authentication
+    ${url_get_token}     Replace String      ${url_for_token_validate_token}    _code_    ${CODE}
+    Set Test Provisioning Data    Get Token URL: ${url_get_token}
+    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
 
+Set API Header B2C
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    Set Content API Header    key=Content-Type    value=application/json    append=False
+    Set Content API Header    key=X-Tid           value=login by msisdn OTP
 
-
+Set API Body B2C
+    [Documentation]    Owner: Nakarin
+    ...    ${CODE} was token.value from access_token
+    [Tags]    keyword_communicate
+    Get Time Nonce
+    Set Schema API Body     ${body_validate_token_schema}
+    Set Content API Body    $..client_id      ${clientid_validate_token}
+    Set Content API Body    $..token.value    ${RESPONSE_JSON_MESSAGE}[access_token]
+    Set Content API Body    $..nonce          ${DATE_TIME}
 
 
 

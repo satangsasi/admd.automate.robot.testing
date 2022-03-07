@@ -32,6 +32,7 @@ Set Response On Webpage To Json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     Take Screenshot Verify Success Scene
+    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE}[access_token]
 
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
@@ -65,11 +66,11 @@ Verify Response Ldap
     ...    ***Editor Note***
     ...    - Add Set Test Actual Result
     Verify Value Response Ldap By Key   access_token
-    Verify Value Response Ldap By Key   refresh_token 
-    Verify Value Response Ldap By Key   id_token 
+    Verify Value Response Ldap By Key   refresh_token
+    Verify Value Response Ldap By Key   id_token
     Verify Value Should Be Equal    ${ACTUAL_VALUE_TOKEN_TYPE}     ${expected_token_type}
-    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_ldap}    
-    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}        ${expected_refresh_token_expires_in_ldap}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_EXPIRES_IN}     ${expected_expires_in_ldap}
+    Verify Value Should Be Equal    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${expected_refresh_token_expires_in_ldap}
     Take Screenshot Verify Success Scene
     Set Test Actual Result    Token : ${RESPONSE_JSON_MESSAGE}
     
@@ -79,8 +80,8 @@ Decode Login Token Jwt By Key Access Token
     ${value}         Get Value Response Ldap By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value}
     Log    ${jwt_decode}
-    Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
-    Set Test Actual Result    Login access token jwt decode : ${jwt_decode} 
+    Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode}
+    Set Test Actual Result    Login access token jwt decode : ${jwt_decode}
 
 Decode Login Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
@@ -88,7 +89,7 @@ Decode Login Token To Jwt By Key Id Token
     ${value}         Get Value Response Ldap By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
-    Set Test Actual Result    Login id token jwt decode : ${jwt_decode}  
+    Set Test Actual Result    Login id token jwt decode : ${jwt_decode}
 
 Decode Refresh Token To Jwt By Key Access Token
     [Documentation]     Owner : sasipen
@@ -101,16 +102,16 @@ Decode Refresh Token To Jwt By Key Access Token
 Decode Refresh Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state refresh By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response Ldap By Key    id_token 
+    ${value}         Get Value Response Ldap By Key    id_token
     ${jwt_decode}    Jwt Decode      ${value}
-    Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}  
+    Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}
     Set Test Variable         ${JWT_DECODE_REFRESH__ID_TOKEN}      ${jwt_decode}
 
 Verify Response Decode Refresh Token By Key Access Token
     [Documentation]     Owner : sasipen
-    [Arguments]    ${login_subtype}  
+    [Arguments]    ${login_subtype}
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Access Token    aut.action
-    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}
     Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    refresh
     Verify Refresh Value Response Access Token Decode Jwt By Key    iss
     Verify Refresh Value Response Access Token Decode Jwt By Key    sub
@@ -122,7 +123,7 @@ Verify Response Decode Refresh Token By Key Id Token
     [Documentation]     Owner : sasipen
     [Arguments]    ${login_subtype}
     ${actual_value_action}    Get Refresh Value Response Jwt By Key Id Token    aut.action
-    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}   
+    Verify Value Should Be Equal    ${actual_value_action}    ${expected_action_refresh}
     Verify Response Login Subtype Decode Jwt    id_token    ${login_subtype}    refresh
     Verify Refresh Value Response Id Token Decode Jwt By Key    iss
     Verify Refresh Value Response Id Token Decode Jwt By Key    sub
@@ -131,10 +132,10 @@ Verify Response Decode Refresh Token By Key Id Token
 
 Verify Response Decode Login Token By Key Access Token
     [Documentation]     Owner : sasipen
-    ...    verify text value By Key action form value access token state login = expected text 
+    ...    verify text value By Key action form value access token state login = expected text
     [Arguments]    ${action_type}      ${login_subtype}
     Verify Response Action Type Decode Jwt By Key    access_token    ${action_type}
-    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login 
+    Verify Response Login Subtype Decode Jwt    access_token    ${login_subtype}    login
     Verify Value Response Access Token Decode Jwt By Key    iss
     Verify Value Response Access Token Decode Jwt By Key    sub
     Verify Value Response Access Token Decode Jwt By Key    aud
@@ -196,7 +197,7 @@ Open Browser Login And Open Page Get Token
     ...    Group keyword open url, fill user and pass , press login. create url for get token of content provider  
     [Arguments]    ${url}
     Create Browser Session   ${url}
-    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}   
+    Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token
     New Page                 ${URL_GET_TOKEN}
