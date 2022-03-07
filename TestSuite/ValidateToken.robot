@@ -78,7 +78,7 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    On-Hold  
+    [Tags]    Fail   
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -91,16 +91,31 @@ TST_F6_0_1_003 verify validate fail with incorrect access token
     Get Value Response Get Token By Key Access Token
     Set API Header Validate Token Invalid Access Token
     Set API Body Validate Token Invalid Access Token
-    Send Post Request Validate Token Invalid Access Token    401
+    Send Post Request Validate Token Invalid Access Token    400
     Verify Response Validate Token Invalid Access Token
 
 TST_F6_0_1_004 verify validate fail with expired access token
     [Documentation]    Owner:
-    [Tags]    Fail
+    [Tags]    Fail    On-Hold          
 
 TST_F6_0_1_005 verify validate fail with missing client id
-    [Documentation]    Owner:
-    [Tags]    Fail
+    [Documentation]    Owner:sasipen
+    ...
+    [Tags]    Fail   
+    Set API Header Request Otp Validate Token
+    Set API Body Request Otp Validate Token
+    Send Post Request Otp Validate Token
+    Get Value Response Request Email Otp By Key Session Id 
+    Get Value Response Request Email Otp By Key Transaction Id
+    Get Email OTP Password    ${ACTUAL_VALUE_TRANSACTION_ID}
+    Set API Header Get Token Validate Token
+    Set API Body Get Token Validate Token
+    Send Post Request Get Token Validate Token
+    Get Value Response Get Token By Key Access Token
+    Set API Header Validate Token Missing Client Id
+    Set API Body Validate Token Missing Client Id
+    Send Post Request Validate Token Missing Client Id    400
+    Verify Response Validate Token Missing Client Id
 
 TST_F6_0_1_006 verify validate fail with missing access token
     [Documentation]    Owner:
