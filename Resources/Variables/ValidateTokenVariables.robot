@@ -5,6 +5,7 @@ ${url_request_otp_validate_token}            http://10.137.30.22:31191/v3.2/otp/
 ${url_login_by_fbb}                          https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
 ${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
 ${url_delete_sub_scriber}                    http://10.138.36.227:9600/v1/method/deleteSubscriber.json
+${url_for_token_validate_token}              https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
 
 #Body
 ${clientid_validate_token}                   OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX/w5SmiwOO7UU=
@@ -16,7 +17,7 @@ ${grant_type_validate_token}                 password
 ${grant_type_nowebview_validate_token}       password (nowebview)
 ${type_get_token_validate_token}             1
 ${scope_get_token_validate_token}            profile
-${fbb_user}                                  0930455569
+${fbb_user_validate_token}                   0930455569
 
 #Respone
 ${expected_result_code_no_profile}              40402
@@ -307,7 +308,8 @@ ${expected_result_code_missing_client_id}       40000
 
 
 
-${body_validate_token_schema}                ../Resources/Schemas/ValidateTokenSchema.json
-${body_request_otp_validate_token_schema}    ../Resources/Schemas/BodyRequestOtpValidateTokenSchema.json
-${body_get_token_validate_token_schema}      ../Resources/Schemas/ฺBodyGetTokenValidateTokenSchema.json
-${body_delete_sub_scriber_schema}            ../Resources/Schemas/ฺBodyDeleteSubScriber.json
+
+${body_validate_token_schema}                ${CURDIR}/../Schemas/ValidateTokenSchema.json
+${body_request_otp_validate_token_schema}    ${CURDIR}/../Schemas/BodyRequestOtpValidateTokenSchema.json
+${body_get_token_validate_token_schema}      ${CURDIR}/../Schemas/ฺBodyGetTokenValidateTokenSchema.json
+${body_delete_sub_scriber_schema}            ${CURDIR}/../Schemas/ฺBodyDeleteSubScriber.json

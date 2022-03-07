@@ -173,3 +173,26 @@ Send Post Request Email Otp Invalid
     &{message}     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
     Set Test Provisioning Data    Request Email OTP Invalid : ${message}[request]
     Set Test Actual Result        Request Email OTP Invalid : ${message}[response]
+
+Get Email OTP Password
+    [Documentation]    Owner: Nakarin
+    ...    Get Email OTP Password and return Test Variable    ${EMAIL_OTP_PASSWORD}
+    [Tags]    keyword_action
+    [Arguments]    ${transaction_id}
+    SSH Connect To 10.137.30.22
+    ${json_log}        Get Json Log Email Otp        ${transaction_id}
+    ${otp_password}    Get OTP Password From Json    ${json_log}
+    Set Test Variable  ${EMAIL_OTP_PASSWORD}         ${otp_password}
+
+Get Json Log Email Otp
+    [Documentation]    Owner: Nakarin    Editor: Sasipen
+    ...    Get Json Log From output of SSH Command
+    [Tags]    keyword_commands
+    [Arguments]     ${transaction_id}
+    ${admd_path}    Change Directory Path To Get Log
+    Write    cat ${admd_path} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
+    ${string}   Read    delay=1s
+    ${json_format}    Get Regexp Matches        ${string}    {.*
+    ${json_expect}    Convert String To JSON    ${json_format}[0]
+    Log         ${json_expect}
+    [Return]    ${json_expect}
