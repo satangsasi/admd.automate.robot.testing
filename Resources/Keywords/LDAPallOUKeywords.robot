@@ -219,10 +219,8 @@ Set Content Header Ldap Logout
     ...    Append variable to set header schema state logout 
     ...    Set url to global for create provisioning data
     [Arguments]          ${url}    ${content_type}
-    # ${headers}           Replace String       ${header_ldap_schema}    _Content-Type_    ${content_type}
-    # Set Test Variable    ${API_HEADER}    ${headers}
     Set Schema API Header     ${header_ldap_schema}
-    Set Content API Header    Content-Type    ${content_type}    append=False
+    Set Content API Header    ${header_content_type}    ${content_type}    append=False
     Set Test Variable    ${API_URL}       ${url}
 
 Set Body Ldap Logout
@@ -230,12 +228,9 @@ Set Body Ldap Logout
     ...   Append value By Key access token to set body schema state logout 
     ...   Set url to global for create provisioning data
     [Arguments]        ${state}
-    # ${body_access_token_logout}    Replace String    ${body_ldap_schema}            _access_token_     ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}
-    # ${body_state}                  Replace String    ${body_access_token_logout}    _state_            ${state}
-    # Set Test Variable              ${API_BODY}       ${body_state}
     Set Schema API Body     ${body_ldap_schema}    jsonfile=False
-    Set Content API Body    access_token       ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    append=False
-    Set Content API Body    state              ${state}
+    Set Content API Body    $..access_token       ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    append=False
+    Set Content API Body    $..state              ${state}
 
 Send Post Request Ldap Logout
     [Documentation]     Owner : sasipen
@@ -516,7 +511,7 @@ Verify Response Decrypted Pid Ldap Employee Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_emp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
-    # Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
+
 
 Verify Response Decrypted Pid Ldap Employee Camel Case
     [Documentation]     Owner : sasipen 
@@ -526,14 +521,6 @@ Verify Response Decrypted Pid Ldap Employee Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_emp_pass} 
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
-    # Set Test Actual Result          DecryptedPartnerSpecificPrivateId :\n\r${RESPONSE.json()}
-    
-# Send Post Request LDAP
-#     [Documentation]     Owner : sasipen 
-#     ...     Send request Post to api
-#     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
-#     Set Test Provisioning Data    ${message}[request]
-#     Set Test Actual Result        ${message}[response]
 
 Append Response Value To Actual Document
     [Documentation]    Owner: Nakarin
