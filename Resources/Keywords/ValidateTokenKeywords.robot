@@ -371,7 +371,7 @@ Send Post Request Validate Token No Profile
 Verify Response Validate Token No Profile 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_no_profile}
+    Verify Value Response By Key    result_code            ${expected_result_code_40402}
     Verify Value Response By Key    developer_message      ${error_message_subscriber_not_found}
 
 Set API Header Validate Token Invalid Client Id
@@ -400,7 +400,7 @@ Send Post Request Validate Token Invalid Client Id
 Verify Response Validate Token Invalid Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_invalid_client_id}
+    Verify Value Response By Key    result_code            ${expected_result_code_40106}
     Verify Value Response By Key    developer_message      ${error_message_invalid_client} 
 
 Set API Header Validate Token Invalid Access Token
@@ -429,7 +429,7 @@ Send Post Request Validate Token Invalid Access Token
 Verify Response Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_invalid_access_token} 
+    Verify Value Response By Key    result_code            ${expected_result_code_40001} 
     Verify Value Response By Key    developer_message      ${error_message_invalid_code}
 
 Set API Header Validate Token Missing Client Id
@@ -441,10 +441,9 @@ Set API Header Validate Token Missing Client Id
 Set API Body Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Get Time Nonce                          
-    # Set Content API Body    $..token.type            access_token        append=False                                                             
-    Set Content API Body    token.type            access_token                    append=False                                                                                                                    
-    Set Content API Body    token.value           ${ACTUAL_VALUE_ACCESS_TOKEN}    
+    Get Time Nonce                                                                                    
+    Set Content API Body    $..token.type            access_token                    append=False                                                                                                                                                                                       
+    Set Content API Body    $..token.value           ${ACTUAL_VALUE_ACCESS_TOKEN}    
     Set Content API Body    $..nonce                 ${DATE_TIME}
 
 Send Post Request Validate Token Missing Client Id
@@ -458,5 +457,65 @@ Send Post Request Validate Token Missing Client Id
 Verify Response Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_missing_client_id}
+    Verify Value Response By Key    result_code            ${expected_result_code_40000}
     Verify Value Response By Key    developer_message      ${error_message_missing_invalid_parameter}
+
+Set API Header Validate Token Expired Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
+    Set Content API Header    ${header_x_tid}           validate_2
+
+Set API Body Validate Token Expired Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Get Time Nonce
+    Set Schema API Body     ${body_validate_token_schema}   
+    Set Content API Body    $..client_id      ${clientid_request_otp_validate_token}
+    Set Content API Body    $..token.value    ${expired_access_token} 
+    Set Content API Body    $..nonce          ${DATE_TIME}
+
+Send Post Request Validate Token Expired Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    [Arguments]        ${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    Request Validate Expired Access Token : ${message}[request]
+    Set Test Actual Result        Request Validate Expired Access Token : ${message}[response]
+
+Verify Response Validate Token Expired Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${expired_access_token}         
+    Verify Value Response By Key    result_code            ${expected_result_code_40401}
+    Verify Value Response By Key    developer_message      ${error_message_data_not_found}
+
+Set API Header Validate Token Missing Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
+    Set Content API Header    ${header_x_tid}           login by auto msisdn
+
+Set API Body Validate Token Missing Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Get Time Nonce           
+    Set Content API Body    $..client_id     ${clientid_validate_token}    append=False                                                                           
+    Set Content API Body    $..token.type    access_token                                                                                                                                                                                                          
+    Set Content API Body    $..nonce         ${DATE_TIME}
+
+Send Post Request Validate Token Missing Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    [Arguments]        ${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    Set Test Provisioning Data    Request Validate Missing Access Token : ${message}[request]
+    Set Test Actual Result        Request Validate Missing Access Token : ${message}[response]
+
+Verify Response Validate Token Expired Access Token
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Verify Value Response By Key    result_code            ${expected_result_code_40000}
+    Verify Value Response By Key    developer_message      ${error_message_missing_invalid_parameter}
+
+
