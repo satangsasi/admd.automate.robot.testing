@@ -10,11 +10,11 @@ TST_F6_1_1_001 verify validate success B2C
     [Tags]    Success    vpn    Sprint3
     Create Browser Session    ${url_login_by_fbb}
     Fill Username FBB OTP
-    Click Request OTP
+    Click Request OTP Button
     Get OTP Password FBB
     Fill OTP Password FBB
-    Press Login Button In FBB OTP
-    Create URL For Get Token Validate Token
+    Click Login Button In FBB OTP
+    Create URL For Get Token FBB OTP
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header B2C

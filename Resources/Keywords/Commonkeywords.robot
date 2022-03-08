@@ -26,8 +26,9 @@ SSH Connect To 10.137.30.22
     ...    ${ssh_pass}          R3dh@t!@#
     [Tags]    keyword_action
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
-    Login    ${ssh_user}     ${ssh_pass} 
-
+    ${login_log}    Login    ${ssh_user}     ${ssh_pass}
+    Log    ${login_log}
+    
 Change Directory Path To Get Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
@@ -35,18 +36,24 @@ Change Directory Path To Get Log
     [Tags]    keyword_action
     Write    kubectl get pod -n admd
     ${output}          Read    delay=1s
+    Log    ${output}
     @{output}          Split To Lines        ${output}
     @{kubectl_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
+    Log Many    @{kubectl_path}
+    Should Contain    ${kubectl_path}    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     Write    reset
     Read     delay=1s    # Wait for screen reset
     Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
     Write    cd logs/detail/
     Write    ls -lrt | tail
     ${output}      Read    delay=2s
+    Log    ${output}
     @{output}      Split To Lines        ${output}
     @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset
     Read     delay=1s    # Wait for screen reset
+    Log Many    @{cat_path}
+    Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
 
 Get OTP Password From Json
@@ -55,7 +62,7 @@ Get OTP Password From Json
     [Tags]    keyword_action
     [Arguments]    ${json_log}
     ${otp_password}        Get Value Json By Key    ${json_log}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
-    Should Match Regexp    ${otp_password}    \\d+
+    Should Match Regexp    ${otp_password}    \\d+    msg=Can't get OTP Password
     Log         ${otp_password}
     [Return]    ${otp_password}
 
@@ -64,7 +71,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=chromium    headless=False
+    Set Up Browser Fullscreen    browser=chromium    headless=True
     New Page       ${url}
     Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
