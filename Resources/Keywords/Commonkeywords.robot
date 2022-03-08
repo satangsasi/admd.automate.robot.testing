@@ -40,7 +40,7 @@ Change Directory Path To Get Log
     @{output_line}     Split To Lines        ${output}
     @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Log Many    @{kubectl_path}
-    Should Contain    ${kubectl_path}    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
+    Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     Write    reset
     Read     delay=1s    # Wait for screen reset
     Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
