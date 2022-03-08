@@ -512,7 +512,7 @@ Send Post Request Validate Token Missing Access Token
     Set Test Provisioning Data    Request Validate Missing Access Token : ${message}[request]
     Set Test Actual Result        Request Validate Missing Access Token : ${message}[response]
 
-Verify Response Validate Token Expired Access Token
+Verify Response Validate Token Missing Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Verify Value Response By Key    result_code            ${expected_result_code_40000}
