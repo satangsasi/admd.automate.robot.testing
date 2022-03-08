@@ -82,11 +82,11 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
     Set API Body Validate Token Invalid Client Id
     Send Post Request Validate Token Invalid Client Id    401
     Verify Response Validate Token Invalid Client Id
-    
+
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail   
+    [Tags]    Fail    demosprint3   
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -104,7 +104,7 @@ TST_F6_0_1_003 verify validate fail with incorrect access token
 
 TST_F6_0_1_004 verify validate fail with expired access token
     [Documentation]    Owner:
-    [Tags]    Fail    
+    [Tags]    Fail    demosprint3      
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -123,7 +123,7 @@ TST_F6_0_1_004 verify validate fail with expired access token
 TST_F6_0_1_005 verify validate fail with missing client id
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail   
+    [Tags]    Fail    demosprint3     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -142,7 +142,7 @@ TST_F6_0_1_005 verify validate fail with missing client id
 TST_F6_0_1_006 verify validate fail with missing access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail   
+    [Tags]    Fail    demosprint3     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -156,4 +156,4 @@ TST_F6_0_1_006 verify validate fail with missing access token
     Set API Header Validate Token Missing Access Token
     Set API Body Validate Token Missing Access Token
     Send Post Request Validate Token Missing Access Token    400
-    Verify Response Validate Token Expired Access Token
+    Verify Response Validate Token Missing Access Token
