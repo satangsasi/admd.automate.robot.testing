@@ -24,7 +24,7 @@ SSH Connect To 10.137.30.22
     ...    ${ssh_ip_address}    10.137.30.22
     ...    ${ssh_user}          serveradm
     ...    ${ssh_pass}          R3dh@t!@#
-    [Tags]    keyword_commands
+    [Tags]    keyword_action
     Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
     Login    ${ssh_user}     ${ssh_pass} 
 
@@ -32,13 +32,13 @@ Change Directory Path To Get Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
-    [Tags]    keyword_command
+    [Tags]    keyword_action
     Write    kubectl get pod -n admd
     ${output}          Read    delay=1s
     @{output}          Split To Lines        ${output}
     @{kubectl_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset
-    Read     delay=1s
+    Read     delay=1s    # Wait for screen reset
     Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
     Write    cd logs/detail/
     Write    ls -lrt | tail
@@ -46,13 +46,13 @@ Change Directory Path To Get Log
     @{output}      Split To Lines        ${output}
     @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset
-    Read    delay=1s
+    Read     delay=1s    # Wait for screen reset
     [Return]    ${cat_path}[-1]
 
 Get OTP Password From Json
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...     Get OTP Value from Json that return from SSH Command
-    [Tags]    keyword_commands
+    [Tags]    keyword_action
     [Arguments]    ${json_log}
     ${otp_password}        Get Value Json By Key    ${json_log}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
     Should Match Regexp    ${otp_password}    \\d+
@@ -64,7 +64,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=chromium    headless=True
+    Set Up Browser Fullscreen    browser=chromium    headless=False
     New Page       ${url}
     Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
