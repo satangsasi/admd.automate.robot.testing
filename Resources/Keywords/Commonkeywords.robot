@@ -17,7 +17,7 @@ Append To Document Teardown
     Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
     Set Test Documentation Detail
     
-SSH Connect To 10.137.30.22
+SSH Connect To Server Log
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Connected to 10.137.30.22
     ...    *** Variables ***
@@ -37,8 +37,8 @@ Change Directory Path To Get Log
     Write    kubectl get pod -n admd
     ${output}          Read    delay=1s
     Log    ${output}
-    @{output}          Split To Lines        ${output}
-    @{kubectl_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
+    @{output_line}     Split To Lines        ${output}
+    @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Log Many    @{kubectl_path}
     Should Contain    ${kubectl_path}    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     Write    reset
@@ -48,8 +48,8 @@ Change Directory Path To Get Log
     Write    ls -lrt | tail
     ${output}      Read    delay=2s
     Log    ${output}
-    @{output}      Split To Lines        ${output}
-    @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
+    @{output_line}    Split To Lines        ${output}
+    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
     Read     delay=1s    # Wait for screen reset
     Log Many    @{cat_path}

@@ -31,7 +31,7 @@ Get OTP Password FBB
     [Documentation]    Owner: Nakarin
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
-    SSH Connect To Get Log Server
+    SSH Connect To Server Log
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}

@@ -470,7 +470,7 @@ Get Json Log Ldap From Server
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
     [Tags]    keyword_commands
-    SSH Connect To Get Log Server
+    SSH Connect To Server Log
     ${admd_path}    Change Directory Path To Get Log
     Write    cat ${admd_path} | grep -E "error"
     ${string}   Read    delay=1s
