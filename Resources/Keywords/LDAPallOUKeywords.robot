@@ -335,7 +335,7 @@ Verify Response Login Subtype Decode Jwt
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
         END    
     ELSE     
-            Fail    login subtype not equal "Content Provider" or "Employee"  
+         Fail    login subtype not equal "Content Provider" or "Employee"  
     END
 
 Get Value From Login Subtype For Verify Response Access Token 
@@ -347,7 +347,7 @@ Get Value From Login Subtype For Verify Response Access Token
     ELSE IF    '${state_test}' == 'refresh'
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Access Token      aut.login_subtype
     ELSE     
-            Fail    state test not equal "login" or "refresh"  
+        Fail    state test not equal "login" or "refresh"  
     END     
     [Return]    ${actual_value_login_subtype}
 
@@ -360,7 +360,7 @@ Get Value From Login Subtype For Verify Response Id Token
     ELSE IF    '${state_test}' == 'refresh'
         ${actual_value_login_subtype}    Get Refresh Value Response Jwt By Key Id Token      aut.login_subtype
     ELSE     
-            Fail    state test not equal "login" or "refresh"   
+        Fail    state test not equal "login" or "refresh"   
     END     
     [Return]   ${actual_value_login_subtype}
 
@@ -470,7 +470,7 @@ Get Json Log Ldap From Server
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
     [Tags]    keyword_commands
-    SSH Connect To 10.137.30.22
+    SSH Connect To Get Log Server
     ${admd_path}    Change Directory Path To Get Log
     Write    cat ${admd_path} | grep -E "error"
     ${string}   Read    delay=1s
@@ -505,7 +505,6 @@ Verify Response Decrypted Pid Ldap Employee Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_emp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_emp_pass}    
-
 
 Verify Response Decrypted Pid Ldap Employee Camel Case
     [Documentation]     Owner : sasipen 

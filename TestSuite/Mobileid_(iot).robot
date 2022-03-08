@@ -8,7 +8,7 @@ TST_F11_1_1_001 authorize without redirect_uri with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_002 token with redirect_uri (https) with scope profile_kyc
+TST_F11_1_1_002 token with redirect_uri https with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -16,7 +16,7 @@ TST_F11_1_1_003 authorize without redirect_uri with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_004 token with redirect_uri (deep link) with scope profile_kyc
+TST_F11_1_1_004 token with redirect_uri deep link with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -24,7 +24,7 @@ TST_F11_1_1_005 authorize without redirect_uri with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_006 token with redirect_uri (https) with scope profile_kyc
+TST_F11_1_1_006 token with redirect_uri https with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -32,7 +32,7 @@ TST_F11_1_1_007 authorize without redirect_uri with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_008 token with redirect_uri (deep link) with scope profile_kyc
+TST_F11_1_1_008 token with redirect_uri deep link with scope profile_kyc
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -40,7 +40,7 @@ TST_F11_1_1_009 authorize without redirect_uri with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_010 token with redirect_uri (https) with scope profile
+TST_F11_1_1_010 token with redirect_uri https with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -48,7 +48,7 @@ TST_F11_1_1_011 authorize without redirect_uri with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_012 token with redirect_uri (deep link) with scope profile
+TST_F11_1_1_012 token with redirect_uri deep link with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -56,7 +56,7 @@ TST_F11_1_1_013 authorize without redirect_uri with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
     
-TST_F11_1_1_014 token with redirect_uri (https) with scope profile
+TST_F11_1_1_014 token with redirect_uri https with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -64,7 +64,7 @@ TST_F11_1_1_015 authorize without redirect_uri with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_016 token with redirect_uri (deep link) with scope profile
+TST_F11_1_1_016 token with redirect_uri deep link with scope profile
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -72,7 +72,7 @@ TST_F11_1_1_017 authorize without redirect_uri with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_018 token with redirect_uri (https) with scope openId
+TST_F11_1_1_018 token with redirect_uri https with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
@@ -80,23 +80,23 @@ TST_F11_1_1_019 authorize without redirect_uri with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_020 token with redirect_uri (deep link) with scope openId
+TST_F11_1_1_020 token with redirect_uri deep link with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_021 authorize without redirect_uri with scope openId (2.2)
+TST_F11_1_1_021 authorize without redirect_uri with scope openId 
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_022 token with redirect_uri (https) with scope openId (2.2)
+TST_F11_1_1_022 token with redirect_uri https with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_023 authorize without redirect_uri with scope openId (2.2)
+TST_F11_1_1_023 authorize without redirect_uri with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 
-TST_F11_1_1_024 token with redirect_uri (deep link) with scope openId (2.2)
+TST_F11_1_1_024 token with redirect_uri deep link with scope openId
     [Documentation]    Owner: Nakarin
     [Tags]    Success-Case
 

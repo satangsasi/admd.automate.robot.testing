@@ -21,39 +21,39 @@ TST_F2_1_1_001 Verify LoginOTP
     # Send Post Request Validate Token
     # Verify Response Success Validate Token
 
-TST_F2_1_1_002 Verify LoginOTP for check device status : sold
-    [Documentation]
-    [Tags]
+TST_F2_1_1_002 Verify LoginOTP for check device status sold
+    [Documentation]    Owner:
+    [Tags]    Success
 
-TST_F2_1_1_003 Verify LoginOTP for check device status : stolen
-    [Documentation]
-    [Tags]
+TST_F2_1_1_003 Verify LoginOTP for check device status stolen
+    [Documentation]    Owner: 
+    [Tags]    Success
 
 TST_F2_1_1_006 Verify LoginOTP for check status profile active
-    [Documentation]
-    [Tags]
+    [Documentation]    Owner: 
+    [Tags]    Success
 
 TST_F2_1_1_007 Verify LoginOTP for check status profile suspendDebt1way
-    [Documentation]
-    [Tags]
+    [Documentation]    Owner:
+    [Tags]    Success
 
 TST_F2_1_1_008 Verify LoginOTP for check status profile creditLimited1way
-    [Documentation]
-    [Tags]
+    [Documentation]    Owner:
+    [Tags]    Success
 
-TST_F2_0_1_001 Verify FBB with invalid ip (ais fbb)
-    [Documentation]
-    [Tags]
+TST_F2_0_1_001 Verify FBB with invalid ip ais fbb
+    [Documentation]    Owner:
+    [Tags]    Fail
     
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
-    [Documentation]
-    [Tags]
+    [Documentation]    Owner:
+    [Tags]    Fail
     
 TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
-    [Documentation]
-    [Tags]
+    [Documentation]    Owner: 
+    [Tags]    Fail
     
-TST_F2_0_1_004 Verify FBB get token with FBB. No Contact number 8858980011
-    [Documentation]
-    [Tags]
+TST_F2_0_1_004 Verify FBB get token with FBB No Contact number 8858980011
+    [Documentation]    Owner:
+    [Tags]    Fail
     

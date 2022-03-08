@@ -87,7 +87,7 @@ TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorrect se
     Send Post Request Get Token Email Otp Invalid    400
     Verify Response Get Token Email Otp Error        ${error_message_invalid_request}
 
-TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong type (type = 0)
+TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong type 0
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp    demo
     Set Content Header Request Email Otp    ${url_request_email_otp}

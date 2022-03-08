@@ -280,6 +280,7 @@ Send Post Request Otp Validate Token
     &{message}    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
     Set Test Provisioning Data    Request OTP : ${message}[request]
     Set Test Actual Result        Request OTP : ${message}[response]
+    
 Set API Header Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
@@ -306,6 +307,7 @@ Send Post Request Get Token Validate Token
     &{message}    Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}
     Set Test Provisioning Data    Get Token : ${message}[request]
     Set Test Actual Result        Get Token : ${message}[response]
+
 Get Value Response Get Token By Key Access Token
     [Documentation]    Owner: sasipen
     ...    Get Value by key 
@@ -332,6 +334,7 @@ Send Post Request Delete Sub Scriber
     &{message}    Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}
     Set Test Provisioning Data    Delete Sub Scriber : ${message}[request]
     Set Test Actual Result        Delete Sub Scriber : ${message}[response]
+
 Set API Header Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
@@ -406,6 +409,7 @@ Set API Body Validate Token Invalid Access Token
     Set Content API Body    $..client_id      ${clientid_request_otp_validate_token}
     Set Content API Body    $..token.value    ${value_access_token_invalid}
     Set Content API Body    $..nonce          ${DATE_TIME}
+
 Send Post Request Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
@@ -505,5 +509,3 @@ Verify Response Validate Token Expired Access Token
     [Tags]    keyword_communicate
     Verify Value Response By Key    result_code            ${expected_result_code_40000}
     Verify Value Response By Key    developer_message      ${error_message_missing_invalid_parameter}
-
-

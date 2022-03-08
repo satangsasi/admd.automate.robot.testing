@@ -82,6 +82,7 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
     Set API Body Validate Token Invalid Client Id
     Send Post Request Validate Token Invalid Client Id    401
     Verify Response Validate Token Invalid Client Id
+    
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:sasipen
     ...
