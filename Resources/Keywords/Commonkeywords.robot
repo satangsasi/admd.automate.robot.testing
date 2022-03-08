@@ -35,6 +35,7 @@ Change Directory Path To Get Log
     [Tags]    keyword_action
     Write    kubectl get pod -n admd
     ${output}          Read    delay=1s
+    Log    ${output}
     @{output}          Split To Lines        ${output}
     @{kubectl_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset
@@ -43,6 +44,7 @@ Change Directory Path To Get Log
     Write    cd logs/detail/
     Write    ls -lrt | tail
     ${output}      Read    delay=2s
+    Log    ${output}
     @{output}      Split To Lines        ${output}
     @{cat_path}    Get Regexp Matches    ${output}[-2]    (\\w\\S+)
     Write    reset

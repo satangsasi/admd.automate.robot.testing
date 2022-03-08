@@ -43,6 +43,7 @@ Get Json OTP Password Log FBB
     ${mobile_number}    Replace String    ${fbb_user_validate_token}    0    66    count=1
     Write    cat ${admd_path} | grep -E "${mobile_number}.*oneTimePassword"
     ${string}   Read    delay=1s
+    Log    ${string}
     ${json_log}  Get Regexp Matches        ${string}    {.*
     Log Many    @{json_log}
     ${json_otp_log}    Convert String To JSON    ${json_log}[-1]
