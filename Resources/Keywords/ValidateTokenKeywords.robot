@@ -404,7 +404,7 @@ Set API Body Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${value_access_token_invalid}    Set Variable    ${ACTUAL_VALUE_ACCESS_TOKEN}n
+    Set Test Variable       ${VALUE_ACCESS_TOKEN_INVALID}    ${ACTUAL_VALUE_ACCESS_TOKEN}n
     Set Schema API Body     ${body_validate_token_schema}   
     Set Content API Body    $..client_id      ${clientid_request_otp_validate_token}
     Set Content API Body    $..token.value    ${value_access_token_invalid}
@@ -421,6 +421,7 @@ Send Post Request Validate Token Invalid Access Token
 Verify Response Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
+    Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${VALUE_ACCESS_TOKEN_INVALID}      
     Verify Value Response By Key    result_code            ${expected_result_code_40001} 
     Verify Value Response By Key    developer_message      ${error_message_invalid_code}
 
