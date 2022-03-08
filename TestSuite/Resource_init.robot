@@ -30,9 +30,9 @@ Resource    ../Resources/Variables/ValidateTokenVariables.robot
 Resource    ../Resources/Variables/FBBOTPVariable.robot
 
 # Repositories
-Resource    ../Resources/Repositories/ValidateTokenRepositories.robot
+# Resource    ../Resources/Repositories/ValidateTokenRepositories.robot
 Resource    ../Resources/Repositories/LDAPallOURepositories.robot
 Resource    ../Resources/Repositories/FBBOTPRepositories.robot
 
 # Localized
-Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
+# Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
