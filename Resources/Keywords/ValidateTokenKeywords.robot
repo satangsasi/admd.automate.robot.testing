@@ -49,18 +49,6 @@ Verify Response Success Validate Token
     Verify Value Response By Key    result_code          ${expected_result_code_pass}
     Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
 
-Create URL For Get Token Validate Token
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    Append Token(get from Auth Url) to get Token(API) Url
-    ...    ***Editor Note***
-    ...    - Add Set Test Variable (Provisioning Data)
-    ...    - Change Variable to ${url_for_token_validate_token}
-    [Tags]    keyword_communicate
-    Get Code From Authentication
-    ${url_get_token}     Replace String      ${url_for_token_validate_token}    _code_    ${CODE}
-    Set Test Provisioning Data    Get Token URL: ${url_get_token}
-    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-
 Set API Header B2C
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
