@@ -50,7 +50,7 @@ TST_F2_0_1_001 Verify FBB with invalid ip ais fbb
     [Tags]    Fail    On-Hold
     
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
-    [Documentation]    Owner:
+    [Documentation]    Owner: Nakarin
     [Tags]    Fail    vpn    Sprint3
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
