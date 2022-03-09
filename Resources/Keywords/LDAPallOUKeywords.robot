@@ -32,7 +32,10 @@ Set Response On Webpage To Json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     Take Screenshot Verify Success Scene
-    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE}[access_token]
+    # Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE}[access_token]
+    # Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE}[id_token]
+    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
+    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
 
 Get Value Response Ldap By Key
     [Documentation]     Owner : sasipen
