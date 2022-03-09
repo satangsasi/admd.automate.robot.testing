@@ -44,11 +44,6 @@ ${body_ldap_schema}            {"access_token": "_access_token_", "state": "_sta
 ${state_logout_ldap_cp}        Logout with Ldap CP (1.9)
 ${state_logout_ldap_cp_sso}    Logout with Ldap CP (1.9) (SSO)   
 
-# Error Message
-${json_error_message_invalid_grant}          {"error":"invalid_grant"}
-${json_error_message_invalid_request}        {"error":"invalid_request"}
-${error_message_invalid_user_or_password}    invalid_user_or_password
-
 # Response
 ${expected_expires_in_ldap}                           86400
 ${expected_refresh_token_expires_in_ldap}             86400
