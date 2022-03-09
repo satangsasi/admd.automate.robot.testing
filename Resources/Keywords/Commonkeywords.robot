@@ -75,3 +75,22 @@ Create Browser Session
     New Page       ${url}
     Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
+
+Verify Dictionary Value By Key
+    [Documentation]    Owner: Nakarin
+    ...    Support both variable type of dot.dict and dict
+    [Arguments]    ${dictionary}    ${key}    ${expected_value}
+    [Tags]    keyword_command
+    ${type}    Check Variable Type    ${dictionary}
+    &{dict}    Set Variable    ${dictionary}
+    IF         "${type}" == "<class 'dict'>"
+        ${value}    Set Variable    ${dict}[${key}]
+    ELSE IF    "${type}" == "<class 'robot.utils.dotdict.DotDict'>"
+        ${key}      Remove String    ${key}    $..
+        ${value}    Set Variable     ${dict.${key}}
+    ELSE
+        Fail    msg=Variable Type was not support
+    END
+    ${keyword_compare}    Check Compare Type    ${value}    ${expected_value}
+    Run Keyword    ${keyword_compare}    ${value}    ${expected_value}    values=False
+    ...    msg=Actual Value '${value}' of key '$..${key}' was not match expect value '${expected_value}'
