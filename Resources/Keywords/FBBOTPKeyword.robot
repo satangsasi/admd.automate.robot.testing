@@ -75,8 +75,7 @@ Decoded Access Token
     ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Actual Result    Access Token: ${decoded_access_token}
-    Set Test Actual Result    $..aut: ${decoded_access_token.aut}
+    Set Test Actual Result    Access Token $..aut: ${decoded_access_token.aut}
     Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
 
 Decoded ID Token
@@ -84,29 +83,28 @@ Decoded ID Token
     ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_id_token}       Jwt Decode Dot Dict    ${RESPONSE_JSON_MESSAGE.id_token}
-    Set Test Actual Result    ID Token: ${decoded_id_token}
-    Set Test Actual Result    $..aut: ${decoded_id_token.aut}
-    Set Test Actual Result    $..info: ${decoded_id_token.info}
-    Set Test Variable        ${DECODED_ID_TOKEN}     ${decoded_id_token}
+    Set Test Actual Result    ID Token $..aut: ${decoded_id_token.aut}
+    Set Test Actual Result    ID Token $..info: ${decoded_id_token.info}
+    Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
 
 Verify Decoded Value Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           login
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid        
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           login        
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp          
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous    
 
 Verify Decoded Value ID Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded ID Token
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.type               fbbid
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.action             login
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel      otp
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.network            anonymous
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.public_id         88XXXX1012
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
-    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type               fbbid
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action             login         
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel      otp           
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network            anonymous     
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id         88XXXX1012    
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid         
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569    
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn

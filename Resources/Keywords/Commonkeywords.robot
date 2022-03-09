@@ -41,8 +41,8 @@ Change Directory Path To Get Log
     @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Log Many    @{kubectl_path}
     Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
-    Write    reset
-    Read     delay=1s    # Wait for screen reset
+    # Write    reset
+    # Read     delay=1s    # Wait for screen reset
     Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
     Write    cd logs/detail/
     Write    ls -lrt | tail
@@ -50,8 +50,8 @@ Change Directory Path To Get Log
     Log    ${output}
     @{output_line}    Split To Lines        ${output}
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    Write    reset
-    Read     delay=1s    # Wait for screen reset
+    # Write    reset
+    # Read     delay=1s    # Wait for screen reset
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
@@ -79,18 +79,22 @@ Create Browser Session
 Verify Dictionary Value By Key
     [Documentation]    Owner: Nakarin
     ...    Support both variable type of dot.dict and dict
-    [Arguments]    ${dictionary}    ${key}    ${expected_value}
+    ...    $dictionary is dictionary variable
+    ...    $key is key to find value in dictionary
+    ...    $expected_value is value that used for verify value in key
+    ...    $msg is the name of dictionary/object
+    [Arguments]    ${dictionary}    ${key}    ${expected_value}    ${msg}=$..
     [Tags]    keyword_command
     ${type}    Check Variable Type    ${dictionary}
-    &{dict}    Set Variable    ${dictionary}
-    IF         "${type}" == "<class 'dict'>"
-        ${value}    Set Variable    ${dict}[${key}]
-    ELSE IF    "${type}" == "<class 'robot.utils.dotdict.DotDict'>"
-        ${key}      Remove String    ${key}    $..
-        ${value}    Set Variable     ${dict.${key}}
+    IF    "${type}" != "<class 'robot.utils.dotdict.DotDict'>"
+        &{dict}    Convert Variable Type To Dot Dict    ${dictionary}
     ELSE
-        Fail    msg=Variable Type was not support
+        &{dict}    Set Variable    ${dictionary}
     END
+    ${key}        Remove String      ${key}    $..
+    ${value}      Set Variable       ${dict.${key}}
+    ${message}    Set Variable If   '${msg}' != '$..'    '${msg}':{'${key}':'${value}'}    ${msg}{'${key}':'${value}'}
     ${keyword_compare}    Check Compare Type    ${value}    ${expected_value}
     Run Keyword    ${keyword_compare}    ${value}    ${expected_value}    values=False
     ...    msg=Actual Value '${value}' of key '$..${key}' was not match expect value '${expected_value}'
+    Log   ${message}
