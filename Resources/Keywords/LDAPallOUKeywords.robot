@@ -356,7 +356,7 @@ Get Value From Login Subtype For Verify Response Access Token
 Get Value From Login Subtype For Verify Response Id Token 
     [Documentation]     Owner : sasipen
     ...    Get value By Key login subtype form id token state login or refresh
-    [Arguments]    ${state_test} 
+    [Arguments]    ${state_test}
     IF    '${state_test}' == 'login'
         ${actual_value_login_subtype}    Get Value Response Jwt By Key Id Token     aut.login_subtype
     ELSE IF    '${state_test}' == 'refresh'
