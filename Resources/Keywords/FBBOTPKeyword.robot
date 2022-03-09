@@ -62,10 +62,48 @@ Create URL For Get Token FBB OTP
     Set Test Provisioning Data    Get Token URL: ${url_get_token}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
 
-Decode Access Token
+Jwt Decode Dot Dict
+    [Documentation]    Owner: Nakarin
+    ...    Decoded JWT Then return variable as dot.dict Type
+    [Arguments]    ${var}
+    ${decoded}   JWT Decode    ${var}
+    ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
+    [Return]    ${decoded_dot_dict}
+
+Decoded Access Token
+    [Documentation]    Owner: Nakarin
+    ...    Decode 
+    [Tags]    keyword_action
+    ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
+    Set Test Actual Result    Access Token: ${decoded_access_token}
+    Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
+
+Decoded ID Token
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
+    ${decoded_id_token}       Jwt Decode Dot Dict    ${RESPONSE_JSON_MESSAGE.id_token}
+    Set Test Actual Result    ID Token: ${decoded_id_token}
+    Set Test Variable        ${DECODED_ID_TOKEN}     ${decoded_id_token}
+
+Verify Decoded Value Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    ${decode_access_token}    JWT Decode    ${RESPONSE_JSON_MESSAGE}[access_token]
-    Set Test Actual Result    Access Token: ${decode_access_token}
-    ${decode_id_token}        JWT Decode    ${RESPONSE_JSON_MESSAGE}[id_token]
-    Set Test Actual Result    Access Token: ${decode_id_token}
+    Decoded Access Token
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           login
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
+
+Verify Decoded Value ID Token
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
+    Decoded ID Token
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.type               fbbid
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.action             login
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel      otp
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..aut.network            anonymous
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..nonce                  ADMD-220307PYb80fgTC7Z
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.public_id         88XXXX1012
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
+    Run Keyword And Continue On Failure    Verify Dictionary Value By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
