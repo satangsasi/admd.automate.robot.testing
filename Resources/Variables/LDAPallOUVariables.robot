@@ -1,7 +1,7 @@
 *** Variables ***
 # User Provider
 ${user_ldap_provider}            425
-${pass_ldap_provider}            password
+${pass_ldap_provider}            password1
 ${invalid_user_ldap_provider}    426
 ${invalid_pass_ldap_provider}    password425
 
