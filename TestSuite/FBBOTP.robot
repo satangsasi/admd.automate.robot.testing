@@ -51,7 +51,19 @@ TST_F2_0_1_001 Verify FBB with invalid ip ais fbb
     
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     [Documentation]    Owner:
-    [Tags]    Fail    On-Hold
+    [Tags]    Fail    vpn    Sprint3
+    Create Browser Session    ${url_auth_fbb}
+    Fill Username FBB OTP
+    Click Request OTP Button
+    Get OTP Password FBB
+    Fill OTP Password FBB
+    Click Login Button In FBB OTP
+    Create URL For Get Token FBB OTP
+    Wait For Authentication Code Expire
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    # Verify Decoded Value Access Token
+    # Verify Decoded Value ID Token
     
 TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
     [Documentation]    Owner: 
