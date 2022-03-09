@@ -343,7 +343,7 @@ TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button In LDAP
     Verify Login Fail
-    # Get Json Log Ldap From Server
+    # Get Json Error Log Ldap From Server
     # Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_002 Verify Ldap Content provider with invalid user
@@ -353,7 +353,7 @@ TST_F10_0_1_002 Verify Ldap Content provider with invalid user
     Fill Username And Password    ${invalid_user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Verify Login Fail
-    Get Json Log Ldap From Server 
+    Get Json Error Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
@@ -392,7 +392,7 @@ TST_F10_0_1_007 Verify Login ldap employee with invalid password
     Fill Username And Password    ${user_ldap_employee}    ${invalid_user_ldap_employee}
     Press Login Button In LDAP
     Verify Login Fail
-    Get Json Log Ldap From Server 
+    Get Json Error Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_008 Verify Login ldap employee with invalid user
@@ -402,7 +402,7 @@ TST_F10_0_1_008 Verify Login ldap employee with invalid user
     Fill Username And Password    ${invalid_pass_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP
     Verify Login Fail
-    Get Json Log Ldap From Server 
+    Get Json Error Log Ldap From Server 
     Verify Value Log Error From Server    ${error_message_invalid_user_or_password}
 
 TST_F10_0_1_009 Verify Login ldap employee with missing parameter

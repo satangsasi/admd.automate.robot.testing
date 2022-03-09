@@ -6,7 +6,7 @@ Test Teardown    Run Keyword And Ignore Error    Set Test Documentation Detail
 *** Test Cases ***
 TST_F2_1_1_001 Verify LoginOTP
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    vpn    Sprint3
+    [Tags]    Success    vpn    Sprint3    Test
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -61,7 +61,7 @@ TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     Create URL For Get Token FBB OTP
     Wait For Authentication Code Expire
     New Page    ${URL_GET_TOKEN}
-    Set Response On Webpage To Json
+    Verify Invalid Grant On Webpage
     # Verify Decoded Value Access Token
     # Verify Decoded Value ID Token
     
