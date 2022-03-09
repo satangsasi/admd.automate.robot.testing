@@ -71,7 +71,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=chromium    headless=True
+    Set Up Browser Fullscreen    browser=chromium    headless=False
     New Page       ${url}
     Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
