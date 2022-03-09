@@ -17,8 +17,8 @@ Get Code From Authentication
     ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
-    ...    - Add Set Test Provisioning Data
-    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}    10ms    Get Url    matches    .*code=
+    ...    - Add Set Test Provisioning Data   
+    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Set Test Provisioning Data    Authentication Code: ${code}
@@ -32,12 +32,10 @@ Set Response On Webpage To Json
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Log Many             &{RESPONSE_JSON_MESSAGE}
     Take Screenshot Verify Success Scene
-    # Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE}[access_token]
-    # Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE}[id_token]
     Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
     Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
 
-Get Value Response Ldap By Key
+Get Value Response On Web Page By Key
     [Documentation]     Owner : sasipen
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
     [Arguments]    ${response_key}
@@ -48,11 +46,11 @@ Get Value Response Ldap
     [Documentation]     Owner : sasipen
     ...    Get value By Key in &{RESPONSE_JSON_MESSAGE} Then Return to ${value_token_type}
     ...    Set value to global for use in keyword verify
-    ${value_token_type}    Get Value Response Ldap By Key    token_type
+    ${value_token_type}    Get Value Response On Web Page By Key    token_type
     Set Test Variable    ${ACTUAL_VALUE_TOKEN_TYPE}    ${value_token_type} 
-    ${value_expires_in}    Get Value Response Ldap By Key    expires_in
+    ${value_expires_in}    Get Value Response On Web Page By Key    expires_in
     Set Test Variable    ${ACTUAL_VALUE_EXPIRES_IN}    ${value_expires_in}
-    ${value_refresh_token_expires_in}    Get Value Response Ldap By Key    refresh_token_expires_in
+    ${value_refresh_token_expires_in}    Get Value Response On Web Page By Key    refresh_token_expires_in
     Set Test Variable    ${ACTUAL_VALUE_REFRESH_TOKEN_EXPIRES_IN}    ${value_refresh_token_expires_in}
 
 Set Data Response Ldap For Verify
@@ -80,7 +78,7 @@ Verify Response Ldap
 Decode Login Token Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response Ldap By Key    access_token
+    ${value}         Get Value Response On Web Page By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value}
     Log    ${jwt_decode}
     Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode}
@@ -89,7 +87,7 @@ Decode Login Token Jwt By Key Access Token
 Decode Login Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response Ldap By Key    id_token 
+    ${value}         Get Value Response On Web Page By Key    id_token 
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
     Set Test Actual Result    Login id token jwt decode : ${jwt_decode}
@@ -97,7 +95,7 @@ Decode Login Token To Jwt By Key Id Token
 Decode Refresh Token To Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Get value state refresh By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response Ldap By Key    access_token
+    ${value}         Get Value Response On Web Page By Key    access_token
     ${jwt_decode}    Jwt Decode      ${value} 
     Set Test Variable         ${JWT_DECODE_REFRESH__ACCESS_TOKEN}      ${jwt_decode} 
     Set Test Actual Result    Refresh access token jwt decode : ${jwt_decode} 
@@ -105,7 +103,7 @@ Decode Refresh Token To Jwt By Key Access Token
 Decode Refresh Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state refresh By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response Ldap By Key    id_token
+    ${value}         Get Value Response On Web Page By Key    id_token
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}
     Set Test Variable         ${JWT_DECODE_REFRESH__ID_TOKEN}      ${jwt_decode}
@@ -175,7 +173,7 @@ Verify Value Response Ldap By Key
     [Documentation]     Owner : sasipen
     ...    After get text and change to json message verify value By Key use should match regexp
     [Arguments]   ${response_key}
-    ${value}     Get Value Response Ldap By Key    ${response_key}
+    ${value}     Get Value Response On Web Page By Key    ${response_key}
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
@@ -183,7 +181,7 @@ Get Code From Key Refresh Token
     [Documentation]     Owner : sasipen
     ...    Get value By Key refresh token after use link get token
     ...    Set value to global for create link get refresh token
-    ${code_refresh_token}    Get Value Response Ldap By Key    refresh_token
+    ${code_refresh_token}    Get Value Response On Web Page By Key    refresh_token
     Set Test Variable    ${CODE_REFRESH_TOKEN}    ${code_refresh_token} 
 
 Create URL For Get Refresh Token
@@ -208,7 +206,7 @@ Open Browser Login And Open Page Get Token
 Get Value From Key Access Token Log Out
     [Documentation]     Owner : sasipen
     ...    Get value By Key access token form file json message state logout
-    ${value}    Get Value Response Ldap By Key    access_token
+    ${value}    Get Value Response On Web Page By Key    access_token
     Set Test Variable    ${VALUE_ACCESS_TOKEN_FOR_LOGOUT}    ${value} 
 
 Set Content Header Ldap Logout
@@ -243,7 +241,7 @@ Verify Response State Ldap Logout
     [Arguments]        ${expected_state}
     Verify Value Response By Key    state        ${expected_state}
     ${actual_value_state}    Get Value Response By Key    state
-    # Set Test Actual Result    "state" : "${actual_value_state}"
+
 
 Open Browser Login Employee And Open Page Get Token
     [Documentation]     Owner : sasipen
