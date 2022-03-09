@@ -21,6 +21,7 @@ Get Code From Authentication
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}    10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
+    Set Test Provisioning Data    Authenticate URL: ${url_auth_access}
     Set Test Provisioning Data    Authentication Code: ${code}
     Set Test Variable    ${CODE}    ${code}
 
@@ -29,11 +30,9 @@ Set Response On Webpage To Json
     ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
     ${message}           Get Text    ${lbl_json_response_on_webpage}
     &{json_message}      Evaluate    json.loads('''${message}''')    json
+    Log Many             &{json_message}
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
-    Log Many             &{RESPONSE_JSON_MESSAGE}
     Take Screenshot Verify Success Scene
-    # Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE}[access_token]
-    # Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE}[id_token]
     Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
     Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
 
@@ -468,7 +467,7 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
     # Append Response Value To Actual Document
 
-Get Json Log Ldap From Server
+Get Json Error Log Ldap From Server
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
