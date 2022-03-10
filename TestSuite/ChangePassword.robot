@@ -14,7 +14,7 @@ TST_F8_1_1_001 Verlify changepassword with Msisdn password
     Fill Username And Password Login Page Change Password
     Click Login Button In Login Page Change Password
     Get Code From Authentication
-    Create URL For Get Token Change Password
+    Create URL For Get Token     ${url_get_token_changepassword_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
 TST_F8_1_1_002 Verlify changepassword with Ldap Content provider

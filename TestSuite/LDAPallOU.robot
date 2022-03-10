@@ -12,7 +12,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
-    Create URL For Get Token
+    Create URL For Get Token      ${url_get_token_schema}
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
@@ -27,9 +27,9 @@ TST_F10_1_1_002 Verify sso Ldap Content provider partnerId 30233
     ...    \r\n User logins successfully.
     [Tags]    Content_Provider 
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
-    New Page                 ${url_auth_ldap_${test_site}}
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    New Page                    ${url_auth_ldap_${test_site}}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Login Token Jwt By Key Access Token
@@ -68,8 +68,8 @@ TST_F10_1_1_004 Verify Refresh Token with SSO Ldap Content provider
     [Tags]    Content_Provider
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_scope_profile}
     New Page                                      ${url_auth_ldap_scope_profile}
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso    Content Provider
@@ -111,8 +111,8 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
     [Tags]    Content_Provider 
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_no_scope_profile}
     New Page                                      ${url_auth_ldap_no_scope_profile}
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso    Content Provider
@@ -155,9 +155,9 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     ...    \r\n Successfully logout
     [Tags]    Content_Provider
     Open Browser Login And Open Page Get Token    ${url_auth_ldap_${test_site}}
-    New Page                 ${url_auth_ldap_${test_site}} 
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    New Page                    ${url_auth_ldap_${test_site}} 
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_ldap_logout_${test_site}}
@@ -174,7 +174,7 @@ TST_F10_1_1_011 Verify login Ldap employee partnerId 30233
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP
-    Create URL For Get Token
+    Create URL For Get Token      ${url_get_token_schema}
     New Page                      ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
@@ -189,9 +189,9 @@ TST_F10_1_1_012 Verify sso Ldap employee partnerId 30233
     ...    \r\n User sso successfully.
     [Tags]    Employee
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
-    New Page               ${url_auth_ldap_employee_${test_site}} 
-    Create URL For Get Token
-    New Page               ${URL_GET_TOKEN}
+    New Page                    ${url_auth_ldap_employee_${test_site}} 
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Data Response Ldap For Verify
     Verify Response Ldap
     Decode Login Token Jwt By Key Access Token
@@ -231,9 +231,9 @@ TST_F10_1_1_014 Verify Refresh Token with SSO ldap employee
     ...    \r\n Successfully login and got access_token. 
     [Tags]    Employee
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
-    New Page                 ${url_auth_ldap_employee_${test_site}}
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}   
+    New Page                    ${url_auth_ldap_employee_${test_site}}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}   
     Set Response On Webpage To Json 
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso   Employee
@@ -276,9 +276,9 @@ TST_F10_1_1_016 Verify Refresh Token with SSO ldap employee
     ...    \r\n Successfully login and got access_token. 
     [Tags]    Employee
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_no_scope_profile}
-    New Page    ${url_auth_ldap_employee_no_scope_profile}
-    Create URL For Get Token
-    New Page    ${URL_GET_TOKEN}
+    New Page                    ${url_auth_ldap_employee_no_scope_profile}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Decode Login Token Jwt By Key Access Token
     Verify Response Decode Login Token By Key Access Token    sso   Employee
@@ -325,9 +325,9 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     ...    \r\n Successfully logout
     [Tags]    Employee    demosprint2
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee_${test_site}}
-    New Page                 ${url_auth_ldap_employee_${test_site}}
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    New Page                    ${url_auth_ldap_employee_${test_site}}
+    Create URL For Get Token    ${url_get_token_schema}
+    New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
@@ -368,7 +368,7 @@ TST_F10_0_1_004 Verify get token Ldap Content provider with authhcode expire
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
-    Create URL For Get Token
+    Create URL For Get Token      ${url_get_token_schema}
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}
     Verify Invalid Grant On Webpage
@@ -417,7 +417,7 @@ TST_F10_0_1_010 Verify get token ldap employee with authhcode expire
     Create Browser Session        ${url_auth_ldap_employee_${test_site}}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP
-    Create URL For Get Token
+    Create URL For Get Token      ${url_get_token_schema}
     Wait For Authentication Code Expire
     New Page                      ${URL_GET_TOKEN}
     Verify Invalid Grant On Webpage

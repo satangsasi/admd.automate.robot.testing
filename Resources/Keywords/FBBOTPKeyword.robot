@@ -50,18 +50,6 @@ Get Json OTP Password Log FBB
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Create URL For Get Token FBB OTP
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    Append Token(get from Auth Url) to get Token(API) Url
-    ...    ***Editor Note***
-    ...    - Add Set Test Variable (Provisioning Data)
-    ...    - Change Variable to ${url_for_token_validate_token}
-    [Tags]    keyword_communicate
-    Get Code From Authentication
-    ${url_get_token}     Replace String      ${url_for_token_validate_token}    _code_    ${CODE}
-    Set Test Provisioning Data    Get Token URL: ${url_get_token}
-    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
     ...    Decoded JWT Then return variable as dot.dict Type

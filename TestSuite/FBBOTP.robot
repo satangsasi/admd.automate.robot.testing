@@ -13,7 +13,7 @@ TST_F2_1_1_001 Verify LoginOTP
     Get OTP Password FBB
     Fill OTP Password FBB
     Click Login Button In FBB OTP
-    Create URL For Get Token FBB OTP
+    Create URL For Get Token     ${url_for_token_validate_token}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Verify Decoded Value Access Token
@@ -52,7 +52,7 @@ TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     Get OTP Password FBB
     Fill OTP Password FBB
     Click Login Button In FBB OTP
-    Create URL For Get Token FBB OTP
+    Create URL For Get Token     ${url_for_token_validate_token}
     Wait For Authentication Code Expire
     New Page    ${URL_GET_TOKEN}
     Verify Invalid Grant On Webpage

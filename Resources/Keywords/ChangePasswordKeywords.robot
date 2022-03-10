@@ -16,14 +16,5 @@ Click Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen
     [Tags]    Keyword_communicate
     Click    ${btn_login_changepassword} 
-
-Create URL For Get Token Change Password
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    Append Token(get from Auth Url) to get Token(API) Url
-    ...    ***Editor Note***
-    ...    - Add Set Test Variable (Provisioning Data)
-    Get Code From Authentication
-    ${url_get_token}     Replace String      ${url_get_token_changepassword_schema}    _code_    ${CODE}
-    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-
+    [Arguments]
 

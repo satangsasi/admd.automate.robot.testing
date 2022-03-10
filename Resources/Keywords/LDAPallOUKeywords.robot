@@ -3,46 +3,6 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Create URL For Get Token
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    Append Token(get from Auth Url) to get Token(API) Url
-    ...    ***Editor Note***
-    ...    - Add Set Test Variable (Provisioning Data)
-    Get Code From Authentication
-    ${url_get_token}     Replace String      ${url_get_token_schema}    _code_    ${CODE}
-    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-
-Get Code From Authentication
-    [Documentation]     Owner : sasipen    Editor: Nakarin
-    ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
-    ...    ***Editor Note***
-    ...    - Add Set Test Variable (Provisioning Data)
-    ...    - Add Set Test Provisioning Data   
-    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
-    ${code}    Split String         ${url_auth_access}    =
-    ${code}    Set Variable         ${code}[1]
-    Set Test Provisioning Data    Authenticate URL: ${url_auth_access}
-    Set Test Provisioning Data    Authentication Code: ${code}
-    Set Test Variable    ${CODE}    ${code}
-
-Set Response On Webpage To Json
-    [Documentation]     Owner : sasipen
-    ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
-    ${message}           Get Text    ${lbl_json_response_on_webpage}
-    &{json_message}      Evaluate    json.loads('''${message}''')    json
-    Log Many             &{json_message}
-    Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
-    Take Screenshot Verify Success Scene
-    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
-
-Get Value Response On Web Page By Key
-    [Documentation]     Owner : sasipen
-    ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
-    [Arguments]    ${response_key}
-    ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
-    [Return]       ${value}
-
 Get Value Response Ldap 
     [Documentation]     Owner : sasipen
     ...    Get value By Key in &{RESPONSE_JSON_MESSAGE} Then Return to ${value_token_type}
@@ -201,8 +161,8 @@ Open Browser Login And Open Page Get Token
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    Create URL For Get Token      ${url_get_token_schema}
+    New Page                      ${URL_GET_TOKEN}
 
 Get Value From Key Access Token Log Out
     [Documentation]     Owner : sasipen
@@ -251,8 +211,8 @@ Open Browser Login Employee And Open Page Get Token
     Create Browser Session   ${url}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP
-    Create URL For Get Token
-    New Page                 ${URL_GET_TOKEN}
+    Create URL For Get Token      ${url_get_token_schema}
+    New Page                      ${URL_GET_TOKEN}
 
 Get Value Response Jwt By Key Access Token
     [Documentation]     Owner : sasipen
