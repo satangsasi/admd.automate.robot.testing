@@ -31,6 +31,7 @@ Get OTP Password FBB
     [Documentation]    Owner: Nakarin
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
+    [Tags]    keyword_action
     SSH Connect To Server Log
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
@@ -79,20 +80,20 @@ Verify Decoded Value Access Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
-    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid        
-    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           login        
-    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp          
-    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous    
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           login
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
 
 Verify Decoded Value ID Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded ID Token
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type               fbbid
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action             login         
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel      otp           
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network            anonymous     
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id         88XXXX1012    
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid         
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569    
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action             login
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel      otp
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network            anonymous
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id         88XXXX1012
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
