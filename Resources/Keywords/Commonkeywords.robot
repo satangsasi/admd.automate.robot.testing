@@ -13,7 +13,7 @@ Append To Document Teardown
     Set Test Provisioning Data    User : ${USER}
     Set Test Provisioning Data    Password : ${PASS}
     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+    # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
     Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
     Set Test Documentation Detail
     
@@ -119,7 +119,7 @@ Get Code From Authentication
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
-    Set Test Provisioning Data    Authenticate URL: ${url_auth_access}
+    Set Test Provisioning Data    Authenticate URL For Get Code: ${url_auth_access}
     Set Test Provisioning Data    Authentication Code: ${code}
     Set Test Variable    ${CODE}    ${code}
 

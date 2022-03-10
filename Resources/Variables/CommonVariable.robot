@@ -8,7 +8,7 @@ ${content_type_json}     application/json
 ${reference}             1
 ${header_content_type}          Content-Type
 ${header_x_tid}                 X-Tid
-${header_only_content_type_schema}                   {"Content-Type": "_Content-Type_"}
+${header_only_content_type_schema}    {"Content-Type": "_Content-Type_"}
 
 # error message
 ${error_message_invalid_user_or_password}    invalid_user_or_password
