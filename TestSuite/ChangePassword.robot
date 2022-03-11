@@ -26,7 +26,7 @@ TST_F8_1_1_002 Verlify changepassword with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
     [Tags]    Change_password    Ldap Content provider    demosprint3 
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -49,7 +49,7 @@ TST_F8_0_1_001 Verlify changepassword with Ldap Content provider
     ...    \r\ntype = ldap 
     ...    \r\nwrong old password
     [Tags]    Change_password    Ldap Content provider    demosprint3  
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -66,7 +66,7 @@ TST_F8_0_1_002 Verlify changepassword with Ldap Content provider
     ...    \r\ntype = ldap 
     ...    \r\nnew password contains Thai character
     [Tags]    Change_password    Ldap Content provider    demosprint3 
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -83,7 +83,7 @@ TST_F8_0_1_003 Verlify changepassword with Ldap Content provider
     ...    type = ldap 
     ...    new password contains "&"
     [Tags]    Change_password    Ldap Content provider    demosprint3     
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -100,7 +100,7 @@ TST_F8_0_1_004 Verlify changepassword with Ldap Content provider
     ...    \r\ntype = ldap 
     ...    \r\naccess_token expired
     [Tags]    Change_password    Ldap Content provider    demosprint3     test
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
