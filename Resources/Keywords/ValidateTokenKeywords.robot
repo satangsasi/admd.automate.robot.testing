@@ -33,7 +33,7 @@ Get Access Token ClientCredential
     [Documentation]    Editor: Nakarin
     ...    Get Access Token of Client Credential then Set Test Variable ${ACCESS_TOKEN_CLIENTCREDENTIAL}
     [Tags]    keyword_communicate
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_browser}
     ...                            ${client_secret_id_OhFw3u_browser}

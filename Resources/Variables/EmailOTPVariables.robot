@@ -2,11 +2,7 @@
 ${ssh_user}          serveradm
 ${ssh_pass}          R3dh@t!@#
 ${ssh_ip_address}    10.137.30.22
-
-#Url
-${url_request_email_otp}          http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
-${url_get_token_email_otp}        http://10.137.30.22:31191/v3.2/oauth/token
-
+                    
 #body
 ${client_id_PK+WUA}               PK+WUAlHhnhgy9yNCzAk4PBHpmnSUamXM/Wcuomo2pVYgUOjPoOLgg==
 ${client_secret_id_PK+WUA}        a67dd929a935d9bdd70c0845f7a5dbe5

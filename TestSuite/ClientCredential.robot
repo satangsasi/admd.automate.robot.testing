@@ -10,7 +10,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...    ***Expected Result***
     ...    \r\n User can loginB2B success and  received Access Token.
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u}
@@ -26,7 +26,7 @@ TST_F7_1_1_002 ClientCredentials with client id on browser
     ...    ***Expected Result***
     ...    \r\n User can loginB2B success and  received Access Token.
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_browser}
     ...                            ${client_secret_id_OhFw3u_browser}
@@ -42,7 +42,7 @@ TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u_invalid}
     ...                            ${client_secret_id_OhFw3u}
@@ -57,7 +57,7 @@ TST_F7_0_1_002 Verify ClientCredentials with Invalid client_secret
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u_invalid}
@@ -72,7 +72,7 @@ TST_F7_0_1_003 Verify ClientCredentials with Invalid grant_type
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_OhFw3u}
@@ -87,7 +87,7 @@ TST_F7_0_1_004 Verify ClientCredentials with No match client_id and client_secre
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
     ...                            ${client_secret_id_another}
@@ -102,7 +102,7 @@ TST_F7_0_1_005 Verify ClientCredentials with missing client_id
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Id    ${client_secret_id_OhFw3u}
     ...                                              ${grant_type}
@@ -116,7 +116,7 @@ TST_F7_0_1_006 Verify ClientCredentials with missing client_secret
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Secret    ${client_id_OhFw3u}  
     ...                                                  ${grant_type}     
@@ -130,7 +130,7 @@ TST_F7_0_1_007 Verify ClientCredentials with missing grant_type
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
+    Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Grant Type    ${client_id_OhFw3u}
     ...                                               ${client_secret_id_OhFw3u}
@@ -144,7 +144,7 @@ TST_F7_0_1_008 Verify ClientCredentials With Unknow URL
     ...    ***Expected Result***
     ...    \r\n User can't loginB2B
     [Tags]    Client_Credentials
-    Set Content Header Client Credentials    ${url_client_credentials_${test_site}_invalid}
+    Set Content Header Client Credentials    ${url_client_credentials_invalid}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u} 
     ...                            ${client_secret_id_OhFw3u} 

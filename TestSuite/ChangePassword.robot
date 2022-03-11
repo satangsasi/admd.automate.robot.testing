@@ -25,8 +25,8 @@ TST_F8_1_1_002 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3 
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    [Tags]    Change_password    Ldap Content provider    demosprint3 
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -48,8 +48,8 @@ TST_F8_0_1_001 Verlify change_password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\nwrong old password
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3  
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    [Tags]    Change_password    Ldap Content provider    demosprint3  
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -65,8 +65,8 @@ TST_F8_0_1_002 Verlify change_password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\nnew password contains Thai character
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3 
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    [Tags]    Change_password    Ldap Content provider    demosprint3 
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -82,8 +82,8 @@ TST_F8_0_1_003 Verlify change_password with Ldap Content provider
     ...    \r\n***Condition***
     ...    type = ldap 
     ...    new password contains "&"
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3     
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    [Tags]    Change_password    Ldap Content provider    demosprint3     
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}
@@ -99,8 +99,8 @@ TST_F8_0_1_004 Verlify change_password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\naccess_token expired
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3
-    Create Browser Session        ${url_auth_ldap_${test_site}}
+    [Tags]    Change_password    Ldap Content provider    demosprint3
+    Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
     Create URL For Get Token      ${url_get_token_schema}

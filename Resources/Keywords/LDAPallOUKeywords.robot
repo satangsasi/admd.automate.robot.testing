@@ -150,7 +150,7 @@ Create URL For Get Refresh Token
     ...    Append ${CODE_REFRESH_TOKEN}(link get refresh token) to get refresh token Url 
     Wait Until Network Is Idle
     Get Code From Key Refresh Token
-    ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema_${test_site}}    _code_    ${CODE_REFRESH_TOKEN}
+    ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema}    _code_    ${CODE_REFRESH_TOKEN}
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
     Log    ${URL_GET_REFRESH_TOKEN}
 
