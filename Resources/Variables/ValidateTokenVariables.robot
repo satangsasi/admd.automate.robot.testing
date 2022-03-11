@@ -303,7 +303,7 @@ ${expected_result_code_40401}    40401
 
 
 
-${body_validate_token_schema}                ${CURDIR}/../Schemas/ValidateTokenSchema.json
-${body_request_otp_validate_token_schema}    ${CURDIR}/../Schemas/BodyRequestOtpValidateTokenSchema.json
-${body_get_token_validate_token_schema}      ${CURDIR}/../Schemas/ฺBodyGetTokenValidateTokenSchema.json
-${body_delete_sub_scriber_schema}            ${CURDIR}/../Schemas/ฺBodyDeleteSubScriber.json
+${body_validate_token_schema}                ${CURDIR}/../Schemas/ValidateTokenSchemas/ValidateTokenSchema.json
+${body_request_otp_validate_token_schema}    ${CURDIR}/../Schemas/ValidateTokenSchemas/BodyRequestOtpValidateTokenSchema.json
+${body_get_token_validate_token_schema}      ${CURDIR}/../Schemas/ValidateTokenSchemas/BodyGetTokenValidateTokenSchema.json
+${body_delete_sub_scriber_schema}            ${CURDIR}/../Schemas/ValidateTokenSchemas/BodyDeleteSubScriber.json
