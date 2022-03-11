@@ -99,7 +99,7 @@ TST_F8_0_1_004 Verlify change_password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\naccess_token expired
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3     test
+    [Tags]    Change_password    Ldap_Content_provider    demosprint3
     Create Browser Session        ${url_auth_ldap_${test_site}}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
