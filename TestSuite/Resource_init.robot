@@ -37,4 +37,8 @@ Resource    ../Resources/Repositories/FBBOTPRepositories.robot
 Resource    ../Resources/Repositories/ChangePasswordRepositories.robot
 
 # Localized
-# Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
+Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
+
+
+*** Variables ***
+${LANG}    EN

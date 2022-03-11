@@ -243,7 +243,6 @@ Verify Response State Ldap Logout
     Verify Value Response By Key    state        ${expected_state}
     ${actual_value_state}    Get Value Response By Key    state
 
-
 Open Browser Login Employee And Open Page Get Token
     [Documentation]     Owner : sasipen
     ...    Group keyword open url, fill user and pass , press login. create url for get token of employee
@@ -337,7 +336,7 @@ Verify Response Login Subtype Decode Jwt
             Verify Value Should Be Equal     ${actual_value_login_subtype}    ${expected_value_login_subtype_employee}
         END    
     ELSE     
-         Fail    login subtype not equal "Content Provider" or "Employee"  
+        Fail    login subtype not equal "Content Provider" or "Employee"  
     END
 
 Get Value From Login Subtype For Verify Response Access Token 

@@ -10,19 +10,14 @@ TST_F8_1_1_001 Verlify changepassword with Msisdn password
     ...    type = msisdn_password 
     ...    Msisdn password ไม่มี login_subtype
     [Tags]    Change_password    
-    Create Browser Session    ${url_login_changepassword}
+    Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Click Login Button In Login Page Change Password
     Get Code From Authentication
     Create URL For Get Token Change Password
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
-TST_F8_1_1_002 Verlify changepassword with Ldap Content provider
-    [Documentation]    Owner: sasipen
-    ...    \r\n***Condition***
-    ...    ค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Change_password    On-Hold
-
+    
 TST_F8_1_1_002 Verlify changepassword with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
