@@ -97,3 +97,4 @@ Verify Decoded Value ID Token
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
+    
