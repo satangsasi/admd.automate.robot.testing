@@ -8,7 +8,7 @@ ${content_type_json}     application/json
 ${reference}             1
 ${header_content_type}          Content-Type
 ${header_x_tid}                 X-Tid
-${header_only_content_type_schema}                   {"Content-Type": "_Content-Type_"}
+${header_only_content_type_schema}    {"Content-Type": "_Content-Type_"}
 
 # error message
 ${error_message_invalid_user_or_password}    invalid_user_or_password
@@ -21,6 +21,7 @@ ${error_message_server_error}                server_error
 ${error_message_subscriber_not_found}        subscriber_not_found
 ${error_message_missing_invalid_parameter}   missing_or_invalid_parameter
 ${error_message_data_not_found}              data_not_found
+${error_message_invalid_grant}               invalid_grant
 
 # Json Message
 ${json_error_message_invalid_grant}          {"error":"invalid_grant"}

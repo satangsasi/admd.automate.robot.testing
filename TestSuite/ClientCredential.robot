@@ -105,8 +105,8 @@ TST_F7_0_1_005 Verify ClientCredentials with missing client_id
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Id    ${client_secret_id_OhFw3u}
-    ...                            ${grant_type}
-    ...                            ${nonce}
+    ...                                              ${grant_type}
+    ...                                              ${nonce}
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
 
@@ -119,8 +119,8 @@ TST_F7_0_1_006 Verify ClientCredentials with missing client_secret
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Client Secret    ${client_id_OhFw3u}  
-    ...                            ${grant_type}     
-    ...                            ${nonce}
+    ...                                                  ${grant_type}     
+    ...                                                  ${nonce}
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
     
@@ -133,8 +133,8 @@ TST_F7_0_1_007 Verify ClientCredentials with missing grant_type
     Set Content Header Client Credentials    ${url_client_credentials_${test_site}}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials Missing Grant Type    ${client_id_OhFw3u}
-    ...                            ${client_secret_id_OhFw3u}
-    ...                            ${nonce}
+    ...                                               ${client_secret_id_OhFw3u}
+    ...                                               ${nonce}
     Send Request Client Credentials Invalid    400
     Verify Response Client Credentials Error   ${error_message_invalid_request}
     

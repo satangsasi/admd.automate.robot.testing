@@ -270,7 +270,7 @@ Set API Body Validate Token Expired Access Token
     Get Time Nonce
     Set Schema API Body     ${body_validate_token_schema}   
     Set Content API Body    $..client_id      ${clientid_request_otp_validate_token}
-    Set Content API Body    $..token.value    ${expired_access_token} 
+    Set Content API Body    $..token.value    ${expired_access_token_validate_token} 
     Set Content API Body    $..nonce          ${DATE_TIME}
 
 Send Post Request Validate Token Expired Access Token
@@ -284,7 +284,7 @@ Send Post Request Validate Token Expired Access Token
 Verify Response Validate Token Expired Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${expired_access_token}         
+    Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${expired_access_token_validate_token}         
     Verify Value Response By Key    result_code            ${expected_result_code_40401}
     Verify Value Response By Key    developer_message      ${error_message_data_not_found}
 

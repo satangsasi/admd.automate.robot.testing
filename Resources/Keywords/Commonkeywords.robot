@@ -13,7 +13,7 @@ Append To Document Teardown
     Set Test Provisioning Data    User : ${USER}
     Set Test Provisioning Data    Password : ${PASS}
     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+    # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
     Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
     Set Test Documentation Detail
     
@@ -98,4 +98,45 @@ Verify Dictionary Value By Key
     Run Keyword    ${keyword_compare}    ${value}    ${expected_value}    values=False
     ...    msg=Actual Value '${value}' of key '$..${key}' was not match expect value '${expected_value}'
     Log   ${message}
+
+Create URL For Get Token
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    Append Token(get from Auth Url) to get Token(API) Url
+    ...    ***Editor Note***
+    ...    - Add Set Test Variable (Provisioning Data)
+    [Arguments]    ${url_for_get_token}
+    Get Code From Authentication
+    ${url_get_token}     Replace String      ${url_for_get_token}    _code_    ${CODE}
+    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
+    Set Test Provisioning Data    Get Token URL: ${url_get_token}
     
+Get Code From Authentication
+    [Documentation]     Owner : sasipen    Editor: Nakarin
+    ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
+    ...    ***Editor Note***
+    ...    - Add Set Test Variable (Provisioning Data)
+    ...    - Add Set Test Provisioning Data   
+    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
+    ${code}    Split String         ${url_auth_access}    =
+    ${code}    Set Variable         ${code}[1]
+    Set Test Provisioning Data    Authenticate URL For Get Code: ${url_auth_access}
+    Set Test Provisioning Data    Authentication Code: ${code}
+    Set Test Variable    ${CODE}    ${code}
+
+Set Response On Webpage To Json
+    [Documentation]     Owner : sasipen
+    ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
+    ${message}           Get Text    ${lbl_json_response_on_webpage}
+    &{json_message}      Evaluate    json.loads('''${message}''')    json
+    Log Many             &{json_message}
+    Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
+    Take Screenshot Verify Success Scene
+    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
+    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
+
+Get Value Response On Web Page By Key
+    [Documentation]     Owner : sasipen
+    ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
+    [Arguments]    ${response_key}
+    ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
+    [Return]       ${value}
