@@ -2,7 +2,7 @@
 #url
 ${url_login_change_password}                   https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
 ${url_get_token_change_password_schema}        https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/
-${url_change_password}                         https://iot-apivr.ais.co.th/authtest/v3.2/changepassword
+${url_change_password}                         https://iot-apivr.ais.co.th/authtest/v3.2/change_password
 
 #data
 ${user_login_change_password}       0981721044
@@ -16,8 +16,8 @@ ${type_misdn}                            msisdn
 ${type_ldap}                             ldap
 ${client_id_change_password_FCoRIg}                        FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays+mTxG9/xpwVZQ+Eg==
 ${client_id_change_password_X6jpUV}                        X6jpUVHVBdszLACYucu+mkslzsMyXhwQNG/p1jO1KXg=
-${state_success_change_password_msisdn}                    Changepassword_success_Msisdn
-${state_success_change_password_ldapcp}                    Changepassword_success_LdapCp
+${state_success_change_password_msisdn}                    changepassword_success_Msisdn
+${state_success_change_password_ldapcp}                    changepassword_success_LdapCp
 ${old_password_ldap_content_provider_invalid}             password111
 ${new_password_ldap_content_provider_invalid_th_lang}     passwordทดสอบ
 ${new_password_ldap_content_provider_invalid_&}           password&&&&

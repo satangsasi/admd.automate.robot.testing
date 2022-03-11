@@ -4,16 +4,16 @@ Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
 
 
 *** Test Cases ***
-TST_F8_1_1_001 Verlify changepassword with Msisdn password
+TST_F8_1_1_001 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\ntype = msisdn_password 
     ...    \r\nMsisdn password ไม่มี login_subtype
-    [Tags]    Change_password    Msisdn    demosprint3        
+    [Tags]    Change_password    Msisdn    demosprint3
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Click Login Button In Login Page Change Password
-    Create URL For Get Token     ${url_get_token_changepassword_schema}
+    Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header Change Password
@@ -21,7 +21,7 @@ TST_F8_1_1_001 Verlify changepassword with Msisdn password
     Send Post Request Change Password
     Verify Response Change Password With Msisdn Password
 
-TST_F8_1_1_002 Verlify changepassword with Ldap Content provider
+TST_F8_1_1_002 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
@@ -37,13 +37,13 @@ TST_F8_1_1_002 Verlify changepassword with Ldap Content provider
     Send Post Request Change Password
     Verify Response Change Password With Ldap Content Provider
 
-TST_F8_1_1_003 Verlify changepassword with profile have gupimpi more than one object
+TST_F8_1_1_003 Verlify change_password with profile have gupimpi more than one object
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
     [Tags]    Change_password    On-Hold    
 
-TST_F8_0_1_001 Verlify changepassword with Ldap Content provider
+TST_F8_0_1_001 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
@@ -60,7 +60,7 @@ TST_F8_0_1_001 Verlify changepassword with Ldap Content provider
     Send Post Request Change Password Invalid    401
     Verify Response Change Password Invalid Old Password
 
-TST_F8_0_1_002 Verlify changepassword with Ldap Content provider
+TST_F8_0_1_002 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
@@ -77,7 +77,7 @@ TST_F8_0_1_002 Verlify changepassword with Ldap Content provider
     Send Post Request Change Password Invalid    400
     Verify Response Change Password Invalid New Password Contains Thai character
 
-TST_F8_0_1_003 Verlify changepassword with Ldap Content provider
+TST_F8_0_1_003 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = ldap 
@@ -94,7 +94,7 @@ TST_F8_0_1_003 Verlify changepassword with Ldap Content provider
     Send Post Request Change Password Invalid    400
     Verify Response Change Password Invalid New Password Contains Special Character
 
-TST_F8_0_1_004 Verlify changepassword with Ldap Content provider
+TST_F8_0_1_004 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
@@ -111,28 +111,28 @@ TST_F8_0_1_004 Verlify changepassword with Ldap Content provider
     Send Post Request Change Password Invalid    400
     Verify Response Change Password Invalid Access Token Expired
 
-TST_F8_0_1_005 Verlify changepassword with Msisdn password
+TST_F8_0_1_005 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
     ...    wrong old password
     [Tags]    Change_password    On-Hold
 
-TST_F8_0_1_006 Verlify changepassword with Msisdn password
+TST_F8_0_1_006 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = ldap
     ...    new password contains Thai character
     [Tags]    Change_password    On-Hold
 
-TST_F8_0_1_007 Verlify changepassword with Msisdn password
+TST_F8_0_1_007 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = ldap
     ...    new password contains "&"
     [Tags]    Change_password    On-Hold
 
-TST_F8_0_1_008 Verlify changepassword with Msisdn password
+TST_F8_0_1_008 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
