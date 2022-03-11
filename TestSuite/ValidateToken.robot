@@ -7,7 +7,7 @@ Test Teardown    Run Keyword And Ignore Error    Set Test Documentation Detail
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success    vpn    Sprint3
+    [Tags]    Success    Sprint3
     Create Browser Session    ${url_login_by_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -29,7 +29,7 @@ TST_F6_1_1_002 verify validate success CURL
 
 TST_F6_1_1_003 verify validate success login by client credentials
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    vpn    Sprint2
+    [Tags]    Success    Sprint2
     Get Access Token ClientCredential
     Set API Header Login By Client Credential
     Set API Body Login By Client Credential
@@ -45,7 +45,7 @@ TST_F6_1_1_004 verify validate success with profile have gupimpi more than one o
 TST_F6_0_1_001 Verify validate fail with no access token received from loging by msisdn which is no profile
     [Documentation]    Owner: Sasipen
     ...
-    [Tags]    Fail    demo
+    [Tags]    Fail
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -67,7 +67,7 @@ TST_F6_0_1_001 Verify validate fail with no access token received from loging by
 TST_F6_0_1_002 verify validate fail with incorrect client id
     [Documentation]    Owner: sasipen
     ...
-    [Tags]    Fail    demo
+    [Tags]    Fail
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
