@@ -360,9 +360,11 @@ Fill Username And Password
     [Tags]    keyword_communicate
     Fill Text    ${txt_username_ldap}    ${user}
     Fill Text    ${txt_password_ldap}    ${pass}
-    Set Test Variable         ${USER}    ${user}
-    Set Test Variable         ${PASS}    ${pass}
-
+    # Set Test Variable         ${USER}    ${user}
+    # Set Test Variable         ${PASS}    ${pass}
+    Set Test Provisioning Data    User : ${user}
+    Set Test Provisioning Data    Password : ${pass}
+    
 Press Login Button In LDAP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
