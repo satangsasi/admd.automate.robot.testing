@@ -126,3 +126,46 @@ Verify Response Change Password Invalid New Password Contains Thai character
     [Tags]    keyword_communicate
     Verify Value Response By Key    error    ${error_message_invalid_request} 
     Verify Value Response By Key    state    ${state_success_changepassword_ldapcp} 
+
+Set API Body Change Password Invalid New Password Contains Special Character
+    [Documentation]    Owner: Nakarin
+    ...    Set API Body for send request of Change Password Invalid Old Password
+    [Tags]    keyword_communicate
+    Get Time Nonce
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    Set Schema API Body        ${body_change_password_schema}  
+    Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
+    Set Content API Body    $..new_password    ${new_password_ldap_content_provider_invalid_&}
+    Set Content API Body    $..access_token    ${actual_value_access_token}
+    Set Content API Body    $..type            ${type_ldap}
+    Set Content API Body    $..client_id       ${client_id_changepassword_X6jpUV}
+    Set Content API Body    $..redirect_uri    ${redirect_uri_changepassword} 
+    Set Content API Body    $..state           ${state_success_changepassword_ldapcp}
+    Set Content API Body    $..nonce           ${DATE_TIME}
+
+Verify Response Change Password Invalid New Password Contains Special Character
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Verify Value Response By Key    error    ${error_message_invalid_request} 
+    Verify Value Response By Key    state    ${state_success_changepassword_ldapcp} 
+
+Set API Body Change Password Invalid Access Toekn Expired
+    [Documentation]    Owner: Nakarin
+    ...    Set API Body for send request of Change Password Invalid Access Toekn Expired
+    [Tags]    keyword_communicate
+    Get Time Nonce
+    Set Schema API Body        ${body_change_password_schema}  
+    Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
+    Set Content API Body    $..new_password    ${new_password_ldap_content_provider} 
+    Set Content API Body    $..access_token    ${expired_access_token_changepassword}  
+    Set Content API Body    $..type            ${type_ldap}
+    Set Content API Body    $..client_id       ${client_id_changepassword_X6jpUV}
+    Set Content API Body    $..redirect_uri    ${redirect_uri_changepassword} 
+    Set Content API Body    $..state           ${state_success_changepassword_ldapcp}
+    Set Content API Body    $..nonce           ${DATE_TIME}
+
+Verify Response Change Password Invalid Access Toekn Expired
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Verify Value Response By Key    error    ${error_message_invalid_grant}
+    Verify Value Response By Key    state    ${state_success_changepassword_ldapcp} 
