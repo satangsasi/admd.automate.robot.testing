@@ -1,12 +1,4 @@
 *** Variables ***
-#Url                                         
-${url_validate_token}                        http://10.137.30.22:31191/v3.2/token/validate
-${url_request_otp_validate_token}            http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
-${url_login_by_fbb}                          https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
-${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
-${url_delete_sub_scriber}                    http://10.138.36.227:9600/v1/method/deleteSubscriber.json
-${url_for_token_validate_token}              https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
-
 #Body
 ${clientid_validate_token}                   OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX/w5SmiwOO7UU=
 ${clientid_validate_token_invalid}           PK+WUAlHhnhgy9yNCzAk4PBHpmnSUamXM/Wcuomo2pVYgUOj
