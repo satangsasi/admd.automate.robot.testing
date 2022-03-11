@@ -43,7 +43,9 @@ Resource    ../Resources/Repositories/changepasswordRepositories.robot
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
 
 # Test Site
+Resource    ../Resources/Testsite/${TEST_SITE}/Testsite.robot
 
 
 *** Variables ***
-${LANG}    EN
+${LANG}         EN
+${TEST_SITE}    DEV
