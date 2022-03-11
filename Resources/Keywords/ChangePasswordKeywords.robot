@@ -15,8 +15,7 @@ Fill Username And Password Login Page Change Password
 Click Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen
     [Tags]    Keyword_communicate
-    Click    ${btn_login_change_password} 
-    [Arguments]
+    Click    ${btn_login_change_password}
 
 Set API Header Change Password
     [Documentation]    Owner: sasipen
@@ -94,7 +93,7 @@ Set API Body Change Password Invalid Old Password
 Send Post Request Change Password Invalid
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-     [Arguments]        ${status_code}
+    [Arguments]        ${status_code}
     &{message}    Send Request    POST    url=${url_change_password}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
     Set Test Provisioning Data    Request Change Password Invalid Old Password : ${message}[request]
     Set Test Actual Result        Request Change Password Invalid Old Password : ${message}[response]
@@ -105,7 +104,7 @@ Verify Response Change Password Invalid Old Password
     Verify Value Response By Key    error    ${error_message_invalid_user_or_password}
     Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
 
-Set API Body Change Password Invalid New Password Contains Thai character
+Set API Body Change Password Invalid New Password Contains Thai Character
     [Documentation]    Owner: Nakarin
     ...    Set API Body for send request of Change Password Invalid Old Password
     [Tags]    keyword_communicate
@@ -121,7 +120,7 @@ Set API Body Change Password Invalid New Password Contains Thai character
     Set Content API Body    $..state           ${state_success_change_password_ldapcp}
     Set Content API Body    $..nonce           ${DATE_TIME}
 
-Verify Response Change Password Invalid New Password Contains Thai character
+Verify Response Change Password Invalid New Password Contains Thai Character
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Verify Value Response By Key    error    ${error_message_invalid_request} 
