@@ -10,11 +10,11 @@ Append To Document Teardown
     # Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
     # Set Test Provisioning Data    Header : ${API_HEADER}
     # Set Test Provisioning Data    Body : ${API_BODY}
-    Set Test Provisioning Data    User : ${USER}
-    Set Test Provisioning Data    Password : ${PASS}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
     # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
-    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
     Set Test Documentation Detail
     
 SSH Connect To Server Log
@@ -105,7 +105,7 @@ Create Browser Session
     [Arguments]    ${url}
     Set Up Browser Fullscreen    browser=chromium    headless=True
     New Page       ${url}
-    Set Test Provisioning Data    Authentication URL : ${url}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
 
 Verify Dictionary Value By Key
@@ -140,7 +140,7 @@ Create URL For Get Token
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_for_get_token}    _code_    ${CODE}
     Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token}
-    Set Test Provisioning Data    Get Token URL: ${url_get_token}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Get Token URL: ${url_get_token}
     
 Get Code From Authentication
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -151,8 +151,8 @@ Get Code From Authentication
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
-    Set Test Provisioning Data    Authenticate URL For Get Code: ${url_auth_access}
-    Set Test Provisioning Data    Authentication Code: ${code}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Authenticate URL For Get Code: ${url_auth_access}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication Code: ${code}
     Set Test Variable    ${CODE}    ${code}
 
 Set Response On Webpage To Json
@@ -163,8 +163,8 @@ Set Response On Webpage To Json
     Log Many             &{json_message}
     Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
     Take Screenshot Verify Success Scene
-    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
 
 Get Value Response On Web Page By Key
     [Documentation]     Owner : sasipen
