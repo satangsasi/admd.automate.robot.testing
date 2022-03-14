@@ -126,7 +126,7 @@ TST_F8_0_1_005 Verlify change_password with Msisdn password
     Set Response On Webpage To Json
     Set API Header Change Password
     Set API Body Change Password With Msisdn Invalid Old Password
-    Send Post Request Change Password Invalid    400
+    Send Post Request Change Password Invalid    401
     Verify Response Change Password With Msisdn Invalid Old Password
 TST_F8_0_1_006 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
