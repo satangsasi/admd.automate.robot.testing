@@ -36,6 +36,7 @@ Get OTP Password FBB
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
+    [Teardown]    Close All Connections
 
 Get Json OTP Password Log FBB
     [Documentation]    Owner: Nakarin
@@ -97,4 +98,3 @@ Verify Decoded Value ID Token
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
-    

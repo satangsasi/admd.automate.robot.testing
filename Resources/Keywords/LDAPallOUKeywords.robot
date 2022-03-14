@@ -442,6 +442,7 @@ Get Json Error Log Ldap From Server
     ${json_expect}    Convert String To JSON    ${json_format}[-1]
     Log    ${json_expect}
     Set Test Variable    ${JSON_EXPECT}    ${json_expect}
+    [Teardown]    Close All Connections
 
 Verify Value Log Error From Server 
     [Documentation]    Owner: Sasipen
