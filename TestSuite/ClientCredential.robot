@@ -19,6 +19,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Send Request Client Credentials
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_backend}
     Decode Token To Jwt Client Credentials
+    Verify Response Jwt Decode
 
 TST_F7_1_1_002 ClientCredentials with client id on browser
     [Documentation]     Owner : sasipen
@@ -35,6 +36,7 @@ TST_F7_1_1_002 ClientCredentials with client id on browser
     Send Request Client Credentials
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_browser}
     Decode Token To Jwt Client Credentials 
+    Verify Response Jwt Decode
 
 TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     [Documentation]     Owner : sasipen
