@@ -32,6 +32,7 @@ TST_F8_1_1_002 Verlify change_password with Ldap Content provider
     Create URL For Get Token      ${url_get_token_schema}
     New Page                      ${URL_GET_TOKEN}
     Set Response On Webpage To Json
+    Verify Value Login Subtype By Key
     Set API Header Change Password
     Set API Body Change Password With Ldap Content Provider
     Send Post Request Change Password
@@ -56,9 +57,9 @@ TST_F8_0_1_001 Verlify change_password with Ldap Content provider
     New Page                      ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header Change Password
-    Set API Body Change Password Invalid Old Password
+    Set API Body Change Password With Ldap Invalid Old Password
     Send Post Request Change Password Invalid    401
-    Verify Response Change Password Invalid Old Password
+    Verify Response Change Password With Ldap Invalid Old Password
 
 TST_F8_0_1_002 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
@@ -73,16 +74,16 @@ TST_F8_0_1_002 Verlify change_password with Ldap Content provider
     New Page                      ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header Change Password
-    Set API Body Change Password Invalid New Password Contains Thai Character
+    Set API Body Change Password With Ldap Invalid New Password Contains Thai Character
     Send Post Request Change Password Invalid    400
-    Verify Response Change Password Invalid New Password Contains Thai Character
+    Verify Response Change Password With Ldap Invalid New Password Contains Thai Character
 
 TST_F8_0_1_003 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = ldap 
     ...    new password contains "&"
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3     
+    [Tags]    Change_password    Ldap_Content_provider     
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -90,16 +91,16 @@ TST_F8_0_1_003 Verlify change_password with Ldap Content provider
     New Page                      ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header Change Password
-    Set API Body Change Password Invalid New Password Contains Special Character
+    Set API Body Change Password With Ldap Invalid New Password Contains Special Character
     Send Post Request Change Password Invalid    400
-    Verify Response Change Password Invalid New Password Contains Special Character
+    Verify Response Change Password With Ldap Invalid New Password Contains Special Character
 
 TST_F8_0_1_004 Verlify change_password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\naccess_token expired
-    [Tags]    Change_password    Ldap_Content_provider    demosprint3
+    [Tags]    Change_password    Ldap_Content_provider    
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -107,17 +108,26 @@ TST_F8_0_1_004 Verlify change_password with Ldap Content provider
     New Page                      ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Set API Header Change Password
-    Set API Body Change Password Invalid Access Token Expired
+    Set API Body Change Password With Ldap Invalid Access Token Expired
     Send Post Request Change Password Invalid    400
-    Verify Response Change Password Invalid Access Token Expired
+    Verify Response Change Password With Ldap Invalid Access Token Expired
 
 TST_F8_0_1_005 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
     ...    wrong old password
-    [Tags]    Change_password    On-Hold
-
+    [Tags]    Change_password    Msisdn    
+    Create Browser Session    ${url_login_change_password}
+    Fill Username And Password Login Page Change Password
+    Click Login Button In Login Page Change Password
+    Create URL For Get Token     ${url_get_token_change_password_schema}
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Set API Header Change Password
+    Set API Body Change Password With Msisdn Invalid Old Password
+    Send Post Request Change Password Invalid    400
+    Verify Response Change Password With Msisdn Invalid Old Password
 TST_F8_0_1_006 Verlify change_password with Msisdn password
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
