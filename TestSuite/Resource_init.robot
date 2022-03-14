@@ -5,7 +5,7 @@ Library    DateTime
 Library    OperatingSystem
 Library    RequestsLibrary
 Library    JSONLibrary
-Library    SSHLibrary    timeout=00:00:40
+Library    SSHLibrary
 Library    Browser       timeout=00:00:40   run_on_failure=Take Screenshot Failure Specific Name
 
 # Buffets
