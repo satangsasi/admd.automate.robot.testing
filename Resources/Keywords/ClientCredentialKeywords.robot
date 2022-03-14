@@ -93,4 +93,23 @@ Decode Token To Jwt Client Credentials
     ${value}            Get Value Response By Key    access_token
     ${jwt_decode}       Jwt Decode      ${value}
     Set Test Actual Result    Jwt decode : ${jwt_decode}
+    Set Test Variable    ${RESPONSE_JWT_DECODE}    ${jwt_decode}
+
+Verify Response Jwt Decode
+    Verify Response Decode Jwt By Key    iss
+    Verify Response Decode Jwt By Key    sub
+    Verify Response Decode Jwt By Key    aud
+    Verify Response Decode Jwt By Key    exp
+    Verify Response Decode Jwt By Key    iat
+    Verify Response Decode Jwt By Key    jti
+    Verify Response Decode Jwt By Key    client
+    Verify Response Decode Jwt By Key    ssid
+    
+Verify Response Decode Jwt By Key
+    [Arguments]    ${key}    
+    ${value}      Get Value Json By Key    ${RESPONSE_JWT_DECODE}    ${key}
+    ${value}      Convert To String    ${value}
+    Should Match Regexp    ${value}     .+
+    Log    ${value}    
+   
     
