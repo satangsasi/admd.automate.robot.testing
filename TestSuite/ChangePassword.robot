@@ -117,7 +117,7 @@ TST_F8_0_1_005 Verlify change_password with Msisdn password
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
     ...    wrong old password
-    [Tags]    Change_password    Msisdn    
+    [Tags]    Change_password    Msisdn    On-Hold
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Click Login Button In Login Page Change Password
