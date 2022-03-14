@@ -125,7 +125,7 @@ TST_F10_1_1_006 Verify Refresh Token with SSO Ldap Content provider
 
 TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
     [Documentation]    Owner: Nakarin
-    [Tags]    Content_Provider    Sprint2    Hold
+    [Tags]    Content_Provider    Sprint2    On-Hold
     Send Get Request LDAP    ${url_decrypted_ldap_content_provider_snake_case}
     Verify Response Decrypted Pid Ldap Content Provider Snake Case
 
