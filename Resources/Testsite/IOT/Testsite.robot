@@ -29,7 +29,7 @@ ${url_auth_ldap_no_scope_profile}         https://iot-apivr.ais.co.th/auth/v3.2/
 ${url_get_refresh_token_schema}           https://iot-apivr.ais.co.th/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
 ${url_ldap_logout}                        https://iot-apivr.ais.co.th/auth/v3.2/logout
 #Url Employee                                    
-${url_auth_ldap_employee_dev}                 https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/   
+${url_auth_ldap_employee}                 https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/   
 ${url_auth_ldap_employee_no_scope_profile}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&redirect_uri=https://www.ais.co.th/
 
 

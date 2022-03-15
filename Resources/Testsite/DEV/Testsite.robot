@@ -40,7 +40,7 @@ ${url_decrypted_ldap_content_provider_snake_case}    http://10.137.30.22:31191/v
 ${url_decrypted_ldap_content_provider_camel_case}    http://10.137.30.22:31191/v3.1/partnerSpecificPrivateIds/PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELW9sWXJBNAYq+94RTdHMHEvU0FGWFZ3SlQ1SFE9PQ==gvH4=&05
 
 #Url Employee                                    
-${url_auth_ldap_employee_dev}                 https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/   
+${url_auth_ldap_employee}                 https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/   
 ${url_auth_ldap_employee_no_scope_profile}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&redirect_uri=https://www.ais.co.th/
 ${url_decrypted_ldap_employee_snake_case}     http://10.137.30.22:31191/v3.2/partnerSpecificPrivateIds/PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMAYq+94RlhGdmFEd0FJdTRVNjVJQVE9PQ==gvH4=&05
 ${url_decrypted_ldap_employee_camel_case}     http://10.137.30.22:31191/v3.1/partnerSpecificPrivateIds/PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMAYq+94RlhGdmFEd0FJdTRVNjVJQVE9PQ==gvH4=&05
