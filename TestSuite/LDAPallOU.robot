@@ -133,7 +133,7 @@ TST_F10_1_1_007 Verify Decrypted PID ldap Content provider snake case
 
 TST_F10_1_1_008 Verify Decrypted PID ldap Content provider camel case
     [Documentation]    Owner: Nakarin
-    [Tags]    Content_Provider    Sprint2
+    [Tags]    Content_Provider    Sprint2    Hold
     Send Get Request LDAP    ${url_decrypted_ldap_content_provider_camel_case}
     Verify Response Decrypted Pid Ldap Content Provider Camel Case
 
