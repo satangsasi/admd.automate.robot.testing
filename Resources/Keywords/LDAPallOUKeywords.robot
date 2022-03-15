@@ -440,7 +440,7 @@ Get Json Error Log Ldap From Server
     &{json_expect}    Convert Variable Type To Dot Dict    ${json_format}[-1]
     Log Many    &{json_expect}
     Set Test Variable    &{JSON_EXPECT}    &{json_expect}
-    [Teardown]    Close All Connections
+    # [Teardown]    Close All Connections
 
 Verify Value Log Error From Server
     [Documentation]    Owner: Sasipen

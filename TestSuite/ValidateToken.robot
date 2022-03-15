@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup       SSH Connect Suite Setup
-Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
-Suite Teardown    Close All Connections
+Suite Setup       Keyword Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***

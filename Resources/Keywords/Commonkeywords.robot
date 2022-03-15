@@ -175,9 +175,20 @@ Get Value Response On Web Page By Key
     ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
     [Return]       ${value}
 
-SSH Connect Suite Setup
+Keyword Suite Setup
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_action
     SSH Connect To Server Log
     ${cat_path}    Change Directory Path To Get Log
     Set Suite Variable    ${ADMD_PATH}    ${cat_path}
+
+Keyword Suite Teardown
+    [Documentation]    Owner: Nakarin
+    Close All Connections
+    Run Keyword If Any Tests Failed    Set Suite Documentation    Fail Message${\n}    append=True    top=True
+
+Keyword Test Teardown
+    [Documentation]    Owner: Nakarin
+    Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
+    # ${SUITE_MESSAGE}    Set Variable If    '${TEST_STATUS}' == 'FAIL'    \r\n${TEST_MESSAGE}
+    Set Test Documentation Detail 

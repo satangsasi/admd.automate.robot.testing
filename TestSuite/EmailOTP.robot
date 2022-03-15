@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup       SSH Connect Suite Setup
-Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
-Suite Teardown    Close All Connections
+Suite Setup       Keyword Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***
@@ -145,7 +145,7 @@ TST_F4_0_1_004 Verify getting token fail with wrong password
 
 TST_F4_0_1_005 Verify getting token fail with expired password
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp
+    [Tags]    Email_Otp    On-Hold
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}

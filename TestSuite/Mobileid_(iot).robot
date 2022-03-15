@@ -1,6 +1,8 @@
 *** Settings ***
 Library    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
+# Suite Setup       Keyword Suite Setup
+# Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+# Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***

@@ -179,11 +179,11 @@ Get Email OTP Password
     ...    Get Email OTP Password and return Test Variable    ${EMAIL_OTP_PASSWORD}
     [Tags]    keyword_action
     [Arguments]    ${transaction_id}
-    SSH Connect To Server Log
+    # SSH Connect To Server Log
     ${json_log}        Get Json Log Email Otp        ${transaction_id}
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable  ${EMAIL_OTP_PASSWORD}         ${otp_password}
-    [Teardown]    Close All Connections
+    # [Teardown]    Close All Connections
 
 Get Json Log Email Otp
     [Documentation]    Owner: Nakarin    Editor: Sasipen

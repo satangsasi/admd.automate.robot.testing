@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup       SSH Connect Suite Setup
-Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
-Suite Teardown    Close All Connections
+Suite Setup       Keyword Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***
@@ -366,7 +366,7 @@ TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
 
 TST_F10_0_1_004 Verify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    On-Hold
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -415,7 +415,7 @@ TST_F10_0_1_009 Verify Login ldap employee with missing parameter
 
 TST_F10_0_1_010 Verify get token ldap employee with authhcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee
+    [Tags]    Employee    On-Hold
     Create Browser Session        ${url_auth_ldap_employee}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP

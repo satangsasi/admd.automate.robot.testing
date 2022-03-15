@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup       SSH Connect Suite Setup
-Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
-Suite Teardown    Close All Connections
+Suite Setup       Keyword Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***
@@ -47,7 +47,7 @@ TST_F2_0_1_001 Verify FBB with invalid ip ais fbb
     
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Fail    Sprint3    Demo
+    [Tags]    Fail    Sprint3    Demo    On-Hold
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
