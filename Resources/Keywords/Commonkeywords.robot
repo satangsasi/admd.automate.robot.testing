@@ -185,10 +185,9 @@ Keyword Suite Setup
 Keyword Suite Teardown
     [Documentation]    Owner: Nakarin
     Close All Connections
-    Run Keyword If Any Tests Failed    Set Suite Documentation    Fail Message${\n}    append=True    top=True
+    # Run Keyword If Any Tests Failed    Set Suite Documentation    doc=Fail Message${\n}    append=True    top=True
 
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
-    # ${SUITE_MESSAGE}    Set Variable If    '${TEST_STATUS}' == 'FAIL'    \r\n${TEST_MESSAGE}
     Set Test Documentation Detail 
