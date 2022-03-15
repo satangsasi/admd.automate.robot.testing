@@ -1,6 +1,9 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
+*** Variables ***
+${HEAD_LESS}    False
+
 
 *** Keywords ***
 Append To Document Teardown
@@ -34,7 +37,6 @@ Change Directory Path To Get Log
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
     [Tags]    keyword_action
-    
     # Write    kubectl get pod -n admd
     # ${output}          Read    delay=1s
     # Log    ${output}
@@ -103,7 +105,7 @@ Create Browser Session
     ...    Setting browser and open url 
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=chromium    headless=True
+    Set Up Browser Fullscreen    browser=chromium    headless=${HEAD_LESS}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
@@ -172,3 +174,10 @@ Get Value Response On Web Page By Key
     [Arguments]    ${response_key}
     ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
     [Return]       ${value}
+
+SSH Connect Suite Setup
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
+    SSH Connect To Server Log
+    ${cat_path}    Change Directory Path To Get Log
+    Set Suite Variable    ${ADMD_PATH}    ${cat_path}

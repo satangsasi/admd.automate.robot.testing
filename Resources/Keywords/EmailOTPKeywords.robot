@@ -190,8 +190,8 @@ Get Json Log Email Otp
     ...    Get Json Log From output of SSH Command
     [Tags]    keyword_commands
     [Arguments]     ${transaction_id}
-    ${admd_path}    Change Directory Path To Get Log
-    Write    cat ${admd_path} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
+    # ${ADMD_PATH}    Change Directory Path To Get Log
+    Write    cat ${ADMD_PATH} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
     ${json_expect}    Convert String To JSON    ${json_format}[0]

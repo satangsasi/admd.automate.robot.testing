@@ -32,18 +32,19 @@ Get OTP Password FBB
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
     [Tags]    keyword_action
-    SSH Connect To Server Log
+    # SSH Connect To Server Log
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
-    [Teardown]    Close All Connections
+    # [Teardown]    Close All Connections
 
 Get Json OTP Password Log FBB
     [Documentation]    Owner: Nakarin
     [Tags]    Keyword_action
-    ${admd_path}        Change Directory Path To Get Log
+    # ${admd_path}        Change Directory Path To Get Log
     # ${mobile_number}    Replace String    ${fbb_contact_number}    0    66    count=1
-    Write    cat ${admd_path} | grep -E "${fbb_username}.*oneTimePassword"
+    Read    delay=5s
+    Write    cat ${ADMD_PATH} | grep -E "${fbb_username}.*oneTimePassword"
     ${string}   Read    delay=1s
     Log    ${string}
     ${json_log}  Get Regexp Matches        ${string}    {.*
