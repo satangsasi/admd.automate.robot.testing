@@ -191,6 +191,7 @@ Get Json Log Email Otp
     [Tags]    keyword_commands
     [Arguments]     ${transaction_id}
     # ${ADMD_PATH}    Change Directory Path To Get Log
+    Read    delay=5s
     Write    cat ${ADMD_PATH} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches        ${string}    {.*
