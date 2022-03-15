@@ -1,6 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
+Suite Setup       SSH Connect Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
+Suite Teardown    Close All Connections
 
 
 *** Test Cases ***
@@ -9,17 +11,17 @@ TST_F4_1_1_001 Verify login with EmailOTP
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
-    Get Value Response Request Email Otp By Key Transaction Id 
+    Get Value Response Request Email Otp By Key Transaction Id
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -40,17 +42,17 @@ TST_F4_0_1_001 Verify getting token with username is msisdn otp but no input ses
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp No Session And Transaction Id     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp No Session And Transaction Id     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -65,17 +67,17 @@ TST_F4_0_1_002 Verify getting token with username is msisdn otp but incorrect se
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -92,7 +94,7 @@ TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong 
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
+    Set Body Request Email Otp              ${client_id_PK+WUA}
     ...                                     ${public_id} 
     ...                                     ${reference}
     Send Post Request Email Otp
@@ -100,9 +102,9 @@ TST_F4_0_1_003 Verify getting token with username is msisdn otp but input wrong 
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -119,17 +121,17 @@ TST_F4_0_1_004 Verify getting token fail with wrong password
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -146,17 +148,17 @@ TST_F4_0_1_005 Verify getting token fail with expired password
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -167,15 +169,15 @@ TST_F4_0_1_005 Verify getting token fail with expired password
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Wait For Password Expire
     Send Post Request Get Token Email Otp Invalid    408
-    Verify Response Get Token Email Otp Error        ${error_message_request_timeout} 
+    Verify Response Get Token Email Otp Error        ${error_message_request_timeout}
 
 TST_F4_0_1_006 Verify request OTP with use email that without a profile
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${invalid_public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${invalid_public_id}
     ...                                     ${reference}
     Send Post Request Email Otp Invalid     503
     Verify Response Invalid Request Email Otp
@@ -185,17 +187,17 @@ TST_F4_0_1_007 Verify getting token fail
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -211,7 +213,7 @@ TST_F4_0_1_008 Verify getting token fail with Invalid client_id
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
+    Set Body Request Email Otp              ${client_id_PK+WUA}
     ...                                     ${public_id} 
     ...                                     ${reference}
     Send Post Request Email Otp
@@ -219,9 +221,9 @@ TST_F4_0_1_008 Verify getting token fail with Invalid client_id
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${invalid_client_id_ABCDEF}    
+    Set Body Get Token Email Otp     ${invalid_client_id_ABCDEF}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
@@ -231,24 +233,24 @@ TST_F4_0_1_008 Verify getting token fail with Invalid client_id
     ...                              ${ACTUAL_VALUE_SESSION_ID}
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp Invalid    500
-    Verify Response Get Token Email Otp Error        ${error_message_server_error}                
+    Verify Response Get Token Email Otp Error        ${error_message_server_error}
 
 TST_F4_0_1_009 Verify getting token fail with Invalid grant_type
     [Documentation]     Owner : sasipen
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
     ...                              ${client_secret_id_PK+WUA}
     ...                              ${invalid_grant_type_email_otp}
     ...                              ${public_id}
@@ -265,18 +267,18 @@ TST_F4_0_1_010 Verify getting token fail with Invalid client_Secret
     [Tags]    Email_Otp
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}    
-    ...                                     ${public_id} 
+    Set Body Request Email Otp              ${client_id_PK+WUA}
+    ...                                     ${public_id}
     ...                                     ${reference}
     Send Post Request Email Otp
     Verify Response Request Email Otp
     Get Value Response Request Email Otp By Key Session Id
     Get Value Response Request Email Otp By Key Transaction Id 
     Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}    
+    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
     ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}    
-    ...                              ${invalid_client_secret}   
+    Set Body Get Token Email Otp     ${client_id_PK+WUA}
+    ...                              ${invalid_client_secret}
     ...                              ${grant_type_email_otp}
     ...                              ${public_id}
     ...                              ${EMAIL_OTP_PASSWORD}
@@ -285,4 +287,4 @@ TST_F4_0_1_010 Verify getting token fail with Invalid client_Secret
     ...                              ${ACTUAL_VALUE_SESSION_ID}
     ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
     Send Post Request Get Token Email Otp Invalid    401
-    Verify Response Get Token Email Otp Error        ${error_message_invalid_client}  
+    Verify Response Get Token Email Otp Error        ${error_message_invalid_client}

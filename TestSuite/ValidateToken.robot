@@ -1,13 +1,15 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Set Test Documentation Detail
+Suite Setup       SSH Connect Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Set Test Documentation Detail
+Suite Teardown    Close All Connections
 
 
 *** Test Cases ***
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success    Sprint3
+    [Tags]    Success    Sprint3    Demo
     Create Browser Session    ${url_login_by_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -86,7 +88,7 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    demosprint3   
+    [Tags]    Fail    Sprint3   
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -104,7 +106,7 @@ TST_F6_0_1_003 verify validate fail with incorrect access token
 
 TST_F6_0_1_004 verify validate fail with expired access token
     [Documentation]    Owner:
-    [Tags]    Fail    demosprint3      
+    [Tags]    Fail    Sprint3      
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -123,7 +125,7 @@ TST_F6_0_1_004 verify validate fail with expired access token
 TST_F6_0_1_005 verify validate fail with missing client id
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    demosprint3     
+    [Tags]    Fail    Sprint3     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -142,7 +144,7 @@ TST_F6_0_1_005 verify validate fail with missing client id
 TST_F6_0_1_006 verify validate fail with missing access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    demosprint3     
+    [Tags]    Fail    Sprint3     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token

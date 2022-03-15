@@ -19,7 +19,7 @@ Resource    ../Resources/Keywords/EmailOTPKeywords.robot
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/CommonKeywords.robot
-Resource    ../Resources/Keywords/Mobileid_(iot)Keywords.robot
+# Resource    ../Resources/Keywords/Mobileid_(iot)Keywords.robot
 Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 Resource    ../Resources/Keywords/FBBOTPKeyword.robot
 Resource    ../Resources/Keywords/changepasswordKeywords.robot

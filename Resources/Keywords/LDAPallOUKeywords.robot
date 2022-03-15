@@ -48,7 +48,7 @@ Decode Login Token Jwt By Key Access Token
 Decode Login Token To Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key id token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response On Web Page By Key    id_token 
+    ${value}         Get Value Response On Web Page By Key    id_token
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode}
     Set Test Actual Result    Login id token jwt decode : ${jwt_decode}
@@ -67,7 +67,7 @@ Decode Refresh Token To Jwt By Key Id Token
     ${value}         Get Value Response On Web Page By Key    id_token
     ${jwt_decode}    Jwt Decode      ${value}
     Set Test Actual Result    Refresh id token jwt decode : ${jwt_decode}
-    Set Test Variable         ${JWT_DECODE_REFRESH__ID_TOKEN}      ${jwt_decode}
+    Set Test Variable         ${JWT_DECODE_REFRESH_ID_TOKEN}      ${jwt_decode}
 
 Verify Response Decode Refresh Token By Key Access Token
     [Documentation]     Owner : sasipen
@@ -258,7 +258,7 @@ Verify Refresh Value Response Access Token Decode Jwt By Key
     Should Match Regexp    ${value}     .+
     Log    ${value}
 
-Get Refresh Value Response Jwt By Key Id Token 
+Get Refresh Value Response Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form id token in json message 
@@ -267,6 +267,7 @@ Get Refresh Value Response Jwt By Key Id Token
     [Return]       ${value}
 
 Verify Refresh Value Response Id Token Decode Jwt By Key
+    [Documentation]     Owner : sasipen
     [Arguments]    ${response_key}
     ${value}       Get Refresh Value Response Jwt By Key Id Token    ${response_key}
     ${value}       Convert To String    ${value}
@@ -359,9 +360,7 @@ Fill Username And Password
     [Tags]    keyword_communicate
     Fill Text    ${txt_username_ldap}    ${user}
     Fill Text    ${txt_password_ldap}    ${pass}
-    # Set Test Variable         ${USER}    ${user}
-    # Set Test Variable         ${PASS}    ${pass}
-    Set Test Provisioning Data    User : ${user}
+    Set Test Provisioning Data    Username : ${user}
     Set Test Provisioning Data    Password : ${pass}
     
 Press Login Button In LDAP
@@ -416,7 +415,6 @@ Verify Response Decrypted Pid Ldap Content Provider Snake Case
     Verify Value Response By Key    private_id           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partner_id           ${expected_partner_id_pass}
     Verify Value Response By Key    public_id            ${expected_public_id_cp_pass}
-    # Append Response Value To Actual Document
 
 Verify Response Decrypted Pid Ldap Content Provider Camel Case
     [Documentation]    Owner: Nakarin
@@ -426,31 +424,31 @@ Verify Response Decrypted Pid Ldap Content Provider Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_cp_pass}
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_cp_pass}
-    # Append Response Value To Actual Document
 
 Get Json Error Log Ldap From Server
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
     [Tags]    keyword_commands
-    SSH Connect To Server Log
-    ${admd_path}    Change Directory Path To Get Log
-    Write    cat ${admd_path} | grep -E "error"
+    # SSH Connect To Server Log
+    # ${ADMD_PATH}    Change Directory Path To Get Log
+    Read    delay=5s
+    Write    cat ${ADMD_PATH} | grep -E "error"
     ${string}   Read    delay=1s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
-    ${json_expect}    Convert String To JSON    ${json_format}[-1]
-    Log    ${json_expect}
-    Set Test Variable    ${JSON_EXPECT}    ${json_expect}
+    &{json_expect}    Convert Variable Type To Dot Dict    ${json_format}[-1]
+    Log Many    &{json_expect}
+    Set Test Variable    &{JSON_EXPECT}    &{json_expect}
     [Teardown]    Close All Connections
 
-Verify Value Log Error From Server 
+Verify Value Log Error From Server
     [Documentation]    Owner: Sasipen
     ...    verify Value from key error by Json file from SSH Command
     [Tags]    keyword_commands
     [Arguments]    ${error_message}
     Verify Value Json By Key    ${JSON_EXPECT}    custom.Output[0].Data.Body.error    ${error_message}
-    Set Test Actual Result      ${JSON_EXPECT.custom.Output[0].Data.Body.error}
+    Set Test Actual Result      {"error": "${JSON_EXPECT.custom.Output[0].Data.Body.error}"}
     
 Send Get Request LDAP 
     [Documentation]     Owner : sasipen 
@@ -478,13 +476,3 @@ Verify Response Decrypted Pid Ldap Employee Camel Case
     Verify Value Response By Key    privateId           ${expected_private_id_emp_pass} 
     Verify Value Response By Key    partnerId           ${expected_partner_id_pass}
     Verify Value Response By Key    publicId            ${expected_public_id_emp_pass}    
-
-Append Response Value To Actual Document
-    [Documentation]    Owner: Nakarin
-    [Tags]    keyword_command
-    &{response_value}    Set Variable    ${RESPONSE.json()}
-    Log Many    &{response_value}
-    @{key}    Get Dictionary Keys    ${response_value}
-    FOR    ${element}    IN    @{key}
-        Set Test Actual Result    ${element} : ${response_value}[${element}] 
-    END
