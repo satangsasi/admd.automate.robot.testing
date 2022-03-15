@@ -1,6 +1,6 @@
 *** Variables ***
 # ClientCredential
-${url_client_credentials}                         https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token
+${url_client_credentials}                         https://10.137.30.22:31191/v3.2/oauth/token
 ${url_client_credentials_invalid}                 https://iot-apivr.ais.co.th/authtest/v3.2/oauth/tokennnnnn
 
 # EmailOTP
