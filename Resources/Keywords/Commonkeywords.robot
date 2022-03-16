@@ -110,29 +110,6 @@ Create Browser Session
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
 
-Verify Dictionary Value By Key
-    [Documentation]    Owner: Nakarin
-    ...    Support both variable type of dot.dict and dict
-    ...    $dictionary is dictionary variable
-    ...    $key is key to find value in dictionary
-    ...    $expected_value is value that used for verify value in key
-    ...    $msg is the name of dictionary/object
-    [Arguments]    ${dictionary}    ${key}    ${expected_value}    ${msg}=$..
-    [Tags]    keyword_command
-    ${type}    Check Variable Type    ${dictionary}
-    IF    "${type}" != "<class 'robot.utils.dotdict.DotDict'>"
-        &{dict}    Convert Variable Type To Dot Dict    ${dictionary}
-    ELSE
-        &{dict}    Set Variable    ${dictionary}
-    END
-    ${key}        Remove String      ${key}    $..
-    ${value}      Set Variable       ${dict.${key}}
-    ${message}    Set Variable If   '${msg}' != '$..'    '${msg}':{'${key}':'${value}'}    ${msg}{'${key}':'${value}'}
-    ${keyword_compare}    Check Compare Type    ${value}    ${expected_value}
-    Run Keyword    ${keyword_compare}    ${value}    ${expected_value}    values=False
-    ...    msg=Actual Value '${value}' of key '$..${key}' was not match expect value '${expected_value}'
-    Log   ${message}
-
 Create URL For Get Token
     [Documentation]     Owner : sasipen    Editor: Nakarin
     ...    Append Token(get from Auth Url) to get Token(API) Url
@@ -184,10 +161,11 @@ Keyword Suite Setup
 
 Keyword Suite Teardown
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
     Close All Connections
-    # Run Keyword If Any Tests Failed    Set Suite Documentation    doc=Fail Message${\n}    append=True    top=True
 
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Set Test Documentation Detail 
