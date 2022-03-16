@@ -38,28 +38,10 @@ Change Directory Path To Get Log
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
     [Tags]    keyword_action
-    # Write    kubectl get pod -n admd
-    # ${output}          Read    delay=1s
-    # Log    ${output}
-    # @{output_line}     Split To Lines        ${output}
-    # @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    # Log Many    @{kubectl_path}
-    # Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path
     Write    reset
     Read     delay=1s    # Wait for screen reset
     ${cat_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Grep Path    ${kubectl_path}
-    # Write    kubectl exec -it ${kubectl_path}[0] -n admd sh
-    # Write    cd logs/detail/
-    # Write    ls -lrt | tail
-    # ${output}      Read    delay=2s
-    # Log    ${output}
-    # @{output_line}    Split To Lines        ${output}
-    # @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    # Write    reset
-    # Read     delay=1s    # Wait for screen reset
-    # Log Many    @{cat_path}
-    # Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}
 
 Get Kubectl Grep Path
