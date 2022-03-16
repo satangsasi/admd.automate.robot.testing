@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
+
 *** Variables ***
 ${HEAD_LESS}    False
 
@@ -168,4 +169,5 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_action
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
-    Set Test Documentation Detail 
+    Set Test Documentation Detail
+ 

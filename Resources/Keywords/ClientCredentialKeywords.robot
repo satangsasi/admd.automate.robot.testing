@@ -111,5 +111,3 @@ Verify Response Decode Jwt By Key
     ${value}      Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}    
-   
-    
