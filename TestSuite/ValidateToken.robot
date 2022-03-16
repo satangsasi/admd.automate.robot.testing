@@ -15,7 +15,7 @@ TST_F6_1_1_001 verify validate success B2C
     Click Request OTP Button
     Get OTP Password FBB
     Fill OTP Password FBB
-    Click Login Button In FBB OTP
+    Press Login Button In FBB OTP
     Create URL For Get Token    ${url_for_token_validate_token}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json

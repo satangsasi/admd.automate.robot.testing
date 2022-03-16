@@ -12,7 +12,7 @@ Fill Username And Password Login Page Change Password
     Set Test Provisioning Data   Username: ${user_login_change_password}
     Set Test Provisioning Data   Password: ${pass_login_change_password}
 
-Click Login Button In Login Page Change Password
+Press Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen
     [Tags]    Keyword_communicate
     Click    ${btn_login_change_password}

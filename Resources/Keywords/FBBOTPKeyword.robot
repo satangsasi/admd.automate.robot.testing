@@ -22,7 +22,7 @@ Click Request OTP Button
     [Tags]    Keyword_communicate
     Click    ${btn_fbb_request_otp}
 
-Click Login Button In FBB OTP
+Press Login Button In FBB OTP
     [Documentation]    Owner: Nakarin
     [Tags]    Keyword_communicate
     Click    ${btn_fbb_login}
