@@ -9,7 +9,7 @@ Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success    Sprint3    Demo
+    [Tags]    Success    Sprint3    Demo    On-Hold
     Create Browser Session    ${url_login_by_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -31,7 +31,7 @@ TST_F6_1_1_002 verify validate success CURL
 
 TST_F6_1_1_003 verify validate success login by client credentials
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    Sprint2
+    [Tags]    Success    Sprint2    On-Hold
     Get Access Token ClientCredential
     Set API Header Login By Client Credential
     Set API Body Login By Client Credential
@@ -47,7 +47,7 @@ TST_F6_1_1_004 verify validate success with profile have gupimpi more than one o
 TST_F6_0_1_001 Verify validate fail with no access token received from loging by msisdn which is no profile
     [Documentation]    Owner: Sasipen
     ...
-    [Tags]    Fail
+    [Tags]    Fail    On-Hold
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -69,7 +69,7 @@ TST_F6_0_1_001 Verify validate fail with no access token received from loging by
 TST_F6_0_1_002 verify validate fail with incorrect client id
     [Documentation]    Owner: sasipen
     ...
-    [Tags]    Fail
+    [Tags]    Fail     On-Hold
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -88,7 +88,7 @@ TST_F6_0_1_002 verify validate fail with incorrect client id
 TST_F6_0_1_003 verify validate fail with incorrect access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    Sprint3   
+    [Tags]    Fail    Sprint3      On-Hold 
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -106,7 +106,7 @@ TST_F6_0_1_003 verify validate fail with incorrect access token
 
 TST_F6_0_1_004 verify validate fail with expired access token
     [Documentation]    Owner:
-    [Tags]    Fail    Sprint3      
+    [Tags]    Fail    Sprint3     On-Hold     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -125,7 +125,7 @@ TST_F6_0_1_004 verify validate fail with expired access token
 TST_F6_0_1_005 verify validate fail with missing client id
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    Sprint3     
+    [Tags]    Fail    Sprint3    On-Hold     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
@@ -144,7 +144,7 @@ TST_F6_0_1_005 verify validate fail with missing client id
 TST_F6_0_1_006 verify validate fail with missing access token
     [Documentation]    Owner:sasipen
     ...
-    [Tags]    Fail    Sprint3     
+    [Tags]    Fail    Sprint3    On-Hold     
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
