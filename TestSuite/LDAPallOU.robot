@@ -10,7 +10,7 @@ TST_F10_1_1_001 LDAP all OU Verify login Ldap Content provider partnerId 30233
     [Documentation]     Owner : sasipen
     ...    ***Expected Result***
     ...    \r\n User logins successfully.
-    [Tags]    Content_Provider
+    [Tags]    Content_Provider    SmokeTest
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP

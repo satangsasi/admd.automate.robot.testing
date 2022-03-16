@@ -12,7 +12,7 @@ TST_F8_1_1_001 Verlify Change Password with Msisdn Password
     [Tags]    Change_password    Msisdn    Sprint3
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
-    Click Login Button In Login Page Change Password
+    Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
@@ -120,7 +120,7 @@ TST_F8_0_1_005 Verlify Change Password with Msisdn password
     [Tags]    Change_password    Msisdn    On-Hold
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
-    Click Login Button In Login Page Change Password
+    Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
