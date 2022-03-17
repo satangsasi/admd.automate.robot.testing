@@ -135,6 +135,16 @@ TST_F8_0_1_006 Verlify Change Ppassword with Msisdn password
     ...    type = ldap
     ...    new password contains Thai character
     [Tags]    Change_password    On-Hold
+    Create Browser Session    ${url_login_change_password}
+    Fill Username And Password Login Page Change Password
+    Press Login Button In Login Page Change Password
+    Create URL For Get Token     ${url_get_token_change_password_schema}
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Set API Header Change Password
+    Set API Body Change Password With Msisdn Invalid New Password Contains Thai Character
+    Send Post Request Change Password Invalid    400
+    Verify Response Change Password With Msisdn Invalid New Password Contains Thai Character
 
 TST_F8_0_1_007 Verlify Change Password with Msisdn password
     [Documentation]    Owner: sasipen
