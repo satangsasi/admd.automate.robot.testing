@@ -29,7 +29,7 @@ SSH Connect To Server Log
     ...    ${ssh_user}          serveradm
     ...    ${ssh_pass}          R3dh@t!@#
     [Tags]    keyword_action
-    Open Connection    ${ssh_ip_address}    prompt=$    timeout=30
+    Open Connection    ${ssh_ip_address}    prompt=$    timeout=${default_timeout}
     ${login_log}    Login    ${ssh_user}     ${ssh_pass}
     Log    ${login_log}
     
@@ -85,7 +85,7 @@ Get OTP Password From Json
 
 Create Browser Session
     [Documentation]     Owner : sasipen
-    ...    Setting browser and open url 
+    ...    Setting browser and open url
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
     Set Up Browser Fullscreen    browser=chromium    headless=${HEAD_LESS}

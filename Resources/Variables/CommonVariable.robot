@@ -1,5 +1,5 @@
 *** Variables ***
-${verify_timeout}        40s
+${verify_timeout}        29s
 ${default_browser}       chromium
 ${test_site}             dev
 ${content_type_x_www}    application/x-www-form-urlencoded  
