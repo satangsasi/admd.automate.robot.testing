@@ -41,7 +41,7 @@ Change Directory Path To Get Log
     [Tags]    keyword_action
     ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path
     Write    reset
-    Read     delay=1s    # Wait for screen reset
+    Read     delay=5s    # Wait for screen reset
     ${admd_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Grep Path    ${kubectl_path}
     [Return]    ${admd_path}
 
@@ -59,7 +59,7 @@ Get Kubectl Grep Path
     @{output_line}    Split To Lines        ${output}
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
-    Read     delay=1s    # Wait for screen reset
+    Read     delay=5s    # Wait for screen reset
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
@@ -166,7 +166,7 @@ Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
     ...    Decoded JWT Then return variable as dot.dict Type
     [Tags]    keyword_action
-    [Arguments]    ${var}
-    ${decoded}   JWT Decode    ${var}
+    [Arguments]    ${encode_variable}
+    ${decoded}   JWT Decode    ${encode_variable}
     ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
     [Return]    ${decoded_dot_dict}

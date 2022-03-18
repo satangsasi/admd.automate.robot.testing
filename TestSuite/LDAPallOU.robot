@@ -340,7 +340,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin
-    [Tags]    Content_Provider    rerun
+    [Tags]    Content_Provider
     Create Browser Session        ${url_auth_LDAP}
     Fill Username And Password    ${user_ldap_provider}    ${invalid_pass_ldap_provider}
     Press Login Button In LDAP
@@ -366,7 +366,7 @@ TST_F10_0_1_003 Verify Ldap Content provider with missing parameter
 
 TST_F10_0_1_004 Verify get token Ldap Content provider with authhcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Content_Provider    On-Hold
+    [Tags]    Content_Provider
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -415,7 +415,7 @@ TST_F10_0_1_009 Verify Login ldap employee with missing parameter
 
 TST_F10_0_1_010 Verify get token ldap employee with authhcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Employee    On-Hold
+    [Tags]    Employee
     Create Browser Session        ${url_auth_ldap_employee}
     Fill Username And Password    ${user_ldap_employee}    ${pass_ldap_employee}
     Press Login Button In LDAP

@@ -31,7 +31,7 @@ Set API Body Change Password With Msisdn Password
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn} 
     Set Content API Body    $..new_password    ${new_password_msisdn}     
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -64,7 +64,7 @@ Set API Body Change Password With Ldap Content Provider
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -85,7 +85,7 @@ Set API Body Change Password With Ldap Invalid Old Password
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider_invalid}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -115,7 +115,7 @@ Set API Body Change Password With Ldap Invalid New Password Contains Thai Charac
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}
     Set Content API Body    $..access_token    ${actual_value_access_token}
