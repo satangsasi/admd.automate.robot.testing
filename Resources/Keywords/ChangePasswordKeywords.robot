@@ -30,7 +30,7 @@ Set API Body Change Password With Msisdn Password
     ...    Set API Body for send request of Change Password With Msisdn Password
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn} 
     Set Content API Body    $..new_password    ${new_password_msisdn}     
@@ -44,7 +44,7 @@ Set API Body Change Password With Msisdn Password
 Verify Value Login Subtype By Key
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    ${actual_value_id_token}    Get Value Response On Web Page By Key    id_token
+    ${actual_value_id_token}    Get Value Response On Web Page By Key    $..id_token
     ${jwt_decode}    Jwt Decode      ${actual_value_id_token}
     Verify Value Json By Key    ${jwt_decode}    $..aut.login_subtype    ${expected_value_login_subtype_cp}           
 
@@ -65,7 +65,7 @@ Set API Body Change Password With Ldap Content Provider
     ...    Set API Body for send request of Change Password With Ldap Content Provider
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
@@ -86,7 +86,7 @@ Set API Body Change Password With Ldap Invalid Old Password
     ...    Set API Body for send request of Change Password Invalid Old Password
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider_invalid}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
@@ -116,7 +116,7 @@ Set API Body Change Password With Ldap Invalid New Password Contains Thai Charac
     ...    Set API Body for send request of Change Password Invalid Old Password
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}
@@ -138,7 +138,7 @@ Set API Body Change Password With Ldap Invalid New Password Contains Special Cha
     ...    Set API Body for send request of Change Password New Password Contains Special Character
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_special_character}
@@ -181,7 +181,7 @@ Set API Body Change Password With Msisdn Invalid Old Password
     ...    Set API Body for send request of Change Password With Msisdn Invalid Old Password 
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn_invalid}
     Set Content API Body    $..new_password    ${new_password_msisdn}     
@@ -203,7 +203,7 @@ Set API Body Change Password With Msisdn Invalid New Password Contains Thai Char
     ...    Set API Body for send request of Change Password With Msisdn Invalid New Password Contains Thai Character
     [Tags]    keyword_communicate
     Get Time Nonce
-    ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn_invalid}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}  

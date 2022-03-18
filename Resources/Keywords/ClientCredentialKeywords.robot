@@ -13,7 +13,7 @@ Set Content Header Client Credentials
     ...    Set header content type and url
     [Arguments]    ${url}     ${content_type}
     Set Schema API Header     ${header_client_credentials_schema}    
-    Set Content API Header    ${header_content_type}    ${content_type}        append=False
+    Set Content API Header    key=${header_content_type}    value=${content_type}        append=False
     Set Test Variable         ${API_URL}       ${url}
 
 Set Body Client Credentials
@@ -76,7 +76,7 @@ Verify Response Client Credentials
     [Documentation]     Owner : sasipen
     ...    Verify response form value(fix) by key and Should Match Regexp value (change) 
     [Arguments]    ${expected_expires_in}
-    ${token}       Get Value Response By Key     access_token
+    ${token}       Get Value Response By Key     $..access_token
     Should Match Regexp             ${token}     .+  
     Verify Value Response By Key    $..token_type   ${expected_token_type}
     Verify Value Response By Key    $..expires_in   ${expected_expires_in}
@@ -90,24 +90,24 @@ Verify Response Client Credentials Error
 Decode Token To Jwt Client Credentials
     [Documentation]     Owner : sasipen
     ...    Get value by key from response and decode by jwt
-    ${value}            Get Value Response By Key    access_token
-    ${jwt_decode}       Jwt Decode      ${value}
+    ${value}            Get Value Response By Key    $..access_token
+    ${jwt_decode}       Jwt Decode Dot Dict   ${value}
     Set Test Actual Result    Jwt decode : ${jwt_decode}
     Set Test Variable    ${RESPONSE_JWT_DECODE}    ${jwt_decode}
 
 Verify Response Jwt Decode
-    Verify Response Decode Jwt By Key    iss
-    Verify Response Decode Jwt By Key    sub
-    Verify Response Decode Jwt By Key    aud
-    Verify Response Decode Jwt By Key    exp
-    Verify Response Decode Jwt By Key    iat
-    Verify Response Decode Jwt By Key    jti
-    Verify Response Decode Jwt By Key    client
-    Verify Response Decode Jwt By Key    ssid
+    Verify Response Decode Jwt By Key    $..iss
+    Verify Response Decode Jwt By Key    $..sub
+    Verify Response Decode Jwt By Key    $..aud
+    Verify Response Decode Jwt By Key    $..exp
+    Verify Response Decode Jwt By Key    $..iat
+    Verify Response Decode Jwt By Key    $..jti
+    Verify Response Decode Jwt By Key    $..client
+    Verify Response Decode Jwt By Key    $..ssid
     
 Verify Response Decode Jwt By Key
-    [Arguments]    ${key}    
-    ${value}      Get Value Json By Key    ${RESPONSE_JWT_DECODE}    ${key}
+    [Arguments]    ${response_key}    
+    ${value}      Get Value Json By Key    ${RESPONSE_JWT_DECODE}    ${response_key}
     ${value}      Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}    
