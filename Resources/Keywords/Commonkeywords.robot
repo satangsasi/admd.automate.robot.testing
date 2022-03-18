@@ -141,6 +141,7 @@ Get Value Response On Web Page By Key
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
     [Tags]    keyword_action
     [Arguments]    ${response_key}
+    ${response_key}    Remove String    ${response_key}    $..
     ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
     [Return]       ${value}
 

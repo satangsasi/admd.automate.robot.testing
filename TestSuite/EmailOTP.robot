@@ -145,7 +145,7 @@ TST_F4_0_1_004 Verify getting token fail with wrong password
 
 TST_F4_0_1_005 Verify getting token fail with expired password
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp
+    [Tags]    Email_Otp    auth_expire
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}

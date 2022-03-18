@@ -176,7 +176,7 @@ Set Content Header Ldap Logout
     ...    Set url to global for create provisioning data
     [Arguments]          ${url}    ${content_type}
     Set Schema API Header     ${header_ldap_schema}
-    Set Content API Header    Key=${header_content_type}    value=${content_type}    append=False
+    Set Content API Header    key=${header_content_type}    value=${content_type}    append=False
     Set Test Variable    ${API_URL}       ${url}
 
 Set Body Ldap Logout
@@ -246,7 +246,7 @@ Get Refresh Value Response Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Change response form jwt state refresh to json message 
     ...    Get value By Key...in key aut form access token in json message 
-    [Arguments]    ${response_key}            ${JWT_DECODE_REFRESH_ACCESS_TOKEN}
+    [Arguments]    ${response_key}
     ${value}       Get Value Json By Key      ${JWT_DECODE_REFRESH_ACCESS_TOKEN}    ${response_key}   
     [Return]       ${value}
 
