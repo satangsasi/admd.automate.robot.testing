@@ -9,7 +9,7 @@ TST_F8_1_1_001 Verlify Change Password with Msisdn Password
     ...    \r\n***Condition***
     ...    \r\ntype = msisdn_password 
     ...    \r\nMsisdn password ไม่มี login_subtype
-    [Tags]    Change_password    Msisdn    Sprint3
+    [Tags]    Change_password    Msisdn    
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password
@@ -25,7 +25,7 @@ TST_F8_1_1_002 Verlify Change Password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Change_password    Ldap_Content_provider    Sprint3 
+    [Tags]    Change_password    Ldap_Content_provider    
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -49,7 +49,7 @@ TST_F8_0_1_001 Verlify Change Password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\nwrong old password
-    [Tags]    Change_password    Ldap_Content_provider    Sprint3  
+    [Tags]    Change_password    Ldap_Content_provider    
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -66,7 +66,7 @@ TST_F8_0_1_002 Verlify Change Password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\ntype = ldap 
     ...    \r\nnew password contains Thai character
-    [Tags]    Change_password    Ldap_Content_provider    Sprint3 
+    [Tags]    Change_password    Ldap_Content_provider    
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -117,7 +117,7 @@ TST_F8_0_1_005 Verlify Change Password with Msisdn password
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
     ...    wrong old password
-    [Tags]    Change_password    Msisdn    On-Hold
+    [Tags]    Change_password    Msisdn    
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password
@@ -134,7 +134,7 @@ TST_F8_0_1_006 Verlify Change Ppassword with Msisdn password
     ...    \r\n***Condition***
     ...    type = ldap
     ...    new password contains Thai character
-    [Tags]    Change_password    On-Hold
+    [Tags]    Change_password    Msisdn    
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password
@@ -159,4 +159,4 @@ TST_F8_0_1_008 Verlify Change Password with Msisdn password
     ...    type = msisdn_password or msisdn
     ...    access_token expired
     [Tags]    Change_password    On-Hold
-    
+     
