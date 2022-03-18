@@ -6,16 +6,16 @@ Resource    ../../TestSuite/Resource_init.robot
 Set Content Header Request Email Otp 
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
-    [Arguments]          ${url}           ${content_type}
+    [Arguments]    ${url}    ${content_type}
     Set Schema API Header    ${header_only_content_type_schema}
-    Set Content API Header   ${header_content_type}    ${content_type}    append=False
-    Set Test Variable    ${API_URL}       ${url}
+    Set Content API Header   key=${header_content_type}    value=${content_type}    append=False
+    Set Test Variable        ${API_URL}       ${url}
 
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${public_id}    ${reference}    
-    Set Schema API Body    ${body_request_email_otp_schema}      jsonfile=False
+    Set Schema API Body     ${body_request_email_otp_schema}        jsonfile=False
     Set Content API Body    $..client_id        ${client_id}        append=False
     Set Content API Body    $..public_id        ${public_id}
     Set Content API Body    $..reference        ${reference}
@@ -36,36 +36,36 @@ Verify Value Response Email Otp By Key
     
 Verify Response Request Email Otp
     [Documentation]    Owner : sasipen
-    Verify Value Response By Key    result_code          ${expected_result_code_email_otp}
-    Verify Value Response By Key    developer_message    ${expected_developer_message}
-    Verify Value Response Email Otp By Key    session_id
-    Verify Value Response Email Otp By Key    transaction_id
-    Verify Value Response Email Otp By Key    reference_number
+    Verify Value Response By Key    $..result_code          ${expected_result_code_email_otp}
+    Verify Value Response By Key    $..developer_message    ${expected_developer_message}
+    Verify Value Response Email Otp By Key    $..session_id
+    Verify Value Response Email Otp By Key    $..transaction_id
+    Verify Value Response Email Otp By Key    $..reference_number
 
 Get Value Response Request Email Otp By Key Session Id   
     [Documentation]    Owner : sasipen
-    ${value_session_id}    Get Value Response By Key     session_id
-    Set Test Variable    ${ACTUAL_VALUE_SESSION_ID}    ${value_session_id}
+    ${value_session_id}    Get Value Response By Key    $..session_id
+    Set Test Variable      ${ACTUAL_VALUE_SESSION_ID}   ${value_session_id}
 
 Get Value Response Request Email Otp By Key Transaction Id  
     [Documentation]    Owner : sasipen
-    ${value_transaction_id}    Get Value Response By Key     transaction_id
-    Set Test Variable    ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
+    ${value_transaction_id}    Get Value Response By Key    $..transaction_id
+    Set Test Variable          ${ACTUAL_VALUE_TRANSACTION_ID}    ${value_transaction_id} 
 
 Set Content Header Get Token Email Otp 
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
-    [Arguments]          ${url}           ${content_type}
+    [Arguments]    ${url}     ${content_type}
     Set Schema API Header     ${header_only_content_type_schema}
-    Set Content API Header    ${header_content_type}    ${content_type}    append=False
-    Set Test Variable    ${API_URL}       ${url}
+    Set Content API Header    key=${header_content_type}    value=${content_type}    append=False
+    Set Test Variable         ${API_URL}       ${url}
 
 Set Body Get Token Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${client_secret}    ${grant_type}    ${username}    
     ...            ${password}    ${type}    ${scope}    ${session_id}    ${transaction_id}   
-    Set Schema API Body    ${body_get_token_email_otp_schema}    jsonfile=False
+    Set Schema API Body     ${body_get_token_email_otp_schema}       jsonfile=False
     Set Content API Body    $..client_id         ${client_id}        append=False
     Set Content API Body    $..client_secret     ${client_secret}       
     Set Content API Body    $..grant_type        ${grant_type}      
@@ -86,44 +86,46 @@ Send Post Request Get Token Email Otp
 Verify Response Get Token Email Otp
     [Documentation]     Owner : sasipen
     ...    Verify response form value(fix) by key and Should Match Regexp value (change) 
-    Verify Value Response Email Otp By Key     access_token
-    Verify Value Response Email Otp By Key     refresh_token
-    Verify Value Response Email Otp By Key     id_token
-    Verify Value Response By Key               token_type                  ${expected_token_type}
-    Verify Value Response By Key               expires_in                  ${expected_expires_in_email_otp}
-    Verify Value Response By Key               refresh_token_expires_in    ${expected_refresh_token_expires_in_email_otp}
+    Verify Value Response Email Otp By Key     $..access_token
+    Verify Value Response Email Otp By Key     $..refresh_token
+    Verify Value Response Email Otp By Key     $..id_token
+    Verify Value Response By Key               $..token_type                  ${expected_token_type}
+    Verify Value Response By Key               $..expires_in                  ${expected_expires_in_email_otp}
+    Verify Value Response By Key               $..refresh_token_expires_in    ${expected_refresh_token_expires_in_email_otp}
 
 Decode Get Token Email Otp Jwt By Key Access Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response By Key    access_token
-    ${jwt_decode}    Jwt Decode      ${value} 
+    ${value}            Get Value Response By Key    $..access_token
+    ${jwt_decode}       Jwt Decode      ${value}
     Set Test Variable         ${JWT_DECODE_ACCESS_TOKEN}      ${jwt_decode} 
     Set Test Actual Result    Jwt decode Access Token : ${JWT_DECODE_ACCESS_TOKEN}
 
 Decode Get Token Email Otp Jwt By Key Id Token
     [Documentation]     Owner : sasipen
     ...    Get value state login By Key access token for decode in keyword Jwt Decode form BuiltinLibrary_CommonKeywords
-    ${value}         Get Value Response By Key    id_token
-    ${jwt_decode}    Jwt Decode      ${value} 
+    ${value}         Get Value Response By Key    $..id_token
+    ${jwt_decode}    Jwt Decode     ${value} 
     Set Test Variable         ${JWT_DECODE_ID_TOKEN}      ${jwt_decode} 
     Set Test Actual Result    Jwt decode Id Token : ${JWT_DECODE_ID_TOKEN}
 
 Verify Response Decode Get Token Email Otp By Key Access Token
-    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.type
-    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.action
-    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.login_channel
-    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   aut.network
+    [Documentation]    Owner : sasipen
+    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   $..aut.type
+    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   $..aut.action
+    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   $..aut.login_channel
+    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ACCESS_TOKEN}   $..aut.network
     Verify Value Should Be Equal    ${actual_value_type}             email 
     Verify Value Should Be Equal    ${actual_value_action}           login
     Verify Value Should Be Equal    ${actual_value_login_channel}    otp
     Verify Value Should Be Equal    ${actual_value_network}          anonymous
 
 Verify Response Decode Get Token Email Otp By Key Id Token
-    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.type
-    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.action
-    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.login_channel
-    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   aut.network
+    [Documentation]     Owner : sasipen
+    ${actual_value_type}             Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   $..aut.type
+    ${actual_value_action}           Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   $..aut.action
+    ${actual_value_login_channel}    Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   $..aut.login_channel
+    ${actual_value_network}          Get Value Json By Key    ${JWT_DECODE_ID_TOKEN}   $..aut.network
     Verify Value Should Be Equal    ${actual_value_type}             email 
     Verify Value Should Be Equal    ${actual_value_action}           login
     Verify Value Should Be Equal    ${actual_value_login_channel}    otp
@@ -154,7 +156,7 @@ Verify Response Get Token Email Otp Error
     [Documentation]     Owner : sasipen
     ...    Verify response form value(fix) by key
     [Arguments]    ${error_message}
-    Verify Value Response By Key    error    ${error_message}
+    Verify Value Response By Key    $..error    ${error_message}
 
 Wait For Password Expire
     [Documentation]    Owner: Nakarin
@@ -163,8 +165,8 @@ Wait For Password Expire
     Sleep    5m
 
 Verify Response Invalid Request Email Otp
-    Verify Value Response By Key    result_code          ${expected_invalid_result_code_email_otp} 
-    Verify Value Response By Key    developer_message    ${expected_invalid_developer_message} 
+    Verify Value Response By Key    $..result_code          ${expected_invalid_result_code_email_otp} 
+    Verify Value Response By Key    $..developer_message    ${expected_invalid_developer_message} 
 
 Send Post Request Email Otp Invalid
     [Documentation]     Owner : sasipen

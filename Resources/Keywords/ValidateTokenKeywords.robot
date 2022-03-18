@@ -16,7 +16,7 @@ Set API Body Login By Client Credential
     ...    Set API Body for send request of Client Credential
     [Tags]    keyword_communicate
     Get Time Nonce
-    Set Schema API Body        ${body_validate_token_schema}
+    Set Schema API Body     ${body_validate_token_schema}
     Set Content API Body    $..client_id      ${client_id_OhFw3u_browser}
     Set Content API Body    $..token.value    ${ACCESS_TOKEN_CLIENTCREDENTIAL}
     Set Content API Body    $..nonce          ${DATE_TIME}
@@ -46,8 +46,8 @@ Get Access Token ClientCredential
 Verify Response Success Validate Token
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code          ${expected_result_code_pass}
-    Verify Value Response By Key    developer_message    ${expected_develope_message_pass}
+    Verify Value Response By Key    $..result_code          ${expected_result_code_pass}
+    Verify Value Response By Key    $..developer_message    ${expected_develope_message_pass}
 
 Set API Header B2C
     [Documentation]    Owner: Nakarin
@@ -90,7 +90,7 @@ Set API Header Get Token Validate Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Set Schema API Header     ${header_only_content_type_schema}
-    Set Content API Header    ${header_content_type}    ${content_type_x_www}    append=False
+    Set Content API Header    key=${header_content_type}    value=${content_type_x_www}    append=False
 
 Set API Body Get Token Validate Token
     [Documentation]    Owner: sasipen
@@ -117,14 +117,14 @@ Get Value Response Get Token By Key Access Token
     [Documentation]    Owner: sasipen
     ...    Get Value by key 
     [Tags]    keyword_communicate
-    ${value_access_token}    Get Value Response By Key     access_token
+    ${value_access_token}    Get Value Response By Key     $..access_token
     Set Test Variable    ${ACTUAL_VALUE_ACCESS_TOKEN}      ${value_access_token}
 
 Set API Header Delete Sub Scriber
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Set Schema API Header     ${header_only_content_type_schema}
-    Set Content API Header    ${header_content_type}   ${content_type_json}    append=False
+    Set Content API Header    key=${header_content_type}   value=${content_type_json}    append=False
 
 Set API Body Delete Sub Scriber
     [Documentation]    Owner: sasipen
@@ -167,14 +167,14 @@ Send Post Request Validate Token No Profile
 Verify Response Validate Token No Profile 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_40402}
-    Verify Value Response By Key    developer_message      ${error_message_subscriber_not_found}
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40402}
+    Verify Value Response By Key    $..developer_message      ${error_message_subscriber_not_found}
 
 Set API Header Validate Token Invalid Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
-    Set Content API Header    ${header_x_tid}           login msisdn by grant type = password (nowebview)
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=login msisdn by grant type = password (nowebview)
 
 Set API Body Validate Token Invalid Client Id
     [Documentation]    Owner: sasipen
@@ -196,14 +196,14 @@ Send Post Request Validate Token Invalid Client Id
 Verify Response Validate Token Invalid Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_40106}
-    Verify Value Response By Key    developer_message      ${error_message_invalid_client} 
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40106}
+    Verify Value Response By Key    $..developer_message      ${error_message_invalid_client} 
 
 Set API Header Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
-    Set Content API Header    ${header_x_tid}           validate_2
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=validate_2
 
 Set API Body Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
@@ -227,14 +227,14 @@ Verify Response Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${VALUE_ACCESS_TOKEN_INVALID}      
-    Verify Value Response By Key    result_code            ${expected_result_code_40001} 
-    Verify Value Response By Key    developer_message      ${error_message_invalid_code}
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40001} 
+    Verify Value Response By Key    $..developer_message      ${error_message_invalid_code}
 
 Set API Header Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
-    Set Content API Header    ${header_x_tid}           login by auto msisdn
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=login by auto msisdn
 
 Set API Body Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
@@ -255,14 +255,14 @@ Send Post Request Validate Token Missing Client Id
 Verify Response Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_40000}
-    Verify Value Response By Key    developer_message      ${error_message_missing_invalid_parameter}
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40000}
+    Verify Value Response By Key    $..developer_message      ${error_message_missing_invalid_parameter}
 
 Set API Header Validate Token Expired Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
-    Set Content API Header    ${header_x_tid}           validate_2
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=validate_2
 
 Set API Body Validate Token Expired Access Token
     [Documentation]    Owner: sasipen
@@ -285,14 +285,14 @@ Verify Response Validate Token Expired Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     Verify Value Should Not Be Equal    ${ACTUAL_VALUE_ACCESS_TOKEN}    ${expired_access_token_validate_token}         
-    Verify Value Response By Key    result_code            ${expected_result_code_40401}
-    Verify Value Response By Key    developer_message      ${error_message_data_not_found}
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40401}
+    Verify Value Response By Key    $..developer_message      ${error_message_data_not_found}
 
 Set API Header Validate Token Missing Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Set Content API Header    ${header_content_type}    ${content_type_json}    append=False
-    Set Content API Header    ${header_x_tid}           login by auto msisdn
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=login by auto msisdn
 
 Set API Body Validate Token Missing Access Token
     [Documentation]    Owner: sasipen
@@ -313,5 +313,5 @@ Send Post Request Validate Token Missing Access Token
 Verify Response Validate Token Missing Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    result_code            ${expected_result_code_40000}
-    Verify Value Response By Key    developer_message      ${error_message_missing_invalid_parameter}
+    Verify Value Response By Key    $..result_code            ${expected_result_code_40000}
+    Verify Value Response By Key    $..developer_message      ${error_message_missing_invalid_parameter}
