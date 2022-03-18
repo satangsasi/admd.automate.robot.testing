@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Test Teardown    Run Keyword And Ignore Error    Append To Document Teardown
+Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 
 
 *** Test Cases ***
