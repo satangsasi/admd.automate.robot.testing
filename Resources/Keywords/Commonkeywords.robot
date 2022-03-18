@@ -42,11 +42,13 @@ Change Directory Path To Get Log
     ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path
     Write    reset
     Read     delay=1s    # Wait for screen reset
-    ${cat_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Grep Path    ${kubectl_path}
-    [Return]    ${cat_path}
+    ${admd_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Grep Path    ${kubectl_path}
+    [Return]    ${admd_path}
 
 Get Kubectl Grep Path
     [Documentation]    Owner: Nakarin
+    ...    Recieve ${kubectl_path} then change directory to ${kubectl_path} 
+    ...    then return ${cat_path} to get log
     [Tags]    keyword_command
     [Arguments]    ${kubectl_path}
     Write    kubectl exec -it ${kubectl_path} -n admd sh
@@ -64,6 +66,7 @@ Get Kubectl Grep Path
 
 Get Kubectl Path
     [Documentation]    Owner: Nakarin
+    ...    Read output of ssh command then return the last Kubectl path
     [Tags]    keyword_command
     Write    kubectl get pod -n admd
     ${output}          Read    delay=1s
@@ -88,6 +91,7 @@ Create Browser Session
     [Documentation]     Owner : sasipen
     ...    Setting browser and open url
     ...    Set url to global for create provisioning data
+    [Tags]    keyword_action
     [Arguments]    ${url}
     Set Up Browser Fullscreen    browser=${BROWSER}    headless=${HEAD_LESS}
     New Page       ${url}
@@ -99,6 +103,7 @@ Create URL For Get Token
     ...    Append Token(get from Auth Url) to get Token(API) Url
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
+    [Tags]    keyword_action
     [Arguments]    ${url_for_get_token}
     Get Code From Authentication
     ${url_get_token}     Replace String      ${url_for_get_token}    _code_    ${CODE}
@@ -110,7 +115,8 @@ Get Code From Authentication
     ...    Get Code Token From Url Then Return to Set Test Variable ${CODE}
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
-    ...    - Add Set Test Provisioning Data   
+    ...    - Add Set Test Provisioning Data
+    [Tags]    keyword_action
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
@@ -121,6 +127,7 @@ Get Code From Authentication
 Set Response On Webpage To Json
     [Documentation]     Owner : sasipen
     ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
+    [Tags]    keyword_action
     ${message}           Get Text    ${lbl_json_response_on_webpage}
     &{json_message}      Evaluate    json.loads('''${message}''')    json
     Log Many             &{json_message}
@@ -132,31 +139,33 @@ Set Response On Webpage To Json
 Get Value Response On Web Page By Key
     [Documentation]     Owner : sasipen
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
+    [Tags]    keyword_action
     [Arguments]    ${response_key}
     ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
     [Return]       ${value}
 
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
-    [Tags]    keyword_action
+    [Tags]    keyword_communicate
     SSH Connect To Server Log
-    ${cat_path}    Change Directory Path To Get Log
-    Set Suite Variable    ${ADMD_PATH}    ${cat_path}
+    ${admd_path}    Change Directory Path To Get Log
+    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
 
 Keyword Suite Teardown
     [Documentation]    Owner: Nakarin
-    [Tags]    keyword_action
+    [Tags]    keyword_communicate
     Close All Connections
 
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
-    [Tags]    keyword_action
+    [Tags]    keyword_communicate
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Set Test Documentation Detail
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
     ...    Decoded JWT Then return variable as dot.dict Type
+    [Tags]    keyword_action
     [Arguments]    ${var}
     ${decoded}   JWT Decode    ${var}
     ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
