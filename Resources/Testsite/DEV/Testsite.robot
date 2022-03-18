@@ -1,8 +1,8 @@
 *** Variables ***
 &{proxy_api}   http=http://10.137.18.77:80    https=http://10.137.18.77:80
 # ClientCredential
-${url_client_credentials}                         https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token
-${url_client_credentials_invalid}                 https://iot-apivr.ais.co.th/authtest/v3.2/oauth/tokennnnnn
+${url_client_credentials}                     https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token
+${url_client_credentials_invalid}             https://iot-apivr.ais.co.th/authtest/v3.2/oauth/tokennnnnn
 
 # EmailOTP
 ${url_request_email_otp}          http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
