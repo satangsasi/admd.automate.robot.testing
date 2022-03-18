@@ -15,35 +15,36 @@ Resource    ../../arcadia.automate.buffet/RobotBuffet/BuiltinLibrary_CommonKeywo
 Library     ../../arcadia.automate.buffet/Library/decode_data.py
 
 # Keywords
-Resource    ../Resources/Keywords/EmailOTPKeywords.robot
+Resource    ../Resources/Keywords/ChangePasswordKeywords.robot
 Resource    ../Resources/Keywords/ClientCredentialKeywords.robot
-Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/CommonKeywords.robot
-# Resource    ../Resources/Keywords/Mobileid_(iot)Keywords.robot
-Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
+Resource    ../Resources/Keywords/EmailOTPKeywords.robot
 Resource    ../Resources/Keywords/FBBOTPKeyword.robot
-Resource    ../Resources/Keywords/changepasswordKeywords.robot
-
-# Variables
-Resource    ../Resources/Variables/EmailOTPVariables.robot
-Resource    ../Resources/Variables/CommonVariable.robot
-Resource    ../Resources/Variables/ClientCredentialVariables.robot
-Resource    ../Resources/Variables/LDAPallOUVariables.robot
-Resource    ../Resources/Variables/changepasswordVariable.robot
-# Resource    ../Resources/Variables/Mobileid_(iot)Variable.robot
-Resource    ../Resources/Variables/ValidateTokenVariables.robot
-Resource    ../Resources/Variables/FBBOTPVariable.robot
-
-# Repositories
-Resource    ../Resources/Repositories/LDAPallOURepositories.robot
-Resource    ../Resources/Repositories/FBBOTPRepositories.robot
-Resource    ../Resources/Repositories/changepasswordRepositories.robot
+Resource    ../Resources/Keywords/ForgotPWKeywords.robot
+Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
+Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
 
+# Repositories
+Resource    ../Resources/Repositories/ChangePasswordRepositories.robot
+Resource    ../Resources/Repositories/FBBOTPRepositories.robot
+Resource    ../Resources/Repositories/ForgotPWRepositories.robot
+Resource    ../Resources/Repositories/LDAPallOURepositories.robot
+
 # Test Site
 Resource    ../Resources/Testsite/${TEST_SITE}/Testsite.robot
+
+# Variables
+Resource    ../Resources/Variables/ChangePasswordVariables.robot
+Resource    ../Resources/Variables/ClientCredentialVariables.robot
+Resource    ../Resources/Variables/CommonVariables.robot
+Resource    ../Resources/Variables/EmailOTPVariables.robot
+Resource    ../Resources/Variables/FBBOTPVariables.robot
+Resource    ../Resources/Variables/ForgotPWVariables.robot
+Resource    ../Resources/Variables/LDAPallOUVariables.robot
+Resource    ../Resources/Variables/ValidateTokenVariables.robot
 
 
 *** Variables ***

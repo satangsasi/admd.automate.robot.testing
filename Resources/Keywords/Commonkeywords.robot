@@ -4,6 +4,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 *** Variables ***
 ${HEAD_LESS}    False
+${BROWSER}      chromium
 
 
 *** Keywords ***
@@ -88,7 +89,7 @@ Create Browser Session
     ...    Setting browser and open url
     ...    Set url to global for create provisioning data
     [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=chromium    headless=${HEAD_LESS}
+    Set Up Browser Fullscreen    browser=${BROWSER}    headless=${HEAD_LESS}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle
@@ -152,4 +153,11 @@ Keyword Test Teardown
     [Tags]    keyword_action
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Set Test Documentation Detail
- 
+
+Jwt Decode Dot Dict
+    [Documentation]    Owner: Nakarin
+    ...    Decoded JWT Then return variable as dot.dict Type
+    [Arguments]    ${var}
+    ${decoded}   JWT Decode    ${var}
+    ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
+    [Return]    ${decoded_dot_dict}

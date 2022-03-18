@@ -53,14 +53,6 @@ Get Json OTP Password Log FBB
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Jwt Decode Dot Dict
-    [Documentation]    Owner: Nakarin
-    ...    Decoded JWT Then return variable as dot.dict Type
-    [Arguments]    ${var}
-    ${decoded}   JWT Decode    ${var}
-    ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
-    [Return]    ${decoded_dot_dict}
-
 Decoded Access Token
     [Documentation]    Owner: Nakarin
     ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
@@ -73,7 +65,7 @@ Decoded ID Token
     [Documentation]    Owner: Nakarin
     ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
-    ${decoded_id_token}       Jwt Decode Dot Dict    ${RESPONSE_JSON_MESSAGE.id_token}
+    ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
     Set Test Actual Result    ID Token $..aut: ${decoded_id_token.aut}
     Set Test Actual Result    ID Token $..info: ${decoded_id_token.info}
     Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
