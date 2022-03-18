@@ -72,6 +72,7 @@ Decoded ID Token
 
 Verify Decoded Value Access Token
     [Documentation]    Owner: Nakarin
+    ...    Decode Then verify decode value of Access Token
     [Tags]    keyword_communicate
     Decoded Access Token
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             fbbid
@@ -81,6 +82,7 @@ Verify Decoded Value Access Token
 
 Verify Decoded Value ID Token
     [Documentation]    Owner: Nakarin
+    ...    Decode Then verify decode value of ID Token
     [Tags]    keyword_communicate
     Decoded ID Token
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type               fbbid
