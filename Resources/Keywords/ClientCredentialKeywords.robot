@@ -11,17 +11,17 @@ Get Time Nonce
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
-    [Arguments]          ${url}           ${content_type}
+    [Arguments]    ${url}     ${content_type}
     Set Schema API Header     ${header_client_credentials_schema}    
     Set Content API Header    ${header_content_type}    ${content_type}        append=False
-    Set Test Variable    ${API_URL}       ${url}
+    Set Test Variable         ${API_URL}       ${url}
 
 Set Body Client Credentials
     [Documentation]     Owner : sasipen
     ...    Set client id,client secret,grant type, nonce to formate body 
-    [Arguments]              ${client_id}      ${client_secret}    ${grant_type}   ${nonce}
+    [Arguments]             ${client_id}      ${client_secret}    ${grant_type}   ${nonce}
     Get Time Nonce
-    Set Schema API Body     ${body_client_credentials_schema}    jsonfile=False
+    Set Schema API Body     ${body_client_credentials_schema}       jsonfile=False
     Set Content API Body    $..client_id        ${client_id}        append=False
     Set Content API Body    $..client_secret    ${client_secret}
     Set Content API Body    $..grant_type       ${grant_type}
@@ -30,9 +30,9 @@ Set Body Client Credentials
 Set Body Client Credentials Missing Client Id
     [Documentation]     Owner : sasipen
     ...    Set client secret,grant type, nonce to formate body
-    [Arguments]              ${client_secret}  ${grant_type}     ${nonce}
+    [Arguments]             ${client_secret}    ${grant_type}    ${nonce}
     Get Time Nonce
-    Set Schema API Body     ${body_client_credentials_missing_id_schema}    jsonfile=False
+    Set Schema API Body     ${body_client_credentials_missing_id_schema}       jsonfile=False
     Set Content API Body    $..client_secret    ${client_secret}               append=False
     Set Content API Body    $..grant_type       ${grant_type}
     Set Content API Body    $..nonce            ${DATE_TIME}
@@ -40,9 +40,9 @@ Set Body Client Credentials Missing Client Id
 Set Body Client Credentials Missing Client Secret
     [Documentation]     Owner : sasipen
     ...    Set client id,grant type, nonce to formate body 
-    [Arguments]              ${client_id}      ${grant_type}    ${nonce}
+    [Arguments]             ${client_id}    ${grant_type}    ${nonce}
     Get Time Nonce
-    Set Schema API Body     ${body_client_credentials_missing_secret_schema}    jsonfile=False
+    Set Schema API Body     ${body_client_credentials_missing_secret_schema}       jsonfile=False
     Set Content API Body    $..client_id    ${client_id}                           append=False
     Set Content API Body    $..grant_type   ${grant_type}
     Set Content API Body    $..nonce        ${DATE_TIME}
@@ -50,9 +50,9 @@ Set Body Client Credentials Missing Client Secret
 Set Body Client Credentials Missing Grant Type
     [Documentation]     Owner : sasipen
     ...    Set client id,client secret,nonce to formate body 
-    [Arguments]              ${client_id}      ${client_secret}    ${nonce}
+    [Arguments]             ${client_id}    ${client_secret}    ${nonce}
     Get Time Nonce
-    Set Schema API Body     ${body_client_credentials_missing_grant_type_schema}    jsonfile=False
+    Set Schema API Body     ${body_client_credentials_missing_grant_type_schema}       jsonfile=False
     Set Content API Body    $..client_id        ${client_id}                           append=False
     Set Content API Body    $..client_secret    ${client_secret}
     Set Content API Body    $..nonce            ${DATE_TIME}
@@ -78,14 +78,14 @@ Verify Response Client Credentials
     [Arguments]    ${expected_expires_in}
     ${token}       Get Value Response By Key     access_token
     Should Match Regexp             ${token}     .+  
-    Verify Value Response By Key    token_type   ${expected_token_type}
-    Verify Value Response By Key    expires_in   ${expected_expires_in}
+    Verify Value Response By Key    $..token_type   ${expected_token_type}
+    Verify Value Response By Key    $..expires_in   ${expected_expires_in}
 
 Verify Response Client Credentials Error
     [Documentation]     Owner : sasipen
     ...    Verify response form value(fix) by key
     [Arguments]    ${error_message}
-    Verify Value Response By Key    error    ${error_message}
+    Verify Value Response By Key    $..error    ${error_message}
 
 Decode Token To Jwt Client Credentials
     [Documentation]     Owner : sasipen

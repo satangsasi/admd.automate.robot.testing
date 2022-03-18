@@ -26,12 +26,12 @@ Set API Header Change Password
     Log    ${API_HEADER}
 
 Set API Body Change Password With Msisdn Password
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password With Msisdn Password
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn} 
     Set Content API Body    $..new_password    ${new_password_msisdn}     
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -42,9 +42,11 @@ Set API Body Change Password With Msisdn Password
     Set Content API Body    $..nonce           ${DATE_TIME}
     
 Verify Value Login Subtype By Key
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
     ${actual_value_id_token}    Get Value Response On Web Page By Key    id_token
     ${jwt_decode}    Jwt Decode      ${actual_value_id_token}
-    Verify Value Json By Key    ${jwt_decode}    aut.login_subtype    ${expected_value_login_subtype_cp}           
+    Verify Value Json By Key    ${jwt_decode}    $..aut.login_subtype    ${expected_value_login_subtype_cp}           
 
 Send Post Request Change Password
     [Documentation]    Owner: sasipen
@@ -56,15 +58,15 @@ Send Post Request Change Password
 Verify Response Change Password With Msisdn Password
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    state    ${state_success_change_password_msisdn} 
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn} 
 
 Set API Body Change Password With Ldap Content Provider
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password With Ldap Content Provider
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -77,15 +79,15 @@ Set API Body Change Password With Ldap Content Provider
 Verify Response Change Password With Ldap Content Provider
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
+    Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
 Set API Body Change Password With Ldap Invalid Old Password
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password Invalid Old Password
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider_invalid}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider}    
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -106,16 +108,16 @@ Send Post Request Change Password Invalid
 Verify Response Change Password With Ldap Invalid Old Password
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_user_or_password}
-    Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
+    Verify Value Response By Key    $..error    ${error_message_invalid_user_or_password}
+    Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
 Set API Body Change Password With Ldap Invalid New Password Contains Thai Character
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password Invalid Old Password
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -128,16 +130,16 @@ Set API Body Change Password With Ldap Invalid New Password Contains Thai Charac
 Verify Response Change Password With Ldap Invalid New Password Contains Thai Character
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_request} 
-    Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
+    Verify Value Response By Key    $..error    ${error_message_invalid_request} 
+    Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
 Set API Body Change Password With Ldap Invalid New Password Contains Special Character
-    [Documentation]    Owner: Nakarin
-    ...    Set API Body for send request of Change Password Invalid Old Password
+    [Documentation]    Owner: sasipen
+    ...    Set API Body for send request of Change Password New Password Contains Special Character
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_special_character}
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -150,15 +152,15 @@ Set API Body Change Password With Ldap Invalid New Password Contains Special Cha
 Verify Response Change Password With Ldap Invalid New Password Contains Special Character
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_request} 
-    Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
+    Verify Value Response By Key    $..error    ${error_message_invalid_request} 
+    Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
 Set API Body Change Password With Ldap Invalid Access Token Expired
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password Invalid Access Token Expired
     [Tags]    keyword_communicate
     Get Time Nonce
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_ldap_content_provider} 
     Set Content API Body    $..access_token    ${expired_access_token_change_password}  
@@ -171,16 +173,16 @@ Set API Body Change Password With Ldap Invalid Access Token Expired
 Verify Response Change Password With Ldap Invalid Access Token Expired
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_grant}
-    Verify Value Response By Key    state    ${state_success_change_password_ldapcp} 
+    Verify Value Response By Key    $..error    ${error_message_invalid_grant}
+    Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
 Set API Body Change Password With Msisdn Invalid Old Password
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: sasipen
     ...    Set API Body for send request of Change Password With Msisdn Invalid Old Password 
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn_invalid}
     Set Content API Body    $..new_password    ${new_password_msisdn}     
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -193,16 +195,16 @@ Set API Body Change Password With Msisdn Invalid Old Password
 Verify Response Change Password With Msisdn Invalid Old Password
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_user_or_password}
-    Verify Value Response By Key    state    ${state_success_change_password_msisdn}
+    Verify Value Response By Key    $..error    ${error_message_invalid_user_or_password}
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}
 
 Set API Body Change Password With Msisdn Invalid New Password Contains Thai Character
     [Documentation]    Owner: Nakarin
-    ...    Set API Body for send request of Change Password With Msisdn Invalid Old Password 
+    ...    Set API Body for send request of Change Password With Msisdn Invalid New Password Contains Thai Character
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    access_token
-    Set Schema API Body        ${body_change_password_schema}  
+    Set Schema API Body     ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn_invalid}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}  
     Set Content API Body    $..access_token    ${actual_value_access_token}
@@ -215,5 +217,5 @@ Set API Body Change Password With Msisdn Invalid New Password Contains Thai Char
 Verify Response Change Password With Msisdn Invalid New Password Contains Thai Character
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    Verify Value Response By Key    error    ${error_message_invalid_request}
-    Verify Value Response By Key    state    ${state_success_change_password_msisdn}
+    Verify Value Response By Key    $..error    ${error_message_invalid_request}
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}

@@ -9,13 +9,13 @@ Set Content Header Request Email Otp
     [Arguments]          ${url}           ${content_type}
     Set Schema API Header    ${header_only_content_type_schema}
     Set Content API Header   ${header_content_type}    ${content_type}    append=False
-    Set Test Variable    ${API_URL}       ${url}
+    Set Test Variable        ${API_URL}       ${url}
 
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,public id,reference to formate body 
     [Arguments]    ${client_id}    ${public_id}    ${reference}    
-    Set Schema API Body    ${body_request_email_otp_schema}      jsonfile=False
+    Set Schema API Body     ${body_request_email_otp_schema}        jsonfile=False
     Set Content API Body    $..client_id        ${client_id}        append=False
     Set Content API Body    $..public_id        ${public_id}
     Set Content API Body    $..reference        ${reference}
@@ -36,11 +36,11 @@ Verify Value Response Email Otp By Key
     
 Verify Response Request Email Otp
     [Documentation]    Owner : sasipen
-    Verify Value Response By Key    result_code          ${expected_result_code_email_otp}
-    Verify Value Response By Key    developer_message    ${expected_developer_message}
-    Verify Value Response Email Otp By Key    session_id
-    Verify Value Response Email Otp By Key    transaction_id
-    Verify Value Response Email Otp By Key    reference_number
+    Verify Value Response By Key    $..result_code          ${expected_result_code_email_otp}
+    Verify Value Response By Key    $..developer_message    ${expected_developer_message}
+    Verify Value Response Email Otp By Key    $..session_id
+    Verify Value Response Email Otp By Key    $..transaction_id
+    Verify Value Response Email Otp By Key    $..reference_number
 
 Get Value Response Request Email Otp By Key Session Id   
     [Documentation]    Owner : sasipen
