@@ -26,6 +26,7 @@ Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
+Resource    ../Resources/Localized/${LANG}/ForgotPWLocalized.robot
 
 # Repositories
 Resource    ../Resources/Repositories/ChangePasswordRepositories.robot
