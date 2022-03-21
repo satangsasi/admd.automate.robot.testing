@@ -45,5 +45,9 @@ ${url_auth_ldap_employee}                 https://iot-apivr.ais.co.th/auth/v3.2/
 ${url_auth_ldap_employee_no_scope_profile}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&redirect_uri=https://www.ais.co.th/
 
 # FBBOTP
-${url_auth_fbb}         https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
-${url_get_token_fbb}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
+${url_auth_fbb}         https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
+${url_get_token_fbb}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
+
+# Forgot password
+${url_auth_forgot_pw_email}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/authorize?response_type=code&client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&lang=eng&redirect_uri=https://www.ais.co.th/
+${url_get_token_forgot_pw_email}    https://iot-apivr.ais.co.th/auth/v3.2/oauth/token?client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
