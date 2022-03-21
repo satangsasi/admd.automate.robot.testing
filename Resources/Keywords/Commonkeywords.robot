@@ -161,7 +161,7 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
-    Set Test Documentation Detail
+    Run Keyword If Test Passed    Set Test Documentation Detail
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
@@ -177,7 +177,7 @@ Decoded Access Token
     ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Actual Result    Access Token $..aut: ${decoded_access_token.aut}
+    Set Test Actual Result    Access Token: ${decoded_access_token}
     Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
 
 Decoded ID Token
@@ -185,6 +185,5 @@ Decoded ID Token
     ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
-    Set Test Actual Result    ID Token $..aut: ${decoded_id_token.aut}
-    Set Test Actual Result    ID Token $..info: ${decoded_id_token.info}
+    Set Test Actual Result    ID Token: ${decoded_id_token}
     Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
