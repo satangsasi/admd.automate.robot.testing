@@ -1,15 +1,33 @@
 *** Settings ***
-Resource    ./Resource_init.robot
+Resource          ./Resource_init.robot
+Suite Setup       Keyword Suite Setup
+Test Teardown     Keyword Test Teardown
+Suite Teardown    Keyword Suite Teardown
 
 
 *** Test Cases ***
 TST_F9_1_1_001 Verify forgot password with registered mobile number
     [Documentation]    Owner: Nakarin
-    ...    \r\n*** Conditions ***
+    ...    \r\n***Conditions***
     ...    \r\nscope = profile
-    [Tags]    Success    Test
+    [Tags]    Success    Sprint4    Test
     Create Browser Session    ${url_login_change_password}
-    Press Forgot Password
+    Press Forgot Password Forgot PW
+    Fill Mobile Number Forgot PW
+    Click    ${btn_next1_forgot_pw}
+    Get OTP Password Forgot PW
+    Fill OTP Password Forgot PW
+    Click    ${btn_next2_forgot_pw}
+    Fill Question 1 And Question 2 Forgot PW
+    Click    ${btn_next3_forgot_pw}
+    Fill New Password Forgot PW
+    Click    ${btn_next4_forgot_pw}
+    Create URL For Get Token     ${url_get_token_change_password_schema}
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Verify Response Key Forgot PW
+    Verify Decoded Value Access Token Forgot PW
+    Verify Decoded Value ID Token Forgot PW
 
 TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner:

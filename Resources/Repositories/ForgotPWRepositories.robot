@@ -11,6 +11,10 @@ ${txt_reset_password_forget_pw}      //*[@id="rpassword2"]
 ${txt_confirm_password_forget_pw}    //*[@id="rconfirm_password2"]
 
 # Button
+# @{btn_next_forgot_pw}    //*[@id="btn-forgot"]
+#         ...              //*[@id="next_forgotMobilePage1"]
+#         ...              //*[@id="next_forgotMobilePage2"]
+#         ...              //*[@id="btn-next2"]
 ${btn_next1_forgot_pw}    //*[@id="btn-forgot"]
 ${btn_next2_forgot_pw}    //*[@id="next_forgotMobilePage1"]
 ${btn_next3_forgot_pw}    //*[@id="next_forgotMobilePage2"]

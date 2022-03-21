@@ -1,7 +1,7 @@
 *** Variables ***
 ${forgot_pw_mobile_number}    0981721044
-${forgot_pw_question1}        Test1
-${forgot_pw_question2}        Test2
+${forgot_pw_question1}        test1
+${forgot_pw_question2}        test2
 ${forgot_pw_new_password}     12345678
 
 
