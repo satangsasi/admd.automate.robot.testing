@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-
+Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 
 *** Test Cases ***
 TST_F9_1_1_001 Verify forgot password with registered mobile number
@@ -11,17 +11,163 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     Create Browser Session    ${url_login_change_password}
     Press Forgot Password
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TST_F9_1_1_002 Verify forgot password with registered Email
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
-    [Tags]    Success    On-Hold
+    [Tags]    Success    test1
+    Create Browser Session    ${url_gmail_login}
+    Fill Email In Web Page
+    Press Next Button Gmail Login
+    Fill Password Email In Web Page
+    Press Next Button Password Gmail Login
 
 TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner:
     ...    \r\n*** Conditions ***
     ...    \r\nwith Email that have never been registered
-    [Tags]    Fail    On-Hold
+    [Tags]    Forgot_Password    Fail     sasi    
+    Create Browser Session    ${url_auth_forgot_pw_email}
+    Press Forgot Password link
+    Fill Email Or Number For Reset Password    ${email_not_registered}
+    Press Next Button
+    Verify Email Invalid On Webpage
 
 TST_F9_0_1_002 Verify forgot password fail
     [Documentation]    Owner:

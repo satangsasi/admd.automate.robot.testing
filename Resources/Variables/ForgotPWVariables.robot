@@ -297,4 +297,7 @@
 
 
 
-${btn_next_forget_pw}
+${email_not_registered}        test1234@gmail.com
+${url_gmail_login}             https://accounts.google.com/signin        
+${email_login_gmail}           bitangsasi@gmail.com       
+${password_login_gmail}        lovethezaab   
