@@ -80,7 +80,6 @@ Verify Decoded Value ID Token FBB OTP
 Verify Response Key FBB OTP
     [Documentation]    Owner: Nakarin
     Verify Response Key From Webpage    $..access_token
-    Verify Response Key From Webpage    $..token_expire
     Verify Response Key From Webpage    $..expire_in
     Verify Response Key From Webpage    $..refresh_token
     Verify Response Key From Webpage    $..refresh_token_expire_in

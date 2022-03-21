@@ -15,7 +15,7 @@ TST_F2_1_1_001 Verify LoginOTP
     Get OTP Password FBB
     Fill OTP Password FBB
     Press Login Button In FBB OTP
-    Create URL For Get Token     ${url_for_token_validate_token}
+    Create URL For Get Token    ${url_for_token_validate_token}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Verify Response Key FBB OTP
