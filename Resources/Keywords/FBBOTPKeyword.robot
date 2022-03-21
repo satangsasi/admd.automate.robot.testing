@@ -76,3 +76,12 @@ Verify Decoded Value ID Token FBB OTP
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
+
+Verify Response Key FBB OTP
+    [Documentation]    Owner: Nakarin
+    Verify Response Key From Webpage    $..access_token
+    Verify Response Key From Webpage    $..token_expire
+    Verify Response Key From Webpage    $..expire_in
+    Verify Response Key From Webpage    $..refresh_token
+    Verify Response Key From Webpage    $..refresh_token_expire_in
+    Verify Response Key From Webpage    $..id_token

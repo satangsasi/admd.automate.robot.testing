@@ -18,6 +18,7 @@ TST_F2_1_1_001 Verify LoginOTP
     Create URL For Get Token     ${url_for_token_validate_token}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
+    Verify Response Key FBB OTP
     Verify Decoded Value Access Token FBB OTP
     Verify Decoded Value ID Token FBB OTP
 
