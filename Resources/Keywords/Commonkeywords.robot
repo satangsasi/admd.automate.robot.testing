@@ -160,8 +160,8 @@ Keyword Suite Teardown
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
-    Run Keyword If Test Passed    Set Test Documentation Detail
+    Run Keyword If Test Failed      Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
+    Run Keyword And Ignore Error    Set Test Documentation Detail
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
@@ -179,6 +179,8 @@ Decoded Access Token
     ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
     Set Test Actual Result    Access Token: ${decoded_access_token}
     Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
+    Log Many    &{decoded_access_token}
+    Log         ${decoded_access_token}
 
 Decoded ID Token
     [Documentation]    Owner: Nakarin
@@ -187,3 +189,12 @@ Decoded ID Token
     ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
     Set Test Actual Result    ID Token: ${decoded_id_token}
     Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
+    Log Many    &{decoded_id_token}
+    Log         ${decoded_id_token}
+
+Verify Response Key From Webpage
+    [Documentation]    Owner: Nakarin
+    [Arguments]    ${response_key}
+    ${value}    Get Value Response On Web Page By Key    ${response_key}
+    Should Match Regexp    ${value}    .+
+    Log    ${value}
