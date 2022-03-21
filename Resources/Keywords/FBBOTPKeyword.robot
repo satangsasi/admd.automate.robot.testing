@@ -53,24 +53,7 @@ Get Json OTP Password Log FBB
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Decoded Access Token
-    [Documentation]    Owner: Nakarin
-    ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
-    [Tags]    keyword_action
-    ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Actual Result    Access Token $..aut: ${decoded_access_token.aut}
-    Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
-
-Decoded ID Token
-    [Documentation]    Owner: Nakarin
-    ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
-    [Tags]    keyword_action
-    ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
-    Set Test Actual Result    ID Token $..aut: ${decoded_id_token.aut}
-    Set Test Actual Result    ID Token $..info: ${decoded_id_token.info}
-    Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
-
-Verify Decoded Value Access Token
+Verify Decoded Value Access Token FBB OTP
     [Documentation]    Owner: Nakarin
     ...    Decode Then verify decode value of Access Token
     [Tags]    keyword_communicate
@@ -80,7 +63,7 @@ Verify Decoded Value Access Token
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    otp
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
 
-Verify Decoded Value ID Token
+Verify Decoded Value ID Token FBB OTP
     [Documentation]    Owner: Nakarin
     ...    Decode Then verify decode value of ID Token
     [Tags]    keyword_communicate
@@ -93,3 +76,12 @@ Verify Decoded Value ID Token
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id_type    fbbid
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.contact_number    093xxx5569
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.operator_id       awn
+
+Verify Response Key FBB OTP
+    [Documentation]    Owner: Nakarin
+    Verify Response Key From Webpage    $..access_token
+    Verify Response Key From Webpage    $..token_expire
+    Verify Response Key From Webpage    $..expire_in
+    Verify Response Key From Webpage    $..refresh_token
+    Verify Response Key From Webpage    $..refresh_token_expire_in
+    Verify Response Key From Webpage    $..id_token

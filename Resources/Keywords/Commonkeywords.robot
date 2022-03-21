@@ -92,11 +92,11 @@ Create Browser Session
     ...    Setting browser and open url
     ...    Set url to global for create provisioning data
     [Tags]    keyword_action
-    [Arguments]    ${url}
-    Set Up Browser Fullscreen    browser=${BROWSER}    headless=${HEAD_LESS}
+    [Arguments]    ${url}    ${browser}=${BROWSER}
+    Set Up Browser Fullscreen    browser=${browser}    headless=${HEAD_LESS}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
-    Wait Until Network Is Idle
+    Wait Until Network Is Idle    ${verify_timeout}
 
 Create URL For Get Token
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -131,9 +131,13 @@ Set Response On Webpage To Json
     ${message}           Get Text    ${lbl_json_response_on_webpage}
     &{json_message}      Evaluate    json.loads('''${message}''')    json
     Log Many             &{json_message}
-    Set Test Variable    &{RESPONSE_JSON_MESSAGE}    &{json_message}
+    Set Test Variable    ${RESPONSE_JSON_MESSAGE}    ${json_message}
     Take Screenshot Verify Success Scene
     Run Keyword And Ignore Error    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Token Type: ${RESPONSE_JSON_MESSAGE.token_type}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Expires In: ${RESPONSE_JSON_MESSAGE.expires_in}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token: ${RESPONSE_JSON_MESSAGE.refresh_token}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token Expires In: ${RESPONSE_JSON_MESSAGE.refresh_token_expires_in}
     Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
 
 Get Value Response On Web Page By Key
@@ -141,9 +145,10 @@ Get Value Response On Web Page By Key
     ...    Get value from key in &{RESPONSE_JSON_MESSAGE} Then Return to value
     [Tags]    keyword_action
     [Arguments]    ${response_key}
-    ${response_key}    Remove String    ${response_key}    $..
-    ${value}       Set Variable    ${RESPONSE_JSON_MESSAGE.${response_key}}
-    [Return]       ${value}
+    ${response_key}    Remove String        ${response_key}    $..
+    ${value}           Set Variable         ${RESPONSE_JSON_MESSAGE.${response_key}}
+    ${value}           Convert To String    ${value}
+    [Return]           ${value}
 
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
@@ -160,8 +165,8 @@ Keyword Suite Teardown
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Run Keyword If Test Failed    Set Suite Documentation    ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
-    Set Test Documentation Detail
+    Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
+    Run Keyword And Ignore Error    Set Test Documentation Detail
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
@@ -171,3 +176,31 @@ Jwt Decode Dot Dict
     ${decoded}   JWT Decode    ${encode_variable}
     ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
     [Return]    ${decoded_dot_dict}
+
+Decoded Access Token
+    [Documentation]    Owner: Nakarin
+    ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
+    [Tags]    keyword_action
+    ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
+    Set Test Actual Result    Access Token: ${decoded_access_token}
+    Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
+    Log Many    &{decoded_access_token}
+    Log         ${decoded_access_token}
+
+Decoded ID Token
+    [Documentation]    Owner: Nakarin
+    ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
+    [Tags]    keyword_action
+    ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
+    Set Test Actual Result    ID Token: ${decoded_id_token}
+    Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
+    Log Many    &{decoded_id_token}
+    Log         ${decoded_id_token}
+
+Verify Response Key From Webpage
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
+    [Arguments]    ${response_key}
+    ${value}    Get Value Response On Web Page By Key    ${response_key}
+    Should Match Regexp    ${value}    .*
+    Log    ${value}

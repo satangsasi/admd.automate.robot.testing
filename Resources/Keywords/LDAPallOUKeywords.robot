@@ -148,7 +148,7 @@ Get Code From Key Refresh Token
 Create URL For Get Refresh Token
     [Documentation]     Owner : sasipen
     ...    Append ${CODE_REFRESH_TOKEN}(link get refresh token) to get refresh token Url 
-    Wait Until Network Is Idle
+    Wait Until Network Is Idle    ${verify_timeout}
     Get Code From Key Refresh Token
     ${url_get_refresh_token}     Replace String      ${url_get_refresh_token_schema}    _code_    ${CODE_REFRESH_TOKEN}
     Set Test Variable    ${URL_GET_REFRESH_TOKEN}    ${url_get_refresh_token}
@@ -366,7 +366,7 @@ Press Login Button In LDAP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click     ${btn_login_ldap}
-    Wait Until Network Is Idle
+    Wait Until Network Is Idle    ${verify_timeout}
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
