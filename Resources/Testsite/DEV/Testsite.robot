@@ -54,3 +54,4 @@ ${url_get_token_fbb}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?cl
 # Forgot password
 ${url_auth_forgot_pw_email}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&lang=eng&redirect_uri=https://www.ais.co.th/
 ${url_get_token_forgot_pw_email}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
+${url_forgot_pw}     https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&redirect_uri=https://www.ais.co.th/&lang=eng
