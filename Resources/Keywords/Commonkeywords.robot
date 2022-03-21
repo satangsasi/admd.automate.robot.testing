@@ -96,7 +96,7 @@ Create Browser Session
     Set Up Browser Fullscreen    browser=${BROWSER}    headless=${HEAD_LESS}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
-    Wait Until Network Is Idle
+    Wait Until Network Is Idle    ${verify_timeout}
 
 Create URL For Get Token
     [Documentation]     Owner : sasipen    Editor: Nakarin
@@ -171,3 +171,20 @@ Jwt Decode Dot Dict
     ${decoded}   JWT Decode    ${encode_variable}
     ${decoded_dot_dict}    Convert Variable Type To Dot Dict    ${decoded}
     [Return]    ${decoded_dot_dict}
+
+Decoded Access Token
+    [Documentation]    Owner: Nakarin
+    ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
+    [Tags]    keyword_action
+    ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
+    Set Test Actual Result    Access Token $..aut: ${decoded_access_token.aut}
+    Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
+
+Decoded ID Token
+    [Documentation]    Owner: Nakarin
+    ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
+    [Tags]    keyword_action
+    ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
+    Set Test Actual Result    ID Token $..aut: ${decoded_id_token.aut}
+    Set Test Actual Result    ID Token $..info: ${decoded_id_token.info}
+    Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
