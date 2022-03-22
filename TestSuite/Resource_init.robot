@@ -36,7 +36,7 @@ Resource    ../Resources/Repositories/LDAPallOURepositories.robot
 
 # Test Site
 Resource    ../Resources/Testsite/${TEST_SITE}/Testsite.robot
-Resource    ../Resources/Testsite/${TEST_URL}.robot
+Resource    ../Resources/Testsite/${DOMAIN}.robot
 # Variables
 Resource    ../Resources/Variables/ChangePasswordVariables.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
@@ -51,4 +51,4 @@ Resource    ../Resources/Variables/ValidateTokenVariables.robot
 *** Variables ***
 ${LANG}         EN
 ${TEST_SITE}    DEV
-${TEST_URL}     Public
+${DOMAIN}       Public
