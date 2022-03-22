@@ -372,7 +372,7 @@ Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
     ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
-    Sleep    5m
+    Robot Wait Time    5m
 
 Verify Login Fail
     [Documentation]    Owner: Nakarin

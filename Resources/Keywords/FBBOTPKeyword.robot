@@ -32,17 +32,13 @@ Get OTP Password FBB
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
     [Tags]    keyword_action
-    # SSH Connect To Server Log
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
-    # [Teardown]    Close All Connections
 
 Get Json OTP Password Log FBB
     [Documentation]    Owner: Nakarin
     [Tags]    Keyword_action
-    # ${admd_path}        Change Directory Path To Get Log
-    # ${mobile_number}    Replace String    ${fbb_contact_number}    0    66    count=1
     Read    delay=5s
     Write    cat ${ADMD_PATH} | grep -E "${fbb_username}.*oneTimePassword"
     ${string}   Read    delay=1s
@@ -79,8 +75,9 @@ Verify Decoded Value ID Token FBB OTP
 
 Verify Response Key FBB OTP
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Verify Response Key From Webpage    $..access_token
-    Verify Response Key From Webpage    $..expire_in
+    Verify Response Key From Webpage    $..expires_in
     Verify Response Key From Webpage    $..refresh_token
     Verify Response Key From Webpage    $..refresh_token_expire_in
     Verify Response Key From Webpage    $..id_token

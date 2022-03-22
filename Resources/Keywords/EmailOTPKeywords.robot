@@ -162,7 +162,7 @@ Wait For Password Expire
     [Documentation]    Owner: Nakarin
     ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
-    Sleep    5m
+    Robot Wait Time    5m
 
 Verify Response Invalid Request Email Otp
     Verify Value Response By Key    $..result_code          ${expected_invalid_result_code_email_otp} 
