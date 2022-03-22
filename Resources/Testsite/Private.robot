@@ -1,2 +1,2 @@
 *** Variables ***
-${url_iot_apivr}            http://10.137.30.22
+${url_iot_apivr}            https://10.137.30.22
