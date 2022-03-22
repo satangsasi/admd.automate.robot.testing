@@ -1,9 +1,30 @@
 *** Settings ***
 Resource    ./Resource_init.robot
+Suite Setup       Keyword Suite Setup
+Test Teardown     Keyword Test Teardown
+Suite Teardown    Keyword Suite Teardown
+
 
 *** Test Cases ***
+TST_F3_1_1_001 Verify Login No web view
+    [Documentation]    Owner: Nakarin
+    ...    \r\n*** Condition ***
+    ...    \r\ngrant_type : Password มี ial + aal
+    [Tags]    Success    Sprint4
 
+TST_F3_1_1_002 Verify Login No web view for check 
+    [Documentation]    Owner: Nakarin
+    ...    \r\n*** Condition ***
+    ...    \r\ndevice status : sold 
+    ...    \r\nPhoneNumber type : FBB
+    [Tags]    Success    Sprint4
 
+TST_F3_1_1_003 Verify Login No web view for check
+    [Documentation]    Owner: Nakarin
+    ...    *** Condition ***
+    ...    \r\ndevice status : stolen
+    ...    \r\nPhoneNumber type : FBB
+    [Tags]    Success    Sprint4
 
 
 
