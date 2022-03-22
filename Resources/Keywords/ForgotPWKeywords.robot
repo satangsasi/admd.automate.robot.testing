@@ -10,7 +10,8 @@ Press Forgot Password Forgot PW
 
 Fill Mobile Number Forgot PW
     [Documentation]    Owner: Nakarin
-    ...    ${forgot_pw_mobile_number}    0981721044
+    ...    \r\n${forgot_pw_mobile_number}
+    ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
 
@@ -30,13 +31,16 @@ Get Json OTP Password Forgot PW
 
 Get OTP Password Forgot PW
     [Documentation]    Owner: Nakarin
+    ...    Getting OTP Password for Forgot PW
+    [Tags]    keyword_communicate
     ${json_log}        Get Json OTP Password Forgot PW
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable    ${OTP_PASSWORD}    ${otp_password}
 
 Fill OTP Password Forgot PW
     [Documentation]    Owner: Nakarin
-    [Tags]    keyword_communicate
+    ...    The txt box in webpage have own xpath and can detect typing
+    [Tags]    keyword_action
     @{otp_number}    Split String To Characters    ${OTP_PASSWORD}
     ${i}      Set Variable    1
     FOR    ${number}    IN    @{otp_number}
@@ -52,11 +56,13 @@ Fill Question 1 And Question 2 Forgot PW
 
 Fill New Password Forgot PW
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
     Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
 
 Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Decoded Access Token
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661630070398713
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             msisdn
@@ -64,8 +70,10 @@ Verify Decoded Value Access Token Forgot PW
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    msisdn_password
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp                  rob
+
 Verify Decoded Value ID Token Forgot PW
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Decoded ID Token
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type             msisdn
     Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action           forgot
@@ -77,6 +85,7 @@ Verify Decoded Value ID Token Forgot PW
 
 Verify Response Key Forgot PW
     [Documentation]    Owner: Nakarin
+    [Tags]    keyword_communicate
     Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..access_token
     Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..token_type
     Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..expires_in
