@@ -47,10 +47,10 @@ ${url_decrypted_ldap_employee_snake_case}     http://10.137.30.22:31191/v3.2/par
 ${url_decrypted_ldap_employee_camel_case}     http://10.137.30.22:31191/v3.1/partnerSpecificPrivateIds/PQnds4&R2RkeTl1SlFqRXJiOGIxMS1BRE1ELUtoNXhuMAYq+94RlhGdmFEd0FJdTRVNjVJQVE9PQ==gvH4=&05
 ${url_for_logout_ldap_employee}               http://10.137.30.22:31191/v3.2/logout
 
-# FBBOTP
-${url_auth_fbb}         https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
-${url_get_token_fbb}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
-
+# FBBOTP                                
+${url_auth_fbb}                         https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
+${url_get_token_fbb_client_no_match}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=a67dd929a935d9bdd70c0845f7a5dbe5&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&lang=eng&code=_code_
+                                        
 # Forgot password
 ${url_auth_forgot_pw_email}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&lang=eng&redirect_uri=https://www.ais.co.th/
 ${url_get_token_forgot_pw_email}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
