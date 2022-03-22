@@ -84,3 +84,24 @@ Verify Response Key FBB OTP
     Verify Response Key From Webpage    $..refresh_token
     Verify Response Key From Webpage    $..refresh_token_expire_in
     Verify Response Key From Webpage    $..id_token
+
+Verify Response Client Id And Client Secret No Match
+    [Documentation]    Owner: Nakarin
+    [Tags]    keyword_action
+    ${actule_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actule_value}          ${error_message_invalid_client}
+    Take Screenshot Verify Success Scene
+    Set Test Actual Result    Response On Web Page : ${actule_value}
+Fill Username FBB OTP Number No Contact 
+    [Documentation]    Owner: Nakarin
+    ...    Website can detect character while typing
+    [Tags]    Keyword_communicate
+    Type Text    ${txt_fbb_user}    ${fbb_username_no_contact_number}     delay=0.1s
+    Set Test Provisioning Data   Username: ${fbb_username_no_contact_number} 
+
+Verify Page Can Not Click Request Otp
+    ${status}    Run Keyword And Return Status    Wait For Elements State     ${btn_fbb_request_otp}        disabled
+    IF     ${status} == True
+        Verify Locator Is Hidden    ${txt_fbb_contact_number}
+    END 
+    Take Screenshot Verify Success Scene

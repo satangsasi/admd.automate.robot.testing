@@ -169,7 +169,7 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
-    [Tags]    Success    test1
+    [Tags]    Success    test1    On-Hold
     Create Browser Session    ${url_gmail_login}
     Fill Email In Web Page
     Press Next Button Gmail Login
@@ -182,9 +182,9 @@ TST_F9_0_1_001 Verify forgot password fail
     ...    \r\nwith Email that have never been registered
     [Tags]    Forgot_Password    Fail     sasi    
     Create Browser Session    ${url_auth_forgot_pw_email}
-    Press Forgot Password link
+    Press Forgot Password Forgot PW
     Fill Email Or Number For Reset Password    ${email_not_registered}
-    Press Next Button
+    click    ${btn_next_reset_password}
     Verify Email Invalid On Webpage
 
 TST_F9_0_1_002 Verify forgot password fail

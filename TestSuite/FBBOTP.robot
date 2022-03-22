@@ -61,10 +61,22 @@ TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     Verify Invalid Grant On Webpage
     
 TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
-    [Documentation]    Owner: 
-    [Tags]    Fail    On-Hold
-    
+    [Documentation]    Owner:sasipen  
+    [Tags]    Fail    FBB_OTP    sasi
+    Create Browser Session    ${url_auth_fbb}
+    Fill Username FBB OTP
+    Click Request OTP Button
+    Get OTP Password FBB
+    Fill OTP Password FBB
+    Press Login Button In FBB OTP
+    Create URL For Get Token     ${url_get_token_fbb_client_no_match}
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Verify Response Client Id And Client Secret No Match
+
 TST_F2_0_1_004 Verify FBB get token with FBB No Contact number 8858980011
     [Documentation]    Owner:
-    [Tags]    Fail    On-Hold
-    
+    [Tags]    Fail    FBB_OTP    sasi
+    Create Browser Session    ${url_auth_fbb}
+    Fill Username FBB OTP Number No Contact
+    Verify Page Can Not Click Request Otp   
