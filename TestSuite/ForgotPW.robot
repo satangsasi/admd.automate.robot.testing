@@ -10,7 +10,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     [Documentation]    Owner: Nakarin
     ...    \r\n***Conditions***
     ...    \r\nscope = profile
-    [Tags]    Success    Sprint4    Test
+    [Tags]    Success    Sprint4
     Create Browser Session    ${url_login_change_password}
     Press Forgot Password Forgot PW
     Fill Mobile Number Forgot PW
@@ -169,7 +169,7 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
-    [Tags]    Success    test1
+    [Tags]    Success    On-Hold
     Create Browser Session    ${url_gmail_login}
     Fill Email In Web Page
     Press Next Button Gmail Login
@@ -180,7 +180,7 @@ TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner:
     ...    \r\n*** Conditions ***
     ...    \r\nwith Email that have never been registered
-    [Tags]    Forgot_Password    Fail     sasi    
+    [Tags]    Forgot_Password    Fail     sasi
     Create Browser Session    ${url_auth_forgot_pw_email}
     Press Forgot Password link
     Fill Email Or Number For Reset Password    ${email_not_registered}
