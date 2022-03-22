@@ -22,7 +22,7 @@ Set Body Request Email Otp
 
 Send Post Request Email Otp
     [Documentation]    Owner : sasipen
-    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Email OTP : ${message}[request]
     Set Test Actual Result        Request Email OTP : ${message}[response]
 
@@ -79,7 +79,7 @@ Set Body Get Token Email Otp
 Send Post Request Get Token Email Otp
     [Documentation]     Owner : sasipen
     ...    send request Post for get token 
-    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Get Token Email OTP : ${message}[request]
     Set Test Actual Result        Get Token Email OTP : ${message}[response]
 
@@ -148,7 +148,7 @@ Send Post Request Get Token Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Get Token Email OTP Invalid : ${message}[request]
     Set Test Actual Result        Get Token Email OTP Invalid : ${message}[response]
 
@@ -172,7 +172,7 @@ Send Post Request Email Otp Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
     [Arguments]        ${status_code}
-    &{message}     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}     Send Request    POST    url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Email OTP Invalid : ${message}[request]
     Set Test Actual Result        Request Email OTP Invalid : ${message}[response]
 

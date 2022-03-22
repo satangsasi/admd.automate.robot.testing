@@ -51,7 +51,7 @@ Verify Value Login Subtype By Key
 Send Post Request Change Password
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    &{message}    Send Request    POST    url=${url_change_password}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    url=${url_change_password}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Change Password With Msisdn Password : ${message}[request]
     Set Test Actual Result        Request Change Password With Msisdn Password : ${message}[response]
 
@@ -101,7 +101,7 @@ Send Post Request Change Password Invalid
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    url=${url_change_password}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    url=${url_change_password}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Change Password Invalid : ${message}[request]
     Set Test Actual Result        Request Change Password Invalid : ${message}[response]
 
