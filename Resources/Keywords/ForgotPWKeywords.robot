@@ -8,26 +8,6 @@ Press Forgot Password Forgot PW
     [Tags]    keyword_communicate
     Click    ${lbl_forgot_password}
 
-Press Next Button Forgot PW
-    [Documentation]    Owner: Nakarin
-    [Tags]    keyword_communicate
-    # @{btn_next}    Create List    ${btn_next1_forgot_pw}    ${btn_next2_forgot_pw}    ${btn_next3_forgot_pw}    ${btn_next4_forgot_pw}
-    # FOR    ${xpath}    IN    @{btn_next}
-    #     ${status}    Run Keyword And Return Status    Get Element State    selector=${xpath}    state=visible
-    #     IF    ${status} == True
-    #         Wait For Elements State    selector=${xpath}    state=enabled    timeout=${verify_timeout}
-    #         Click    ${xpath}
-    #         Exit For Loop
-    #     END
-    # END
-    ${status}    Run Keyword And Return Status    Variable Should Exist    ${BTN_COUNT}
-    ${count}     Set Variable If    ${status} == False    0    ${BTN_COUNT}
-    Wait For Elements State    selector=${btn_next_forgot_pw}[${count}]    state=enabled    timeout=${verify_timeout}
-    Click    ${btn_next_forgot_pw}[${count}]
-    ${count}    Evaluate    ${count} + 1
-    Set Test Variable    ${BTN_COUNT}   ${count}
-    Wait Until Network Is Idle    ${verify_timeout}
-
 Fill Mobile Number Forgot PW
     [Documentation]    Owner: Nakarin
     ...    ${forgot_pw_mobile_number}    0981721044
@@ -57,10 +37,10 @@ Get OTP Password Forgot PW
 Fill OTP Password Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    @{otp}    Split String To Characters    ${OTP_PASSWORD}
+    @{otp_number}    Split String To Characters    ${OTP_PASSWORD}
     ${i}      Set Variable    1
-    FOR    ${character}    IN    @{otp}
-        Type Text    //*[@id="fotp${i}"]    ${character}    delay=0.1s
+    FOR    ${number}    IN    @{otp_number}
+        Type Text    //*[@id="fotp${i}"]    ${number}    delay=0.1s
         ${i}    Evaluate    ${i}+1
     END
 
