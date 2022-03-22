@@ -219,3 +219,44 @@ Verify Response Change Password With Msisdn Invalid New Password Contains Thai C
     [Tags]    keyword_communicate
     Verify Value Response By Key    $..error    ${error_message_invalid_request}
     Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}
+
+Set API Body Change Password With Msisdn New Password Contains Special Character
+    [Documentation]     Owner: Atitaya
+    [Tags]
+    Get Time Nonce
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
+    Set Schema API Body        ${body_change_password_schema}
+    Set Content API Body    $..old_password    ${old_password_msisdn}
+    Set Content API Body    $..new_password    ${new_password_invalid_special_character} 
+    Set Content API Body    $..access_token    ${actual_value_access_token}
+    Set Content API Body    $..type            ${type_ldap}
+    Set Content API Body    $..client_id       ${client_id_change_password_X6jpUV}
+    Set Content API Body    $..redirect_uri    ${redirect_uri_change_password}
+    Set Content API Body    $..state           ${state_success_change_password_msisdn}
+    Set Content API Body    $..nonce           ${DATE_TIME}   
+
+Verify Response Change Password With Msisdn Invalid New Password Contains Special Character
+    [Documentation]     Owner: Atitaya
+    [Tags]
+    Verify Value Response By Key    $..error    ${error_message_invalid_request} 
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}        
+
+Set API Body Change Password With Msisdn Invalid Access Token Expired    
+    [Documentation]     Owner: Atitaya
+    [Tags]
+    Get Time Nonce
+    Set Schema API Body        ${body_change_password_schema}  
+    Set Content API Body    $..old_password    ${old_password_msisdn}
+    Set Content API Body    $..new_password    ${new_password_msisdn}
+    Set Content API Body    $..access_token    ${expired_access_token_change_password}  
+    Set Content API Body    $..type            ${type_misdn} 
+    Set Content API Body    $..client_id       ${client_id_change_password_FCoRIg}
+    Set Content API Body    $..redirect_uri    ${redirect_uri_change_password}
+    Set Content API Body    $..state           ${state_success_change_password_msisdn}
+    Set Content API Body    $..nonce           ${DATE_TIME}
+
+Verify Response Change Password With Msisdn Invalid Access Token Expired
+    [Documentation]     Owner: Atitaya
+    [Tags]
+    Verify Value Response By Key    $..error    ${error_message_invalid_grant}
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}    
