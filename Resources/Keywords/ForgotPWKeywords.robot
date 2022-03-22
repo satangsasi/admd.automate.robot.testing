@@ -286,19 +286,11 @@ Verify Response Key Forgot PW
 
 
 
-
-Press Forgot Password link
-    [Documentation]    Owner: sasipen
-    Click    ${llb_forgot_password}
-
 Fill Email Or Number For Reset Password
     [Documentation]    Owner: sasipen
     [Arguments]    ${email_number}
     Type Text      ${txt_email_number_reset_password}    ${email_number}     delay=0.1s
     Set Test Provisioning Data   Email: ${email_number}
-Press Next Button
-    [Documentation]    Owner: sasipen
-    Click    ${btn_next_reset_password}
     
 Verify Email Invalid On Webpage
     [Documentation]    Owner: sasipen
@@ -314,15 +306,15 @@ Verify Email Invalid On Webpage
     Set Test Actual Result     ${actual_error_email_wrong}
     Set Test Actual Result     ${actual_error_check_email}
 
-Fill Email In Web Page
-    Type Text    ${txt_email_number_gmail}    ${email_login_gmail}     delay=0.1s
+# Fill Email In Web Page
+#     Type Text    ${txt_email_number_gmail}    ${email_login_gmail}     delay=0.1s
 
-Press Next Button Gmail Login
-    Click    ${btn_next_gmail}
+# Press Next Button Gmail Login
+#     Click    ${btn_next_gmail}
     
-Fill Password Email In Web Page
-    Verify Locator Is Visible    ${btn_try_again} 
-    Type Text    ${txt_password_gmail}    ${password_login_gmail}}     delay=0.1s
-Press Next Button Password Gmail Login
-    Click    ${btn_password_next_gmail}
-    Wait Until Network Is Idle    ${verify_timeout}
+# Fill Password Email In Web Page
+#     Verify Locator Is Visible    ${btn_try_again} 
+#     Type Text    ${txt_password_gmail}    ${password_login_gmail}}     delay=0.1s
+# Press Next Button Password Gmail Login
+#     Click    ${btn_password_next_gmail}
+#     Wait Until Network Is Idle    ${verify_timeout}
