@@ -23,6 +23,7 @@ Resource    ../Resources/Keywords/FBBOTPKeyword.robot
 Resource    ../Resources/Keywords/ForgotPWKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
+Resource    ../Resources/Keywords/FBB_nowebviewKeywords.robot
 
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
@@ -46,6 +47,7 @@ Resource    ../Resources/Variables/FBBOTPVariables.robot
 Resource    ../Resources/Variables/ForgotPWVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot
 Resource    ../Resources/Variables/ValidateTokenVariables.robot
+Resource    ../Resources/Variables/FBB_nowebviewVariables.robot
 
 
 *** Variables ***
