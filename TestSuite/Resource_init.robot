@@ -6,7 +6,7 @@ Library    OperatingSystem
 Library    RequestsLibrary
 Library    JSONLibrary
 Library    SSHLibrary
-Library    Browser       timeout=00:00:40   run_on_failure=Take Screenshot Failure Specific Name
+Library    Browser       timeout=00:00:20   run_on_failure=Take Screenshot Failure Specific Name
 
 # Buffets
 Resource    ../../arcadia.automate.buffet/UIBuffet/BrowserLibrary_UICommonKeywords.robot
@@ -24,6 +24,7 @@ Resource    ../Resources/Keywords/ForgotPWKeywords.robot
 Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 Resource    ../Resources/Keywords/FBB_nowebviewKeywords.robot
+Resource    ../Resources/Keywords/LogoutKeywords.robot
 
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
@@ -38,6 +39,7 @@ Resource    ../Resources/Repositories/LDAPallOURepositories.robot
 # Test Site
 Resource    ../Resources/Testsite/${TEST_SITE}/Testsite.robot
 Resource    ../Resources/Testsite/${DOMAIN}.robot
+
 # Variables
 Resource    ../Resources/Variables/ChangePasswordVariables.robot
 Resource    ../Resources/Variables/ClientCredentialVariables.robot
@@ -48,7 +50,7 @@ Resource    ../Resources/Variables/ForgotPWVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot
 Resource    ../Resources/Variables/ValidateTokenVariables.robot
 Resource    ../Resources/Variables/FBB_nowebviewVariables.robot
-
+Resource    ../Resources/Variables/LogoutVariables.robot
 
 *** Variables ***
 ${LANG}         EN
