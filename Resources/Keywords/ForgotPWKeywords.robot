@@ -64,34 +64,34 @@ Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661630070398713
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             msisdn
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           forgot
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    msisdn_password
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp                  rob
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661630070398713
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             msisdn
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           forgot
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    msisdn_password
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp                  rob
 
 Verify Decoded Value ID Token Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded ID Token
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type             msisdn
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action           forgot
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel    msisdn_password
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network          anonymous
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       669xxx21044
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
-    Run Keyword And Continue On Failure    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type             msisdn
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action           forgot
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel    msisdn_password
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network          anonymous
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       669xxx21044
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
 
 Verify Response Key Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Run Keyword And Continue On Failure    Verify Response Key    $..access_token
-    Run Keyword And Continue On Failure    Verify Response Key    $..token_type
-    Run Keyword And Continue On Failure    Verify Response Key    $..expires_in
-    Run Keyword And Continue On Failure    Verify Response Key    $..refresh_token
-    Run Keyword And Continue On Failure    Verify Response Key    $..refresh_token_expires_in
-    Run Keyword And Continue On Failure    Verify Response Key    $..id_token
+    Verify Response Key    $..access_token
+    Verify Response Key    $..token_type
+    Verify Response Key    $..expires_in
+    Verify Response Key    $..refresh_token
+    Verify Response Key    $..refresh_token_expires_in
+    Verify Response Key    $..id_token
 
 
 
