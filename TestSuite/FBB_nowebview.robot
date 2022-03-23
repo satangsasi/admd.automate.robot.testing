@@ -26,14 +26,14 @@ TST_F3_1_1_002 Verify Login No web view for check
     ...    \r\n*** Condition ***
     ...    \r\ndevice status : sold 
     ...    \r\nPhoneNumber type : FBB
-    [Tags]    Success    Sprint4    On-Hold
+    [Tags]    Success    On-Hold
 
 TST_F3_1_1_003 Verify Login No web view for check
     [Documentation]    Owner: Nakarin
     ...    *** Condition ***
     ...    \r\ndevice status : stolen
     ...    \r\nPhoneNumber type : FBB
-    [Tags]    Success    Sprint4    On-Hold
+    [Tags]    Success     On-Hold
 
 
 

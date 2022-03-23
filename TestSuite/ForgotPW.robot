@@ -8,7 +8,7 @@ Suite Teardown    Keyword Suite Teardown
 *** Test Cases ***
 TST_F9_1_1_001 Verify forgot password with registered mobile number
     [Documentation]    Owner: Nakarin
-    ...    \r\n***Conditions***
+    ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
     [Tags]    Success    Sprint4
     Create Browser Session    ${url_login_change_password}
