@@ -86,12 +86,12 @@ Verify Decoded Value ID Token Forgot PW
 Verify Response Key Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..access_token
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..token_type
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..expires_in
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..refresh_token
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..refresh_token_expires_in
-    Run Keyword And Continue On Failure    Verify Response Key From Webpage    $..id_token
+    Run Keyword And Continue On Failure    Verify Response Key    $..access_token
+    Run Keyword And Continue On Failure    Verify Response Key    $..token_type
+    Run Keyword And Continue On Failure    Verify Response Key    $..expires_in
+    Run Keyword And Continue On Failure    Verify Response Key    $..refresh_token
+    Run Keyword And Continue On Failure    Verify Response Key    $..refresh_token_expires_in
+    Run Keyword And Continue On Failure    Verify Response Key    $..id_token
 
 
 

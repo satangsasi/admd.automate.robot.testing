@@ -197,7 +197,7 @@ Decoded ID Token
     Log Many    &{decoded_id_token}
     Log         ${decoded_id_token}
 
-Verify Response Key From Webpage
+Verify Response Key
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_action
     [Arguments]    ${response_key}
