@@ -92,8 +92,8 @@ Create Browser Session
     ...    Setting browser and open url
     ...    Set url to global for create provisioning data
     [Tags]    keyword_action
-    [Arguments]    ${url}    ${browser}=${BROWSER}
-    Set Up Browser Fullscreen    browser=${browser}    headless=${HEAD_LESS}    ignore_ssl_certificate=${ssl_verify}
+    [Arguments]    ${url}     ${browser}=${BROWSER}
+    Set Up Browser Fullscreen    browser=${browser}    headless=${HEAD_LESS}    ignore_ssl_certificate=${ignore_ssl_verify}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle    ${verify_timeout}
