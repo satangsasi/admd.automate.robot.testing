@@ -46,7 +46,7 @@ Resource    ../Resources/Variables/FBBOTPVariables.robot
 Resource    ../Resources/Variables/ForgotPWVariables.robot
 Resource    ../Resources/Variables/LDAPallOUVariables.robot
 Resource    ../Resources/Variables/ValidateTokenVariables.robot
-
+Resource    ../Resources/Variables/FBB_nowebviewVariables.robot              
 
 *** Variables ***
 ${LANG}         EN
