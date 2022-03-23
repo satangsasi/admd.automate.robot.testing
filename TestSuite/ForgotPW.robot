@@ -171,10 +171,10 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     ...    \r\nscope = profile
     [Tags]    Success    On-Hold
     Create Browser Session    ${url_gmail_login}
-    Fill Email In Web Page
-    Press Next Button Gmail Login
-    Fill Password Email In Web Page
-    Press Next Button Password Gmail Login
+    # Fill Email In Web Page
+    # Press Next Button Gmail Login
+    # Fill Password Email In Web Page
+    # Press Next Button Password Gmail Login
 
 TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner:
