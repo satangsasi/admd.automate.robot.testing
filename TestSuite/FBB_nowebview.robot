@@ -179,31 +179,28 @@ TST_F3_1_1_003 Verify Login No web view for check
 
 # =================>
 TST_F3_1_1_004 Verify Login No web view for check sevice playbox pending status 0
-    Set Content Header Request Email Otp    ${url_request_email_otp}
-    ...                                     ${content_type_json}
-    Set Body Request Email Otp              ${client_id_PK+WUA}
-    ...                                     ${public_id_885}
-    ...                                     ${reference}
-    Send Post Request Email Otp
-    Verify Response Request Email Otp
-    Get Value Response Request Email Otp By Key Session Id
-    Get Value Response Request Email Otp By Key Transaction Id
-    Get Email OTP Password                      ${ACTUAL_VALUE_TRANSACTION_ID}
-    Set Content Header Get Token Email Otp      ${url_get_token_email_otp}
-    ...                                         ${content_type_x_www}
-    Set Body Get Token Email Otp     ${client_id_PK+WUA}
-    ...                              ${client_secret_id_PK+WUA}
-    ...                              ${grant_type_email_otp}
-    ...                              ${public_id_885}
-    ...                              ${EMAIL_OTP_PASSWORD}
-    ...                              ${type_get_token_email_otp}
-    ...                              ${scope_get_token_email_otp}
-    ...                              ${ACTUAL_VALUE_SESSION_ID}
-    ...                              ${ACTUAL_VALUE_TRANSACTION_ID}
-    Send Post Request Get Token Email Otp
+    [Documentation]    Owner: sasipen
+    ...    \r\n*** Condition ***
+    ...    \r\nhave service playbox
+    [Tags]    Success    On-Hold
+    
+TST_F3_1_1_005 Verify Login No web view for check sevice playbox pending status 1
+    [Documentation]    Owner: sasipen
+    ...    \r\n*** Condition ***
+    ...    \r\ndon't have service playbox
+    [Tags]    Success    On-Hold
 
+TST_F3_1_1_006 Verify Login No web view for check status profile active
+    [Documentation]    Owner: sasipen
+    [Tags]    Success    On-Hold
 
+TST_F3_1_1_007 Verify Login No web view for check status profile suspendDebt1way
+    [Documentation]    Owner: sasipen
+    [Tags]    Success    On-Hold
 
+TST_F3_1_1_008 Verify Login No web view for check status profile creditLimitted1way
+    [Documentation]    Owner: sasipen
+    [Tags]    Success    On-Hold
 
 
 
