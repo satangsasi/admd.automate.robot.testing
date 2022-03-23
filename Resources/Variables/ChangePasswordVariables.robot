@@ -11,8 +11,8 @@ ${type_misdn}                            msisdn
 ${type_ldap}                             ldap
 ${client_id_change_password_FCoRIg}                        FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays+mTxG9/xpwVZQ+Eg==
 ${client_id_change_password_X6jpUV}                        X6jpUVHVBdszLACYucu+mkslzsMyXhwQNG/p1jO1KXg=
-${state_success_change_password_msisdn}                    changepassword_success_Msisdn
-${state_success_change_password_ldapcp}                    changepassword_success_LdapCp
+${state_success_change_password_msisdn}                    Changepassword_success_Msisdn
+${state_success_change_password_ldapcp}                    Changepassword_success_LdapCp
 ${old_password_ldap_content_provider_invalid}              password111
 ${new_password_invalid_th_lang}                            passwordทดสอบ
 ${new_password_invalid_special_character}                  password&&&&
