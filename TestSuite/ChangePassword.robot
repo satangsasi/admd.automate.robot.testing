@@ -147,7 +147,7 @@ TST_F8_0_1_006 Verlify Change Ppassword with Msisdn password
     Verify Response Change Password With Msisdn Invalid New Password Contains Thai Character
 
 TST_F8_0_1_007 Verlify Change Password with Msisdn password
-    [Documentation]    Owner: sasipen
+    [Documentation]    Owner: Atitaya
     ...    \r\n***Condition***
     ...    type = ldap
     ...    new password contains "&"
@@ -164,7 +164,7 @@ TST_F8_0_1_007 Verlify Change Password with Msisdn password
     Verify Response Change Password With Msisdn Invalid New Password Contains Special Character
 
 TST_F8_0_1_008 Verlify Change Password with Msisdn password
-    [Documentation]    Owner: sasipen
+    [Documentation]    Owner: Atitaya
     ...    \r\n***Condition***
     ...    type = msisdn_password or msisdn
     ...    access_token expired

@@ -76,19 +76,19 @@ Verify Decoded Value ID Token FBB OTP
 Verify Response Key FBB OTP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Verify Response Key From Webpage    $..access_token
-    Verify Response Key From Webpage    $..expires_in
-    Verify Response Key From Webpage    $..refresh_token
-    Verify Response Key From Webpage    $..refresh_token_expire_in
-    Verify Response Key From Webpage    $..id_token
+    Verify Response Key    $..access_token
+    Verify Response Key    $..expires_in
+    Verify Response Key    $..refresh_token
+    Verify Response Key    $..refresh_token_expires_in
+    Verify Response Key    $..id_token
 
 Verify Response Client Id And Client Secret No Match
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_action
-    ${actule_value}    Get Value Response On Web Page By Key    $..error
-    Verify Value Should Be Equal    ${actule_value}          ${error_message_invalid_client}
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_client}
     Take Screenshot Verify Success Scene
-    Set Test Actual Result    Response On Web Page : ${actule_value}
+    Set Test Actual Result    Response On Web Page : ${actual_value}
 Fill Username FBB OTP Number No Contact 
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing

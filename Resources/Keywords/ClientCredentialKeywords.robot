@@ -3,11 +3,6 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Get Time Nonce
-    [Documentation]   Owner : sasipen
-    ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
-    Set Test Variable       ${DATE_TIME}    ${current_date_time}
-
 Set Content Header Client Credentials 
     [Documentation]     Owner : sasipen
     ...    Set header content type and url

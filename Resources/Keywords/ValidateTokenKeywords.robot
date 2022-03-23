@@ -25,7 +25,7 @@ Send Post Request Validate Token
     [Documentation]    Owner: Nakarin
     ...    Send Post request 
     [Tags]    keyword_communicate
-    ${message}    Send Request    POST    url=${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    ${message}    Send Request    POST    url=${url_validate_token}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    ${message}[request]
     Set Test Actual Result        ${message}[response]
     
@@ -82,7 +82,7 @@ Set API Body Request Otp Validate Token
 Send Post Request Otp Validate Token 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    &{message}    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    ${url_request_otp_validate_token}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Request OTP : ${message}[request]
     Set Test Actual Result        Request OTP : ${message}[response]
     
@@ -109,7 +109,7 @@ Set API Body Get Token Validate Token
 Send Post Request Get Token Validate Token 
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    &{message}    Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    ${url_get_token_validate_token}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Get Token : ${message}[request]
     Set Test Actual Result        Get Token : ${message}[response]
 
@@ -136,7 +136,7 @@ Set API Body Delete Sub Scriber
 Send Post Request Delete Sub Scriber
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    &{message}    Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}
+    &{message}    Send Request    POST    ${url_delete_sub_scriber}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Delete Sub Scriber : ${message}[request]
     Set Test Actual Result        Delete Sub Scriber : ${message}[response]
 
@@ -160,7 +160,7 @@ Send Post Request Validate Token No Profile
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Token No Profile : ${message}[request]
     Set Test Actual Result        Request Validate Token No Profile : ${message}[response]
 
@@ -189,7 +189,7 @@ Send Post Request Validate Token Invalid Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Invalid Client Id : ${message}[request]
     Set Test Actual Result        Request Validate Invalid Client Id : ${message}[response]
 
@@ -219,7 +219,7 @@ Send Post Request Validate Token Invalid Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Invalid Access Token : ${message}[request]
     Set Test Actual Result        Request Validate Invalid Access Token : ${message}[response]
 
@@ -248,7 +248,7 @@ Send Post Request Validate Token Missing Client Id
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Missing Client Id : ${message}[request]
     Set Test Actual Result        Request Validate Missing Client Id : ${message}[response]
 
@@ -277,7 +277,7 @@ Send Post Request Validate Token Expired Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Expired Access Token : ${message}[request]
     Set Test Actual Result        Request Validate Expired Access Token : ${message}[response]
 
@@ -306,7 +306,7 @@ Send Post Request Validate Token Missing Access Token
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
     [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Missing Access Token : ${message}[request]
     Set Test Actual Result        Request Validate Missing Access Token : ${message}[response]
 

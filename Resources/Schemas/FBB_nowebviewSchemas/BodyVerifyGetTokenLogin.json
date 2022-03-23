@@ -1,0 +1,12 @@
+{
+    "client_id": "PK+WUAlHhnhgy9yNCzAk4PBHpmnSUamXM/Wcuomo2pVYgUOjPoOLgg==",
+    "client_secret": "a67dd929a935d9bdd70c0845f7a5dbe5",
+    "grant_type": "password",
+    "username": "8854321012",
+    "password": "",
+    "type": "1",
+    "scope": "profile",
+    "session_id": "",
+    "transaction_id": "",
+    "nonce": ""
+}

@@ -92,8 +92,8 @@ Create Browser Session
     ...    Setting browser and open url
     ...    Set url to global for create provisioning data
     [Tags]    keyword_action
-    [Arguments]    ${url}    ${browser}=${BROWSER}
-    Set Up Browser Fullscreen    browser=${browser}    headless=${HEAD_LESS}
+    [Arguments]    ${url}     ${browser}=${BROWSER}
+    Set Up Browser Fullscreen    browser=${browser}    headless=${HEAD_LESS}    ignore_ssl_certificate=${ignore_ssl_verify}
     New Page       ${url}
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authentication URL : ${url}
     Wait Until Network Is Idle    ${verify_timeout}
@@ -197,10 +197,16 @@ Decoded ID Token
     Log Many    &{decoded_id_token}
     Log         ${decoded_id_token}
 
-Verify Response Key From Webpage
+Verify Response Key
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_action
     [Arguments]    ${response_key}
     ${value}    Get Value Response On Web Page By Key    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
+
+Get Time Nonce
+    [Documentation]   Owner : sasipen
+    ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
+    Set Test Variable       ${DATE_TIME}    ${current_date_time}
+    
