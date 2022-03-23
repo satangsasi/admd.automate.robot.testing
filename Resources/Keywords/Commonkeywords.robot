@@ -204,3 +204,9 @@ Verify Response Key From Webpage
     ${value}    Get Value Response On Web Page By Key    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
+
+Get Time Nonce
+    [Documentation]   Owner : sasipen
+    ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
+    Set Test Variable       ${DATE_TIME}    ${current_date_time}
+    
