@@ -100,5 +100,7 @@ Verify Page Can Not Click Request Otp
     ${status}    Run Keyword And Return Status    Wait For Elements State     ${btn_fbb_request_otp}        disabled
     IF     ${status} == True
         Verify Locator Is Hidden    ${txt_fbb_contact_number}
-    END 
+    ELSE
+        Fail    msg="${fbb_username_no_contact_number}" have contact number. Request OTP Button can click
+    END
     Take Screenshot Verify Success Scene
