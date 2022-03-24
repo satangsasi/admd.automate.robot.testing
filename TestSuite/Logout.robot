@@ -299,8 +299,7 @@ TST_F5_1_1_003 Verify Logout with SSO Ldap Employee
 
 
 TST_F5_0_1_006 To verify logout feature with incorrect client_id
-    [Documentation]    Owner:sasipen
-    ... ในเอกสาร T8 แจ้งว่า ควร lou out ไม่ผ่่านเพราะ Client Id ไม่ตรงกัน แต่ที่เทสตอนนี้คือ เทสผ่าน   
+    [Documentation]    Owner:sasipen  
     [Tags]    Success    Logout    Ldap_Employee    On-Hold
     Open Browser Login Employee And Open Page Get Token    ${url_aut_logout}
     Set Response On Webpage To Json 
@@ -310,8 +309,7 @@ TST_F5_0_1_006 To verify logout feature with incorrect client_id
     Set Body Ldap Logout With Invalid Client Id
     Send Post Request Ldap Logout
     Verify Response State Ldap Logout    ${state_logout_ldap_employee}
-    [Documentation]    Owner:
-    [Tags]    Success    On-Hold
+
 
 TST_F5_0_1_006 To verify logout feature with incorrect client_id
     [Documentation]    Owner:
