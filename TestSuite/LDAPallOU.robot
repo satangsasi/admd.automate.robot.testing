@@ -161,7 +161,7 @@ TST_F10_1_1_010 Verify Logout with SSO Ldap Content provider
     Create URL For Get Token    ${url_get_token_schema}
     New Page                    ${URL_GET_TOKEN}
     Set Response On Webpage To Json 
-    Get Value From Key Access Token Log Out
+    Get Value From Key Access Token Log Out    
     Set Content Header Ldap Logout    ${url_ldap_logout}
     ...                               ${content_type_x_www}
     Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
@@ -311,21 +311,21 @@ TST_F10_1_1_019 Verify Logout with Ldap Employee
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Employee    Sprint2
+    [Tags]    Employee    Sprint2      sasitest
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
     ...                               ${content_type_x_www}
-    Set Body Ldap Logout              ${state_logout_ldap_cp} 
+    Set Body Ldap Logout              ${state_logout_ldap_employee}
     Send Post Request Ldap Logout
-    Verify Response State Ldap Logout    ${state_logout_ldap_cp}
+    Verify Response State Ldap Logout    ${state_logout_ldap_employee}
 
 TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Employee    Sprint2
+    [Tags]    Employee    Sprint2    sasitest
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee}
     New Page                    ${url_auth_ldap_employee}
     Create URL For Get Token    ${url_get_token_schema}
@@ -334,9 +334,9 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
     ...                               ${content_type_x_www}
-    Set Body Ldap Logout              ${state_logout_ldap_cp_sso}
+    Set Body Ldap Logout              ${state_logout_ldap_employee_sso}
     Send Post Request Ldap Logout
-    Verify Response State Ldap Logout    ${state_logout_ldap_cp_sso}
+    Verify Response State Ldap Logout    ${state_logout_ldap_employee_sso}
     
 TST_F10_0_1_001 Verify Ldap Content provider with invalid password
     [Documentation]     Owner: Nakarin

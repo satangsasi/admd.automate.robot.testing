@@ -18,7 +18,8 @@ ${header_ldap_schema}    {"Content-Type": "_Content-Type_"}
 ${body_ldap_schema}            {"access_token": "_access_token_", "state": "_state_"} 
 ${state_logout_ldap_cp}        Logout with Ldap CP (1.9)
 ${state_logout_ldap_cp_sso}    Logout with Ldap CP (1.9) (SSO)   
-
+${state_logout_ldap_employee}        Logout with Ldap Employee (1.9)
+${state_logout_ldap_employee_sso}    Logout with Ldap Employee (1.9) (SSO)
 # Response
 ${expected_expires_in_ldap}                           86400
 ${expected_refresh_token_expires_in_ldap}             86400
