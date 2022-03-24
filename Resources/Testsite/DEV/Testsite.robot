@@ -1,5 +1,5 @@
 *** Variables ***
-&{proxy_api}   http=http://10.137.18.77:80    https=http://10.137.18.77:80
+${proxy_api}   http=http://10.137.18.77:80
 ${proxy_ui}    {'server': 'http://10.137.18.77:80'}
 # ClientCredential
 ${url_client_credentials}                     ${url_iot_apivr}/authtest/v3.2/oauth/token
