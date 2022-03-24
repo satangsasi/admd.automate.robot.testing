@@ -167,7 +167,7 @@ Keyword Test Teardown
     [Tags]    keyword_communicate
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
-    Skip If    ${TEST_MESSAGE.find('Timeout')} == 0    msg=Connection Timeout
+    Skip If    ${TEST_MESSAGE.find('Timeout')} != -1    msg=Connection Timeout
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
