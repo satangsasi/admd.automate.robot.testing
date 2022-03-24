@@ -26,6 +26,7 @@ TST_F8_1_1_002 Verlify Change Password with Ldap Content provider
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
     [Tags]    Change_password    Ldap_Content_provider    
+    [Setup]    Sleep    20s
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
