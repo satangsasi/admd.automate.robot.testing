@@ -30,17 +30,6 @@ ${url_auth_ldap_no_scope_profile}             ${url_iot_apivr}/auth/v3.2/oauth/a
 ${url_get_refresh_token_schema}               ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
 ${url_ldap_logout}                            ${url_iot_apivr}/auth/v3.2/logout
 
-#LDAPallOU
-#Url Content Provider
-${url_auth_ldap}                          ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
-${url_auth_miss_parameter_ldap_dev}       ${url_iot_apivr}/auth/v3.2/oauth/authorize?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
-${url_client_secret_no_match_ldap_dev}    ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=51R98t28kK1JJs1iFOXvy2l5jj0dVBWqCeGPmpFDCICk
-${url_invalid_client_secret_ldap_dev}     ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientt&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=sUzaI0YmAtQM60qG7152o51X3ji0o30RpvdR018u5e5W
-${url_get_token_schema}                   ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=_code_
-${url_auth_ldap_scope_profile}            ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/&scope=profile 
-${url_auth_ldap_no_scope_profile}         ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
-${url_get_refresh_token_schema}           ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=clientSecret&grant_type=refresh_token&redirect_uri=https://www.ais.co.th/&code=_code_
-${url_ldap_logout}                        ${url_iot_apivr}/auth/v3.2/logout
 #Url Employee                                    
 ${url_auth_ldap_employee}                     ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/   
 ${url_auth_ldap_employee_no_scope_profile}    ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&redirect_uri=https://www.ais.co.th/
@@ -52,3 +41,6 @@ ${url_get_token_fbb_client_no_match}    ${url_iot_apivr}/auth/v3.2/oauth/token?c
 # Forgot password
 ${url_auth_forgot_pw_email}    ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&lang=eng&redirect_uri=https://www.ais.co.th/
 ${url_get_token_forgot_pw_email}    ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=WtAQw3cFTOCkQ3xTqRQTMhI4AzthwoT67oTPgwM7oUU%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
+
+# logout
+${url_aut_logout}                ${url_iot_apivr}/auth/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/

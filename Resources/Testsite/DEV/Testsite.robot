@@ -26,7 +26,7 @@ ${url_change_password}                         ${url_iot_apivr}/authtest/v3.2/ch
 
 
 # LDAPallOU
-# Url Content Provider
+# Url Content Provider                    
 ${url_auth_ldap}                          ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
 ${url_auth_miss_parameter_ldap}       ${url_iot_apivr}/authtest/v3.2/oauth/authorize?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&template_name=index_ldap_cp&redirect_uri=https://www.ais.co.th/
 ${url_client_secret_no_match_ldap}    ${url_iot_apivr}/authtest/v3.2/oauth/token?client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&redirect_uri=https://www.ais.co.th/&code=51R98t28kK1JJs1iFOXvy2l5jj0dVBWqCeGPmpFDCICk
@@ -58,3 +58,6 @@ ${url_forgot_pw}                    ${url_iot_apivr}/authtest/v3.2/oauth/authori
 # FBB_nowebview
 ${url_fbb_nowebview}              http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
 ${url_get_token_fbb_nowebview}    http://10.137.30.22:31191/v3.2/oauth/token
+
+# Logout
+${url_aut_logout}                ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/
