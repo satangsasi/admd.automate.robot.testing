@@ -386,6 +386,35 @@ Verify Decoded Value Access Token FBB No Web View
 
 
 # =================>
+Set API Header Get Token FBB No Web View No Match
+    [Documentation]    Owner: Atitaya
+    [Tags]    
+    Set Content API Header    key=${header_content_type}          value=${content_type_x_www}       append=False             
+    Set Test Variable         ${API_URL_NO_MATCH}       ${url_get_token_fbb_nowebview}
+
+Set API Body Get Token FBB No Web View No Match   
+    [Documentation]    Owner: Atitaya
+    [Tags]
+    Get Time Nonce
+    Set Schema API Body     ${body_verify_get_token_login_nowebview}        
+    Set Content API Body    $..client_secret    ${invalid_client_secret_nowebview}       
+    Set Content API Body    $..password         ${FBB_NO_WEB_VIEW_OTP_PASSWORD}
+    Set Content API Body    $..transaction_id   ${RESPONSE_JSON_MESSAGE.transaction_id}
+    Set Content API Body    $..session_id       ${RESPONSE_JSON_MESSAGE.session_id}    
+    Set Content API Body    $..nonce            ${DATE_TIME}
+
+Send Request Token FBB No Web View No Match
+    [Documentation]    Owner: Atitaya
+    [Tags]
+    [Arguments]        ${status_code}
+    &{message}    Send Request    POST    url=${API_URL_NO_MATCH}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
+    Set Test Provisioning Data      Request Client Invalid : ${message}[request]
+    Set Test Actual Result          Request Client Invalid : ${message}[response]
+
+Verify Response Get Token With Client Id And Client Secret No Match  
+    [Documentation]    Owner: Atitaya
+    [Tags]    
+    Verify Value Response By Key    $..error    ${error_message_invalid_client}
 
 
 

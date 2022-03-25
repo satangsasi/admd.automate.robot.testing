@@ -347,6 +347,17 @@ TST_F3_1_1_008 Verify Login No web view for check status profile creditLimitted1
 
 
 # =================>
-
+TST_F3_0_1_001 Verlify FBB get token with client id and client secret no match 
+    [Documentation]    Owner: Atitaya
+    [Tags]    Fail    
+    Set API Header FBB No Web View
+    Set API Body FBB No Web View
+    Send Request FBB No Web View
+    Verify Response Key FBB No Web View
+    Get OTP Password FBB No Web View
+    Set API Header Get Token FBB No Web View No Match
+    Set API Body Get Token FBB No Web View No Match  
+    Send Request Token FBB No Web View No Match        401
+    Verify Response Get Token With Client Id And Client Secret No Match
 
 
