@@ -25,6 +25,7 @@ Resource    ../Resources/Keywords/LDAPallOUKeywords.robot
 Resource    ../Resources/Keywords/ValidateTokenKeywords.robot
 Resource    ../Resources/Keywords/FBB_nowebviewKeywords.robot
 Resource    ../Resources/Keywords/LogoutKeywords.robot
+Resource    ../Resources/Keywords/Logout_pushNotifyKeywords.robot
 
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
@@ -51,6 +52,7 @@ Resource    ../Resources/Variables/LDAPallOUVariables.robot
 Resource    ../Resources/Variables/ValidateTokenVariables.robot
 Resource    ../Resources/Variables/FBB_nowebviewVariables.robot
 Resource    ../Resources/Variables/LogoutVariables.robot
+Resource    ../Resources/Variables/Logout_pushNotifyVariables.robot
 
 *** Variables ***
 ${LANG}         EN
