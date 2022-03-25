@@ -82,7 +82,7 @@ Get OTP Password From Json
     ...     Get OTP Value from Json that return from SSH Command
     [Tags]    keyword_action
     [Arguments]    ${json_log}
-    ${otp_password}        Get Value Json By Key    ${json_log}    custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
+    ${otp_password}        Get Value Json By Key    ${json_log}    $..custom.Input[0].Data.Body.sendOneTimePWResponse.oneTimePassword
     Should Match Regexp    ${otp_password}    \\d+    msg=Can't get OTP Password
     Log         ${otp_password}
     [Return]    ${otp_password}
