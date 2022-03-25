@@ -6,7 +6,7 @@ Resource    ../../TestSuite/Resource_init.robot
 Set API Header FBB No Web View
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Set Content API Header    key=Content-Type    value=application/json
+    Set Content API Header    key=Content-Type    value=application/json    append=False
     Set Test Variable        ${API_URL}           ${url_fbb_nowebview}
 
 Set API Body FBB No Web View

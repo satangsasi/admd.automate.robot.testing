@@ -97,10 +97,6 @@ Fill Username FBB OTP Number No Contact
     Set Test Provisioning Data   Username: ${fbb_username_no_contact_number} 
 
 Verify Page Can Not Click Request Otp
-    ${status}    Run Keyword And Return Status    Wait For Elements State     ${btn_fbb_request_otp}        disabled
-    IF     ${status} == True
-        Verify Locator Is Hidden    ${txt_fbb_contact_number}
-    ELSE
-        Fail    msg="${fbb_username_no_contact_number}" have contact number. Request OTP Button can click
-    END
+    Verify Locator Is Hidden    ${txt_fbb_contact_number}  
     Take Screenshot Verify Success Scene
+    Set Test Actual Result    ${fbb_username_no_contact_number} No contact number. Can not click request otp button    

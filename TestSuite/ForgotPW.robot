@@ -167,7 +167,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
 
 TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner: sasipen
-    ...    \r\n*** Conditions ***
+    ...    \r\n***Conditions***
     ...    \r\nscope = profile
     [Tags]    Success    On-Hold
     Create Browser Session    ${url_gmail_login}
@@ -177,14 +177,14 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     # Press Next Button Password Gmail Login
 
 TST_F9_0_1_001 Verify forgot password fail
-    [Documentation]    Owner:
-    ...    \r\n*** Conditions ***
+    [Documentation]    Owner: sasipen
+    ...    \r\n***Conditions***
     ...    \r\nwith Email that have never been registered
-    [Tags]    Forgot_Password    Fail     sasi
+    [Tags]    Fail    Forgot_Password   demosprint4
     Create Browser Session    ${url_auth_forgot_pw_email}
     Press Forgot Password Forgot PW
     Fill Email Or Number For Reset Password    ${email_not_registered}
-    click    ${btn_next_reset_password}
+    click    ${btn_next1_forgot_pw}
     Verify Email Invalid On Webpage
 
 TST_F9_0_1_002 Verify forgot password fail
