@@ -300,10 +300,8 @@ ${public_id_885}    8854321012
 
 # =================>
 ${invalid_client_secret_nowebview}    cbf628414349cdb3f98fcf3edf19d21f
-${grant_type_nowebview}       password
-${username_nowebview}         8854321012
-${type_nowebview}             1
-${scope_nowebview}            profile
-${session_id_nowebview}       06hIwtW3Kkw0lPF7Gl926elY3ZoT9s0Pyf
-${transaction_id_nowebview}   t0PAaqbhU96WAfEd0m
+${invalid_public_id_nowebview}        8858980011      
 
+#response
+${expected_invalid_result_code_nowebview}       50000
+${expected_developer_message_error}             system_error     
