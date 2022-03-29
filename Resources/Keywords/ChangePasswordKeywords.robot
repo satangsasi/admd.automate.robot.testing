@@ -222,7 +222,7 @@ Verify Response Change Password With Msisdn Invalid New Password Contains Thai C
 
 Set API Body Change Password With Msisdn New Password Contains Special Character
     [Documentation]     Owner: Atitaya
-    [Tags]
+    [Tags]      keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body        ${body_change_password_schema}
@@ -237,13 +237,13 @@ Set API Body Change Password With Msisdn New Password Contains Special Character
 
 Verify Response Change Password With Msisdn Invalid New Password Contains Special Character
     [Documentation]     Owner: Atitaya
-    [Tags]
+    [Tags]      keyword_communicate
     Verify Value Response By Key    $..error    ${error_message_invalid_request} 
     Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}        
 
 Set API Body Change Password With Msisdn Invalid Access Token Expired    
     [Documentation]     Owner: Atitaya
-    [Tags]
+    [Tags]      keyword_communicate
     Get Time Nonce
     Set Schema API Body        ${body_change_password_schema}  
     Set Content API Body    $..old_password    ${old_password_msisdn}
@@ -257,6 +257,6 @@ Set API Body Change Password With Msisdn Invalid Access Token Expired
 
 Verify Response Change Password With Msisdn Invalid Access Token Expired
     [Documentation]     Owner: Atitaya
-    [Tags]
+    [Tags]      keyword_communicate
     Verify Value Response By Key    $..error    ${error_message_invalid_grant}
     Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}    
