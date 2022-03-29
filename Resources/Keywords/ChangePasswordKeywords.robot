@@ -259,4 +259,5 @@ Verify Response Change Password With Msisdn Invalid Access Token Expired
     [Documentation]     Owner: Atitaya
     [Tags]      keyword_communicate
     Verify Value Response By Key    $..error    ${error_message_invalid_grant}
-    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}    
+    Verify Value Response By Key    $..state    ${state_success_change_password_msisdn}
+        
