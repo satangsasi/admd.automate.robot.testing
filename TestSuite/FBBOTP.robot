@@ -76,7 +76,7 @@ TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
 
 TST_F2_0_1_004 Verify FBB get token with FBB No Contact number 8858980011
     [Documentation]    Owner:
-    [Tags]    Fail    FBB_OTP    demosprint4    
+    [Tags]    Fail    FBB_OTP    demosprint4      
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP Number No Contact
     Verify Page Can Not Click Request Otp   

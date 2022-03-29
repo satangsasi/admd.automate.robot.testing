@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Variables ***
-${HEAD_LESS}    False
+${HEAD_LESS}    True
 ${BROWSER}      chromium
 
 

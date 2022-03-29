@@ -173,6 +173,8 @@ Set API Body Change Password With Ldap Invalid Access Token Expired
 Verify Response Change Password With Ldap Invalid Access Token Expired
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
+    ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
+    Verify Value Should Not Be Equal    ${expired_access_token_change_password}    ${actual_value_access_token}
     Verify Value Response By Key    $..error    ${error_message_invalid_grant}
     Verify Value Response By Key    $..state    ${state_success_change_password_ldapcp} 
 
@@ -205,7 +207,7 @@ Set API Body Change Password With Msisdn Invalid New Password Contains Thai Char
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
     Set Schema API Body     ${body_change_password_schema}  
-    Set Content API Body    $..old_password    ${old_password_msisdn_invalid}
+    Set Content API Body    $..old_password    ${old_password_ldap_content_provider}
     Set Content API Body    $..new_password    ${new_password_invalid_th_lang}  
     Set Content API Body    $..access_token    ${actual_value_access_token}
     Set Content API Body    $..type            ${type_misdn}
