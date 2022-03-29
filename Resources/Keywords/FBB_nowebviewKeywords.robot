@@ -385,7 +385,58 @@ Verify Decoded Value Access Token FBB No Web View
 
 
 
-# =================>
+Set API Header Get Token FBB No Web View No Match
+    [Documentation]    Owner: Atitaya
+    [Tags]      keyword_communicate    
+    Set Content API Header    key=${header_content_type}          value=${content_type_x_www}       append=False             
+    Set Test Variable         ${API_URL_NO_MATCH}       ${url_get_token_fbb_nowebview}
 
+Set API Body Get Token FBB No Web View No Match   
+    [Documentation]    Owner: Atitaya
+    [Tags]      keyword_communicate
+    Get Time Nonce
+    Set Schema API Body     ${body_verify_get_token_login_nowebview}        
+    Set Content API Body    $..client_secret    ${invalid_client_secret_nowebview}       
+    Set Content API Body    $..password         ${FBB_NO_WEB_VIEW_OTP_PASSWORD}
+    Set Content API Body    $..transaction_id   ${RESPONSE_JSON_MESSAGE.transaction_id}
+    Set Content API Body    $..session_id       ${RESPONSE_JSON_MESSAGE.session_id}    
+    Set Content API Body    $..nonce            ${DATE_TIME}
 
+Send Request Token FBB No Web View No Match
+    [Documentation]    Owner: Atitaya
+    [Tags]      keyword_communicate
+    [Arguments]        ${status_code}
+    &{message}    Send Request    POST    url=${API_URL_NO_MATCH}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
+    Set Test Provisioning Data      Request Client Invalid : ${message}[request]
+    Set Test Actual Result          Request Client Invalid : ${message}[response]
 
+Verify Response Get Token With Client Id And Client Secret No Match  
+    [Documentation]    Owner: Atitaya
+    [Tags]      keyword_communicate    
+    Verify Value Response By Key    $..error    ${error_message_invalid_client}
+
+Set API Body FBB No Web View No Contact Number
+    [Documentation]     Owner: Atitaya
+    [Tags]      keyword_communicate
+    Get Time Nonce
+    Set Schema API Body     ${body_verify_login_nowebview}
+    Set Content API Body        $..public_id        ${invalid_public_id_nowebview}                          
+    Set Content API Body        $..nonce            ${DATE_TIME}
+
+Send Request FBB No Web View No Contact Number
+    [Documentation]    Owner: Atitaya
+    [Tags]    keyword_communicate
+    [Arguments]        ${status_code}
+    ${message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}     expected_status=${status_code}    verify=${ssl_verify}
+    Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
+    ${response_json_message}      Convert Variable Type To Dot Dict    ${RESPONSE.json()}
+    Set Test Provisioning Data    result_code: ${response_json_message.result_code}
+    Set Test Provisioning Data    developer_message: ${response_json_message.developer_message}
+    Set Test Variable             ${RESPONSE_JSON_MESSAGE}    ${response_json_message}
+
+Verify Response OTP No Contact Number
+    [Documentation]     Owner: Atitaya
+    [Tags]      keyword_communicate
+    Verify Value Response By Key    $..result_code           ${expected_invalid_result_code_nowebview}
+    Verify Value Response By Key    $..developer_message     ${expected_developer_message_error}

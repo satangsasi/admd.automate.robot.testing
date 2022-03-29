@@ -299,6 +299,9 @@ ${public_id_885}    8854321012
 
 
 # =================>
+${invalid_client_secret_nowebview}    cbf628414349cdb3f98fcf3edf19d21f
+${invalid_public_id_nowebview}        8858980011      
 
-
-
+#response
+${expected_invalid_result_code_nowebview}       50000
+${expected_developer_message_error}             system_error     
