@@ -5,14 +5,17 @@ Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 *** Test Cases ***
 TST_F5_1_1_001 Verify Logout with Ldap Employee
     [Documentation]    Owner: Nakarin
+    ...    AIS Team remove this test case
     [Tags]    Success    On-Hold
 
 TST_F5_1_1_002 Verify Logout with Ldap Content provider
     [Documentation]    Owner: Nakarin
+    ...    AIS Team remove this test case
     [Tags]    Success    On-Hold
 
 TST_F5_1_1_003 Verify Logout with SSO Ldap Employee
     [Documentation]    Owner: Nakarin
+    ...    AIS Team remove this test case
     [Tags]    Success    On-Hold
 
 

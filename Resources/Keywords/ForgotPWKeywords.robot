@@ -14,6 +14,7 @@ Fill Mobile Number Forgot PW
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
+    Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
 
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin
@@ -47,6 +48,7 @@ Fill OTP Password Forgot PW
         Type Text    //*[@id="fotp${i}"]    ${number}    delay=0.1s
         ${i}    Evaluate    ${i}+1
     END
+    Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
 
 Fill Question 1 And Question 2 Forgot PW
     [Documentation]    Owner: Nakarin
