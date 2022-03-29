@@ -152,7 +152,7 @@ TST_F8_0_1_007 Verlify Change Password with Msisdn password
     ...    \r\n***Condition***
     ...    \r\ntype = ldap
     ...    \r\nnew password contains "&"
-    [Tags]    Fail    Change_password    Msisdn
+    [Tags]    Fail    Change_password    Msisdn     Atitaya
     Create Browser Session          ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password
@@ -169,7 +169,7 @@ TST_F8_0_1_008 Verlify Change Password with Msisdn password
     ...    \r\n***Condition***
     ...    \r\ntype = msisdn_password or msisdn
     ...    \r\naccess_token expired
-    [Tags]    Fail    Change_password    Msisdn
+    [Tags]    Fail    Change_password    Msisdn     Atitaya
     Create Browser Session          ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password

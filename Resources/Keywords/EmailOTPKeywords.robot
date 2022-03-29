@@ -181,18 +181,15 @@ Get Email OTP Password
     ...    Get Email OTP Password and return Test Variable    ${EMAIL_OTP_PASSWORD}
     [Tags]    keyword_action
     [Arguments]    ${transaction_id}
-    # SSH Connect To Server Log
     ${json_log}        Get Json Log Email Otp        ${transaction_id}
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable  ${EMAIL_OTP_PASSWORD}         ${otp_password}
-    # [Teardown]    Close All Connections
 
 Get Json Log Email Otp
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Get Json Log From output of SSH Command
     [Tags]    keyword_commands
     [Arguments]     ${transaction_id}
-    # ${ADMD_PATH}    Change Directory Path To Get Log
     Read    delay=5s
     Write    cat ${ADMD_PATH} | grep -E "gsso.post_send_one_time_password.*${transaction_id}"
     ${string}   Read    delay=5s
@@ -200,3 +197,4 @@ Get Json Log Email Otp
     ${json_expect}    Convert String To JSON    ${json_format}[0]
     Log         ${json_expect}
     [Return]    ${json_expect}
+    Set Test Actual Result    ADMD V3.2 Log: ${json_expect}
