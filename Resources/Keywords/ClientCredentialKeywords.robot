@@ -58,7 +58,8 @@ Send Request Client Credentials
     &{message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    ${message}[request]
     Set Test Actual Result        ${message}[response]
- 
+    Get Value X Session ID
+
 Send Request Client Credentials Invalid
     [Documentation]     Owner : sasipen
     ...     Send request Post to api
@@ -66,6 +67,7 @@ Send Request Client Credentials Invalid
     ${message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    ${message}[request]
     Set Test Actual Result        ${message}[response]
+    Set Test Variable    ${MESSAGE_RESPONSE}    ${message}[response]
  
 Verify Response Client Credentials
     [Documentation]     Owner : sasipen
@@ -106,3 +108,19 @@ Verify Response Decode Jwt By Key
     ${value}      Convert To String    ${value}
     Should Match Regexp    ${value}     .+
     Log    ${value}    
+
+Get Value X Session ID
+    ${value_x_session_id}    Get Value Response Headers By Key    X-Session-Id
+    Set Test Variable    ${X_SESSION_ID}     ${value_x_session_id}
+
+Get Admd Log From Server
+    [Documentation]    Owner: sasipen    
+    ...    Get Json Log From output of SSH Command
+    ...    edit message grep > ${X_SESSION_ID}
+    [Tags]    keyword_commands
+    # Write    cat ${ADMD_PATH} | grep -E "client.token_client_credentials.*access_token"
+    Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log    ${json_format} 
+    Set Test Actual Result    ADMD V3.2 Log: ${json_format} 

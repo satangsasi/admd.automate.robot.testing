@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ./Resource_init.robot
+Suite Setup       Keyword Suite Setup
 Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 
 
@@ -20,7 +21,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_backend}
     Decode Token To Jwt Client Credentials
     Verify Response Jwt Decode
-
+    
 TST_F7_1_1_002 ClientCredentials with client id on browser
     [Documentation]     Owner : sasipen
     ...
@@ -38,6 +39,7 @@ TST_F7_1_1_002 ClientCredentials with client id on browser
     Decode Token To Jwt Client Credentials 
     Verify Response Jwt Decode
 
+
 TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     [Documentation]     Owner : sasipen
     ...
@@ -53,6 +55,7 @@ TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   ${error_message_invalid_client}
     
+
 TST_F7_0_1_002 Verify ClientCredentials with Invalid client_secret
     [Documentation]     Owner : sasipen
     ...
