@@ -1,4 +1,13 @@
 *** Variables ***
+# SSH configuration
+${ssh_admd_user}           serveradm
+${ssh_admd_pass}           R3dh@t!@#
+${ssh_admd_ip_address}     10.137.30.22
+${ssh_aaf5g_user}          toro
+${ssh_aaf5g_pass}          equinox@toro;
+${ssh_aaf5g_ip_address}    10.138.37.128
+
+# Suite configuration
 ${verify_timeout}        20s
 ${default_browser}       chromium
 ${test_site}             dev
