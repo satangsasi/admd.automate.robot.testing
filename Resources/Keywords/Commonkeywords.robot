@@ -25,16 +25,21 @@ Append To Document Teardown
 SSH Connect To Server Log
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Connected to 10.137.30.22
-    ...    *** Variables ***
+    ...    *** Variables ADMD ***
     ...    ${ssh_admd_ip_address}    10.137.30.22
     ...    ${ssh_admd_user}          serveradm
     ...    ${ssh_admd_pass}          R3dh@t!@#
+    ...    *** Variables AAF5G ***
+    ...    ${ssh_aaf5g_ip_address}   10.138.37.128
+    ...    ${ssh_aaf5g_user}         toro
+    ...    ${ssh_aaf5g_pass}         equinox@toro;
     [Tags]    keyword_action
     ${admd_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
     ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
     Log    ${login_log}    # ADMD Connection
     ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
     ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
+    Write    cd /eqx/af/detail/
     Log    ${login_log}    # AAF5G Connection
     Set Suite Variable    ${SSH_ADMD}     ${admd_connection}
     Set Suite Variable    ${SSH_AAF5G}    ${aaf5g_connection}
@@ -214,7 +219,7 @@ Verify Response Key
 
 Get Time Nonce
     [Documentation]   Owner : sasipen
-    ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
+    ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f
     Set Test Variable       ${DATE_TIME}    ${current_date_time}
     
 Get Value X Session ID
@@ -231,6 +236,65 @@ Get Admd Log From Server
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log    ${json_format} 
     Set Test Actual Result    ADMD V3.2 Log: ${json_format} 
+
+Get AAF5G Log
+    [Documentation]    Owner: Nakarin
+    ...    Get AAF5G logs from server
+    [Tags]    keyword_action
+    [Arguments]    ${stamp_minutes}
+    Switch Connection    ${SSH_AAF5G}
+    ${aaf5g_path}    Get AAF5G Path     ${stamp_minutes}
+    ${session}       Get AAF5G Session     ${aaf5g_path}
+    Get AAF5G Log Command    ${aaf5g_path}    ${session}
+
+Get AAF5G Path
+    [Documentation]    Owner: Nakarin
+    ...    Used for get AAF5G log path to get AAF5G logs
+    [Tags]    keyword_commands
+    [Arguments]    ${stamp_minutes}
+    Write     ls -lrt | tail
+    ${path}     Read    delay=5s
+    @{path}     Split To Lines        ${path}
+    ${current_minutes}    Check Time Minutes
+    IF    ${current_minutes}%5 == 0 and ${stamp_minutes}%5 != 0
+        @{aaf5g_path}    Get Regexp Matches    ${path}[-3]    (\\w\\S+)
+    ELSE
+        @{aaf5g_path}    Get Regexp Matches    ${path}[-2]    (\\w\\S+)    
+    END
+    [Return]    ${aaf5g_path}[-1]
+
+Get AAF5G Session
+    [Documentation]    Owner: Nakarin
+    ...    Used for get AFF5g Session for get AFF5G logs
+    [Tags]    keyword_commands
+    [Arguments]    ${log_path}
+    Write      cat ${log_path} | grep ${USERNAME}
+    ${string}    Read    delay=5s
+    Write    reset
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log Many    @{json_format}
+    @{string}    Split String    ${json_format}[0]    "
+    Log Many    @{string}
+    Log         ${string}[5]
+    [Return]    ${string}[5]
+
+Get AAF5G Log Command
+    [Documentation]    Owner: Nakarin
+    ...    Command for used in get log via ssh command
+    [Tags]    keyword_commands
+    [Arguments]    ${log_path}        ${session}
+    Write      cat ${log_path} | grep ${session}
+    ${string}    Read    delay=5s
+    Log    ${string}
+    Set Test Actual Result    AAF5G logs: ${string}
+
+Check Time Minutes
+    [Documentation]    Owner: Nakarin
+    ...    Used for recheck timestamps
+    [Tags]    keyword_commands
+    ${current_minutes}    Get Current Date      result_format=%M
+    ${current_minutes}    Convert To Integer    ${current_minutes}
+    [Return]    ${current_minutes}
 
 # Get Value X Session ID For Log From Server
 #     [Documentation]    Owner: sasipen 

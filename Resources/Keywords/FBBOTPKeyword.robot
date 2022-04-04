@@ -25,7 +25,9 @@ Click Request OTP Button
 Press Login Button In FBB OTP
     [Documentation]    Owner: Nakarin
     [Tags]    Keyword_communicate
+    ${stamp_minutes}    Check Time Minutes
     Click    ${btn_fbb_login}
+    [Teardown]    Get AAF5G Log    ${stamp_minutes}
 
 Get OTP Password FBB
     [Documentation]    Owner: Nakarin
