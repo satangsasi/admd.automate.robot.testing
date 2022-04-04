@@ -59,6 +59,7 @@ Fill Username And Password Login Page
     Type Text    ${txt_password_ldap}      ${pass_ldap_employee}       delay=0.1s
     Set Test Provisioning Data   Username: ${user_ldap_employee}
     Set Test Provisioning Data   Password: ${pass_ldap_employee}
+    Set Test Variable       ${USERNAME}       ${user_ldap_employee} 
 
 Press Login Button In Page 
     [Documentation]    Owner: Atitaya
@@ -93,14 +94,21 @@ Send Post Request Logout
 Get Json Error Log Logout From Server
     [Documentation]
     [Tags]    keyword_commands
-    Write    cat ${ADMD_PATH} | grep -E "Input.Data.Body.*resultCode" 
+    Switch Connection  ${SSH_ADMD}
+    Write    cat ${ADMD_PATH} | grep -E "Body.*data_not_found"
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
-    &{json_expect}    Convert Variable Type To Dot Dict    ${json_format}
+    &{json_expect}    Convert Variable Type To Dot Dict    ${json_format}[0]
     Log Many    &{json_expect}
     Set Test Variable    &{JSON_EXPECT}    &{json_expect}
     Set Test Actual Result    ADMD V3.2 Log: ${json_expect}
+
+Verify Json Error Log Logout From Server
+    [Documentation]    Owner:Atitaya 
+    [Tags]    keyword_commands
+    Verify Value Json By Key    ${JSON_EXPECT}    $..custom.Input[0].Data.Body.resultCode          ${expected_result_code_40401}     
+    Verify Value Json By Key    ${JSON_EXPECT}    $..custom.Input[0].Data.Body.developerMessage    ${expected_developer_message_not_found}    
 
 Verify Response Logout Expired Access Token
     [Documentation]    Owner: Atitaya
@@ -118,6 +126,8 @@ Set API Body Logout Incorrect Access Token
 Verify Response Logout Incorrect Access Token
     [Documentation]    Owner: Atitaya
     [Tags]    Keyword_communicate
+    ${access_token}   Get Value Response On Web Page By Key    $..access_token
+    Verify Value Should Not Be Equal    ${incorrect_access_token_logout}    ${access_token}
     Verify Value Response By Key        $..error        ${error_message_invalid_code}
 
 Set API Body Logout Missing Access Token
@@ -153,5 +163,3 @@ Verify Response Logout Feature With Unknow URL
     [Documentation]    Owner: Atitaya
     [Tags]      keyword_communicate      
     Verify Value Response By Key        $..error        ${error_message_invalid_request}
-
-    
