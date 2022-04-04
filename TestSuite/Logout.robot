@@ -1,7 +1,8 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup       Keyword Suite Setup
-Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Setup      Keyword Suite Setup
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 *** Test Cases ***
 TST_F5_1_1_001 Verify Logout with Ldap Employee
@@ -362,11 +363,18 @@ TST_F5_0_1_001 To verify logout feature with expired access token
     Set API Body Logout Expired Access Token
     Send Post Request Logout        200
     Get Json Error Log Logout From Server
+    Verify Json Error Log Logout From Server  
     Verify Response Logout Expired Access Token
 
 TST_F5_0_1_002 To verify logout feature with incorrect access token
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout      On-Hold
+    [Tags]      Fail        Logout      
+    Create Browser Session      ${url_auth_logout}       
+    Fill Username And Password Login Page 
+    Press Login Button In Page
+    Create URL For Get Token    ${url_get_token_schema} 
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
     Set API Header Logout
     Set API Body Logout Incorrect Access Token
     Send Post Request Logout        400
@@ -374,7 +382,13 @@ TST_F5_0_1_002 To verify logout feature with incorrect access token
 
 TST_F5_0_1_003 To verify logout feature with missing access token    
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout      On-Hold
+    [Tags]      Fail        Logout      
+    Create Browser Session      ${url_auth_logout}       
+    Fill Username And Password Login Page 
+    Press Login Button In Page
+    Create URL For Get Token    ${url_get_token_schema} 
+    New Page    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
     Set API Header Logout
     Set API Body Logout Missing Access Token
     Send Post Request Logout        400
