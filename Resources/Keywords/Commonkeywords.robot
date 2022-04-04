@@ -165,6 +165,7 @@ Keyword Suite Teardown
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
+    Get Admd Log From Server
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
 
