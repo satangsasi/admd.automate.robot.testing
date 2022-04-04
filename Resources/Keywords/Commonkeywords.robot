@@ -174,9 +174,10 @@ Keyword Suite Teardown
     Close All Connections
 
 Keyword Test Teardown
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: Nakarin  Editer: Sasipen
+    ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Get Admd Log From Server
+    Get Admd Log From Server By X Session Id 
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
 
@@ -221,16 +222,30 @@ Get Time Nonce
     [Documentation]   Owner : sasipen
     ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f
     Set Test Variable       ${DATE_TIME}    ${current_date_time}
-    
-Get Value X Session ID
-    ${value_x_session_id}    Get Value Response Headers By Key    $..X-Session-Id
-    Set Test Variable    ${X_SESSION_ID}     ${value_x_session_id}
 
 Get Admd Log From Server
     [Documentation]    Owner: sasipen    
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > ${X_SESSION_ID}
     [Tags]    keyword_commands
+    Switch Connection    ${SSH_ADMD}
+    Write    cat ${ADMD_PATH}
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log Many   @{json_format}
+    &{json_expect}    Convert Variable Type To Dot Dict    ${json_format}[-1]
+    Log Many    &{json_expect}
+    Set Test Variable    &{JSON_EXPECT}    &{json_expect}
+
+Get Value X Session Id
+    [Documentation]    Owner: sasipen  
+    ${value_x_session_id}    Get Value Json By Key    ${JSON_EXPECT}    $..custom.Output[0].Data.Header['x-session-id']
+    Set Test Variable    ${X_SESSION_ID}    ${value_x_session_id}    
+    
+Get Admd Log From Server By X Session Id  
+    Switch Connection    ${SSH_ADMD}
+    Get Admd Log From Server
+    Get Value X Session Id
     Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
@@ -285,8 +300,8 @@ Get AAF5G Log Command
     [Arguments]    ${log_path}        ${session}
     Write      cat ${log_path} | grep ${session}
     ${string}    Read    delay=5s
-    Log    ${string}
-    Set Test Actual Result    AAF5G logs: ${string}
+    Log    ${string}[0]
+    Set Test Actual Result    AAF5G logs: ${string}[0]
 
 Check Time Minutes
     [Documentation]    Owner: Nakarin
@@ -295,8 +310,3 @@ Check Time Minutes
     ${current_minutes}    Get Current Date      result_format=%M
     ${current_minutes}    Convert To Integer    ${current_minutes}
     [Return]    ${current_minutes}
-
-# Get Value X Session ID For Log From Server
-#     [Documentation]    Owner: sasipen 
-#     ${value_x_session_id}    Get Value Json By Key    ${JSON_EXPECT}    $..custom.Output[0].Data.Header['x-session-id']
-#     Set Test Variable    ${X_SESSION_ID}     ${value_x_session_id}

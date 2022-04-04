@@ -432,6 +432,7 @@ Get Json Error Log Ldap From Server
     ...    Get Json Log From output of SSH Command
     ...    edit message grep > error
     [Tags]    keyword_commands
+    Switch Connection    ${SSH_ADMD}
     Write    cat ${ADMD_PATH} | grep -E "error.*client.login_ldap"
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
