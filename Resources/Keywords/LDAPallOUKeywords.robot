@@ -361,12 +361,15 @@ Fill Username And Password
     Fill Text    ${txt_password_ldap}    ${pass}
     Set Test Provisioning Data    Username : ${user}
     Set Test Provisioning Data    Password : ${pass}
+    Set Test Variable    ${USERNAME}    ${user}
     
 Press Login Button In LDAP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
+    ${stamp_minutes}    Check Time Minutes
     Click     ${btn_login_ldap}
     Wait Until Network Is Idle    ${verify_timeout}
+    [Teardown]    Get AAF5G Log    ${stamp_minutes}
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin
