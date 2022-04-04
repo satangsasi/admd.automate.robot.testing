@@ -211,3 +211,17 @@ Get Time Nonce
     ${current_date_time}    Get Current Date    result_format=%Y%m%d %H:%M:%S.%f      
     Set Test Variable       ${DATE_TIME}    ${current_date_time}
     
+Get Value X Session ID
+    ${value_x_session_id}    Get Value Response Headers By Key    $..X-Session-Id
+    Set Test Variable    ${X_SESSION_ID}     ${value_x_session_id}
+
+Get Admd Log From Server
+    [Documentation]    Owner: sasipen    
+    ...    Get Json Log From output of SSH Command
+    ...    edit message grep > ${X_SESSION_ID}
+    [Tags]    keyword_commands
+    Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log    ${json_format} 
+    Set Test Actual Result    ADMD V3.2 Log: ${json_format} 
