@@ -97,6 +97,7 @@ Fill Username FBB OTP Number No Contact
     Set Test Provisioning Data   Username: ${fbb_username_no_contact_number} 
 
 Verify Page Can Not Click Request Otp
+    [Documentation]    Owner: Sasipen
     Get Element State    ${btn_fbb_request_otp}     disabled    ==    True
     Verify Locator Is Hidden    ${txt_fbb_contact_number}  
     Take Screenshot Verify Success Scene
