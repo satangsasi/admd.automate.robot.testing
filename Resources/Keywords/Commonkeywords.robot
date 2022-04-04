@@ -255,11 +255,12 @@ Get AAF5G Path
     Write     ls -lrt | tail
     ${path}     Read    delay=5s
     @{path}     Split To Lines        ${path}
-    ${current_minutes}    Check Time Minutes
-    IF    ${current_minutes}%5 == 0 and ${stamp_minutes}%5 != 0
-        @{aaf5g_path}    Get Regexp Matches    ${path}[-3]    (\\w\\S+)
-    ELSE
-        @{aaf5g_path}    Get Regexp Matches    ${path}[-2]    (\\w\\S+)    
+    ${index}    Set Variable    -2
+    FOR    ${counter}    IN RANGE    1
+        @{aaf5g_path}    Get Regexp Matches    ${path}[${index}]    (\\w\\S+)
+        ${status}    Run Keyword And Return Status    Should Contain Any    @{aaf5g_path}
+        Exit For Loop If    ${status} == True
+        ${index}    Evaluate    ${index} - 1
     END
     [Return]    ${aaf5g_path}[-1]
 
