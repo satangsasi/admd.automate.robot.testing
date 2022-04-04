@@ -285,8 +285,8 @@ Get AAF5G Log Command
     [Arguments]    ${log_path}        ${session}
     Write      cat ${log_path} | grep ${session}
     ${string}    Read    delay=5s
-    Log    ${string}
-    Set Test Actual Result    AAF5G logs: ${string}
+    Log    ${string}[0]
+    Set Test Actual Result    AAF5G logs: ${string}[0]
 
 Check Time Minutes
     [Documentation]    Owner: Nakarin
