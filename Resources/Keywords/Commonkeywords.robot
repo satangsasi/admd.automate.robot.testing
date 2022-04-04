@@ -26,26 +26,32 @@ SSH Connect To Server Log
     [Documentation]    Owner: Nakarin    Editor: Sasipen
     ...    Connected to 10.137.30.22
     ...    *** Variables ***
-    ...    ${ssh_ip_address}    10.137.30.22
-    ...    ${ssh_user}          serveradm
-    ...    ${ssh_pass}          R3dh@t!@#
+    ...    ${ssh_admd_ip_address}    10.137.30.22
+    ...    ${ssh_admd_user}          serveradm
+    ...    ${ssh_admd_pass}          R3dh@t!@#
     [Tags]    keyword_action
-    Open Connection    ${ssh_ip_address}    prompt=$    timeout=${default_timeout}
-    ${login_log}    Login    ${ssh_user}     ${ssh_pass}
-    Log    ${login_log}
+    ${admd_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
+    ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
+    Log    ${login_log}    # ADMD Connection
+    ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
+    ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
+    Log    ${login_log}    # AAF5G Connection
+    Set Suite Variable    ${SSH_ADMD}     ${admd_connection}
+    Set Suite Variable    ${SSH_AAF5G}    ${aaf5g_connection}
     
-Change Directory Path To Get Log
+Change Directory Path To Get ADMD Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
     [Tags]    keyword_action
-    ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path
+    Switch Connection    ${SSH_ADMD}
+    ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Path
     Write    reset
     Read     delay=5s    # Wait for screen reset
-    ${admd_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Grep Path    ${kubectl_path}
+    ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
     [Return]    ${admd_path}
 
-Get Kubectl Grep Path
+ADMD Get Kubectl Grep Path
     [Documentation]    Owner: Nakarin
     ...    Recieve ${kubectl_path} then change directory to ${kubectl_path} 
     ...    then return ${cat_path} to get log
@@ -64,7 +70,7 @@ Get Kubectl Grep Path
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
 
-Get Kubectl Path
+ADMD Get Kubectl Path
     [Documentation]    Owner: Nakarin
     ...    Read output of ssh command then return the last Kubectl path
     [Tags]    keyword_command
@@ -154,7 +160,7 @@ Keyword Suite Setup
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     SSH Connect To Server Log
-    ${admd_path}    Change Directory Path To Get Log
+    ${admd_path}    Change Directory Path To Get ADMD Log
     Set Suite Variable    ${ADMD_PATH}    ${admd_path}
 
 Keyword Suite Teardown
