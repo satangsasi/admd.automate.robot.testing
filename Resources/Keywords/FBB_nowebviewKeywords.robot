@@ -430,10 +430,6 @@ Send Request FBB No Web View No Contact Number
     ${message}    Send Request    POST  url=${API_URL}    headers=${API_HEADER}    body=${API_BODY}     expected_status=${status_code}    verify=${ssl_verify}
     Set Test Provisioning Data    ${message}[request]
     Set Test Actual Result        ${message}[response]
-    ${response_json_message}      Convert Variable Type To Dot Dict    ${RESPONSE.json()}
-    Set Test Provisioning Data    result_code: ${response_json_message.result_code}
-    Set Test Provisioning Data    developer_message: ${response_json_message.developer_message}
-    Set Test Variable             ${RESPONSE_JSON_MESSAGE}    ${response_json_message}
 
 Verify Response OTP No Contact Number
     [Documentation]     Owner: Atitaya
