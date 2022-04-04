@@ -231,3 +231,8 @@ Get Admd Log From Server
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log    ${json_format} 
     Set Test Actual Result    ADMD V3.2 Log: ${json_format} 
+
+# Get Value X Session ID For Log From Server
+#     [Documentation]    Owner: sasipen 
+#     ${value_x_session_id}    Get Value Json By Key    ${JSON_EXPECT}    $..custom.Output[0].Data.Header['x-session-id']
+#     Set Test Variable    ${X_SESSION_ID}     ${value_x_session_id}
