@@ -37,12 +37,14 @@ SSH Connect To Server Log
     ${admd_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
     ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
     Log    ${login_log}    # ADMD Connection
-    ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
-    ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
-    Write    cd /eqx/af/detail/
-    Log    ${login_log}    # AAF5G Connection
     Set Suite Variable    ${SSH_ADMD}     ${admd_connection}
-    Set Suite Variable    ${SSH_AAF5G}    ${aaf5g_connection}
+    IF    ${REGRESSION} != True
+        ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
+        ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
+        Write    cd /eqx/af/detail/
+        Log    ${login_log}    # AAF5G Connection    
+        Set Suite Variable    ${SSH_AAF5G}    ${aaf5g_connection}
+    END   
     
 Change Directory Path To Get ADMD Log
     [Documentation]    Owner: Nakarin
@@ -58,7 +60,7 @@ Change Directory Path To Get ADMD Log
 
 ADMD Get Kubectl Grep Path
     [Documentation]    Owner: Nakarin
-    ...    Recieve ${kubectl_path} then change directory to ${kubectl_path} 
+    ...    Receive ${kubectl_path} then change directory to ${kubectl_path} 
     ...    then return ${cat_path} to get log
     [Tags]    keyword_command
     [Arguments]    ${kubectl_path}
@@ -174,7 +176,7 @@ Keyword Suite Teardown
     Close All Connections
 
 Keyword Test Teardown
-    [Documentation]    Owner: Nakarin  Editer: Sasipen
+    [Documentation]    Owner: Nakarin  Editor: Sasipen
     ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
     Get Admd Log From Server By X Session Id 
@@ -256,18 +258,19 @@ Get AAF5G Log
     [Documentation]    Owner: Nakarin
     ...    Get AAF5G logs from server
     [Tags]    keyword_action
-    [Arguments]    ${stamp_minutes}
-    Switch Connection    ${SSH_AAF5G}
-    # ${aaf5g_path}    Get AAF5G Path     ${stamp_minutes}
-    @{aaf5g_path}    Get AAF5G Path
-    ${session}       Get AAF5G Session     ${aaf5g_path}
-    Get AAF5G Log Command    ${aaf5g_path}    ${session}
+    [Arguments]
+    ${status}    Run Keyword And Return Status    List Should Contain Value    @{TEST_TAGS}    AAF5G
+    IF    ${status} == True and ${REGRESSION} != True
+        Switch Connection    ${SSH_AAF5G}
+        @{aaf5g_path}    Get AAF5G Path
+        ${session}       Get AAF5G Session     ${aaf5g_path}
+        Get AAF5G Log Command    ${aaf5g_path}    ${session} 
+    END
 
 Get AAF5G Path
     [Documentation]    Owner: Nakarin
     ...    Used for get AAF5G log path to get AAF5G logs
     [Tags]    keyword_commands
-    # [Arguments]    ${stamp_minutes}
     @{path_list}    Create List
     Write       ls -lrt | tail
     ${path}     Read    delay=5s
@@ -291,7 +294,7 @@ Get AAF5G Session
         Write    reset
         ${json_format}    Get Regexp Matches    ${string}    {.*
         Log Many    @{json_format}
-        @{string}    Split String    ${json_format}[0]    "
+        @{string}    Run Keyword And Ignore Error    Split String    ${json_format}[0]    "
         Log Many    @{string}
         ${status}    Run Keyword And Return Status    Log    ${string}[5]
         Exit For Loop If    ${status} == True
