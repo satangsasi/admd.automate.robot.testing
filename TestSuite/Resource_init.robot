@@ -58,3 +58,4 @@ Resource    ../Resources/Variables/Logout_pushNotifyVariables.robot
 ${LANG}         EN
 ${TEST_SITE}    DEV
 ${DOMAIN}       Public
+${REGRESSION}   False
