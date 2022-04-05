@@ -366,10 +366,9 @@ Fill Username And Password
 Press Login Button In LDAP
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    ${stamp_minutes}    Check Time Minutes
     Click     ${btn_login_ldap}
     Wait Until Network Is Idle    ${verify_timeout}
-    [Teardown]    Get AAF5G Log    ${stamp_minutes}
+    [Teardown]    Get AAF5G Log
 
 Wait For Authentication Code Expire
     [Documentation]    Owner: Nakarin

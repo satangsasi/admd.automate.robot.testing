@@ -38,7 +38,7 @@ SSH Connect To Server Log
     ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
     Log    ${login_log}    # ADMD Connection
     Set Suite Variable    ${SSH_ADMD}     ${admd_connection}
-    IF    ${REGRESSION} != 'True'
+    IF    ${REGRESSION} != True
         ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
         ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
         Write    cd /eqx/af/detail/
@@ -260,7 +260,7 @@ Get AAF5G Log
     [Tags]    keyword_action
     [Arguments]
     ${status}    Run Keyword And Return Status    List Should Contain Value    @{TEST_TAGS}    AAF5G
-    IF    ${status} == True and '${REGRESSION}' != 'True'
+    IF    ${status} == True and ${REGRESSION} != True
         Switch Connection    ${SSH_AAF5G}
         @{aaf5g_path}    Get AAF5G Path
         ${session}       Get AAF5G Session     ${aaf5g_path}
@@ -271,7 +271,6 @@ Get AAF5G Path
     [Documentation]    Owner: Nakarin
     ...    Used for get AAF5G log path to get AAF5G logs
     [Tags]    keyword_commands
-    # [Arguments]    ${stamp_minutes}
     @{path_list}    Create List
     Write       ls -lrt | tail
     ${path}     Read    delay=5s
