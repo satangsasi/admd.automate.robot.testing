@@ -64,10 +64,9 @@ Fill Username And Password Login Page
 Press Login Button In Page 
     [Documentation]    Owner: Atitaya
     [Tags]    Keyword_communicate
-    ${stamp_minutes}    Check Time Minutes
     Click       ${btn_login_ldap}
     Wait Until Network Is Idle      ${verify_timeout}
-    [Teardown]    Get AAF5G Log    ${stamp_minutes}
+    [Teardown]    Get AAF5G Log
 
 Set API Header Logout
     [Documentation]    Owner: Atitaya
