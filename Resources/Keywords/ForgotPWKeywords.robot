@@ -95,11 +95,11 @@ Verify Response Key Forgot PW
     Verify Response Key    $..refresh_token_expires_in
     Verify Response Key    $..id_token
 
-Fill Email Or Number For Reset Password
+Fill Email For Reset Password
     [Documentation]    Owner: sasipen
-    [Arguments]    ${email_number}
-    Type Text      ${txt_email_number_reset_password}    ${email_number}     delay=0.1s
-    Set Test Provisioning Data   Email: ${email_number}
+    [Arguments]    ${email}
+    Type Text      ${txt_email_number_reset_password}    ${email}     delay=0.1s
+    Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
     [Documentation]    Owner: sasipen
