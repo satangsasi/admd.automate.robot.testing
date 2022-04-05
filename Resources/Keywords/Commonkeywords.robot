@@ -258,7 +258,8 @@ Get AAF5G Log
     [Tags]    keyword_action
     [Arguments]    ${stamp_minutes}
     Switch Connection    ${SSH_AAF5G}
-    ${aaf5g_path}    Get AAF5G Path     ${stamp_minutes}
+    # ${aaf5g_path}    Get AAF5G Path     ${stamp_minutes}
+    @{aaf5g_path}    Get AAF5G Path
     ${session}       Get AAF5G Session     ${aaf5g_path}
     Get AAF5G Log Command    ${aaf5g_path}    ${session}
 
@@ -266,32 +267,35 @@ Get AAF5G Path
     [Documentation]    Owner: Nakarin
     ...    Used for get AAF5G log path to get AAF5G logs
     [Tags]    keyword_commands
-    [Arguments]    ${stamp_minutes}
-    Write     ls -lrt | tail
+    # [Arguments]    ${stamp_minutes}
+    @{path_list}    Create List
+    Write       ls -lrt | tail
     ${path}     Read    delay=5s
-    @{path}     Split To Lines        ${path}
+    @{path}     Split To Lines    ${path}
     ${index}    Set Variable    -2
-    FOR    ${counter}    IN RANGE    1
-        @{aaf5g_path}    Get Regexp Matches    ${path}[${index}]    (\\w\\S+)
-        ${status}    Run Keyword And Return Status    Should Contain Any    @{aaf5g_path}
-        Exit For Loop If    ${status} == True
+    FOR    ${counter}    IN RANGE    2
+        @{aaf5g_path}     Get Regexp Matches    ${path}[${index}]    (\\w\\S+)
         ${index}    Evaluate    ${index} - 1
+        Append To List    ${path_list}    ${aaf5g_path}[-1]
     END
-    [Return]    ${aaf5g_path}[-1]
+    [Return]    ${path_list}
 
 Get AAF5G Session
     [Documentation]    Owner: Nakarin
     ...    Used for get AFF5g Session for get AFF5G logs
     [Tags]    keyword_commands
     [Arguments]    ${log_path}
-    Write      cat ${log_path} | grep ${USERNAME}
-    ${string}    Read    delay=5s
-    Write    reset
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log Many    @{json_format}
-    @{string}    Split String    ${json_format}[0]    "
-    Log Many    @{string}
-    Log         ${string}[5]
+    FOR    ${element}    IN    @{log_path}
+        Write    cat ${element} | grep ${USERNAME}
+        ${string}    Read    delay=5s
+        Write    reset
+        ${json_format}    Get Regexp Matches    ${string}    {.*
+        Log Many    @{json_format}
+        @{string}    Split String    ${json_format}[0]    "
+        Log Many    @{string}
+        ${status}    Run Keyword And Return Status    Log    ${string}[5]
+        Exit For Loop If    ${status} == True
+    END
     [Return]    ${string}[5]
 
 Get AAF5G Log Command
