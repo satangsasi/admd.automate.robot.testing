@@ -16,7 +16,6 @@ ${btn_next2_forgot_pw}    //*[@id="next_forgotMobilePage1"]
 ${btn_next3_forgot_pw}    //*[@id="next_forgotMobilePage2"]
 ${btn_next4_forgot_pw}    //*[@id="btn-next2"]
 
-${txt_email_number_reset_password}        //*[@id='fforgot_input']
 ${lbl_error_email_wrong}                  //*[@id='swal2-content']/labal[1]       
 ${lbl_error_check_email}                  //*[@id='swal2-content']/labal[2]     
 ${btn_close_error_box}                    //*[@class='swal2-confirm button-modal swal2-styled']

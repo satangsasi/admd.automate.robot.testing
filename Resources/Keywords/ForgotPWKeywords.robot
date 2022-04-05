@@ -98,7 +98,7 @@ Verify Response Key Forgot PW
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
     [Arguments]    ${email}
-    Type Text      ${txt_email_number_reset_password}    ${email}     delay=0.1s
+    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.1s
     Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
@@ -114,3 +114,45 @@ Verify Email Invalid On Webpage
     Take Screenshot Verify Success Scene
     Set Test Actual Result     ${actual_error_email_wrong}
     Set Test Actual Result     ${actual_error_check_email}
+
+Get Admd Srfp Log Form Server
+    Close Connection 
+    SSH Connect To Server Log
+    Switch Connection    ${SSH_ADMD}
+    Write     kubectl exec -it admd-srfp-69c8f85ddc-xjxsn -n admd sh 
+    ${output}      Read    delay=2s
+    Log    ${output}
+    Write    cd logs/appLog/
+    Write    ls -lrt | tail
+    ${output}      Read    delay=2s
+    Log    ${output}
+    @{output_line}    Split To Lines        ${output}
+    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+    Write    reset
+    Read     delay=5s    # Wait for screen reset
+    Log Many    @{cat_path}
+    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "admd-srfp-69c8f85ddc-xjxsn_SRFP.0.log"  values=False
+    ${srfp_path}    Set Variable    ${cat_path}[-1]
+    Write    cat ${srfp_path} | grep -E "testrobot202203@gmail.com.*Session" 
+    ${output}      Read    delay=2s
+    Log    ${output} 
+    ${json_log}  Get Regexp Matches        ${output}    {.*
+    Log Many    @{json_log}
+    ${json_session_log}    Convert String To JSON    ${json_log}[-1]
+    Log         ${json_session_log}
+    ${session_log}    Get Value Json By Key    ${json_session_log}    $..Session
+    Log    ${session_log}  
+    @{session_value}    Split String    ${session_log}    :
+    Log    ${session_value}[0]
+    ${session}    Set Variable    ${session_value}[0]
+    Write    reset
+    Read     delay=5s
+    Write    cat ${srfp_path} | grep -E "confirmLink.*${session}"
+    ${output}      Read    delay=2s
+    Log    ${output} 
+    ${json_format}    Get Regexp Matches    ${output}    {.*
+    Log Many    @{json_format}
+    ${json_confirmlink}   Convert String To JSON    ${json_format}[0]   
+    ${confirmlink}    Get Value Json By Key    ${json_confirmlink}    $..custom1.Message[1]
+    Log    ${confirmlink}  
+    Check Variable Type    ${confirmlink}
