@@ -295,7 +295,7 @@ TST_F10_1_1_017 Verify Decrypted PID ldap Employee snake case
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
-    [Tags]    Employee    Sprint2
+    [Tags]    Employee    
     Send Get Request LDAP    ${url_decrypted_ldap_employee_snake_case}
     Verify Response Decrypted Pid Ldap Employee Snake Case
 
@@ -303,7 +303,7 @@ TST_F10_1_1_018 Verify Decrypted PID ldap Employee camel case
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Decrypted success return correct PartnerSpecificPrivateId 
-    [Tags]    Employee    Sprint2
+    [Tags]    Employee    
     Send Get Request LDAP    ${url_decrypted_ldap_employee_camel_case}
     Verify Response Decrypted Pid Ldap Employee Camel Case
 
@@ -311,7 +311,7 @@ TST_F10_1_1_019 Verify Logout with Ldap Employee
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Employee    Sprint2      sasitest
+    [Tags]    Employee    
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
@@ -325,7 +325,7 @@ TST_F10_1_1_020 Verify Logout with SSO Ldap Employee
     [Documentation]     Owner : sasipen
     ...    \r\n***Expected Result***
     ...    \r\n Successfully logout
-    [Tags]    Employee    Sprint2    sasitest
+    [Tags]    Employee    
     Open Browser Login Employee And Open Page Get Token    ${url_auth_ldap_employee}
     New Page                    ${url_auth_ldap_employee}
     Create URL For Get Token    ${url_get_token_schema}
