@@ -15,9 +15,8 @@ Fill Username And Password Login Page Change Password
 Press Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen
     [Tags]    Keyword_communicate
-    ${stamp_minutes}    Check Time Minutes
     Click    ${btn_login_change_password}
-    [Teardown]    Get AAF5G Log    ${stamp_minutes}
+    [Teardown]    Get AAF5G Log
 
 Set API Header Change Password
     [Documentation]    Owner: sasipen
