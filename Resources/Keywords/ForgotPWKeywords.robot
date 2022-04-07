@@ -402,14 +402,51 @@ Get Link Confirm New Password Form Server
 
 Fill New Password 
     [Documentation]    Owner: sasipen
-    Type Text      ${txt_new_password}            ${new_password}     delay=0.1s
-    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.1s
+    Type Text      ${txt_new_password}            ${new_password}     delay=0.2s
+    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.2s
     Set Test Provisioning Data   New Password : ${new_password}           
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
     Verify Locator Is Visible  ${img_send_succeeds}   
-    Verify Value At Locator    ${lbl_succeeds}             ${succeeds_send_email_reset_pw} 
-    Verify Value At Locator    ${lbl_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Verify Value At Locator    ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
+    Verify Value At Locator    ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Take Screenshot Verify Success Scene
+
+Verify Response On Webpage To Json
+    Verify Response Key    $..access_token
+    Verify Response Key    $..refresh_token
+    Verify Response Key    $..id_token
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..token_type                  bearer 
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..expires_in                  86400
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..refresh_token_expires_in    86400
+
+Verify Decoded Value Access Token Forgot Password
+    [Documentation]    Owner: sasipen
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type      email_password
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action    forgot
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
+
+Keyword Test Teardown For Forgot Password By Email
+    Keyword Suite Setup
+    Keyword Test Teardown
+
+Verify Response Forgot Password Use Url Get Token 2 Time
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Open Link And Confirm New Password Again
+    [Documentation]    Owner: sasipen
+    Create Browser Session    ${URL_CONFIRM_NEW_PASSWORD}
+    Fill New Password
+    Click Button Summit       ${btn_submit_new_password}                
+
+Verify Error After Confirm New Password Link 2 Time 
+    [Documentation]    Owner: sasipen
+    Verify Locator Is Visible    ${img_send_Fail}
+    Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
+    Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene
     

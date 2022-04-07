@@ -36,6 +36,7 @@ Resource    ../Resources/Repositories/ChangePasswordRepositories.robot
 Resource    ../Resources/Repositories/FBBOTPRepositories.robot
 Resource    ../Resources/Repositories/ForgotPWRepositories.robot
 Resource    ../Resources/Repositories/LDAPallOURepositories.robot
+Resource    ../Resources/Repositories/CommonRepositories.robot
 
 # Test Site
 Resource    ../Resources/Testsite/${TEST_SITE}/Testsite.robot

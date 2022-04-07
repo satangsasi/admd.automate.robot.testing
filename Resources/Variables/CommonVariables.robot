@@ -18,6 +18,7 @@ ${reference}             1
 ${header_content_type}          Content-Type
 ${header_x_tid}                 X-Tid
 ${header_only_content_type_schema}    {"Content-Type": "_Content-Type_"}
+${set_test_actual_result}        Actual Result
 
 # error message
 ${error_message_invalid_user_or_password}    invalid_user_or_password

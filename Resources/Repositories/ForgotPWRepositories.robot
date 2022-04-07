@@ -32,3 +32,7 @@ ${btn_submit_new_password}          //*[@id="btnSummit"]
 ${img_send_succeeds}                //*[@id="form-sign"]/div[1]/div/img
 ${lbl_succeeds}                     //*[@id="form-sign"]/div[2]/label
 ${lbl_succeeds_check_your_email}    //*[@id="form-sign"]/div[3]/label
+
+${lbl_error_somthing_wrong}          //*[@id='swal2-title']
+${lbl_error_please_try_again}        //*[@id='swal2-content']
+${img_send_Fail}                    //*[@class="swal2-icon swal2-error swal2-animate-error-icon"]
