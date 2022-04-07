@@ -14,11 +14,13 @@ Fill Mobile Number Forgot PW
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
+    Set Test Variable       ${USERNAME}     ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
-
+    
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_command
+    Switch Connection  ${SSH_ADMD}
     Read    delay=5s
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
     Write    cat ${ADMD_PATH} | grep -E "${number}.*oneTimePassword"
