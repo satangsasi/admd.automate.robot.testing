@@ -228,7 +228,7 @@ Get Time Nonce
 Get Admd Log From Server
     [Documentation]    Owner: sasipen    
     ...    Get Json Log From output of SSH Command
-    ...    edit message grep > ${X_SESSION_ID}
+    ...    For get message > ${X_SESSION_ID}
     [Tags]    keyword_commands
     Switch Connection    ${SSH_ADMD}
     Write    cat ${ADMD_PATH}

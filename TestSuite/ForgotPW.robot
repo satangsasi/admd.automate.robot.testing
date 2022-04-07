@@ -14,7 +14,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     Create Browser Session    ${url_login_change_password}
     Press Forgot Password Forgot PW
     Fill Mobile Number Forgot PW
-    Click    ${btn_submit}
+    Click    ${btn_submit_request_otp}
     Get OTP Password Forgot PW
     Fill OTP Password Forgot PW
     Click    ${btn_next2_forgot_pw}
@@ -34,11 +34,13 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     ...    \r\n***Conditions***
     ...    \r\nscope = profile
     [Tags]    Success    On-Hold
-    # Create Browser Session    ${url_login_change_password}
-    # Press Forgot Password Forgot PW
-    # Fill Email For Reset Password    ${email_registered}
-    # Click    ${btn_submit}
-    Get Admd Srfp Log Form Server
+    [Setup]    Open New SSH Connect
+    Create Browser Session    ${url_login_change_password}
+    Press Forgot Password Forgot PW
+    Fill Email For Reset Password    ${email_registered}
+    Click    ${btn_submit_request_otp}
+    Get Confirm New Password Link Form Server
+    Create Browser Session    ${URL_CONFIRM_NEW_PASSWORD}
 
 TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner: sasipen
