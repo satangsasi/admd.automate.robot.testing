@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Press Forgot Password Forgot PW
+Press Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click    ${lbl_forgot_password}
@@ -95,6 +95,226 @@ Verify Response Key Forgot PW
     Verify Response Key    $..refresh_token_expires_in
     Verify Response Key    $..id_token
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Click Button Summit
+    [Documentation]    Owner: sasipen
+    [Arguments]    ${path_button}
+    Click    ${path_button}
+
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
     [Arguments]    ${email}
@@ -170,12 +390,24 @@ Get Admd Srfp Confirm Link New Password
     Log    ${confirmlink}  
     Set Test Variable    ${URL_CONFIRM_NEW_PASSWORD}    ${confirmlink}
 
-Get Confirm New Password Link Form Server
+Get Link Confirm New Password Form Server
     [Documentation]    Owner: sasipen
     ...    link confirm new password set name > ${URL_CONFIRM_NEW_PASSWORD} 
     ${srfp_path}     Get Admd Srfp Path
     ${session_id}    Get Admd Srfp Session    ${srfp_path}
     Get Admd Srfp Confirm Link New Password   ${srfp_path}    ${session_id}      
-   
-            
+    Set Test Provisioning Data   Link Confirm New Password : ${URL_CONFIRM_NEW_PASSWORD}
 
+Fill New Password 
+    [Documentation]    Owner: sasipen
+    Type Text      ${txt_new_password}            ${new_password}     delay=0.1s
+    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.1s
+    Set Test Provisioning Data   New Password : ${new_password}           
+
+Verify Send Link Confirm New Password Succeeds
+    [Documentation]    Owner: sasipen
+    Verify Locator Is Visible  ${img_send_succeeds}   
+    Verify Value At Locator    ${lbl_succeeds}             ${succeeds_send_email_reset_pw} 
+    Verify Value At Locator    ${lbl_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Take Screenshot Verify Success Scene
+    

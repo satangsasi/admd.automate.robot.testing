@@ -12,7 +12,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     ...    \r\nscope = profile
     [Tags]    Success    Sprint4
     Create Browser Session    ${url_login_change_password}
-    Press Forgot Password Forgot PW
+    Press Forgot Password
     Fill Mobile Number Forgot PW
     Click    ${btn_submit_request_otp}
     Get OTP Password Forgot PW
@@ -35,22 +35,28 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     ...    \r\nscope = profile
     [Tags]    Success    On-Hold
     [Setup]    Open New SSH Connect
-    Create Browser Session    ${url_login_change_password}
-    Press Forgot Password Forgot PW
-    Fill Email For Reset Password    ${email_registered}
-    Click    ${btn_submit_request_otp}
-    Get Confirm New Password Link Form Server
-    Create Browser Session    ${URL_CONFIRM_NEW_PASSWORD}
+    Create Browser Session             ${url_login_change_password}
+    Press Forgot Password
+    Fill Email For Reset Password      ${email_registered}
+    Click Button Summit                ${btn_submit_request_otp}
+    Verify Send Link Confirm New Password Succeeds
+    Get Link Confirm New Password Form Server
+    Create Browser Session             ${URL_CONFIRM_NEW_PASSWORD}
+    Fill New Password
+    Click Button Summit                ${btn_submit_new_password}
+    Create URL For Get Token           ${url_get_token_forgot_pw}           
+    New Page                      ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
 
 TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner: sasipen
     ...    \r\n***Conditions***
     ...    \r\nwith Email that have never been registered
     [Tags]    Fail    Forgot_Password   demosprint4
-    Create Browser Session    ${url_login_change_password}
-    Press Forgot Password Forgot PW
-    Fill Email For Reset Password    ${email_not_registered}
-    click    ${btn_submit} 
+    Create Browser Session             ${url_login_change_password}
+    Press Forgot Password
+    Fill Email For Reset Password      ${email_not_registered}
+    Click Button Summit                ${btn_submit_request_otp}
     Verify Email Invalid On Webpage
 
 TST_F9_0_1_002 Verify forgot password fail
