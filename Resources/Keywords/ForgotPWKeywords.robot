@@ -429,6 +429,7 @@ Verify Decoded Value Access Token Forgot Password
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
 
 Keyword Test Teardown For Forgot Password By Email
+    Close Connection 
     Keyword Suite Setup
     Keyword Test Teardown
 
