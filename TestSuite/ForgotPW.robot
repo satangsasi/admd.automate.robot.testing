@@ -124,6 +124,7 @@ TST_F9_0_1_004 Verify forgot password fail
     Click Button Summit                ${btn_submit_new_password}
     Open Link And Confirm New Password Again
     Verify Error After Confirm New Password 2 Times 
+    [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_005 Verify forgot password fail
     [Documentation]    Owner:
@@ -145,6 +146,7 @@ TST_F9_0_1_005 Verify forgot password fail
     Create Browser Session             ${URL_CONFIRM_NEW_PASSWORD}
     Fill New Password
     Click Button Summit                ${btn_submit_new_password}
+    [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_006 Verify forgot password fail
     [Documentation]    Owner:
