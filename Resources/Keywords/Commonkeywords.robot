@@ -129,7 +129,7 @@ Get Code From Authentication
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
     ...    - Add Set Test Provisioning Data
-    [Tags]    keyword_action$
+    [Tags]    keyword_action
     Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Verify Locator Is Visible    ${llb_login_web_ais}
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
@@ -148,16 +148,15 @@ Set Response On Webpage To Json
     Log Many             &{json_message}
     Set Test Variable    ${RESPONSE_JSON_MESSAGE}    ${json_message}
     Take Screenshot Verify Success Scene
-    IF    '${set_test}' == 'Provisioning Data'
+    IF     '${set_test}' == 'Actual Result'
+        Set Test Actual Result      ${RESPONSE_JSON_MESSAGE}
+    ELSE    
         Run Keyword And Ignore Error    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
         Run Keyword And Ignore Error    Set Test Provisioning Data    Token Type: ${RESPONSE_JSON_MESSAGE.token_type}
         Run Keyword And Ignore Error    Set Test Provisioning Data    Expires In: ${RESPONSE_JSON_MESSAGE.expires_in}
         Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token: ${RESPONSE_JSON_MESSAGE.refresh_token}
         Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token Expires In: ${RESPONSE_JSON_MESSAGE.refresh_token_expires_in}
         Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
-    END                   
-    IF     '${set_test}' == 'Actual Result'
-        Set Test Actual Result      ${RESPONSE_JSON_MESSAGE}
     END
 
 Get Value Response On Web Page By Key
@@ -186,7 +185,7 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin  Editor: Sasipen
     ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Get Admd Log From Server By X Session Id 
+    Run Keyword And Ignore Error    Get Admd Log From Server By X Session Id 
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
 
@@ -325,3 +324,9 @@ Check Time Minutes
     ${current_minutes}    Get Current Date      result_format=%M
     ${current_minutes}    Convert To Integer    ${current_minutes}
     [Return]    ${current_minutes}
+
+Wait For Authentication Code Expire
+    [Documentation]    Owner: Nakarin
+    ...    Wait for Token(from Auth Url) Expire about in 5 min
+    [Tags]    keyword_communicate
+    Robot Wait Time    5m
