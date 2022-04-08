@@ -22,7 +22,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     Click Button Summit         ${btn_submit_done_question}
     Fill New Password Forgot Password
     Click Button Summit         ${btn_submit_done_forgot_pw}
-    Create URL For Get Token    ${url_get_token_change_password_schema}
+    Create URL For Get Token    ${url_get_token_forgot_pw}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Verify Response Key Forgot Password
