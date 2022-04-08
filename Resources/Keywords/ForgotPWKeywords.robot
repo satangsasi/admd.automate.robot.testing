@@ -429,7 +429,7 @@ Keyword Test Teardown For Forgot Password By Email
     Keyword Suite Setup
     Keyword Test Teardown
 
-Verify Response Forgot Password Use Url Get Token 2 Time
+Verify Response Forgot Password Use Url Get Token 2 Times
     [Documentation]    Owner: sasipen
     ${actual_value}    Get Value Response On Web Page By Key    $..error
     Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
@@ -441,10 +441,33 @@ Open Link And Confirm New Password Again
     Fill New Password
     Click Button Summit       ${btn_submit_new_password}                
 
-Verify Error After Confirm New Password Link 2 Time 
+Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen
     Verify Locator Is Visible    ${img_send_Fail}
     Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
     Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene
-    
+
+Verify Response Forgot Password Authcode Expired
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Invalid Client Id
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Invalid Client Secret
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_client} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Missing Client Id
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_request}
+    Take Screenshot Verify Success Scene
