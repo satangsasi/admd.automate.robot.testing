@@ -132,7 +132,9 @@ TST_F9_0_1_005 Verify forgot password fail
     ...    \r\nตอน register ใช้  ตัวอักษรพิมพ์เล็ก (testais0000000004@gmail.com)
     ...    \r\nตอน forgot ใช้  ตัวอักษรพิมพ์ใหญ่ (TESTAIS0000000004@gmail.com)
     ...    \r\nเมล์ส่ง link activate แต่ไม่สามารถ forgot ได้
-    [Tags]    Fail    Forgot_Password     On-Hold_can_reset_pw_not_macth_manual    
+    ...    ***On Hold***
+    ...    เทสแล้วใส่อีเมลเป็นตัวพิมพ์ใหญ่ก็สามารถ reset pw ได้ รอทาง ais แก้ไข
+    [Tags]    Fail    Forgot_Password     On-Hold   
     [Setup]    Open New SSH Connect
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
