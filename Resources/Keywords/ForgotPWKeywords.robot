@@ -69,7 +69,7 @@ Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
-    # Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661630070398713
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661640096682863
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             msisdn
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           forgot
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    msisdn_password
@@ -84,7 +84,7 @@ Verify Decoded Value ID Token Forgot Password
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action           forgot
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel    msisdn_password
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network          anonymous
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       669xxx21044
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       098XXX1044
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
 

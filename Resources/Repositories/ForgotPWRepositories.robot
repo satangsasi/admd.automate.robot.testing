@@ -11,10 +11,10 @@ ${txt_reset_password_forget_pw}      //*[@id="fre_password_input"]
 ${txt_confirm_password_forget_pw}    //*[@id="fre_conf_password_input"]
 
 # Button
-${btn_submit_request_otp}    //*[@id="fbtn_req_otp"]
-${btn_next2_forgot_pw}    //*[@id="fbtn_conf"]
-${btn_next3_forgot_pw}    //*[@id="fbtn_done_q"]
-${btn_next4_forgot_pw}    //*[@id="fbtn_done_forgot"]
+${btn_submit_request_otp}       //*[@id="fbtn_req_otp"]
+${btn_submit_confirm_otp}       //*[@id="fbtn_conf"]
+${btn_submit_done_question}     //*[@id="fbtn_done_q"]
+${btn_submit_done_forgot_pw}    //*[@id="fbtn_done_forgot"]
 
 ${lbl_error_email_wrong}                  //*[@id='swal2-content']/labal[1]       
 ${lbl_error_check_email}                  //*[@id='swal2-content']/labal[2]     

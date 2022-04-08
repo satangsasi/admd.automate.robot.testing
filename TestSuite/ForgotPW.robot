@@ -17,11 +17,11 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     Click Button Summit         ${btn_submit_request_otp}
     Get OTP Password Forgot Password
     Fill OTP Password Forgot Password
-    Click Button Summit         ${btn_next2_forgot_pw}
+    Click Button Summit         ${btn_submit_confirm_otp}
     Fill Question 1 And Question 2 Forgot Password
-    Click Button Summit         ${btn_next3_forgot_pw}
+    Click Button Summit         ${btn_submit_done_question}
     Fill New Password Forgot Password
-    Click Button Summit         ${btn_next4_forgot_pw}
+    Click Button Summit         ${btn_submit_done_forgot_pw}
     Create URL For Get Token    ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
