@@ -129,7 +129,8 @@ Get Code From Authentication
     ...    ***Editor Note***
     ...    - Add Set Test Variable (Provisioning Data)
     ...    - Add Set Test Provisioning Data
-    [Tags]    keyword_action
+    [Tags]    keyword_action$
+    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Verify Locator Is Visible    ${llb_login_web_ais}
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
@@ -141,17 +142,23 @@ Set Response On Webpage To Json
     [Documentation]     Owner : sasipen
     ...    Get text form webpage and change it to json message Then Return to &{RESPONSE_JSON_MESSAGE}
     [Tags]    keyword_action
+    [Arguments]    ${set_test}=Provisioning Data
     ${message}           Get Text    ${lbl_json_response_on_webpage}
     &{json_message}      Evaluate    json.loads('''${message}''')    json
     Log Many             &{json_message}
     Set Test Variable    ${RESPONSE_JSON_MESSAGE}    ${json_message}
     Take Screenshot Verify Success Scene
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Token Type: ${RESPONSE_JSON_MESSAGE.token_type}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Expires In: ${RESPONSE_JSON_MESSAGE.expires_in}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token: ${RESPONSE_JSON_MESSAGE.refresh_token}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token Expires In: ${RESPONSE_JSON_MESSAGE.refresh_token_expires_in}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
+    IF    '${set_test}' == 'Provisioning Data'
+        Run Keyword And Ignore Error    Set Test Provisioning Data    Access Token: ${RESPONSE_JSON_MESSAGE.access_token}
+        Run Keyword And Ignore Error    Set Test Provisioning Data    Token Type: ${RESPONSE_JSON_MESSAGE.token_type}
+        Run Keyword And Ignore Error    Set Test Provisioning Data    Expires In: ${RESPONSE_JSON_MESSAGE.expires_in}
+        Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token: ${RESPONSE_JSON_MESSAGE.refresh_token}
+        Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token Expires In: ${RESPONSE_JSON_MESSAGE.refresh_token_expires_in}
+        Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
+    END                   
+    IF     '${set_test}' == 'Actual Result'
+        Set Test Actual Result      ${RESPONSE_JSON_MESSAGE}
+    END
 
 Get Value Response On Web Page By Key
     [Documentation]     Owner : sasipen
@@ -197,7 +204,7 @@ Decoded Access Token
     ...    Decode access_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_access_token}   Jwt Decode Dot Dict        ${RESPONSE_JSON_MESSAGE.access_token}
-    Set Test Actual Result    Access Token: ${decoded_access_token}
+    Set Test Actual Result    Decoded Access Token: ${decoded_access_token}
     Set Test Variable         ${DECODED_ACCESS_TOKEN}    ${decoded_access_token}
     Log Many    &{decoded_access_token}
     Log         ${decoded_access_token}
@@ -207,7 +214,7 @@ Decoded ID Token
     ...    Decode id_token then return Test Variable ${DECODED_ACCESS_TOKEN} as dot.dict type
     [Tags]    keyword_action
     ${decoded_id_token}       Jwt Decode Dot Dict   ${RESPONSE_JSON_MESSAGE.id_token}
-    Set Test Actual Result    ID Token: ${decoded_id_token}
+    Set Test Actual Result    Decoded ID Token: ${decoded_id_token}
     Set Test Variable         ${DECODED_ID_TOKEN}     ${decoded_id_token}
     Log Many    &{decoded_id_token}
     Log         ${decoded_id_token}
@@ -228,7 +235,7 @@ Get Time Nonce
 Get Admd Log From Server
     [Documentation]    Owner: sasipen    
     ...    Get Json Log From output of SSH Command
-    ...    edit message grep > ${X_SESSION_ID}
+    ...    For get message > ${X_SESSION_ID}
     [Tags]    keyword_commands
     Switch Connection    ${SSH_ADMD}
     Write    cat ${ADMD_PATH}

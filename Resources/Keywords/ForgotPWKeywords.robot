@@ -3,22 +3,25 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Press Forgot Password Forgot PW
+Press Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click    ${lbl_forgot_password}
+    [Teardown]    Get AAF5G Log
 
-Fill Mobile Number Forgot PW
+Fill Mobile Number Forgot Password
     [Documentation]    Owner: Nakarin
     ...    \r\n${forgot_pw_mobile_number}
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
-    Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
-
+    Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
+    Set Test Provisioning Data    Username:   ${forgot_pw_mobile_number}
+    
 Get Json OTP Password Forgot PW
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: Nakarin    Editor: Atitaya       
     [Tags]    keyword_command
+    Switch Connection  ${SSH_ADMD}
     Read    delay=5s
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
     Write    cat ${ADMD_PATH} | grep -E "${number}.*oneTimePassword"
@@ -30,7 +33,7 @@ Get Json OTP Password Forgot PW
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Get OTP Password Forgot PW
+Get OTP Password Forgot Password
     [Documentation]    Owner: Nakarin
     ...    Getting OTP Password for Forgot PW
     [Tags]    keyword_communicate
@@ -38,7 +41,7 @@ Get OTP Password Forgot PW
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable    ${OTP_PASSWORD}    ${otp_password}
 
-Fill OTP Password Forgot PW
+Fill OTP Password Forgot Password
     [Documentation]    Owner: Nakarin
     ...    The txt box in webpage have own xpath and can detect typing
     [Tags]    keyword_action
@@ -50,19 +53,19 @@ Fill OTP Password Forgot PW
     END
     Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
 
-Fill Question 1 And Question 2 Forgot PW
+Fill Question 1 And Question 2 Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Type Text    ${txt_question1_forget_pw}    ${forgot_pw_question1}    delay=0.1s
     Type Text    ${txt_question2_forget_pw}    ${forgot_pw_question2}    delay=0.1s
 
-Fill New Password Forgot PW
+Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
     Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
 
-Verify Decoded Value Access Token Forgot PW
+Verify Decoded Value Access Token Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
@@ -73,7 +76,7 @@ Verify Decoded Value Access Token Forgot PW
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp                  rob
 
-Verify Decoded Value ID Token Forgot PW
+Verify Decoded Value ID Token Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded ID Token
@@ -85,7 +88,7 @@ Verify Decoded Value ID Token Forgot PW
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
 
-Verify Response Key Forgot PW
+Verify Response Key Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Verify Response Key    $..access_token
@@ -94,6 +97,226 @@ Verify Response Key Forgot PW
     Verify Response Key    $..refresh_token
     Verify Response Key    $..refresh_token_expires_in
     Verify Response Key    $..id_token
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Click Button Summit
+    [Documentation]    Owner: sasipen
+    [Arguments]    ${path_button}
+    Click    ${path_button}
 
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
@@ -115,39 +338,52 @@ Verify Email Invalid On Webpage
     Set Test Actual Result     ${actual_error_email_wrong}
     Set Test Actual Result     ${actual_error_check_email}
 
-Get Admd Srfp Log Form Server
+Open New SSH Connect 
+    [Documentation]    Owner: sasipen
     Close Connection 
     SSH Connect To Server Log
+
+Get Admd Srfp Path
+    [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD}
     Write     kubectl exec -it admd-srfp-69c8f85ddc-xjxsn -n admd sh 
-    ${output}      Read    delay=2s
-    Log    ${output}
+    ${output}    Read    delay=2s
     Write    cd logs/appLog/
     Write    ls -lrt | tail
-    ${output}      Read    delay=2s
+    ${output}    Read    delay=2s
     Log    ${output}
     @{output_line}    Split To Lines        ${output}
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
-    Read     delay=5s    # Wait for screen reset
+    Read     delay=5s  
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "admd-srfp-69c8f85ddc-xjxsn_SRFP.0.log"  values=False
     ${srfp_path}    Set Variable    ${cat_path}[-1]
-    Write    cat ${srfp_path} | grep -E "testrobot202203@gmail.com.*Session" 
+    [Return]    ${srfp_path}    
+
+Get Admd Srfp Session
+    [Documentation]    Owner: sasipen
+    ...     find session id form log server by email send forgot password
+    [Arguments]    ${admd_path}
+    Write    cat ${admd_path} | grep -E "testrobot202203@gmail.com.*Session" 
     ${output}      Read    delay=2s
     Log    ${output} 
-    ${json_log}  Get Regexp Matches        ${output}    {.*
-    Log Many    @{json_log}
+    ${json_log}    Get Regexp Matches    ${output}    {.*
     ${json_session_log}    Convert String To JSON    ${json_log}[-1]
-    Log         ${json_session_log}
+    Log    ${json_session_log}
     ${session_log}    Get Value Json By Key    ${json_session_log}    $..Session
     Log    ${session_log}  
     @{session_value}    Split String    ${session_log}    :
     Log    ${session_value}[0]
     ${session}    Set Variable    ${session_value}[0]
+    [Return]    ${session}    
+    
+Get Admd Srfp Confirm Link New Password
+    [Documentation]    Owner: sasipen
+    [Arguments]    ${admd_path}    ${session} 
     Write    reset
     Read     delay=5s
-    Write    cat ${srfp_path} | grep -E "confirmLink.*${session}"
+    Write    cat ${admd_path} | grep -E "confirmLink.*${session}"
     ${output}      Read    delay=2s
     Log    ${output} 
     ${json_format}    Get Regexp Matches    ${output}    {.*
@@ -155,4 +391,63 @@ Get Admd Srfp Log Form Server
     ${json_confirmlink}   Convert String To JSON    ${json_format}[0]   
     ${confirmlink}    Get Value Json By Key    ${json_confirmlink}    $..custom1.Message[1]
     Log    ${confirmlink}  
-    Check Variable Type    ${confirmlink}
+    Set Test Variable    ${URL_CONFIRM_NEW_PASSWORD}    ${confirmlink}
+
+Get Link Confirm New Password Form Server
+    [Documentation]    Owner: sasipen
+    ...    link confirm new password set name > ${URL_CONFIRM_NEW_PASSWORD} 
+    ${srfp_path}     Get Admd Srfp Path
+    ${session_id}    Get Admd Srfp Session    ${srfp_path}
+    Get Admd Srfp Confirm Link New Password   ${srfp_path}    ${session_id}      
+    Set Test Provisioning Data   Link Confirm New Password : ${URL_CONFIRM_NEW_PASSWORD}
+
+Fill New Password 
+    [Documentation]    Owner: sasipen
+    Type Text      ${txt_new_password}            ${new_password}     delay=0.2s
+    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.2s
+    Set Test Provisioning Data   New Password : ${new_password}           
+
+Verify Send Link Confirm New Password Succeeds
+    [Documentation]    Owner: sasipen
+    Verify Locator Is Visible  ${img_send_succeeds}   
+    Verify Value At Locator    ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
+    Verify Value At Locator    ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Take Screenshot Verify Success Scene
+
+Verify Response On Webpage To Json
+    Verify Response Key    $..access_token
+    Verify Response Key    $..refresh_token
+    Verify Response Key    $..id_token
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..token_type                  bearer 
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..expires_in                  86400
+    Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..refresh_token_expires_in    86400
+
+Verify Decoded Value Access Token Forgot Password
+    [Documentation]    Owner: sasipen
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type      email_password
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action    forgot
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
+
+Keyword Test Teardown For Forgot Password By Email
+    Keyword Suite Setup
+    Keyword Test Teardown
+
+Verify Response Forgot Password Use Url Get Token 2 Time
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Open Link And Confirm New Password Again
+    [Documentation]    Owner: sasipen
+    Create Browser Session    ${URL_CONFIRM_NEW_PASSWORD}
+    Fill New Password
+    Click Button Summit       ${btn_submit_new_password}                
+
+Verify Error After Confirm New Password Link 2 Time 
+    [Documentation]    Owner: sasipen
+    Verify Locator Is Visible    ${img_send_Fail}
+    Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
+    Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
+    Take Screenshot Verify Success Scene
+    
