@@ -85,7 +85,7 @@ ADMD Get Kubectl Path
     ${output}          Read    delay=1s
     Log    ${output}
     @{output_line}     Split To Lines        ${output}
-    @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+    @{kubectl_path}    Get Regexp Matches    ${output_line}[-3]    (\\w\\S+)
     Log Many    @{kubectl_path}
     Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     [Return]    ${kubectl_path}[0]
