@@ -11,23 +11,23 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
     [Tags]    Success    Forgot_Password
-    Create Browser Session    ${url_login_change_password}
+    Create Browser Session      ${url_login_change_password}
     Press Forgot Password
-    Fill Mobile Number Forgot PW
-    Click    ${btn_submit_request_otp}
-    Get OTP Password Forgot PW
-    Fill OTP Password Forgot PW
-    Click    ${btn_next2_forgot_pw}
-    Fill Question 1 And Question 2 Forgot PW
-    Click    ${btn_next3_forgot_pw}
-    Fill New Password Forgot PW
-    Click    ${btn_next4_forgot_pw}
-    Create URL For Get Token     ${url_get_token_change_password_schema}
+    Fill Mobile Number Forgot Password
+    Click Button Summit         ${btn_submit_request_otp}
+    Get OTP Password Forgot Password
+    Fill OTP Password Forgot Password
+    Click Button Summit         ${btn_next2_forgot_pw}
+    Fill Question 1 And Question 2 Forgot Password
+    Click Button Summit         ${btn_next3_forgot_pw}
+    Fill New Password Forgot Password
+    Click Button Summit         ${btn_next4_forgot_pw}
+    Create URL For Get Token    ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
-    Verify Response Key Forgot PW
-    Verify Decoded Value Access Token Forgot PW
-    Verify Decoded Value ID Token Forgot PW
+    Verify Response Key Forgot Password
+    Verify Decoded Value Access Token Forgot Password
+    Verify Decoded Value ID Token Forgot Password
 
 TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner: sasipen

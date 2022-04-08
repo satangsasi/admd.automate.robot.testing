@@ -7,18 +7,19 @@ Press Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Click    ${lbl_forgot_password}
+    [Teardown]    Get AAF5G Log
 
-Fill Mobile Number Forgot PW
+Fill Mobile Number Forgot Password
     [Documentation]    Owner: Nakarin
     ...    \r\n${forgot_pw_mobile_number}
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
-    Set Test Variable       ${USERNAME}     ${forgot_pw_mobile_number}
-    Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
+    Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
+    Set Test Provisioning Data    Username:   ${forgot_pw_mobile_number}
     
 Get Json OTP Password Forgot PW
-    [Documentation]    Owner: Nakarin
+    [Documentation]    Owner: Nakarin    Editor: Atitaya       
     [Tags]    keyword_command
     Switch Connection  ${SSH_ADMD}
     Read    delay=5s
@@ -32,7 +33,7 @@ Get Json OTP Password Forgot PW
     Log         ${json_otp_log}
     [Return]    ${json_otp_log}
 
-Get OTP Password Forgot PW
+Get OTP Password Forgot Password
     [Documentation]    Owner: Nakarin
     ...    Getting OTP Password for Forgot PW
     [Tags]    keyword_communicate
@@ -40,7 +41,7 @@ Get OTP Password Forgot PW
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable    ${OTP_PASSWORD}    ${otp_password}
 
-Fill OTP Password Forgot PW
+Fill OTP Password Forgot Password
     [Documentation]    Owner: Nakarin
     ...    The txt box in webpage have own xpath and can detect typing
     [Tags]    keyword_action
@@ -52,19 +53,19 @@ Fill OTP Password Forgot PW
     END
     Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
 
-Fill Question 1 And Question 2 Forgot PW
+Fill Question 1 And Question 2 Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Type Text    ${txt_question1_forget_pw}    ${forgot_pw_question1}    delay=0.1s
     Type Text    ${txt_question2_forget_pw}    ${forgot_pw_question2}    delay=0.1s
 
-Fill New Password Forgot PW
+Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
     Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
 
-Verify Decoded Value Access Token Forgot PW
+Verify Decoded Value Access Token Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
@@ -75,7 +76,7 @@ Verify Decoded Value Access Token Forgot PW
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.network          anonymous
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp                  rob
 
-Verify Decoded Value ID Token Forgot PW
+Verify Decoded Value ID Token Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded ID Token
@@ -87,7 +88,7 @@ Verify Decoded Value ID Token Forgot PW
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
 
-Verify Response Key Forgot PW
+Verify Response Key Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Verify Response Key    $..access_token
