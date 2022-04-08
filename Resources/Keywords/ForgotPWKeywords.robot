@@ -16,7 +16,7 @@ Fill Mobile Number Forgot Password
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
-    Set Test Provisioning Data    Username:   ${forgot_pw_mobile_number}
+    Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya       
@@ -65,7 +65,7 @@ Fill New Password Forgot Password
     Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
     Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
 
-Verify Decoded Value Access Token Forgot Password
+Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token

@@ -26,7 +26,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
     Verify Response Key Forgot Password
-    Verify Decoded Value Access Token Forgot Password
+    Verify Decoded Value Access Token Forgot PW
     Verify Decoded Value ID Token Forgot Password
 
 TST_F9_1_1_002 Verify forgot password with registered Email
