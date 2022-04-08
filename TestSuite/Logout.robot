@@ -34,6 +34,8 @@ TST_F5_0_1_001 Verify logout feature with client_id
 
 TST_F5_0_1_002 To verify logout feature with incorrect client_id
     [Documentation]    Owner:sasipen  
+    ...       *** On-Hold**
+    ...        ควรเป็นเทส fail เนื่องจาก incorrect client_id แต่เทสแลว pass  
     [Tags]    Success    Logout    Ldap_Employee    On-Hold
     Open Browser Login Employee And Open Page Get Token    ${url_aut_logout}
     Set Response On Webpage To Json 
