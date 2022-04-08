@@ -7,14 +7,14 @@ ${txt_username_forgot_pw}            //*[@id="fforgot_input"]
 ${txt_otp_password_forgot_pw}        //*[@id="fotp1"]
 ${txt_question1_forget_pw}           //*[@id="fquestion_input0"]
 ${txt_question2_forget_pw}           //*[@id="fquestion_input1"]
-${txt_reset_password_forget_pw}      //*[@id="rpassword2"]
-${txt_confirm_password_forget_pw}    //*[@id="rconfirm_password2"]
+${txt_reset_password_forget_pw}      //*[@id="fre_password_input"]
+${txt_confirm_password_forget_pw}    //*[@id="fre_conf_password_input"]
 
 # Button
 ${btn_submit_request_otp}    //*[@id="fbtn_req_otp"]
 ${btn_next2_forgot_pw}    //*[@id="fbtn_conf"]
-${btn_next3_forgot_pw}    //*[@id="next_forgotMobilePage2"]
-${btn_next4_forgot_pw}    //*[@id="btn-next2"]
+${btn_next3_forgot_pw}    //*[@id="fbtn_done_q"]
+${btn_next4_forgot_pw}    //*[@id="fbtn_done_forgot"]
 
 ${lbl_error_email_wrong}                  //*[@id='swal2-content']/labal[1]       
 ${lbl_error_check_email}                  //*[@id='swal2-content']/labal[2]     

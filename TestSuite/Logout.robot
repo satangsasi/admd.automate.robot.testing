@@ -352,7 +352,7 @@ TST_F5_0_1_006 To verify logout feature with incorrect client_id
 
 TST_F5_0_1_001 To verify logout feature with expired access token
     [Documentation]    Owner: Atitaya
-    [Tags]  Fail  Logout
+    [Tags]      Fail        Logout
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
