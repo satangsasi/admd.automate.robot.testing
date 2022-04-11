@@ -330,3 +330,13 @@ Wait For Authentication Code Expire
     ...    Wait for Token(from Auth Url) Expire about in 5 min
     [Tags]    keyword_communicate
     Robot Wait Time    5m
+
+Verify Value Decode Jwt
+    [Documentation]    Owner: sasipen
+    [Arguments]    ${jsondata}    ${response_key}
+    ${response_key}    Remove String        ${response_key}    $..
+    ${value}           Get Value Json By Key    ${jsondata}    ${response_key}
+    Should Match Regexp    ${value}    .*
+    Log    ${value}
+
+    
