@@ -409,12 +409,14 @@ Fill New Password
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible  ${img_send_succeeds}   
-    Verify Value At Locator    ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
-    Verify Value At Locator    ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Wait Until Network Is Idle    ${verify_timeout}
+    Verify Locator Is Visible     ${img_send_succeeds}   
+    Verify Value At Locator       ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
+    Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
     Take Screenshot Verify Success Scene
 
 Verify Response On Webpage To Json
+    [Documentation]    Owner: sasipen
     Verify Response Key    $..access_token
     Verify Response Key    $..refresh_token
     Verify Response Key    $..id_token
@@ -422,11 +424,24 @@ Verify Response On Webpage To Json
     Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..expires_in                  86400
     Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..refresh_token_expires_in    86400
 
-Verify Decoded Value Access Token Forgot Password
+Verify Decoded Value Access Token Forgot Password By Email
     [Documentation]    Owner: sasipen
+    Verify Value Decode Jwt     ${DECODED_ACCESS_TOKEN}    $..uid
+    # Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid           661640096682863
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type      email_password
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action    forgot
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
+
+Verify Decoded Value ID Token Forgot Password By Email
+    [Documentation]    Owner: sasipen
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type                email_password
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action              forgot
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..idp                     rob
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname          robot
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname           test
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.username           testrobot202203@gmail.com
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.accountCategory    residential
+    Verify Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
 
 Keyword Test Teardown For Forgot Password By Email
     Close Connection 
@@ -447,7 +462,7 @@ Open Link And Confirm New Password Again
 
 Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible    ${img_send_Fail}
+    Verify Locator Is Visible    ${img_send_Fail}        30s
     Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
     Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene

@@ -165,6 +165,7 @@ Wait For Password Expire
     Robot Wait Time    5m
 
 Verify Response Invalid Request Email Otp
+    [Documentation]     Owner : sasipen
     Verify Value Response By Key    $..result_code          ${expected_invalid_result_code_email_otp} 
     Verify Value Response By Key    $..developer_message    ${expected_invalid_developer_message} 
 
