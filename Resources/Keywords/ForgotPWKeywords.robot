@@ -321,8 +321,9 @@ Click Button Submit
 
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
+    ...    ${email} = testrobot202203@gmail.com
     [Arguments]    ${email}
-    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.2s
+    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.3s
     Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
@@ -381,6 +382,7 @@ Get Admd Srfp Session
     
 Get Admd Srfp Confirm Link New Password
     [Documentation]    Owner: sasipen
+    ...     find Confirm Link New Password form log server by text confirmLink and session id 
     [Arguments]    ${admd_path}    ${session} 
     Write    reset
     Read     delay=5s
@@ -407,9 +409,10 @@ Get Link Confirm New Password Form Server
 
 Fill New Password 
     [Documentation]    Owner: sasipen
-    Type Text      ${txt_new_password}            ${new_password}     delay=0.2s
-    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.2s
-    Set Test Provisioning Data   New Password : ${new_password}           
+    ...    ${new_password_email} = robot@2022
+    Type Text      ${txt_new_password}            ${new_password_email}     delay=0.3s
+    Type Text      ${txt_confirm_new_password}    ${new_password_email}     delay=0.3s
+    Set Test Provisioning Data   New Password : ${new_password_email}       
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
