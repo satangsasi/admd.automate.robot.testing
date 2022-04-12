@@ -16,7 +16,7 @@ Fill Mobile Number Forgot Password
     [Tags]    keyword_communicate
     Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
-    Set Test Provisioning Data    Username:   ${forgot_pw_mobile_number}
+    Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya       
@@ -62,14 +62,14 @@ Fill Question 1 And Question 2 Forgot Password
 Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
-    Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
+    Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}    delay=0.1s
+    Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    delay=0.1s
 
-Verify Decoded Value Access Token Forgot Password
+Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Decoded Access Token
-    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661630070398713
+    Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid                  661640096682863
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type             msisdn
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action           forgot
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.login_channel    msisdn_password
@@ -84,7 +84,7 @@ Verify Decoded Value ID Token Forgot Password
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action           forgot
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.login_channel    msisdn_password
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.network          anonymous
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       669xxx21044
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.public_id       098XXX1044
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname       test1
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname        test2
 
@@ -409,12 +409,14 @@ Fill New Password
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible  ${img_send_succeeds}   
-    Verify Value At Locator    ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
-    Verify Value At Locator    ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
+    Wait Until Network Is Idle    ${verify_timeout}
+    Verify Locator Is Visible     ${img_send_succeeds}   
+    Verify Value At Locator       ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
+    Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
     Take Screenshot Verify Success Scene
 
 Verify Response On Webpage To Json
+    [Documentation]    Owner: sasipen
     Verify Response Key    $..access_token
     Verify Response Key    $..refresh_token
     Verify Response Key    $..id_token
@@ -422,17 +424,31 @@ Verify Response On Webpage To Json
     Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..expires_in                  86400
     Verify Value Json By Key    ${RESPONSE_JSON_MESSAGE}    $..refresh_token_expires_in    86400
 
-Verify Decoded Value Access Token Forgot Password
+Verify Decoded Value Access Token Forgot Password By Email
     [Documentation]    Owner: sasipen
+    Verify Value Decode Jwt     ${DECODED_ACCESS_TOKEN}    $..uid
+    # Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid           661640096682863
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type      email_password
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action    forgot
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
 
+Verify Decoded Value ID Token Forgot Password By Email
+    [Documentation]    Owner: sasipen
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type                email_password
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action              forgot
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..idp                     rob
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname          robot
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname           test
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.username           testrobot202203@gmail.com
+    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.accountCategory    residential
+    Verify Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
+
 Keyword Test Teardown For Forgot Password By Email
+    Close Connection 
     Keyword Suite Setup
     Keyword Test Teardown
 
-Verify Response Forgot Password Use Url Get Token 2 Time
+Verify Response Forgot Password Use Url Get Token 2 Times
     [Documentation]    Owner: sasipen
     ${actual_value}    Get Value Response On Web Page By Key    $..error
     Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
@@ -444,10 +460,33 @@ Open Link And Confirm New Password Again
     Fill New Password
     Click Button Summit       ${btn_submit_new_password}                
 
-Verify Error After Confirm New Password Link 2 Time 
+Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible    ${img_send_Fail}
+    Verify Locator Is Visible    ${img_send_Fail}        30s
     Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
     Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene
-    
+
+Verify Response Forgot Password Authcode Expired
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Invalid Client Id
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Invalid Client Secret
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_client} 
+    Take Screenshot Verify Success Scene
+
+Verify Response Forgot Password Missing Client Id
+    [Documentation]    Owner: sasipen
+    ${actual_value}    Get Value Response On Web Page By Key    $..error
+    Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_request}
+    Take Screenshot Verify Success Scene

@@ -92,6 +92,7 @@ Decode Token To Jwt Client Credentials
     Set Test Variable    ${RESPONSE_JWT_DECODE}    ${jwt_decode}
 
 Verify Response Jwt Decode
+    [Documentation]     Owner : sasipen
     Verify Response Decode Jwt By Key    $..iss
     Verify Response Decode Jwt By Key    $..sub
     Verify Response Decode Jwt By Key    $..aud
@@ -102,6 +103,7 @@ Verify Response Jwt Decode
     Verify Response Decode Jwt By Key    $..ssid
     
 Verify Response Decode Jwt By Key
+    [Documentation]     Owner : sasipen
     [Arguments]    ${response_key}    
     ${value}      Get Value Json By Key    ${RESPONSE_JWT_DECODE}    ${response_key}
     ${value}      Convert To String    ${value}

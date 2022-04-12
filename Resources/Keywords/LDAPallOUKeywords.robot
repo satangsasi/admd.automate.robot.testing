@@ -370,12 +370,6 @@ Press Login Button In LDAP
     Wait Until Network Is Idle    ${verify_timeout}
     [Teardown]    Get AAF5G Log
 
-Wait For Authentication Code Expire
-    [Documentation]    Owner: Nakarin
-    ...    Wait for Token(from Auth Url) Expire about in 5 min
-    [Tags]    keyword_communicate
-    Robot Wait Time    5m
-
 Verify Login Fail
     [Documentation]    Owner: Nakarin
     ...    Verify Text shown on webpage
