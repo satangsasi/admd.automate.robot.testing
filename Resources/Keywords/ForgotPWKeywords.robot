@@ -62,8 +62,8 @@ Fill Question 1 And Question 2 Forgot Password
 Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password}    delay=0.1s
-    Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password}    delay=0.1s
+    Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}    delay=0.1s
+    Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    delay=0.1s
 
 Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
