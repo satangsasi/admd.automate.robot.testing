@@ -62,6 +62,6 @@ ${url_fbb_nowebview}              http://10.137.30.22:31191/v3.2/otp/request?tid
 ${url_get_token_fbb_nowebview}    http://10.137.30.22:31191/v3.2/oauth/token
 
 # Logout
-${url_auth_logout}                ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/
+${url_auth_logout}               ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=X6jpUVHVBdszLACYucu%2BmkslzsMyXhwQNG%2Fp1jO1KXg%3D&scope=profile&redirect_uri=https://www.ais.co.th/
 ${url_logout}                    http://10.137.30.22:31191/v3.2/logout
 ${invalid_url_aut_logout}        ${url_iot_apivr}/authtest/v3.2/logoutttt
