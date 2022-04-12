@@ -265,7 +265,6 @@ Get AAF5G Log
     [Documentation]    Owner: Nakarin
     ...    Get AAF5G logs from server
     [Tags]    keyword_action
-    [Arguments]
     ${status}    Run Keyword And Return Status    List Should Contain Value    @{TEST_TAGS}    AAF5G
     IF    ${status} == True and ${REGRESSION} != True
         Switch Connection    ${SSH_AAF5G}
