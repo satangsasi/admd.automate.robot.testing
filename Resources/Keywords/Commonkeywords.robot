@@ -85,7 +85,7 @@ ADMD Get Kubectl Path
     ${output}          Read    delay=1s
     Log    ${output}
     @{output_line}     Split To Lines        ${output}
-    @{kubectl_path}    Get Regexp Matches    ${output_line}[-4]    (\\w\\S+)
+    @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Log Many    @{kubectl_path}
     Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
     [Return]    ${kubectl_path}[0]
@@ -265,7 +265,7 @@ Get AAF5G Log
     ...    Get AAF5G logs from server
     [Tags]    keyword_action
     [Arguments]
-    ${status}    Run Keyword And Return Status    List Should Contain Value    @{TEST_TAGS}    AAF5G
+    ${status}    Run Keyword And Return Status    List Should Contain Value    ${TEST_TAGS}    AAF5G
     IF    ${status} == True and ${REGRESSION} != True
         Switch Connection    ${SSH_AAF5G}
         @{aaf5g_path}    Get AAF5G Path
@@ -331,7 +331,7 @@ Wait For Authentication Code Expire
     [Tags]    keyword_communicate
     Robot Wait Time    5m
 
-Verify Value Decode Jwt
+Verify Contain Any Value Decode Jwt
     [Documentation]    Owner: sasipen
     [Arguments]    ${jsondata}    ${response_key}
     ${response_key}    Remove String        ${response_key}    $..

@@ -313,15 +313,17 @@ Verify Response Key Forgot Password
 
 
 
-Click Button Summit
+Click Button Submit
     [Documentation]    Owner: sasipen
     [Arguments]    ${path_button}
-    Click    ${path_button}
+    Wait For Elements State    ${path_button}    enabled    ${verify_timeout}
+    Click    ${path_button}    delay=0.5S 
 
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
+    ...    ${email} = testrobot202203@gmail.com
     [Arguments]    ${email}
-    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.1s
+    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.3s
     Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
@@ -380,6 +382,7 @@ Get Admd Srfp Session
     
 Get Admd Srfp Confirm Link New Password
     [Documentation]    Owner: sasipen
+    ...     find Confirm Link New Password form log server by text confirmLink and session id 
     [Arguments]    ${admd_path}    ${session} 
     Write    reset
     Read     delay=5s
@@ -391,6 +394,9 @@ Get Admd Srfp Confirm Link New Password
     ${json_confirmlink}   Convert String To JSON    ${json_format}[0]   
     ${confirmlink}    Get Value Json By Key    ${json_confirmlink}    $..custom1.Message[1]
     Log    ${confirmlink}  
+    IF        ${REGRESSION} != True
+        ${confirmlink}       Replace String     ${confirmlink}     https://iot-apivr.ais.co.th       https://10.137.30.22 
+    END    
     Set Test Variable    ${URL_CONFIRM_NEW_PASSWORD}    ${confirmlink}
 
 Get Link Confirm New Password Form Server
@@ -403,14 +409,14 @@ Get Link Confirm New Password Form Server
 
 Fill New Password 
     [Documentation]    Owner: sasipen
-    Type Text      ${txt_new_password}            ${new_password}     delay=0.2s
-    Type Text      ${txt_confirm_new_password}    ${new_password}     delay=0.2s
-    Set Test Provisioning Data   New Password : ${new_password}           
+    ...    ${new_password_email} = robot@2022
+    Type Text      ${txt_new_password}            ${new_password_email}     delay=0.3s
+    Type Text      ${txt_confirm_new_password}    ${new_password_email}     delay=0.3s
+    Set Test Provisioning Data   New Password : ${new_password_email}       
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
-    Wait Until Network Is Idle    ${verify_timeout}
-    Verify Locator Is Visible     ${img_send_succeeds}   
+    Verify Locator Is Visible     ${img_send_succeeds}    timeout=30s   
     Verify Value At Locator       ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
     Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
     Take Screenshot Verify Success Scene
@@ -426,8 +432,7 @@ Verify Response On Webpage To Json
 
 Verify Decoded Value Access Token Forgot Password By Email
     [Documentation]    Owner: sasipen
-    Verify Value Decode Jwt     ${DECODED_ACCESS_TOKEN}    $..uid
-    # Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..uid           661640096682863
+    Verify Contain Any Value Decode Jwt     ${DECODED_ACCESS_TOKEN}    $..uid
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.type      email_password
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..aut.action    forgot
     Verify Value Json By Key    ${DECODED_ACCESS_TOKEN}    $..idp           rob
@@ -436,19 +441,18 @@ Verify Decoded Value ID Token Forgot Password By Email
     [Documentation]    Owner: sasipen
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.type                email_password
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..aut.action              forgot
-    Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..idp                     rob
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.firstname          robot
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.lastname           test
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.username           testrobot202203@gmail.com
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.accountCategory    residential
-    Verify Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
+    Verify Contain Any Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
 
 Keyword Test Teardown For Forgot Password By Email
     Close Connection 
     Keyword Suite Setup
     Keyword Test Teardown
 
-Verify Response Forgot Password Use Url Get Token 2 Times
+Verify Response Forgot Password With Duplicate Authen Code
     [Documentation]    Owner: sasipen
     ${actual_value}    Get Value Response On Web Page By Key    $..error
     Verify Value Should Be Equal    ${actual_value}          ${error_message_invalid_grant} 
@@ -456,9 +460,9 @@ Verify Response Forgot Password Use Url Get Token 2 Times
 
 Open Link And Confirm New Password Again
     [Documentation]    Owner: sasipen
-    Create Browser Session    ${URL_CONFIRM_NEW_PASSWORD}
+    New Page               ${URL_CONFIRM_NEW_PASSWORD}
     Fill New Password
-    Click Button Summit       ${btn_submit_new_password}                
+    Click Button Submit    ${btn_submit_new_password}                
 
 Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen

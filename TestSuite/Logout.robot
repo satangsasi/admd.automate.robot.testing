@@ -23,7 +23,7 @@ TST_F5_1_1_003 Verify Logout with SSO Ldap Employee
 TST_F5_0_1_001 Verify logout feature with client_id
     [Documentation]    Owner:sasipen  
     [Tags]    Success    Logout    Ldap_Employee  
-    Open Browser Login Employee And Open Page Get Token    ${url_aut_logout}
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_logout}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
@@ -37,7 +37,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect client_id
     ...       *** On-Hold**
     ...        ควรเป็นเทส fail เนื่องจาก incorrect client_id แต่เทสแลว pass  
     [Tags]    Success    Logout    Ldap_Employee    On-Hold
-    Open Browser Login Employee And Open Page Get Token    ${url_aut_logout}
+    Open Browser Login Employee And Open Page Get Token    ${url_auth_logout}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
     Set Content Header Ldap Logout    ${url_for_logout_ldap_employee}
