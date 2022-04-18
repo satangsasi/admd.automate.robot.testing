@@ -99,7 +99,7 @@ TST_F5_0_1_004 To verify logout feature with Unknow URL
     Create URL For Get Token    ${url_get_token_schema} 
     New Page    ${URL_GET_TOKEN}
     Set Response On Webpage To Json
-    Set API Header Logout
-    Set API Body Invalid URL Logout
-    Send Post Request Invalid URL       400
+    Set API Header Logout Invalid URL
+    Set API Body Logout Invalid URL
+    Send Post Request Logout        400
     Verify Response Logout Feature With Unknow URL 
