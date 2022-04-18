@@ -185,7 +185,7 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin  Editor: Sasipen
     ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Run Keyword And Ignore Error    Get Admd Log From Server By X Session Id 
+    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id 
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
 
