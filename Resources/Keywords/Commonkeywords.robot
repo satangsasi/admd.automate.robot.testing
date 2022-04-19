@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Variables ***
-${HEAD_LESS}    True
+${HEAD_LESS}    False
 ${BROWSER}      chromium
 
 
@@ -50,6 +50,8 @@ Change Directory Path To Get ADMD Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
+    ...    Edit :sasipen 
+    ...    Add Set Suite Variable    ${ADMD_PATH}    ${admd_path} For use in another keyword
     [Tags]    keyword_action
     Switch Connection    ${SSH_ADMD}
     ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Path
@@ -57,6 +59,8 @@ Change Directory Path To Get ADMD Log
     Read     delay=5s    # Wait for screen reset
     ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
     [Return]    ${admd_path}
+    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
+    
 
 ADMD Get Kubectl Grep Path
     [Documentation]    Owner: Nakarin
@@ -171,10 +175,11 @@ Get Value Response On Web Page By Key
 
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
-    [Tags]    keyword_communicate
+    ...    ยังไม่ใช้  Change Directory Path To Get ADMD Log เนื่องจาก path มีการเปลี่ยนแปลง และในบางข้อใช้ path ไม่เหมือนกัน
+     [Tags]    keyword_communicate
     SSH Connect To Server Log
-    ${admd_path}    Change Directory Path To Get ADMD Log
-    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
+    # ${admd_path}    Change Directory Path To Get ADMD Log
+    # Set Suite Variable    ${ADMD_PATH}    ${admd_path}
 
 Keyword Suite Teardown
     [Documentation]    Owner: Nakarin
@@ -236,8 +241,8 @@ Get Admd Log From Server
     ...    Get Json Log From output of SSH Command
     ...    For get message > ${X_SESSION_ID}
     [Tags]    keyword_commands
-    Switch Connection    ${SSH_ADMD}
-    Write    cat ${ADMD_PATH}
+    ${admd_path}    Change Directory Path To Get ADMD Log
+    Write    cat ${admd_path}
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
@@ -250,8 +255,8 @@ Get Value X Session Id
     ${value_x_session_id}    Get Value Json By Key    ${JSON_EXPECT}    $..custom.Output[0].Data.Header['x-session-id']
     Set Test Variable    ${X_SESSION_ID}    ${value_x_session_id}    
     
-Get Admd Log From Server By X Session Id  
-    Switch Connection    ${SSH_ADMD}
+Get Admd Log From Server By X Session Id
+    Exit SSH Connect ADMD
     Get Admd Log From Server
     Get Value X Session Id
     Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}
