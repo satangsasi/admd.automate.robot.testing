@@ -98,7 +98,7 @@ TST_F9_0_1_002 Verify forgot password fail
     ...    \r\n*** Conditions ***
     ...    \r\nwith authcode expired
     [Tags]    Fail    Forgot_Password          
-    [Setup]    Exit SSH Connect ADMD
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -142,8 +142,8 @@ TST_F9_0_1_004 Verify forgot password fail
     [Documentation]    Owner:
     ...    \r\n*** Conditions ***
     ...    \r\nwith ใช้ activate url ซ้ำ
-    ...    ***On-Hold***
-    ...    ต้อง get log error invalid_code from server  แต่ตอนนี้ยังหา log ไม่เจอ
+    ...    \r\n***On-Hold***
+    ...    \r\nต้อง get log error invalid_code from server  แต่ตอนนี้ยังหา log ไม่เจอ
     [Tags]    Fail    Forgot_Password    On-Hold
     # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
