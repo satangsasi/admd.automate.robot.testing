@@ -7,5 +7,4 @@ ${value_state_logout_missing}       missing access token
 
 #respone
 ${value_satae_logout_expired}       expired access token
-${expected_developer_message_not_found}      data_not_found
        

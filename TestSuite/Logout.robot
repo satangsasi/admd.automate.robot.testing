@@ -48,7 +48,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect client_id
 
 TST_F5_0_1_001 To verify logout feature with expired access token
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout
+    [Tags]      Fail    Logout    Test
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -64,7 +64,7 @@ TST_F5_0_1_001 To verify logout feature with expired access token
 
 TST_F5_0_1_002 To verify logout feature with incorrect access token
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout      
+    [Tags]      Fail    Logout    Test      
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -78,7 +78,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect access token
 
 TST_F5_0_1_003 To verify logout feature with missing access token    
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout      
+    [Tags]      Fail    Logout    Test      
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -92,7 +92,7 @@ TST_F5_0_1_003 To verify logout feature with missing access token
 
 TST_F5_0_1_004 To verify logout feature with Unknow URL    
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail        Logout      
+    [Tags]      Fail    Logout    Test      
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page

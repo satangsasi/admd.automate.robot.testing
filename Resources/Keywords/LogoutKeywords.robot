@@ -87,7 +87,8 @@ Send Post Request Logout
 
 Get Json Error Log Logout From Server
     [Documentation]     Owner:Atitaya 
-    Switch Connection  ${SSH_ADMD}
+    Change Directory Path To Get ADMD Log
+    Switch Connection    ${SSH_ADMD}
     Write    cat ${ADMD_PATH} | grep -E "Body.*data_not_found"
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
@@ -99,7 +100,9 @@ Get Json Error Log Logout From Server
 Verify Json Error Log Logout From Server
     [Documentation]    Owner:Atitaya   
     Verify Value Json By Key    ${JSON_EXPECT}    $..custom.Input[0].Data.Body.resultCode          ${expected_result_code_40401}     
-    Verify Value Json By Key    ${JSON_EXPECT}    $..custom.Input[0].Data.Body.developerMessage    ${expected_developer_message_not_found}    
+    Verify Value Json By Key    ${JSON_EXPECT}    $..custom.Input[0].Data.Body.developerMessage    ${error_message_data_not_found}    
+    Set Test Actual Result      {"resultCode": "${JSON_EXPECT.custom.Input[0].Data.Body.resultCode}"}
+    Set Test Actual Result      {"developerMessage": "${JSON_EXPECT.custom.Input[0].Data.Body.developerMessage}"}
 
 Verify Response Logout Expired Access Token
     [Documentation]    Owner: Atitaya 
