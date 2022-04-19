@@ -198,4 +198,3 @@ Get Json Log Email Otp
     ${json_expect}    Convert String To JSON    ${json_format}[0]
     Log         ${json_expect}
     [Return]    ${json_expect}
-    Set Test Actual Result    ADMD V3.2 Log: ${json_expect}

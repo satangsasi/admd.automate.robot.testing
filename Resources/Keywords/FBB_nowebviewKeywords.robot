@@ -72,7 +72,6 @@ Get Json Log FBB No Web View
     ${json_expect}    Convert String To JSON    ${json_format}[0]
     Log         ${json_expect}
     [Return]    ${json_expect}
-    Set Test Actual Result    ADMD V3.2 Log: ${json_expect}
 
 Verify Response Key FBB No Web View
     [Documentation]    Owner: Nakarin
