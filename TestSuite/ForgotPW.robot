@@ -33,8 +33,8 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     [Documentation]    Owner: sasipen
     ...    \r\n***Conditions***
     ...    \r\nscope = profile
-    [Tags]    Success    Forgot_Password        
-    [Setup]    Open New SSH Connect
+    [Tags]    Success    Forgot_Password            
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -62,7 +62,7 @@ TST_F9_1_1_003 Verify forgot password with Large Characters
     ...    \r\nตอน forgot ใช้  ตัวอักษรพิมพ์ใหญ่ (TESTAIS0000000004@gmail.com)
     ...    \r\nเมล์ส่ง link activate เเละ forgot ได้ เพราะ Template ส่งเป็น lower case
     [Tags]    Fail    Forgot_Password    
-    [Setup]    Open New SSH Connect
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -97,10 +97,8 @@ TST_F9_0_1_002 Verify forgot password fail
     [Documentation]    Owner:
     ...    \r\n*** Conditions ***
     ...    \r\nwith authcode expired
-    ...    *** on hold****
-    ...    authcode ไม่หมดอายุใน 5-7 นาที รอทาง ais ตรวจสอบ 12/04/2022
-    [Tags]    Fail    Forgot_Password    On-Hold          
-    [Setup]    Open New SSH Connect
+    [Tags]    Fail    Forgot_Password          
+    [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -122,7 +120,7 @@ TST_F9_0_1_003 Verify forgot password fail
     ...    \r\n*** Conditions ***
     ...    \r\nwith authcode ซ้ำ
     [Tags]    Fail    Forgot_Password          
-    [Setup]    Open New SSH Connect
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -146,8 +144,8 @@ TST_F9_0_1_004 Verify forgot password fail
     ...    \r\nwith ใช้ activate url ซ้ำ
     ...    ***On-Hold***
     ...    ต้อง get log error invalid_code from server  แต่ตอนนี้ยังหา log ไม่เจอ
-    [Tags]    Fail    Forgot_Password
-    [Setup]    Open New SSH Connect
+    [Tags]    Fail    Forgot_Password    On-Hold
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -166,7 +164,7 @@ TST_F9_0_1_005 Verify forgot password fail
     ...    \r\n*** Conditions ***
     ...    \r\nwith invalid client_id
     [Tags]    Fail    Forgot_Password    
-    [Setup]    Open New SSH Connect
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -187,7 +185,7 @@ TST_F9_0_1_006 Verify forgot password fail
     ...    \r\n*** Conditions ***
     ...    \r\nwith invalid client_secret
     [Tags]    Fail    Forgot_Password    
-    [Setup]    Open New SSH Connect
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}
@@ -208,7 +206,7 @@ TST_F9_0_1_007 Verify forgot password fail
     ...    \r\n*** Conditions ***
     ...    \r\nwith missingclient_id
     [Tags]    Fail    Forgot_Password    
-    [Setup]    Open New SSH Connect
+    # [Setup]    Exit SSH Connect ADMD
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
     Fill Email For Reset Password      ${email_registered}

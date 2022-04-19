@@ -19,7 +19,7 @@ ${txt_new_password}                  //*[@id="new_password"]
 ${txt_confirm_new_password}          //*[@id="confirm_password"]
 
 # Button
-${btn_submit_request_otp}       //*[@id="fbtn_req_otp"]
+${btn_submit_request_otp}       //button[@id="fbtn_req_otp"]
 ${btn_submit_confirm_otp}       //*[@id="fbtn_conf"]
 ${btn_submit_done_question}     //*[@id="fbtn_done_q"]
 ${btn_submit_done_forgot_pw}    //*[@id="fbtn_done_forgot"]

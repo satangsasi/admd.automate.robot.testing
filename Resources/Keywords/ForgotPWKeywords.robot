@@ -6,7 +6,7 @@ Resource    ../../TestSuite/Resource_init.robot
 Press Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Click    ${lbl_forgot_password}
+    Click On Element    ${lbl_forgot_password}
     [Teardown]    Get AAF5G Log
 
 Fill Mobile Number Forgot Password
@@ -14,17 +14,38 @@ Fill Mobile Number Forgot Password
     ...    \r\n${forgot_pw_mobile_number}
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
-    Type Text    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
+    Type Text In Element    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
+Get Admd Get OTP Path
+    [Documentation]    Owner: sasipen   
+    Switch Connection    ${SSH_ADMD}
+    Write     kubectl exec -it ${admd_path_get_otp} -n admd sh 
+    ${output}    Read    delay=2s
+    Log    ${output}
+    Write    cd logs/detail
+    Write    ls -lrt | tail
+    ${output}    Read    delay=2s
+    Log    ${output}
+    @{output_line}    Split To Lines        ${output}
+    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+    Write    reset
+    Read     delay=5s  
+    Log Many    @{cat_path}
+    Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${admd_path_get_otp}_admd.0.detail"  values=False
+    ${admd_path}    Set Variable    ${cat_path}[-1]
+    [Return]    ${admd_path}   
+
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya       
     [Tags]    keyword_command
-    Switch Connection  ${SSH_ADMD}
-    Read    delay=5s
+    # Change Directory Path To Get ADMD Log
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
-    Write    cat ${ADMD_PATH} | grep -E "${number}.*oneTimePassword"
+    ${admd_path}    Get Admd Get OTP Path
+    Write    reset
+    Read    delay=1s
+    Write    cat ${admd_path} | grep -E "${number}.*oneTimePassword"
     ${string}   Read    delay=1s
     Log    ${string}
     ${json_log}  Get Regexp Matches        ${string}    {.*
@@ -48,7 +69,7 @@ Fill OTP Password Forgot Password
     @{otp_number}    Split String To Characters    ${OTP_PASSWORD}
     ${i}      Set Variable    1
     FOR    ${number}    IN    @{otp_number}
-        Type Text    //*[@id="fotp${i}"]    ${number}    delay=0.1s
+        Type Text In Element    //*[@id="fotp${i}"]    ${number}    delay=0.1s
         ${i}    Evaluate    ${i}+1
     END
     Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
@@ -56,14 +77,14 @@ Fill OTP Password Forgot Password
 Fill Question 1 And Question 2 Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text    ${txt_question1_forget_pw}    ${forgot_pw_question1}    delay=0.1s
-    Type Text    ${txt_question2_forget_pw}    ${forgot_pw_question2}    delay=0.1s
+    Type Text In Element    ${txt_question1_forget_pw}    ${forgot_pw_question1}    delay=0.1s
+    Type Text In Element    ${txt_question2_forget_pw}    ${forgot_pw_question2}    delay=0.1s
 
 Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}    delay=0.1s
-    Type Text    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    delay=0.1s
+    Type Text In Element    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}    delay=0.1s
+    Type Text In Element    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    delay=0.1s
 
 Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
@@ -316,14 +337,13 @@ Verify Response Key Forgot Password
 Click Button Submit
     [Documentation]    Owner: sasipen
     [Arguments]    ${path_button}
-    Wait For Elements State    ${path_button}    enabled    ${verify_timeout}
-    Click    ${path_button}    delay=0.5S 
+    Click On Element    ${path_button}   
 
 Fill Email For Reset Password
     [Documentation]    Owner: sasipen
     ...    ${email} = testrobot202203@gmail.com
     [Arguments]    ${email}
-    Type Text      ${txt_username_forgot_pw}    ${email}     delay=0.3s
+    Type Text In Element      ${txt_username_forgot_pw}    ${email}     
     Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
@@ -340,16 +360,19 @@ Verify Email Invalid On Webpage
     Set Test Actual Result     ${actual_error_email_wrong}
     Set Test Actual Result     ${actual_error_check_email}
 
-Open New SSH Connect 
+Exit SSH Connect ADMD
     [Documentation]    Owner: sasipen
-    Close Connection 
-    SSH Connect To Server Log
+    Switch Connection    ${SSH_ADMD}
+    Write    exit
+    Read    delay=2s
 
 Get Admd Srfp Path
     [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD}
-    Write     kubectl exec -it admd-srfp-69c8f85ddc-xjxsn -n admd sh 
+    #Write     kubectl exec -it admd-srfp-69c8f85ddc-xjxsn -n admd sh 
+    Write     kubectl exec -it ${admd_path_get_email}  -n admd sh 
     ${output}    Read    delay=2s
+    Log    ${output}
     Write    cd logs/appLog/
     Write    ls -lrt | tail
     ${output}    Read    delay=2s
@@ -359,7 +382,7 @@ Get Admd Srfp Path
     Write    reset
     Read     delay=5s  
     Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "admd-srfp-69c8f85ddc-xjxsn_SRFP.0.log"  values=False
+    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${admd_path_get_email}_SRFP.0.log"  values=False
     ${srfp_path}    Set Variable    ${cat_path}[-1]
     [Return]    ${srfp_path}    
 
@@ -410,8 +433,8 @@ Get Link Confirm New Password Form Server
 Fill New Password 
     [Documentation]    Owner: sasipen
     ...    ${new_password_email} = robot@2022
-    Type Text      ${txt_new_password}            ${new_password_email}     delay=0.3s
-    Type Text      ${txt_confirm_new_password}    ${new_password_email}     delay=0.3s
+    Type Text In Element      ${txt_new_password}            ${new_password_email}     delay=0.3s
+    Type Text In Element      ${txt_confirm_new_password}    ${new_password_email}     delay=0.3s
     Set Test Provisioning Data   New Password : ${new_password_email}       
 
 Verify Send Link Confirm New Password Succeeds
@@ -448,10 +471,10 @@ Verify Decoded Value ID Token Forgot Password By Email
     Verify Contain Any Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
 
 Keyword Test Teardown For Forgot Password By Email
-    Close Connection 
-    Keyword Suite Setup
+    Switch Connection  ${SSH_ADMD}
+    Exit SSH Connect ADMD
     Keyword Test Teardown
-
+    
 Verify Response Forgot Password With Duplicate Authen Code
     [Documentation]    Owner: sasipen
     ${actual_value}    Get Value Response On Web Page By Key    $..error
