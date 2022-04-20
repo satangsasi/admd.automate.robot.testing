@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    ../../TestSuite/Resource_init.robot
 
+
 *** Keywords ***
 Set Body Ldap Logout With Client Id
     [Documentation]     Owner : sasipen

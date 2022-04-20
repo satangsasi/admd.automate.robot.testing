@@ -12,7 +12,7 @@ ${BROWSER}      chromium
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
     ...    ยังไม่ใช้  Change Directory Path To Get ADMD Log เนื่องจาก path มีการเปลี่ยนแปลง และในบางข้อใช้ path ไม่เหมือนกัน
-     [Tags]    keyword_communicate
+    [Tags]    keyword_communicate
     SSH Connect To Server Log
     # ${admd_path}    Change Directory Path To Get ADMD Log
     # Set Suite Variable    ${ADMD_PATH}    ${admd_path}
@@ -24,11 +24,12 @@ Keyword Suite Teardown
 
 Keyword Test Teardown
     [Documentation]    Owner: Nakarin  Editor: Sasipen
-    ...    Edit: add keyword Get Admd V3_2 Log From Server By X Session Id for set actual result ADMD V3.2 Log
+    ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Run Keyword If Test Passed      Get Admd V3_2 Log From Server By X Session Id 
+    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id 
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
+
 Append To Document Teardown
     [Documentation]    Owner: Nakarin
     ...    Create Document of Provisioning Data(in order list) and Actual Result
@@ -80,9 +81,8 @@ Change Directory Path To Get ADMD Log
     Write    reset
     Read     delay=5s    # Wait for screen reset
     ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
-    [Return]    ${admd_path}
     Set Suite Variable    ${ADMD_PATH}    ${admd_path}
-    
+    [Return]    ${admd_path}
 ADMD Get Kubectl Path
     [Documentation]    Owner: Nakarin
     ...    Read output of ssh command then return the last Kubectl path
@@ -134,7 +134,7 @@ Get Value X Session Id
     ${value_x_session_id}    Get Value Json By Key    ${JSON_EXPECT}    $..custom.Output[0].Data.Header['x-session-id']
     Set Test Variable    ${X_SESSION_ID}    ${value_x_session_id}    
 
-Get Admd V3_2 Log From Server By X Session Id
+Get Admd Log From Server By X Session Id
     Exit SSH Connect ADMD
     Get Admd Log From Server
     Get Value X Session Id
@@ -148,7 +148,6 @@ Get AAF5G Log
     [Documentation]    Owner: Nakarin
     ...    Get AAF5G logs from server
     [Tags]    keyword_action
-    [Arguments]
     ${status}    Run Keyword And Return Status    List Should Contain Value    ${TEST_TAGS}    AAF5G
     IF    ${status} == True and ${REGRESSION} != True
         Switch Connection    ${SSH_AAF5G}
@@ -241,6 +240,7 @@ Get Value Response On Web Page By Key
     ${value}           Set Variable         ${RESPONSE_JSON_MESSAGE.${response_key}}
     ${value}           Convert To String    ${value}
     [Return]           ${value}
+
 Create Browser Session
     [Documentation]     Owner : sasipen
     ...    Setting browser and open url
@@ -284,7 +284,6 @@ Set Response On Webpage To Json
         Run Keyword And Ignore Error    Set Test Provisioning Data    Refresh Token Expires In: ${RESPONSE_JSON_MESSAGE.refresh_token_expires_in}
         Run Keyword And Ignore Error    Set Test Provisioning Data    ID Token: ${RESPONSE_JSON_MESSAGE.id_token}
     END
-
 
 Jwt Decode Dot Dict
     [Documentation]    Owner: Nakarin
@@ -337,6 +336,7 @@ Verify Response Key
     ${value}    Get Value Response On Web Page By Key    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
+
 Verify Contain Any Value Decode Jwt
     [Documentation]    Owner: sasipen
     [Arguments]    ${jsondata}    ${response_key}
@@ -344,5 +344,3 @@ Verify Contain Any Value Decode Jwt
     ${value}           Get Value Json By Key    ${jsondata}    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
-
-    

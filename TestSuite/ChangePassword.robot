@@ -11,7 +11,6 @@ TST_F8_1_1_001 Verlify Change Password with Msisdn Password
     ...    \r\ntype = msisdn_password 
     ...    \r\nMsisdn password ไม่มี login_subtype
     [Tags]    Success    Change_password    Msisdn    
-    [Setup]
     Create Browser Session    ${url_login_change_password}
     Fill Username And Password Login Page Change Password
     Press Login Button In Login Page Change Password

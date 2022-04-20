@@ -434,7 +434,6 @@ Get Json Error Log Ldap From Server
     Log Many    &{json_expect}
     Set Test Variable    &{JSON_EXPECT}    &{json_expect}
     
-
 Verify Value Log Error From Server
     [Documentation]    Owner: Sasipen
     ...    verify Value from key error by Json file from SSH Command
