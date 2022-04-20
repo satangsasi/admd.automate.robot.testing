@@ -119,221 +119,6 @@ Verify Response Key Forgot Password
     Verify Response Key    $..refresh_token_expires_in
     Verify Response Key    $..id_token
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Click Button Submit
     [Documentation]    Owner: sasipen
     [Arguments]    ${path_button}
@@ -369,7 +154,6 @@ Exit SSH Connect ADMD
 Get Admd Srfp Path
     [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD}
-    #Write     kubectl exec -it admd-srfp-69c8f85ddc-xjxsn -n admd sh 
     Write     kubectl exec -it ${admd_path_get_email}  -n admd sh 
     ${output}    Read    delay=2s
     Log    ${output}
@@ -433,13 +217,13 @@ Get Link Confirm New Password Form Server
 Fill New Password 
     [Documentation]    Owner: sasipen
     ...    ${new_password_email} = robot@2022
-    Type Text In Element      ${txt_new_password}            ${new_password_email}     delay=0.3s
-    Type Text In Element      ${txt_confirm_new_password}    ${new_password_email}     delay=0.3s
+    Type Text In Element      ${txt_new_password}            ${new_password_email}     
+    Type Text In Element      ${txt_confirm_new_password}    ${new_password_email}     
     Set Test Provisioning Data   New Password : ${new_password_email}       
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible     ${img_send_succeeds}    timeout=30s   
+    Verify Locator Is Visible     ${img_send_succeeds}   
     Verify Value At Locator       ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
     Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
     Take Screenshot Verify Success Scene
@@ -489,7 +273,7 @@ Open Link And Confirm New Password Again
 
 Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible    ${img_send_Fail}        30s
+    Verify Locator Is Visible    ${img_send_Fail}      
     Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
     Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene
