@@ -18,40 +18,6 @@ Set Body Ldap Logout With Invalid Client Id
     Set Content API Body    $..client_id          ${invalid_client_id_PK+WUA}     
     Set Content API Body    $..state              ${state_logout_ldap_employee}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Fill Username And Password Login Page 
     [Documentation]    Owner: Atitaya  
     Type Text    ${txt_username_ldap}      ${user_ldap_employee}       delay=0.1s
