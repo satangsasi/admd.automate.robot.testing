@@ -22,30 +22,6 @@ TST_F2_1_1_001 Verify LoginOTP
     Verify Decoded Value Access Token FBB OTP
     Verify Decoded Value ID Token FBB OTP
 
-TST_F2_1_1_002 Verify LoginOTP for check device status sold
-    [Documentation]    Owner:
-    [Tags]    Success    On-Hold
-
-TST_F2_1_1_003 Verify LoginOTP for check device status stolen
-    [Documentation]    Owner: 
-    [Tags]    Success    On-Hold
-
-TST_F2_1_1_006 Verify LoginOTP for check status profile active
-    [Documentation]    Owner: 
-    [Tags]    Success    On-Hold
-
-TST_F2_1_1_007 Verify LoginOTP for check status profile suspendDebt1way
-    [Documentation]    Owner:
-    [Tags]    Success    On-Hold
-
-TST_F2_1_1_008 Verify LoginOTP for check status profile creditLimited1way
-    [Documentation]    Owner:
-    [Tags]    Success    On-Hold
-
-TST_F2_0_1_001 Verify FBB with invalid ip ais fbb
-    [Documentation]    Owner:
-    [Tags]    Fail    On-Hold
-    
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     [Documentation]    Owner: Nakarin
     [Tags]    Fail    auth_expire
