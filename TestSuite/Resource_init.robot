@@ -55,6 +55,7 @@ Resource    ../Resources/Variables/FBB_nowebviewVariables.robot
 Resource    ../Resources/Variables/LogoutVariables.robot
 Resource    ../Resources/Variables/Logout_pushNotifyVariables.robot
 
+
 *** Variables ***
 ${LANG}         EN
 ${TEST_SITE}    DEV
