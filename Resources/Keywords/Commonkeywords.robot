@@ -83,6 +83,7 @@ Change Directory Path To Get ADMD Log
     ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
     Set Suite Variable    ${ADMD_PATH}    ${admd_path}
     [Return]    ${admd_path}
+
 ADMD Get Kubectl Path
     [Documentation]    Owner: Nakarin
     ...    Read output of ssh command then return the last Kubectl path
