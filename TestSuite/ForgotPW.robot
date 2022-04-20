@@ -54,7 +54,7 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     [Teardown]    Keyword Test Teardown For Forgot Password By Email  
 
 TST_F9_1_1_003 Verify forgot password with Large Characters
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith ใช้ Mail ตัวอักษรพิมพ์เล็ก พิมพ์ใหญ่
     ...    \r\nตอน register ใช้  ตัวอักษรพิมพ์เล็ก (testais0000000004@gmail.com)
@@ -92,7 +92,7 @@ TST_F9_0_1_001 Verify forgot password fail
     Verify Email Invalid On Webpage
 
 TST_F9_0_1_002 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith authcode expired
     [Tags]    Fail    Forgot_Password          
@@ -113,7 +113,7 @@ TST_F9_0_1_002 Verify forgot password fail
     [Teardown]    Keyword Test Teardown For Forgot Password By Email 
 
 TST_F9_0_1_003 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith authcode ซ้ำ
     [Tags]    Fail    Forgot_Password
@@ -135,7 +135,7 @@ TST_F9_0_1_003 Verify forgot password fail
     [Teardown]    Keyword Test Teardown For Forgot Password By Email 
 
 TST_F9_0_1_004 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith ใช้ activate url ซ้ำ
     ...    \r\n***On-Hold***
@@ -155,7 +155,7 @@ TST_F9_0_1_004 Verify forgot password fail
     [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_005 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith invalid client_id
     [Tags]    Fail    Forgot_Password    
@@ -175,7 +175,7 @@ TST_F9_0_1_005 Verify forgot password fail
     [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_006 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith invalid client_secret
     [Tags]    Fail    Forgot_Password 
@@ -195,7 +195,7 @@ TST_F9_0_1_006 Verify forgot password fail
     [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_007 Verify forgot password fail
-    [Documentation]    Owner:
+    [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nwith missingclient_id
     [Tags]    Fail    Forgot_Password    
