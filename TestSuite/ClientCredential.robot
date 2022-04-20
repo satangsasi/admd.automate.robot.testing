@@ -39,7 +39,6 @@ TST_F7_1_1_002 ClientCredentials with client id on browser
     Decode Token To Jwt Client Credentials 
     Verify Response Jwt Decode
 
-
 TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     [Documentation]     Owner : sasipen
     ...
@@ -55,7 +54,6 @@ TST_F7_0_1_001 Verify ClientCredentials with Invalid client_id
     Send Request Client Credentials Invalid    401
     Verify Response Client Credentials Error   ${error_message_invalid_client}
     
-
 TST_F7_0_1_002 Verify ClientCredentials with Invalid client_secret
     [Documentation]     Owner : sasipen
     ...
