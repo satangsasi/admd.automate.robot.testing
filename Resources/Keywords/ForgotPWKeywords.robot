@@ -18,8 +18,9 @@ Fill Mobile Number Forgot Password
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
-Get Admd Get OTP Path
+Get Admd OTP Path
     [Documentation]    Owner: sasipen   
+    ...    ${admd_path_get_otp}= admd-v3-2-5b7fbf8b5c-5tdbg :fixed path in folder Variable
     Switch Connection    ${SSH_ADMD}
     Write     kubectl exec -it ${admd_path_get_otp} -n admd sh 
     ${output}    Read    delay=2s
@@ -35,17 +36,18 @@ Get Admd Get OTP Path
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${admd_path_get_otp}_admd.0.detail"  values=False
     ${admd_path}    Set Variable    ${cat_path}[-1]
-    [Return]    ${admd_path}   
+    [Return]    ${admd_path_otp}  
 
 Get Json OTP Password Forgot PW
-    [Documentation]    Owner: Nakarin    Editor: Atitaya       
+    [Documentation]    Owner: Nakarin    Editor: Atitaya  , Sasipen
+    ...    Edit : add keyword Get Admd OTP Path for find path get otp   
     [Tags]    keyword_command
     # Change Directory Path To Get ADMD Log
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
-    ${admd_path}    Get Admd Get OTP Path
+    ${admd_path_otp}    Get Admd OTP Path
     Write    reset
     Read    delay=1s
-    Write    cat ${admd_path} | grep -E "${number}.*oneTimePassword"
+    Write    cat ${admd_path_otp} | grep -E "${number}.*oneTimePassword"
     ${string}   Read    delay=1s
     Log    ${string}
     ${json_log}  Get Regexp Matches        ${string}    {.*
@@ -153,6 +155,7 @@ Exit SSH Connect ADMD
 
 Get Admd Srfp Path
     [Documentation]    Owner: sasipen
+    ...    ${admd_path_get_email}=admd-srfp-69c8f85ddc-swhl8  fixed path in folder variable    
     Switch Connection    ${SSH_ADMD}
     Write     kubectl exec -it ${admd_path_get_email}  -n admd sh 
     ${output}    Read    delay=2s

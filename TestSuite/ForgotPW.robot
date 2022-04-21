@@ -36,7 +36,7 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     [Tags]    Success    Forgot_Password            
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -63,7 +63,7 @@ TST_F9_1_1_003 Verify forgot password with Large Characters
     [Tags]    Fail    Forgot_Password    
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw_large_character}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -98,7 +98,7 @@ TST_F9_0_1_002 Verify forgot password fail
     [Tags]    Fail    Forgot_Password          
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -119,7 +119,7 @@ TST_F9_0_1_003 Verify forgot password fail
     [Tags]    Fail    Forgot_Password
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -143,7 +143,7 @@ TST_F9_0_1_004 Verify forgot password fail
     [Tags]    Fail    Forgot_Password    On-Hold
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -161,7 +161,7 @@ TST_F9_0_1_005 Verify forgot password fail
     [Tags]    Fail    Forgot_Password    
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -181,7 +181,7 @@ TST_F9_0_1_006 Verify forgot password fail
     [Tags]    Fail    Forgot_Password 
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
@@ -201,7 +201,7 @@ TST_F9_0_1_007 Verify forgot password fail
     [Tags]    Fail    Forgot_Password    
     Create Browser Session             ${url_login_change_password}
     Press Forgot Password
-    Fill Email For Reset Password      ${email_registered}
+    Fill Email For Reset Password      ${email_for_forgot_pw}
     Click Button Submit                ${btn_submit_request_otp}
     Verify Send Link Confirm New Password Succeeds
     Get Link Confirm New Password Form Server
