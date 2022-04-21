@@ -14,7 +14,7 @@ Fill Mobile Number Forgot Password
     ...    \r\n${forgot_pw_mobile_number}
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}    delay=0.1s
+    Type Text In Element    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
@@ -69,7 +69,7 @@ Fill OTP Password Forgot Password
     @{otp_number}    Split String To Characters    ${OTP_PASSWORD}
     ${i}      Set Variable    1
     FOR    ${number}    IN    @{otp_number}
-        Type Text In Element    //*[@id="fotp${i}"]    ${number}    delay=0.1s
+        Type Text In Element    //*[@id="fotp${i}"]    ${number}
         ${i}    Evaluate    ${i}+1
     END
     Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
@@ -77,14 +77,14 @@ Fill OTP Password Forgot Password
 Fill Question 1 And Question 2 Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_question1_forget_pw}    ${forgot_pw_question1}    delay=0.1s
-    Type Text In Element    ${txt_question2_forget_pw}    ${forgot_pw_question2}    delay=0.1s
+    Type Text In Element    ${txt_question1_forget_pw}    ${forgot_pw_question1}    
+    Type Text In Element    ${txt_question2_forget_pw}    ${forgot_pw_question2}    
 
 Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}    delay=0.1s
-    Type Text In Element    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    delay=0.1s
+    Type Text In Element    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}   
+    Type Text In Element    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    
 
 Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
