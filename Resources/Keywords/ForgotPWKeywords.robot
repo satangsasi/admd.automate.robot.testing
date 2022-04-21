@@ -157,7 +157,7 @@ Get Admd Srfp Path
     [Documentation]    Owner: sasipen
     ...    ${admd_path_get_email}=admd-srfp-69c8f85ddc-swhl8  fixed path in folder variable    
     Switch Connection    ${SSH_ADMD}
-    Write     kubectl exec -it ${admd_path_get_email}  -n admd sh 
+    Write     kubectl exec -it ${admd_path_get_email} -n admd sh 
     ${output}    Read    delay=2s
     Log    ${output}
     Write    cd logs/appLog/
@@ -204,7 +204,7 @@ Get Admd Srfp Confirm Link New Password
     ${json_confirmlink}   Convert String To JSON    ${json_format}[0]   
     ${confirmlink}    Get Value Json By Key    ${json_confirmlink}    $..custom1.Message[1]
     Log    ${confirmlink}  
-    IF        ${REGRESSION} != True
+    IF        ${REGRESSION} == True
         ${confirmlink}       Replace String     ${confirmlink}     https://iot-apivr.ais.co.th       https://10.137.30.22 
     END    
     Set Test Variable    ${URL_CONFIRM_NEW_PASSWORD}    ${confirmlink}
