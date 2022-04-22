@@ -14,7 +14,7 @@ Fill Mobile Number Forgot Password
     ...    \r\n${forgot_pw_mobile_number}
     ...    \r\nMobile Number = 0981721044
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}
+    Type Text In Text Box    ${txt_username_forgot_pw}    ${forgot_pw_mobile_number}
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
@@ -71,7 +71,7 @@ Fill OTP Password Forgot Password
     @{otp_number}    Split String To Characters    ${OTP_PASSWORD}
     ${i}      Set Variable    1
     FOR    ${number}    IN    @{otp_number}
-        Type Text In Element    //*[@id="fotp${i}"]    ${number}
+        Type Text In Text Box    //*[@id="fotp${i}"]    ${number}
         ${i}    Evaluate    ${i}+1
     END
     Set Test Provisioning Data    OTP Password: ${OTP_PASSWORD}
@@ -79,14 +79,14 @@ Fill OTP Password Forgot Password
 Fill Question 1 And Question 2 Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_question1_forget_pw}    ${forgot_pw_question1}    
-    Type Text In Element    ${txt_question2_forget_pw}    ${forgot_pw_question2}    
+    Type Text In Text Box    ${txt_question1_forget_pw}    ${forgot_pw_question1}    
+    Type Text In Text Box    ${txt_question2_forget_pw}    ${forgot_pw_question2}    
 
 Fill New Password Forgot Password
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    Type Text In Element    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}   
-    Type Text In Element    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    
+    Type Text In Text Box    ${txt_reset_password_forget_pw}      ${forgot_pw_new_password_moile}   
+    Type Text In Text Box    ${txt_confirm_password_forget_pw}    ${forgot_pw_new_password_moile}    
 
 Verify Decoded Value Access Token Forgot PW
     [Documentation]    Owner: Nakarin
@@ -130,7 +130,7 @@ Fill Email For Reset Password
     [Documentation]    Owner: sasipen
     ...    ${email} = testrobot202203@gmail.com
     [Arguments]    ${email}
-    Type Text In Element      ${txt_username_forgot_pw}    ${email}     
+    Type Text In Text Box      ${txt_username_forgot_pw}    ${email}     
     Set Test Provisioning Data   Email: ${email}
     
 Verify Email Invalid On Webpage
@@ -220,8 +220,8 @@ Get Link Confirm New Password Form Server
 Fill New Password 
     [Documentation]    Owner: sasipen
     ...    ${new_password_email} = robot@2022
-    Type Text In Element      ${txt_new_password}            ${new_password_email}     
-    Type Text In Element      ${txt_confirm_new_password}    ${new_password_email}     
+    Type Text In Text Box      ${txt_new_password}            ${new_password_email}     
+    Type Text In Text Box      ${txt_confirm_new_password}    ${new_password_email}     
     Set Test Provisioning Data   New Password : ${new_password_email}       
 
 Verify Send Link Confirm New Password Succeeds

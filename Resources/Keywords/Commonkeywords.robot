@@ -329,6 +329,14 @@ Wait For Authentication Code Expire
     [Tags]    keyword_communicate
     Robot Wait Time    5m
 
+Type Text In Text Box
+    [Documentation]     Owner : Rukpong
+    ...                 Group keyword action type text by set delay 0.1 seconds
+    ...                 Simulate actual user action
+    [Arguments]     ${locator}      ${text}     ${delay}=0.1s       ${clear}=True
+    Click On Element                ${locator}
+    Type Text       selector=${locator}         txt=${text}         delay=${delay}      clear=${clear}
+
 #verify
 Verify Response Key
     [Documentation]    Owner: Nakarin
