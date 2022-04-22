@@ -231,7 +231,7 @@ Verify Send Link Confirm New Password Succeeds
     Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
     Take Screenshot Verify Success Scene
 
-Verify Response On Webpage To Json
+Verify Response On Webpage Forgot Password
     [Documentation]    Owner: sasipen
     Verify Response Key    $..access_token
     Verify Response Key    $..refresh_token

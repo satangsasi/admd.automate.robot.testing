@@ -1,8 +1,8 @@
 *** Settings ***
 Resource          ./Resource_init.robot
 Suite Setup       Keyword Suite Setup
-Test Teardown     Keyword Test Teardown
-Suite Teardown    Keyword Suite Teardown
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 
 
 *** Test Cases ***
@@ -46,7 +46,7 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     Create URL For Get Token           ${url_get_token_forgot_pw}           
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
-    Verify Response On Webpage To Json
+    Verify Response On Webpage Forgot Password
     Decoded Access Token
     Verify Decoded Value Access Token Forgot Password By Email
     Decoded ID Token
@@ -73,7 +73,7 @@ TST_F9_1_1_003 Verify forgot password with Large Characters
     Create URL For Get Token           ${url_get_token_forgot_pw}           
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
-    Verify Response On Webpage To Json
+    Verify Response On Webpage Forgot Password
     Decoded Access Token
     Verify Decoded Value Access Token Forgot Password By Email
     Decoded ID Token
