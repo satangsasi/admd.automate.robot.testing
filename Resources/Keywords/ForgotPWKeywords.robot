@@ -36,7 +36,7 @@ Get Admd OTP Path
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${admd_path_get_otp}_admd.0.detail"  values=False
     ${admd_path}    Set Variable    ${cat_path}[-1]
-    [Return]    ${admd_path_otp}  
+    [Return]    ${admd_path}
 
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya  , Sasipen
