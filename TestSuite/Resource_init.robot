@@ -30,6 +30,7 @@ Resource    ../Resources/Keywords/Logout_pushNotifyKeywords.robot
 # Localized
 Resource    ../Resources/Localized/${LANG}/LDAPallOULocalized.robot
 Resource    ../Resources/Localized/${LANG}/ForgotPWLocalized.robot
+Resource    ../Resources/Localized/${LANG}/Logout_pushNotifyLocalized.robot
 
 # Repositories
 Resource    ../Resources/Repositories/ChangePasswordRepositories.robot
