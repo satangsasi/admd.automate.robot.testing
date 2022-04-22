@@ -51,4 +51,5 @@ ${invalid_url_aut_logout}         ${url_iot_apivr}/auth/v3.2/logoutttt
 
 #Logout_pushnotify
 ${url_registered_logout_pushnotify}       ${url_iot_apivr}/auth/v3.1/oauth/authorize?response_type=code&client_id=k%2B%2FB%2Bb7jXkOwq8N5FDGXvSYI7h8mU%2B6xTiNPt098vdM%3D&redirect_uri=https://www.ais.co.th/&scope=profile
-${url_get_token_logout_pushnotify}        ${url_iot_apivr}/autht/v3.2/oauth/token?client_id=k%2B%2FB%2Bb7jXkOwq8N5FDGXvSYI7h8mU%2B6xTiNPt098vdM%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&notification_uri=https://www.ais.co.th/
+${url_get_token_logout_pushnotify}        ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=k%2B%2FB%2Bb7jXkOwq8N5FDGXvSYI7h8mU%2B6xTiNPt098vdM%3D&client_secret=clientSecret&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&notification_uri=https://www.ais.co.th/
+${url_get_refresh_token_logout_pushnotify}    ${url_iot_apivr}/auth/v3.2/oauth/token?client_id=k%2B%2FB%2Bb7jXkOwq8N5FDGXvSYI7h8mU%2B6xTiNPt098vdM%3D&client_secret=clientSecret&grant_type=refresh_token&code=_code_&redirect_uri=https://www.ais.co.th/&notification_uri=https://www.ais.co.th/
