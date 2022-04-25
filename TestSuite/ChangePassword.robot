@@ -12,7 +12,7 @@ TST_F8_1_1_001 Verlify Change Password with Msisdn Password
     ...    \r\nMsisdn password ไม่มี login_subtype
     [Tags]    Success    Change_password    Msisdn    
     Create Browser Session    ${url_login_change_password}
-    Fill Username And Password Login Page Change Password
+    Fill Username And Password Login Page Change Password    ${user_login_change_password}    ${pass_login_change_password}
     Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
@@ -26,8 +26,7 @@ TST_F8_1_1_002 Verlify Change Password with Ldap Content provider
     [Documentation]    Owner: sasipen
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Success    Change_password    Ldap_Content_provider    
-    [Setup]    Sleep    20s
+    [Tags]    Success    Change_password    Ldap_Content_provider
     Create Browser Session        ${url_auth_ldap}
     Fill Username And Password    ${user_ldap_provider}    ${pass_ldap_provider}
     Press Login Button In LDAP
@@ -41,10 +40,20 @@ TST_F8_1_1_002 Verlify Change Password with Ldap Content provider
     Verify Response Change Password With Ldap Content Provider
 
 TST_F8_1_1_003 Verlify Change Password with profile have gupimpi more than one object
-    [Documentation]    Owner: sasipen
+    [Documentation]    Owner: Nakarin
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Change_password    On-Hold    
+    [Tags]    Change_password    Sprint6    Test
+    Create Browser Session      ${url_for_login_multi_sequence_forgot_pw}
+    Fill Username And Password Login Page Change Password    ${user_login_change_password_multi_sequence}    ${pass_login_change_password_multi_sequence}
+    Press Login Button In Login Page Change Password
+    Create URL For Get Token    ${url_get_token_change_password_schema}
+    New Page                    ${URL_GET_TOKEN}
+    Set Response On Webpage To Json
+    Set API Header Change Password With Multi Sequence
+    Set API Body Change Password With Multi Sequence
+    Send Post Request Change Password With Multi Sequence
+    Verify Response Change Password With Multi Sequence
 
 TST_F8_0_1_001 Verlify Change Password with Ldap Content provider
     [Documentation]    Owner: sasipen
@@ -121,7 +130,7 @@ TST_F8_0_1_005 Verlify Change Password with Msisdn password
     ...    \r\nwrong old password
     [Tags]    Fail    Change_password    Msisdn    demosprint4    
     Create Browser Session    ${url_login_change_password}
-    Fill Username And Password Login Page Change Password
+    Fill Username And Password Login Page Change Password    ${user_login_change_password}    ${pass_login_change_password}
     Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
@@ -138,7 +147,7 @@ TST_F8_0_1_006 Verlify Change Ppassword with Msisdn password
     ...    \r\nnew password contains Thai character
     [Tags]    Fail    Change_password    Msisdn    demosprint4     
     Create Browser Session    ${url_login_change_password}
-    Fill Username And Password Login Page Change Password
+    Fill Username And Password Login Page Change Password    ${user_login_change_password}    ${pass_login_change_password}
     Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
@@ -155,7 +164,7 @@ TST_F8_0_1_007 Verlify Change Password with Msisdn password
     ...    \r\nnew password contains "&"
     [Tags]    Fail    Change_password    Msisdn     Atitaya
     Create Browser Session          ${url_login_change_password}
-    Fill Username And Password Login Page Change Password
+    Fill Username And Password Login Page Change Password    ${user_login_change_password}    ${pass_login_change_password}
     Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}
@@ -172,7 +181,7 @@ TST_F8_0_1_008 Verlify Change Password with Msisdn password
     ...    \r\naccess_token expired
     [Tags]    Fail    Change_password    Msisdn     Atitaya
     Create Browser Session          ${url_login_change_password}
-    Fill Username And Password Login Page Change Password
+    Fill Username And Password Login Page Change Password    ${user_login_change_password}    ${pass_login_change_password}
     Press Login Button In Login Page Change Password
     Create URL For Get Token     ${url_get_token_change_password_schema}
     New Page    ${URL_GET_TOKEN}

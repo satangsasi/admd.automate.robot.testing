@@ -56,6 +56,7 @@ ${url_forgot_pw}                                        ${url_iot_apivr}/authtes
 ${invalid_client_id_url_get_token_forgot_pw}            ${url_iot_apivr}/authtest/v3.2/oauth/token?client_id=12oRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile 
 ${invalid_client_secret_url_get_token_forgot_pw}        ${url_iot_apivr}/authtest/v3.2/oauth/token?client_id=FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&client_secret=abc628414349cdb3f98fcf3edf191234&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
 ${invalid_missing_client_id_url_get_token_forgot_pw}    ${url_iot_apivr}/authtest/v3.2/oauth/token?client_id=&client_secret=cbf628414349cdb3f98fcf3edf19d21f&grant_type=authorization_code&code=_code_&redirect_uri=https://www.ais.co.th/&scope=profile
+${url_for_login_multi_sequence_forgot_pw}               ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
 
 # FBB_nowebview
 ${url_fbb_nowebview}              http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234

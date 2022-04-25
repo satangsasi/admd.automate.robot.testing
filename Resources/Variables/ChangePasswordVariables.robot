@@ -2,17 +2,22 @@
 #data
 ${user_login_change_password}       0981721044
 ${pass_login_change_password}       12345678
+${user_login_change_password_multi_sequence}    0819633124
+${pass_login_change_password_multi_sequence}    1234567890
 ${redirect_uri_change_password}     https://www.ais.co.th/
 ${old_password_msisdn}              12345678
 ${new_password_msisdn}              12345678
 ${old_password_ldap_content_provider}    password1
 ${new_password_ldap_content_provider}    password1
+${old_password_multi_sequence}      123456789
+${new_password_multi_sequence}      123456789
 ${type_misdn}                            msisdn
 ${type_ldap}                             ldap
 ${client_id_change_password_FCoRIg}                        FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays+mTxG9/xpwVZQ+Eg==
 ${client_id_change_password_X6jpUV}                        X6jpUVHVBdszLACYucu+mkslzsMyXhwQNG/p1jO1KXg=
 ${state_success_change_password_msisdn}                    Changepassword_success_Msisdn
 ${state_success_change_password_ldapcp}                    Changepassword_success_LdapCp
+${state_success_change_password_multi_sequence}            Changepassword_success_profile_gupimpi more_than_one_object
 ${old_password_ldap_content_provider_invalid}              password111
 ${new_password_invalid_th_lang}                            passwordทดสอบ
 ${new_password_invalid_special_character}                  password&&&&
