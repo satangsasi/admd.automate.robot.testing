@@ -187,7 +187,6 @@ TST_F9_0_1_006 Verify forgot password fail
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Invalid Client Secret
 
-
 TST_F9_0_1_007 Verify forgot password fail
     [Documentation]    Owner: sasipen
     ...    \r\n*** Conditions ***
@@ -206,6 +205,3 @@ TST_F9_0_1_007 Verify forgot password fail
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Missing Client Id
-
-Test Log admd dev
-    Get Admd Log From Server By X Session Id
