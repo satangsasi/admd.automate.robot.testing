@@ -11,11 +11,13 @@ ${BROWSER}      chromium
 #keyword Setup
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
-    ...    ยังไม่ใช้  Change Directory Path To Get ADMD Log เนื่องจาก path มีการเปลี่ยนแปลง และในบางข้อใช้ path ไม่เหมือนกัน
+    ...    ยังไม่ใช้  Change Directory Path To Get ADMD DEV Log เนื่องจาก path มีการเปลี่ยนแปลง และในบางข้อใช้ path ไม่เหมือนกัน
     [Tags]    keyword_communicate
     SSH Connect To Server Log
-    # ${admd_path}    Change Directory Path To Get ADMD Log
-    # Set Suite Variable    ${ADMD_PATH}    ${admd_path}
+    ${admd_path}    Change Directory Path To Get ADMD DEV Log
+    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
+    ${admd_srfp_path}    Change Directory Path To Get ADMD SRFP Log
+    Set Suite Variable    ${ADMD_SRFP_PATH}    ${admd_srfp_path}
 
 Keyword Suite Teardown
     [Documentation]    Owner: Nakarin
@@ -30,19 +32,20 @@ Keyword Test Teardown
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
 
-Append To Document Teardown
-    [Documentation]    Owner: Nakarin
-    ...    Create Document of Provisioning Data(in order list) and Actual Result
-    [Tags]    keyword_communicate
-    # Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
-    # Set Test Provisioning Data    Header : ${API_HEADER}
-    # Set Test Provisioning Data    Body : ${API_BODY}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
-    # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-    # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
-    Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
-    Set Test Documentation Detail
+# Append To Document Teardown
+#     [Documentation]    Owner: Nakarin
+#     ...    Create Document of Provisioning Data(in order list) and Actual Result
+#     ...     ปิดไว้ก่อนเหมือนจะไม่ได้ใช้:sasipen
+#     [Tags]    keyword_communicate
+#     # Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
+#     # Set Test Provisioning Data    Header : ${API_HEADER}
+#     # Set Test Provisioning Data    Body : ${API_BODY}
+#     Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
+#     Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
+#     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
+#     # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+#     Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
+#     Set Test Documentation Detail
     
 #ssh connect
 SSH Connect To Server Log
@@ -57,10 +60,14 @@ SSH Connect To Server Log
     ...    ${ssh_aaf5g_user}         toro
     ...    ${ssh_aaf5g_pass}         equinox@toro;
     [Tags]    keyword_action
-    ${admd_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
+    ${admd_dev_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
     ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
-    Log    ${login_log}    # ADMD Connection
-    Set Suite Variable    ${SSH_ADMD}     ${admd_connection}
+    Log    ${login_log}    # ADMD DEV Connection
+    Set Suite Variable    ${SSH_ADMD_DEV}     ${admd_dev_connection}
+    ${admd_srfpconnection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
+    ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
+    Log    ${login_log}    # ADMD SRFP Connection
+    Set Suite Variable    ${SSH_ADMD_SRFP}     ${admd_srfpconnection}
     IF    ${REGRESSION} != True
         ${aaf5g_connection}      Open Connection    ${ssh_aaf5g_ip_address}    prompt=$    timeout=${default_timeout}
         ${login_log}    Login    ${ssh_aaf5g_user}        ${ssh_aaf5g_pass}
@@ -69,19 +76,18 @@ SSH Connect To Server Log
         Set Suite Variable    ${SSH_AAF5G}    ${aaf5g_connection}
     END   
     
-Change Directory Path To Get ADMD Log
+Change Directory Path To Get ADMD DEV Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
     ...    [Return] the admd path to get log with grep
     ...    Edit :sasipen 
     ...    Add Set Suite Variable    ${ADMD_PATH}    ${admd_path} For use in another keyword
     [Tags]    keyword_action
-    Switch Connection    ${SSH_ADMD}
+    Switch Connection    ${SSH_ADMD_DEV}
     ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Path
     Write    reset
     Read     delay=5s    # Wait for screen reset
     ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
-    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
     [Return]    ${admd_path}
 
 ADMD Get Kubectl Path
@@ -92,10 +98,15 @@ ADMD Get Kubectl Path
     ${output}          Read    delay=1s
     Log    ${output}
     @{output_line}     Split To Lines        ${output}
-    @{kubectl_path}    Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    Log Many    @{kubectl_path}
-    Should Contain    ${kubectl_path}[0]    admd    msg=Can't get any item with 'kubectl get pod -n admd' command    values=False
-    [Return]    ${kubectl_path}[0]
+    FOR    ${line}    IN    @{output_line}    
+        @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
+        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-v3-2-dev
+        IF    ${status} == True
+            ${admd_dev_path}    Set Variable    ${admd_path}[0]  
+            Exit For Loop
+        END
+    END    
+    [Return]    ${admd_dev_path}
 
 ADMD Get Kubectl Grep Path
     [Documentation]    Owner: Nakarin
@@ -111,18 +122,65 @@ ADMD Get Kubectl Grep Path
     @{output_line}    Split To Lines        ${output}
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
-    Read     delay=5s    # Wait for screen reset
     Log Many    @{cat_path}
     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
+
+Change Directory Path To Get ADMD SRFP Log
+    Switch Connection    ${SSH_ADMD_SRFP}
+    ${admd_srfp_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD Srfp
+    Write    reset
+    Read     delay=2s  
+    ${admd_srfp_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Srfp Path    ${admd_srfp_path}
+    [Return]    ${admd_srfp_path_log}
+
+Get Kubectl Path ADMD Srfp
+    [Documentation]    Owner: sasipen
+    Write    kubectl get pod -n admd
+    ${output}    Read    delay=1s
+    Log    ${output}
+    @{output_line}    Split To Lines        ${output}
+    FOR    ${line}    IN    @{output_line}    
+        @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
+        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-srfp
+        IF    ${status} == True
+            ${admd_srfp_path}    Set Variable    ${admd_path}[0]  
+        ELSE
+              Exit For Loop If    ${status} == True
+        END
+    END    
+    [Return]    ${admd_srfp_path}
+
+Get Admd Srfp Path
+    [Documentation]    Owner: sasipen
+    ...    ${admd_path_get_email}=admd-srfp-69c8f85ddc-swhl8  fixed path in folder variable    
+    # ${admd_srfp_path_get_email}    Find Admd Srfp Path
+    # Write     kubectl exec -it ${admd_srfp_path_get_email} -n admd sh 
+    [Arguments]    ${kubectl_path}
+    Write     kubectl exec -it ${kubectl_path} -n admd sh 
+    ${output}    Read    delay=2s
+    Log    ${output}
+    Write    cd logs/appLog/
+    Write    ls -lrt | tail
+    ${output}    Read    delay=2s
+    Log    ${output}
+    @{output_line}    Split To Lines        ${output}
+    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+    Write    reset
+    Log Many    @{cat_path}
+    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${admd_path_get_email}_SRFP.0.log"  values=False
+    ${srfp_path}    Set Variable    ${cat_path}[-1]
+    [Return]    ${srfp_path}
 
 Get Admd Log From Server
     [Documentation]    Owner: sasipen    
     ...    Get Json Log From output of SSH Command
     ...    For get message > ${X_SESSION_ID}
     [Tags]    keyword_commands
-    ${admd_path}    Change Directory Path To Get ADMD Log
-    Write    cat ${admd_path}
+    Switch Connection    ${SSH_ADMD_DEV}
+    Write    reset
+    Read     delay=2s  
+    Write    cat ${ADMD_PATH}
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log Many   @{json_format}
@@ -136,7 +194,6 @@ Get Value X Session Id
     Set Test Variable    ${X_SESSION_ID}    ${value_x_session_id}    
 
 Get Admd Log From Server By X Session Id
-    Exit SSH Connect ADMD
     Get Admd Log From Server
     Get Value X Session Id
     Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}

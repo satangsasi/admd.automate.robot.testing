@@ -42,7 +42,7 @@ Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya  , Sasipen
     ...    Edit : add keyword Get Admd OTP Path for find path get otp   
     [Tags]    keyword_command
-    # Change Directory Path To Get ADMD Log
+    # Change Directory Path To Get ADMD DEV Log
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
     ${admd_path_otp}    Get Admd OTP Path
     Write    reset
@@ -147,32 +147,6 @@ Verify Email Invalid On Webpage
     Set Test Actual Result     ${actual_error_email_wrong}
     Set Test Actual Result     ${actual_error_check_email}
 
-Exit SSH Connect ADMD
-    [Documentation]    Owner: sasipen
-    Switch Connection    ${SSH_ADMD}
-    Write    exit
-    Read    delay=2s
-
-Get Admd Srfp Path
-    [Documentation]    Owner: sasipen
-    ...    ${admd_path_get_email}=admd-srfp-69c8f85ddc-swhl8  fixed path in folder variable    
-    Switch Connection    ${SSH_ADMD}
-    Write     kubectl exec -it ${admd_path_get_email} -n admd sh 
-    ${output}    Read    delay=2s
-    Log    ${output}
-    Write    cd logs/appLog/
-    Write    ls -lrt | tail
-    ${output}    Read    delay=2s
-    Log    ${output}
-    @{output_line}    Split To Lines        ${output}
-    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    Write    reset
-    Read     delay=5s  
-    Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${admd_path_get_email}_SRFP.0.log"  values=False
-    ${srfp_path}    Set Variable    ${cat_path}[-1]
-    [Return]    ${srfp_path}    
-
 Get Admd Srfp Session
     [Documentation]    Owner: sasipen
     ...     find session id form log server by email send forgot password
@@ -212,9 +186,8 @@ Get Admd Srfp Confirm Link New Password
 Get Link Confirm New Password Form Server
     [Documentation]    Owner: sasipen
     ...    link confirm new password set name > ${URL_CONFIRM_NEW_PASSWORD} 
-    ${srfp_path}     Get Admd Srfp Path
-    ${session_id}    Get Admd Srfp Session    ${srfp_path}
-    Get Admd Srfp Confirm Link New Password   ${srfp_path}    ${session_id}      
+    ${session_id}    Get Admd Srfp Session    ${ADMD_SRFP_PATH}
+    Get Admd Srfp Confirm Link New Password   ${ADMD_SRFP_PATH}    ${session_id}      
     Set Test Provisioning Data   Link Confirm New Password : ${URL_CONFIRM_NEW_PASSWORD}
 
 Fill New Password 
@@ -257,10 +230,10 @@ Verify Decoded Value ID Token Forgot Password By Email
     Verify Value Json By Key    ${DECODED_ID_TOKEN}    $..info.accountCategory    residential
     Verify Contain Any Value Decode Jwt     ${DECODED_ID_TOKEN}    $..nonce
 
-Keyword Test Teardown For Forgot Password By Email
-    Switch Connection  ${SSH_ADMD}
-    Exit SSH Connect ADMD
-    Keyword Test Teardown
+# Keyword Test Teardown For Forgot Password By Email
+#     Switch Connection  ${SSH_ADMD}
+#     Exit SSH Connect ADMD
+#     Keyword Test Teardown
     
 Verify Response Forgot Password With Duplicate Authen Code
     [Documentation]    Owner: sasipen
