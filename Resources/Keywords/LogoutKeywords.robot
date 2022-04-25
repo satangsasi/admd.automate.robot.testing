@@ -54,7 +54,7 @@ Send Post Request Logout
 
 Get Json Error Log Logout From Server
     [Documentation]     Owner:Atitaya 
-    Change Directory Path To Get ADMD Log
+    Change Directory Path To Get ADMD DEV Log
     Switch Connection    ${SSH_ADMD}
     Write    cat ${ADMD_PATH} | grep -E "Body.*data_not_found"
     ${string}   Read    delay=5s
