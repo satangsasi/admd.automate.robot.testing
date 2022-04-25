@@ -245,16 +245,14 @@ Get AAF5G Session
         ${string}    Read    delay=5s
         Write    reset
         ${json_format}    Get Regexp Matches    ${string}    {.*
-#        # ${json}       Convert String to JSON    ${json_format}
-#        # Log Many      &{json}
         Log Many    @{json_format}
-        @{string}    Run Keyword And Ignore Error    Split String    ${json_format}[0]    "
+        @{string}    Run Keyword And Ignore Error     Split String      ${json_format}[0]    "
         Log Many    @{string}[1]
-        ${status}    Run Keyword And Return Status    Log    ${string}[1][5]
-        ${log_path}  Set Variable If     ${status} == True   ${element}
-        Exit For Loop If    ${status} == True
+        ${status}    Run Keyword And Return Status    Should Contain    ${string}[1][5]    https.0
+        Continue For Loop If    ${status} == False
+        ${aaf5g_log_path}    Set Variable    ${element}
     END
-    [Return]    ${string}[1][5]    ${log_path}
+    [Return]    ${string}[1][5]    ${aaf5g_log_path}
 
 Get AAF5G Log Command
     [Documentation]    Owner: Nakarin
