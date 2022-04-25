@@ -250,8 +250,8 @@ Get AAF5G Session
         @{string}    Run Keyword And Ignore Error     Split String      ${json_format}[0]    "
         Log Many    @{string}[1]
         ${status}    Run Keyword And Return Status    Should Contain    ${string}[1][5]    https.0
-        Continue For Loop If    ${status} == False
         ${aaf5g_log_path}    Set Variable    ${element}
+        Exit For Loop If    ${status} == True
     END
     [Return]    ${string}[1][5]    ${aaf5g_log_path}
 
