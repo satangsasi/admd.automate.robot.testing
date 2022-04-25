@@ -8,10 +8,12 @@ Fill Username And Password Login Page Change Password
     ...    Website can detect character while typing
     [Tags]    Keyword_communicate
     [Arguments]    ${username}    ${password}
-    Type Text In Text Box    ${txt_username_change_password}    ${username}    delay=0.1s
-    Type Text In Text Box    ${txt_password_change_password}    ${password}    delay=0.1s
-    Set Test Provisioning Data   Username: ${user_login_change_password}
-    Set Test Provisioning Data   Password: ${pass_login_change_password}
+    Type Text In Text Box    ${txt_username_change_password}    ${username}
+    Type Text In Text Box    ${txt_password_change_password}    ${password}
+    Set Test Variable        ${USERNAME}
+    Set Test Variable        ${PASSWORD}
+    Set Test Provisioning Data   Username: ${username}
+    Set Test Provisioning Data   Password: ${password}
 
 Press Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen
@@ -151,15 +153,15 @@ Set API Body Change Password With Ldap Invalid New Password Contains Special Cha
     Set Content API Body    $..state           ${state_success_change_password_ldapcp}
     Set Content API Body    $..nonce           ${DATE_TIME}
 
-Set API Body Change Password With Multi Sequence
+Set API Header Change Password With Multi Sequence
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Set Content API Header    key=${header_content_type}    value=${content_type_x_www}    append=False
     Set Content API Header    key=${header_x_tid}           value=ADMD-202204
-    Log    ${API_HEADER}
+    Log Many    &{API_HEADER}
 
-Set API Header Change Password With Multi Sequence
-    [Documentation]    Owner: Nakairn
+Set API Body Change Password With Multi Sequence
+    [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
     Get Time Nonce
     ${actual_value_access_token}    Get Value Response On Web Page By Key    $..access_token
@@ -172,13 +174,14 @@ Set API Header Change Password With Multi Sequence
     Set Content API Body    $..redirect_uri    ${redirect_uri_change_password} 
     Set Content API Body    $..state           ${state_success_change_password_multi_sequence}
     Set Content API Body    $..nonce           ${DATE_TIME}
+    Log Many   &{API_BODY}
 
 Send Post Request Change Password With Multi Sequence
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
-    ${response}    Send Request   POST    ${url_change_password}
-    Set Test Provisioning Data    Request Change Password Invalid : ${message}[request]
-    Set Test Actual Result        Request Change Password Invalid : ${message}[response]
+    &{message}    Send Request    POST    ${url_change_password}    headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
+    Set Test Provisioning Data    Request Change Password With Multi Sequence : ${message}[request]
+    Set Test Actual Result        Request Change Password With Multi Sequence : ${message}[response]
 
 Verify Response Change Password With Multi Sequence
     [Documentation]    Owner: Nakarin

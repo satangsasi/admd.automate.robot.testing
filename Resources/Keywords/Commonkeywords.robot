@@ -211,8 +211,8 @@ Get AAF5G Log
     IF    ${status} == True and ${REGRESSION} != True
         Switch Connection    ${SSH_AAF5G}
         @{aaf5g_path}    Get AAF5G Path
-        ${session}       Get AAF5G Session     ${aaf5g_path}
-        Get AAF5G Log Command    ${aaf5g_path}    ${session} 
+        ${session}    ${log_path}    Get AAF5G Session    ${aaf5g_path}
+        Get AAF5G Log Command    ${session}    ${log_path}
     END
 
 Get AAF5G Path
@@ -236,28 +236,37 @@ Get AAF5G Session
     ...    Used for get AFF5g Session for get AFF5G logs
     [Tags]    keyword_commands
     [Arguments]    ${log_path}
+    IF    len('${USERNAME}') == 10
+        ${user}    Replace String    ${USERNAME}    0    66    count=1
+    ELSE
+        ${user}    Set Variable      ${USERNAME}
+    END
     FOR    ${element}    IN    @{log_path}
-        Write    cat ${element} | grep ${USERNAME}
+        Write    cat ${element} | grep ${user}
         ${string}    Read    delay=5s
         Write    reset
         ${json_format}    Get Regexp Matches    ${string}    {.*
+#        # ${json}       Convert String to JSON    ${json_format}
+#        # Log Many      &{json}
         Log Many    @{json_format}
         @{string}    Run Keyword And Ignore Error    Split String    ${json_format}[0]    "
-        Log Many    @{string}
-        ${status}    Run Keyword And Return Status    Log    ${string}[5]
+        Log Many    @{string}[1]
+        ${status}    Run Keyword And Return Status    Log    ${string}[1][5]
+        ${log_path}  Set Variable If     ${status} == True   ${element}
         Exit For Loop If    ${status} == True
     END
-    [Return]    ${string}[5]
+    [Return]    ${string}[1][5]    ${log_path}
 
 Get AAF5G Log Command
     [Documentation]    Owner: Nakarin
     ...    Command for used in get log via ssh command
     [Tags]    keyword_commands
-    [Arguments]    ${log_path}        ${session}
-    Write      cat ${log_path} | grep ${session}
+    [Arguments]    ${session}         ${log_path}
+    Write        cat ${log_path} | grep ${session}
     ${string}    Read    delay=5s
-    Log    ${string}[0]
-    Set Test Actual Result    AAF5G logs: ${string}[0]
+    ${string}    Get Regexp Matches    ${string}    {.*
+    Log    ${string}
+    Set Test Actual Result    AAF5G logs: ${string}
 
 #Get Value
 Get Time Nonce
@@ -388,7 +397,7 @@ Wait For Authentication Code Expire
     Robot Wait Time    5m
 
 Type Text In Text Box
-    [Documentation]     Owner : Rukpong
+    [Documentation]     Owner : Sasipen
     ...                 Group keyword action type text by set delay 0.1 seconds
     ...                 Simulate actual user action
     [Arguments]     ${locator}      ${text}     ${delay}=0.1s       ${clear}=True
