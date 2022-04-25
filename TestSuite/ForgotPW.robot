@@ -51,7 +51,6 @@ TST_F9_1_1_002 Verify forgot password with registered Email
     Verify Decoded Value Access Token Forgot Password By Email
     Decoded ID Token
     Verify Decoded Value ID Token Forgot Password By Email
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email  
 
 TST_F9_1_1_003 Verify forgot password with Large Characters
     [Documentation]    Owner: sasipen
@@ -78,7 +77,6 @@ TST_F9_1_1_003 Verify forgot password with Large Characters
     Verify Decoded Value Access Token Forgot Password By Email
     Decoded ID Token
     Verify Decoded Value ID Token Forgot Password By Email
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email  
 
 TST_F9_0_1_001 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -110,7 +108,6 @@ TST_F9_0_1_002 Verify forgot password fail
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Authcode Expired
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email 
 
 TST_F9_0_1_003 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -132,7 +129,6 @@ TST_F9_0_1_003 Verify forgot password fail
     Take Screenshot Verify Success Scene
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password With Duplicate Authen Code
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email 
 
 TST_F9_0_1_004 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -152,7 +148,6 @@ TST_F9_0_1_004 Verify forgot password fail
     Click Button Submit                ${btn_submit_new_password}
     Open Link And Confirm New Password Again
     Verify Error After Confirm New Password 2 Times 
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_005 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -172,7 +167,6 @@ TST_F9_0_1_005 Verify forgot password fail
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Invalid Client Id
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email
 
 TST_F9_0_1_006 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -192,7 +186,7 @@ TST_F9_0_1_006 Verify forgot password fail
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Invalid Client Secret
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email
+
 
 TST_F9_0_1_007 Verify forgot password fail
     [Documentation]    Owner: sasipen
@@ -212,4 +206,6 @@ TST_F9_0_1_007 Verify forgot password fail
     New Page                           ${URL_GET_TOKEN}
     Set Response On Webpage To Json    ${set_test_actual_result}
     Verify Response Forgot Password Missing Client Id
-    [Teardown]    Keyword Test Teardown For Forgot Password By Email
+
+Test Log admd dev
+    Get Admd Log From Server By X Session Id
