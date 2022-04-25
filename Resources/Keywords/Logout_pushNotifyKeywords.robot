@@ -203,7 +203,7 @@ Set API Body Logout Pushnotify
 
 Send Post Request Logout Pushnotify
     [Documentation]    Owner: sasipen
-    &{message}    Send Request    POST    url=${API_URL}     headers=${API_HEADER}    body=${API_BODY}    verify=False
+    &{message}    Send Request    POST    url=${API_URL}     headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    ${message}[request]
     Set Test Actual Result        ${message}[response]
 
