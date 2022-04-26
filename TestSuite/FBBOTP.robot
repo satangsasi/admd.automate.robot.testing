@@ -8,7 +8,7 @@ Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 *** Test Cases ***
 TST_F2_1_1_001 Verify LoginOTP
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    SmokeTest
+    [Tags]    Success    SmokeTest    action_delay
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -24,7 +24,7 @@ TST_F2_1_1_001 Verify LoginOTP
 
 TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     [Documentation]    Owner: Nakarin
-    [Tags]    Fail    auth_expire
+    [Tags]    Fail    auth_expire    action_delay
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -38,7 +38,7 @@ TST_F2_0_1_002 Verify FBB get token fail with authcode expire
     
 TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
     [Documentation]    Owner:sasipen  
-    [Tags]    Fail    FBB_OTP   
+    [Tags]    Fail    FBB_OTP    action_delay   
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
@@ -52,7 +52,7 @@ TST_F2_0_1_003 Verify FBB get token with client_id and client_secret no match
 
 TST_F2_0_1_004 Verify FBB get token with FBB No Contact number 8858980011
     [Documentation]    Owner:sasipen
-    [Tags]    Fail    FBB_OTP    
+    [Tags]    Fail    FBB_OTP    action_delay    
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP Number No Contact
     Verify Page Can Not Click Request Otp   
