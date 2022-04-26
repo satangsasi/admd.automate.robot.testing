@@ -10,7 +10,7 @@ TST_F3_1_1_001 Verify Login No web view
     [Documentation]    Owner: Nakarin
     ...    \r\n*** Condition ***
     ...    \r\ngrant_type : Password มี ial + aal
-    [Tags]    Success    FBB_nowebview
+    [Tags]    Success    FBB_nowebview    SmokeTest
     Set API Header FBB No Web View
     Set API Body FBB No Web View
     Send Request FBB No Web View

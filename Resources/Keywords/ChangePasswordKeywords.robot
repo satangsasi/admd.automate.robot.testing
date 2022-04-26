@@ -10,10 +10,10 @@ Fill Username And Password Login Page Change Password
     [Arguments]    ${username}    ${password}
     Type Text In Text Box    ${txt_username_change_password}    ${username}
     Type Text In Text Box    ${txt_password_change_password}    ${password}
-    Set Test Variable        ${USERNAME}
-    Set Test Variable        ${PASSWORD}
-    Set Test Provisioning Data   Username: ${username}
-    Set Test Provisioning Data   Password: ${password}
+    Set Test Variable        ${USERNAME}    ${username}
+    Set Test Variable        ${PASSWORD}    ${password}
+    Set Test Provisioning Data    Username: ${username}
+    Set Test Provisioning Data    Password: ${password}
 
 Press Login Button In Login Page Change Password
     [Documentation]    Owner: sasipen

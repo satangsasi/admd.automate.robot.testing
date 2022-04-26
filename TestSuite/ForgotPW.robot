@@ -10,7 +10,7 @@ TST_F9_1_1_001 Verify forgot password with registered mobile number
     [Documentation]    Owner: Nakarin
     ...    \r\n*** Conditions ***
     ...    \r\nscope = profile
-    [Tags]    Success    Forgot_Password
+    [Tags]    Success    Forgot_Password    SmokeTest
     Create Browser Session      ${url_login_change_password}
     Press Forgot Password
     Fill Mobile Number Forgot Password

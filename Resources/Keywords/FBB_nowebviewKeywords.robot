@@ -57,6 +57,7 @@ Send Request Get Token FBB No Web View
 Get OTP Password FBB No Web View
     [Documentation]    Owner: Nakarin
     [Tags]    keyword_communicate
+    Switch Connection    ${SSH_ADMD_DEV}
     ${json_log}        Get Json Log FBB No Web View
     ${otp_password}    Get OTP Password From Json         ${json_log}
     Set Test Provisioning Data    OTP Password: ${otp_password}

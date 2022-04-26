@@ -28,25 +28,10 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin  Editor: Sasipen
     ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Close Browser    ALL 
-    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id 
+    Close Browser    ALL
+    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
-
-# Append To Document Teardown
-#     [Documentation]    Owner: Nakarin
-#     ...    Create Document of Provisioning Data(in order list) and Actual Result
-#     ...     ปิดไว้ก่อนเหมือนจะไม่ได้ใช้:sasipen
-#     [Tags]    keyword_communicate
-#     # Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
-#     # Set Test Provisioning Data    Header : ${API_HEADER}
-#     # Set Test Provisioning Data    Body : ${API_BODY}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
-#     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-#     # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
-#     Set Test Documentation Detail
     
 #ssh connect
 SSH Connect To Server Log
@@ -235,7 +220,8 @@ Get AAF5G Session
     ...    Used for get AFF5g Session for get AFF5G logs
     [Tags]    keyword_commands
     [Arguments]    ${log_path}
-    IF    len('${USERNAME}') == 10
+    ${status}    Run Keyword And Return Status    Should Match Regexp    ${USERNAME}    (\\d{10})
+    IF    ${status} == True
         ${user}    Replace String    ${USERNAME}    0    66    count=1
     ELSE
         ${user}    Set Variable      ${USERNAME}
@@ -245,16 +231,14 @@ Get AAF5G Session
         ${string}    Read    delay=5s
         Write    reset
         ${json_format}    Get Regexp Matches    ${string}    {.*
-#        # ${json}       Convert String to JSON    ${json_format}
-#        # Log Many      &{json}
         Log Many    @{json_format}
-        @{string}    Run Keyword And Ignore Error    Split String    ${json_format}[0]    "
+        @{string}    Run Keyword And Ignore Error     Split String      ${json_format}[0]    "
         Log Many    @{string}[1]
-        ${status}    Run Keyword And Return Status    Log    ${string}[1][5]
-        ${log_path}  Set Variable If     ${status} == True   ${element}
+        ${status}    Run Keyword And Return Status    Should Contain    ${string}[1][5]    https.0
+        ${aaf5g_log_path}    Set Variable    ${element}
         Exit For Loop If    ${status} == True
     END
-    [Return]    ${string}[1][5]    ${log_path}
+    [Return]    ${string}[1][5]    ${aaf5g_log_path}
 
 Get AAF5G Log Command
     [Documentation]    Owner: Nakarin
@@ -419,3 +403,20 @@ Verify Contain Any Value Decode Jwt
     ${value}           Get Value Json By Key    ${jsondata}    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
+
+
+*** Comments ***
+Append To Document Teardown
+    [Documentation]    Owner: Nakarin
+    ...    Create Document of Provisioning Data(in order list) and Actual Result
+    ...     ปิดไว้ก่อนเหมือนจะไม่ได้ใช้:sasipen
+    [Tags]    keyword_communicate
+    Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
+    Set Test Provisioning Data    Header : ${API_HEADER}
+    Set Test Provisioning Data    Body : ${API_BODY}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
+    Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
+    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
+    Set Test Documentation Detail

@@ -58,6 +58,7 @@ Get OTP Password Forgot Password
     [Documentation]    Owner: Nakarin
     ...    Getting OTP Password for Forgot PW
     [Tags]    keyword_communicate
+    Switch Connection    ${SSH_ADMD_DEV}
     ${json_log}        Get Json OTP Password Forgot PW
     ${otp_password}    Get OTP Password From Json    ${json_log}
     Set Test Variable    ${OTP_PASSWORD}    ${otp_password}

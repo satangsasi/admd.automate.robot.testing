@@ -8,7 +8,7 @@ Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 *** Test Cases ***
 TST_F2_1_1_001 Verify LoginOTP
     [Documentation]    Owner: Nakarin
-    [Tags]    Success    
+    [Tags]    Success    SmokeTest
     Create Browser Session    ${url_auth_fbb}
     Fill Username FBB OTP
     Click Request OTP Button

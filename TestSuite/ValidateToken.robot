@@ -9,7 +9,7 @@ Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 TST_F6_1_1_001 verify validate success B2C
     [Documentation]    Owner: Nakarin
     ...    login by FBB OTP
-    [Tags]    Success    
+    [Tags]    Success    SmokeTest
     Create Browser Session    ${url_login_by_fbb}
     Fill Username FBB OTP
     Click Request OTP Button
