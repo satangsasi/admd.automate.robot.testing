@@ -131,8 +131,7 @@ Get Kubectl Path ADMD Srfp
         ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-srfp
         IF    ${status} == True
             ${admd_srfp_path}    Set Variable    ${admd_path}[0]  
-        ELSE
-              Exit For Loop If    ${status} == True
+            Exit For Loop
         END
     END    
     [Return]    ${admd_srfp_path}
