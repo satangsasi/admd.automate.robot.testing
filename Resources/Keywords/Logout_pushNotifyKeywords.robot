@@ -26,11 +26,10 @@ Click Sign Up
     Click On Element    ${button_sing_up}
 
 Verify Page Sing Up Success
+    [Documentation]    Owner: sasipen
     Verify Locator Is Visible    ${img_sing_up_success}
     Verify Value At Locator      ${lbl_success_register}           ${success_register}
     Verify Value At Locator      ${lbl_please_confirm_register}    ${please_confirm_register}
-    ${text_please}    Get Text    ${lbl_please_confirm_register}
-    Log    ${text_please}    
     Take Screenshot Verify Success Scene
     
 Get Admd Srfp Confirm Link Register
@@ -54,9 +53,9 @@ Get Admd Srfp Confirm Link Register
 
 Get Link Confirm Register Form Server
     [Documentation]    Owner: sasipen
-    ${srfp_path}     Get Admd Srfp Path
-    ${session_id}    Get Admd Srfp Session    ${srfp_path}
-    Get Admd Srfp Confirm Link Register       ${srfp_path}    ${session_id}
+    ${session_id}    Get Admd Srfp Session    ${ADMD_SRFP_PATH}
+    Get Admd Srfp Confirm Link Register       ${ADMD_SRFP_PATH}    ${session_id}
+    Set Test Provisioning Data   Link Confirm Register : ${URL_CONFIRM_REGISTER}
 
 Verify Response On Webpage Logout Pushnotify
     [Documentation]    Owner: sasipen
@@ -92,7 +91,6 @@ Set API Header Delete Email Register
 
 Set API Body Delete Email Register
     [Documentation]    Owner: sasipen
-    Get Time Nonce
     Set Content API Body        $..publicId            ldi:${email_for_register}       
     Set Content API Body        $..deleteAllAlias      yes           
 
@@ -100,6 +98,7 @@ Send Post Request Delete Email Register
     [Documentation]    Owner: sasipen
     &{message}    Send Request    POST    url=${API_URL}     headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify} 
     Set Test Provisioning Data    ${message}[request]
+    Set Test Actual Result        ${message}[response]
 
 Keyword Test Set Up Delete Email Register
     [Documentation]    Owner: sasipen
@@ -196,7 +195,6 @@ Set API Header Logout Pushnotify
 
 Set API Body Logout Pushnotify
     [Documentation]    Owner: sasipen
-    Get Time Nonce
     ${value_access_token}    Get Value Response On Web Page By Key    $..access_token   
     Set Content API Body        $..access_token      ${value_access_token} 
     Set Content API Body        $..state             Logout Push Noti (1.10)    
