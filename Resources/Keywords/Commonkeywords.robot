@@ -28,25 +28,10 @@ Keyword Test Teardown
     [Documentation]    Owner: Nakarin  Editor: Sasipen
     ...    Edit: add keyword Get Admd Log From Server By X Session Id for set actual result ADMD V3.2 Log
     [Tags]    keyword_communicate
-    Close Browser    ALL 
-    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id 
+    Close Browser    ALL
+    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
     Run Keyword If Test Failed      Set Suite Documentation          ${TEST_NAME}:${\n}${TEST_MESSAGE}${\n}   append=True
     Run Keyword And Ignore Error    Set Test Documentation Detail
-
-# Append To Document Teardown
-#     [Documentation]    Owner: Nakarin
-#     ...    Create Document of Provisioning Data(in order list) and Actual Result
-#     ...     ปิดไว้ก่อนเหมือนจะไม่ได้ใช้:sasipen
-#     [Tags]    keyword_communicate
-#     # Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
-#     # Set Test Provisioning Data    Header : ${API_HEADER}
-#     # Set Test Provisioning Data    Body : ${API_BODY}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
-#     # Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
-#     # Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
-#     Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
-#     Set Test Documentation Detail
     
 #ssh connect
 SSH Connect To Server Log
@@ -418,3 +403,20 @@ Verify Contain Any Value Decode Jwt
     ${value}           Get Value Json By Key    ${jsondata}    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
+
+
+*** Comments ***
+Append To Document Teardown
+    [Documentation]    Owner: Nakarin
+    ...    Create Document of Provisioning Data(in order list) and Actual Result
+    ...     ปิดไว้ก่อนเหมือนจะไม่ได้ใช้:sasipen
+    [Tags]    keyword_communicate
+    Set Test Provisioning Data    Request ${TYPE_REQUEST} : ${API_URL}
+    Set Test Provisioning Data    Header : ${API_HEADER}
+    Set Test Provisioning Data    Body : ${API_BODY}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    User : ${USER}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Password : ${PASS}
+    Set Test Provisioning Data    Authentication URL : ${URL_AUTH}
+    Set Test Provisioning Data    Get Token URL : ${URL_GET_TOKEN}
+    Run Keyword And Ignore Error    Set Test Provisioning Data    Get Refresh Token URL : ${URL_GET_REFRESH_TOKEN}
+    Set Test Documentation Detail
