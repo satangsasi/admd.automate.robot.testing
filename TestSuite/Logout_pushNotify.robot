@@ -10,7 +10,7 @@ TST_F13_1_1_001 Verify Registered with Email Password and scope profile
     [Documentation]    Owner:sasipen
     ...    \r\n*** Conditions ***
     ...    \r\ntemplate 3.1 > token 3.2
-    [Tags]    Success    Logout_pushnotify 
+    [Tags]    Success    Logout_pushnotify     SmokeTest
     [Setup]    Run Keyword And Ignore Error    Keyword Test Set Up Delete Email Register
     Create Browser Session    ${url_registered_logout_pushnotify}
     Click Sign Up      ${llb_sign_up}

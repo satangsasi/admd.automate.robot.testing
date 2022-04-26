@@ -8,7 +8,7 @@ Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
 *** Test Cases ***
 TST_F4_1_1_001 Verify login with EmailOTP
     [Documentation]     Owner : sasipen
-    [Tags]    Email_Otp
+    [Tags]    Email_Otp    SmokeTest
     Set Content Header Request Email Otp    ${url_request_email_otp}
     ...                                     ${content_type_json}
     Set Body Request Email Otp              ${client_id_PK+WUA}

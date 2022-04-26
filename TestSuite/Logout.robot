@@ -23,7 +23,7 @@ TST_F5_1_1_003 Verify Logout with SSO Ldap Employee
 
 TST_F5_0_1_001 Verify logout feature with client_id
     [Documentation]    Owner:sasipen  
-    [Tags]    Success    Logout    Ldap_Employee  
+    [Tags]    Success    Logout    Ldap_Employee    SmokeTest
     Open Browser Login Employee And Open Page Get Token    ${url_auth_logout}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
