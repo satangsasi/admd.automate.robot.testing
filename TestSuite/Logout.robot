@@ -23,7 +23,7 @@ TST_F5_1_1_003 Verify Logout with SSO Ldap Employee
 
 TST_F5_0_1_001 Verify logout feature with client_id
     [Documentation]    Owner:sasipen  
-    [Tags]    Success    Logout    Ldap_Employee    SmokeTest
+    [Tags]    Success    Logout    Ldap_Employee    action_delay    SmokeTest
     Open Browser Login Employee And Open Page Get Token    ${url_auth_logout}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
@@ -37,7 +37,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect client_id
     [Documentation]    Owner:sasipen  
     ...    *** On-Hold**
     ...    ควรเป็นเทส fail เนื่องจาก incorrect client_id แต่เทสแลว pass  
-    [Tags]    Success    Logout    Ldap_Employee    On-Hold
+    [Tags]    Success    Logout    Ldap_Employee    action_delay    On-Hold
     Open Browser Login Employee And Open Page Get Token    ${url_auth_logout}
     Set Response On Webpage To Json 
     Get Value From Key Access Token Log Out
@@ -49,7 +49,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect client_id
 
 TST_F5_0_1_001 To verify logout feature with expired access token
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail    Logout    
+    [Tags]      Fail    Logout    action_delay
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -65,7 +65,7 @@ TST_F5_0_1_001 To verify logout feature with expired access token
 
 TST_F5_0_1_002 To verify logout feature with incorrect access token
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail    Logout        
+    [Tags]      Fail    Logout    action_delay
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -79,7 +79,7 @@ TST_F5_0_1_002 To verify logout feature with incorrect access token
 
 TST_F5_0_1_003 To verify logout feature with missing access token    
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail    Logout         
+    [Tags]      Fail    Logout    action_delay
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
@@ -93,7 +93,7 @@ TST_F5_0_1_003 To verify logout feature with missing access token
 
 TST_F5_0_1_004 To verify logout feature with Unknow URL    
     [Documentation]    Owner: Atitaya
-    [Tags]      Fail    Logout         
+    [Tags]      Fail    Logout    action_delay
     Create Browser Session      ${url_auth_logout}       
     Fill Username And Password Login Page 
     Press Login Button In Page
