@@ -33,6 +33,7 @@ Get OTP Password FBB
     ...    Get OTP Password From Server Log
     ...    Then Set Test Variable ${FBB_OTP_PASS}
     [Tags]    keyword_action
+    Switch Connection    ${SSH_ADMD_DEV}
     ${json_otp_log}      Get Json OTP Password Log FBB
     ${otp_password}      Get OTP Password From Json    ${json_otp_log}
     Set Test Variable    ${FBB_OTP_PASS}    ${otp_password}
