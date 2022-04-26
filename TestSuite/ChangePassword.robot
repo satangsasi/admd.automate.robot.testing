@@ -43,7 +43,7 @@ TST_F8_1_1_003 Verlify Change Password with profile have gupimpi more than one o
     [Documentation]    Owner: Nakarin
     ...    \r\n***Condition***
     ...    \r\nค่าที่อยู่ใน idtoken "login_subtype": "ldapCp" 
-    [Tags]    Success    Change_password    AAF5G    Sprint6
+    [Tags]    Success    Change_password    AAF5G    Sprint6    Test
     Create Browser Session      ${url_for_login_multi_sequence_forgot_pw}
     Fill Username And Password Login Page Change Password    ${user_login_change_password_multi_sequence}    ${pass_login_change_password_multi_sequence}
     Press Login Button In Login Page Change Password

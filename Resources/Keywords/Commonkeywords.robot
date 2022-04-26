@@ -221,7 +221,8 @@ Get AAF5G Session
     ...    Used for get AFF5g Session for get AFF5G logs
     [Tags]    keyword_commands
     [Arguments]    ${log_path}
-    IF    len('${USERNAME}') == 10
+    ${status}    Run Keyword And Return Status    Should Match Regexp    ${USERNAME}    (\\d{10})
+    IF    ${status} == True
         ${user}    Replace String    ${USERNAME}    0    66    count=1
     ELSE
         ${user}    Set Variable      ${USERNAME}
