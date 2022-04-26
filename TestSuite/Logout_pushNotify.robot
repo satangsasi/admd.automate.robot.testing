@@ -10,7 +10,7 @@ TST_F13_1_1_001 Verify Registered with Email Password and scope profile
     [Documentation]    Owner:sasipen
     ...    \r\n*** Conditions ***
     ...    \r\ntemplate 3.1 > token 3.2
-    [Tags]    Success    Logout_pushnotify     SmokeTest
+    [Tags]    Success    Logout_pushnotify     action_delay    SmokeTest
     [Setup]    Run Keyword And Ignore Error    Keyword Test Set Up Delete Email Register
     Create Browser Session    ${url_registered_logout_pushnotify}
     Click Sign Up      ${llb_sign_up}
@@ -33,7 +33,7 @@ TST_F13_1_1_002 Verify Login with Email Password and scope profile
     [Documentation]    Owner:sasipen
     ...    \r\n*** Conditions ***
     ...    \r\ntemplate 3.1 > token 3.2
-    [Tags]    Success    Logout_pushnotify 
+    [Tags]    Success    Logout_pushnotify    action_delay
     Create Browser Session    ${url_registered_logout_pushnotify}
     Fill Email And Password For Sing In
     Click Sing In
@@ -50,7 +50,7 @@ TST_F13_1_1_003 Verify sso with Email Password and scope profile
     [Documentation]    Owner:sasipen
     ...    \r\n*** Conditions ***
     ...    \r\nlogin template 3.1 > login token 3.2 > sso template 3.1 > sso token 3.2
-    [Tags]    Success    Logout_pushnotify
+    [Tags]    Success    Logout_pushnotify    action_delay
     Sing In And Open Link Get Token
     New Page                    ${url_registered_logout_pushnotify}
     Create URL For Get Token    ${url_get_token_logout_pushnotify}
@@ -66,7 +66,7 @@ TST_F13_1_1_004 Verify Refresh Token with app Learndi and scope : profile
     [Documentation]    Owner:sasipen
     ...    \r\n*** Conditions ***
     ...    \r\ntemplate 3.1 > token 3.2 > refresh_token 3.2
-    [Tags]    Success    Logout_pushnotify    
+    [Tags]    Success    Logout_pushnotify    action_delay
     Create Browser Session      ${url_registered_logout_pushnotify}
     Fill Email And Password For Sing In
     Click Sing In
@@ -82,7 +82,7 @@ TST_F13_1_1_004 Verify Refresh Token with app Learndi and scope : profile
 
 TST_F13_1_1_005 Verify Logout with Push Noti
     [Documentation]    Owner:sasipen
-    [Tags]    Success    Logout_pushnotify
+    [Tags]    Success    Logout_pushnotify    action_delay
     Create Browser Session      ${url_registered_logout_pushnotify}
     Fill Email And Password For Sing In
     Click Sing In
