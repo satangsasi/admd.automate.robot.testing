@@ -357,8 +357,8 @@ Fill Username And Password
     ...    Then fill it into text username and password text box
     [Arguments]  ${user}    ${pass}
     [Tags]    keyword_communicate
-    Fill Text    ${txt_username_ldap}    ${user}
-    Fill Text    ${txt_password_ldap}    ${pass}
+    Type Text In Text Box    ${txt_username_ldap}    ${user}
+    Type Text In Text Box    ${txt_password_ldap}    ${pass}
     Set Test Provisioning Data    Username : ${user}
     Set Test Provisioning Data    Password : ${pass}
     Set Test Variable    ${USERNAME}    ${user}
