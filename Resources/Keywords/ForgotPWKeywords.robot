@@ -250,7 +250,7 @@ Open Link And Confirm New Password Again
 
 Verify Error After Confirm New Password 2 Times 
     [Documentation]    Owner: sasipen
-    Verify Locator Is Visible    ${img_send_Fail}      
+    Verify Locator Is Visible    ${img_send_fail}      
     Verify Value At Locator      ${lbl_error_somthing_wrong}      ${error_somthing_wrong}                      
     Verify Value At Locator      ${lbl_error_please_try_again}    ${error_please_try_again}
     Take Screenshot Verify Success Scene

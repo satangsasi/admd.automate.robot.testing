@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-Suite Setup      Keyword Suite Setup
-Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
+# Suite Setup      Keyword Suite Setup
+# Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 
 
 *** Test Cases ***

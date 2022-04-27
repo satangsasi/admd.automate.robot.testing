@@ -18,4 +18,3 @@ ${llb_sign_up}                      //*[@id="btn_register"]
 ${img_sing_up_success}              //*[@id="form-sign"]/div[1]/div/img
 ${lbl_success_register}             //*[@id="form-sign"]/div[2]/label
 ${lbl_please_confirm_register}      //*[@id="form-sign"]/div[3]/label
-

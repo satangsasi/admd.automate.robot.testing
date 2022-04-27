@@ -26,6 +26,5 @@ ${btn_submit_done_forgot_pw}    //*[@id="fbtn_done_forgot"]
 ${btn_close_error_box}          //*[@class='swal2-confirm button-modal swal2-styled']
 ${btn_submit_new_password}      //*[@id="btnSummit"]  
 
-
 ${img_send_succeeds}    //*[@id="form-sign"]/div[1]/div/img
-${img_send_Fail}        //*[@class="swal2-icon swal2-error swal2-animate-error-icon"]
+${img_send_fail}        //*[@class="swal2-icon swal2-error swal2-animate-error-icon"]
