@@ -274,8 +274,8 @@ Get Code From Authentication
     ...    - Add Set Test Variable (Provisioning Data)
     ...    - Add Set Test Provisioning Data
     [Tags]    keyword_action
-    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Verify Locator Is Visible    ${llb_login_web_ais}
-    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    matches    .*code=
+    # Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Verify Locator Is Visible    ${llb_login_web_ais}
+    ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    	contains    https://www.ais.th/?code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
     Run Keyword And Ignore Error    Set Test Provisioning Data    Authenticate URL For Get Code: ${url_auth_access}
