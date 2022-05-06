@@ -138,9 +138,7 @@ Get Kubectl Path ADMD Srfp
 
 Get Admd Srfp Path
     [Documentation]    Owner: sasipen
-    ...    ${admd_path_get_email}=admd-srfp-69c8f85ddc-swhl8  fixed path in folder variable    
-    # ${admd_srfp_path_get_email}    Find Admd Srfp Path
-    # Write     kubectl exec -it ${admd_srfp_path_get_email} -n admd sh 
+    ...    get path admd srfp____SRFP.0.log    
     [Arguments]    ${kubectl_path}
     Write     kubectl exec -it ${kubectl_path} -n admd sh 
     ${output}    Read    delay=2s
@@ -153,7 +151,7 @@ Get Admd Srfp Path
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
     Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${admd_path_get_email}_SRFP.0.log"  values=False
+    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${kubectl_path}_SRFP.0.log"  values=False
     ${srfp_path}    Set Variable    ${cat_path}[-1]
     [Return]    ${srfp_path}
 
