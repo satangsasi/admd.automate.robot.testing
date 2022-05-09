@@ -18,27 +18,6 @@ Fill Mobile Number Forgot Password
     Set Test Variable       ${USERNAME}       ${forgot_pw_mobile_number}
     Set Test Provisioning Data    Username: ${forgot_pw_mobile_number}
     
-# Get Admd OTP Path
-#     [Documentation]    Owner: sasipen   
-#     ...    ${admd_path_get_otp}= admd-v3-2-5b7fbf8b5c-5tdbg :fixed path in folder Variable
-#     ...     น่าจะไม่ได้ใช้ get log ตั้งแต่ suite setup แล้ว
-#     Switch Connection    ${SSH_ADMD}
-#     Write     kubectl exec -it ${admd_path_get_otp} -n admd sh 
-#     ${output}    Read    delay=2s
-#     Log    ${output}
-#     Write    cd logs/detail
-#     Write    ls -lrt | tail
-#     ${output}    Read    delay=2s
-#     Log    ${output}
-#     @{output_line}    Split To Lines        ${output}
-#     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-#     Write    reset
-#     Read     delay=5s  
-#     Log Many    @{cat_path}
-#     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${admd_path_get_otp}_admd.0.detail"  values=False
-#     ${admd_path}    Set Variable    ${cat_path}[-1]
-#     [Return]    ${admd_path}
-
 Get Json OTP Password Forgot PW
     [Documentation]    Owner: Nakarin    Editor: Atitaya  , Sasipen
     ...    Edit : add keyword Switch Connection ${SSH_ADMD_DEV}
