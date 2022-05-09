@@ -47,7 +47,7 @@ TST_F6_1_1_004 verify validate success with profile have gupimpi more than one o
 TST_F6_0_1_001 Verify validate fail with no access token received from loging by msisdn which is no profile
     [Documentation]    Owner: Sasipen
     ...
-    [Tags]    Validate_Token    Invalid    
+    [Tags]    Validate_Token    Invalid    SmokeTest
     Set API Header Request Otp Validate Token
     Set API Body Request Otp Validate Token
     Send Post Request Otp Validate Token
