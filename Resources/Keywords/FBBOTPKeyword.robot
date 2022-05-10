@@ -7,14 +7,14 @@ Fill Username FBB OTP
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing
     [Tags]    Keyword_communicate
-    Type Text In Text Box    ${txt_fbb_user}    ${fbb_username}    delay=0.1s
+    Type Text   ${txt_fbb_user}    ${fbb_username}    
     Set Test Provisioning Data   Username: ${fbb_username}
 
 Fill OTP Password FBB 
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing
     [Tags]    Keyword_communicate
-    Type Text In Text Box    ${txt_fbb_pass}    ${FBB_OTP_PASS}    delay=0.1s
+    Type Text In Text Box    ${txt_fbb_pass}    ${FBB_OTP_PASS}    
     Set Test Provisioning Data   OTP Password: ${FBB_OTP_PASS}
 
 Click Request OTP Button
@@ -96,7 +96,7 @@ Fill Username FBB OTP Number No Contact
     [Documentation]    Owner: Nakarin
     ...    Website can detect character while typing
     [Tags]    Keyword_communicate
-    Type Text In Text Box    ${txt_fbb_user}    ${fbb_username_no_contact_number}     delay=0.1s
+    Type Text In Text Box    ${txt_fbb_user}    ${fbb_username_no_contact_number}     
     Set Test Provisioning Data   Username: ${fbb_username_no_contact_number} 
 
 Verify Page Can Not Click Request Otp
