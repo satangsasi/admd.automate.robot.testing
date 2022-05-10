@@ -10,7 +10,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     ...
     ...    ***Expected Result***
     ...    \r\n User can loginB2B success and  received Access Token.
-    [Tags]    Client_Credentials    SmokeTest
+    [Tags]    Client_Credentials    SmokeTest    Test
     Set Content Header Client Credentials    ${url_client_credentials}
     ...                                      ${content_type_x_www}
     Set Body Client Credentials    ${client_id_OhFw3u}
