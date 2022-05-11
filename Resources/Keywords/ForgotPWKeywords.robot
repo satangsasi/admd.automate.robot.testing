@@ -143,6 +143,7 @@ Get Admd Srfp Session
     Log    ${session_value}[0]
     ${session}    Set Variable    ${session_value}[0]
     [Return]    ${session}    
+    Set Test Variable    ${X_SESSION_ID_SEND_EMAIL}    ${session}
     
 Get Admd Srfp Confirm Link New Password
     [Documentation]    Owner: sasipen
