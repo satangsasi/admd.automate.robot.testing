@@ -208,3 +208,20 @@ Send Post Request Logout Pushnotify
 Verify Response Logout Pushnotify
     [Documentation]    Owner: sasipen
     Verify Value Response By Key        $..state        Logout Push Noti (1.10)
+
+Get Srfp App log
+    Switch Connection    ${SSH_ADMD_SRFP}
+    Write    reset
+    Read     delay=5s
+    Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID_SEND_EMAIL}   
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log    ${json_format} 
+    Set Test Actual Result    SRFP AppLog: ${json_format} 
+
+# Keyword Test Teardown For Logout Pushnotify
+#     Close Browser    ALL
+#     Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
+#     Run Keyword If Test Passed      SSH Connect To Server Get Log Logout Pushnotify
+#     Run Keyword If Test Passed      Get ADMD SRFC Log Detail
+#     Run Keyword If Test Passed      Get ADMD SCF Log Detail
