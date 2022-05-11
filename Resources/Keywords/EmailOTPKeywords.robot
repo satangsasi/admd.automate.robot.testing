@@ -3,7 +3,7 @@ Resource    ../../TestSuite/Resource_init.robot
 
 
 *** Keywords ***
-Set Content Header Request Email Otp 
+Set Content Header Request Email Otp
     [Documentation]     Owner : sasipen
     ...    Set header content type and url
     [Arguments]    ${url}    ${content_type}
@@ -14,7 +14,7 @@ Set Content Header Request Email Otp
 Set Body Request Email Otp  
     [Documentation]     Owner : sasipen
     ...    Set client id,public id,reference to formate body 
-    [Arguments]    ${client_id}    ${public_id}    ${reference}    
+    [Arguments]    ${client_id}    ${public_id}    ${reference}
     Set Schema API Body     ${body_request_email_otp_schema}        jsonfile=False
     Set Content API Body    $..client_id        ${client_id}        append=False
     Set Content API Body    $..public_id        ${public_id}
