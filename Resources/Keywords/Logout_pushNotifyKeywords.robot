@@ -18,7 +18,7 @@ Fill Information For Register
 
 Click Accept Term And Condition
     [Documentation]    Owner: sasipen
-    Click On Element    ${chk_term_and_condition}
+    Click On Element    ${cbx_term_and_condition}
 
 Click Sign Up
     [Documentation]    Owner: sasipen

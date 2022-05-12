@@ -13,7 +13,7 @@ TST_F13_1_1_001 Verify Registered with Email Password and scope profile
     [Tags]    Success    Logout_pushnotify     action_delay    SmokeTest
     [Setup]    Run Keyword And Ignore Error    Keyword Test Set Up Delete Email Register
     Create Browser Session    ${url_registered_logout_pushnotify}
-    Click Sign Up      ${llb_sign_up}
+    Click Sign Up      ${lbl_sign_up}
     Fill Information For Register
     Click Accept Term And Condition
     Click Sign Up      ${btn_sign_up_page_register}
