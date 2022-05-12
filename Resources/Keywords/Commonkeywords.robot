@@ -11,11 +11,11 @@ ${BROWSER}      chromium
 #keyword Setup
 Keyword Suite Setup
     [Documentation]    Owner: Nakarin
-    ...    ยังไม่ใช้  Change Directory Path To Get ADMD DEV Log เนื่องจาก path มีการเปลี่ยนแปลง และในบางข้อใช้ path ไม่เหมือนกัน
+    ...    
     [Tags]    keyword_communicate
     SSH Connect To Server Log
-    ${admd_path}    Change Directory Path To Get ADMD DEV Log
-    Set Suite Variable    ${ADMD_PATH}    ${admd_path}
+    ${admd_dev_path}    Change Directory Path To Get ADMD DEV Log
+    Set Suite Variable    ${ADMD_PATH}    ${admd_dev_path}
     ${admd_srfp_path}    Change Directory Path To Get ADMD SRFP Log
     Set Suite Variable    ${ADMD_SRFP_PATH}    ${admd_srfp_path}
 
@@ -65,45 +65,129 @@ SSH Connect To Server Log
 Change Directory Path To Get ADMD DEV Log
     [Documentation]    Owner: Nakarin
     ...    Change to get log directory although old path was change - (deployed)
-    ...    [Return] the admd path to get log with grep
+    ...    [Return] the admd dev path to get log with grep
     ...    Edit :sasipen 
-    ...    Add Set Suite Variable    ${ADMD_PATH}    ${admd_path} For use in another keyword
+    ...    change keyword get kubectl path and get admd path
     [Tags]    keyword_action
     Switch Connection    ${SSH_ADMD_DEV}
-    ${kubectl_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Path
-    #${admd_dev_path}    Wait Until Keyword Succeeds    5x    2s   Get Kubectl Path ADMD    admd-v3-2-dev    
+    ${admd_dev_path}        Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-v3-2-dev     
     Write    reset
-    Read     delay=5s    # Wait for screen reset
-    ${admd_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${kubectl_path}
-    # ${admd_dev_path}    Wait Until Keyword Succeeds    5x    2s    ADMD Get Kubectl Grep Path    ${admd_dev_path}
-    [Return]    ${admd_path}
+    Read     delay=2s    # Wait for screen reset  
+    ${admd_dev_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_dev_path}    logs/detail    _admd.0.detail    
+    [Return]    ${admd_dev_path_log}
 
-ADMD Get Kubectl Path
-    [Documentation]    Owner: Nakarin
-    ...    Read output of ssh command then return the last Kubectl path
-    [Tags]    keyword_command
+# ADMD Get Kubectl Path
+#     [Documentation]    Owner: Nakarin
+#     ...    Read output of ssh command then return the last Kubectl path
+#     ...    รอเทสว่า keyword    Get Kubectl Path ADMD  กับ  Get Admd Path ใช้ได้ไหม ถ้าใช้ได้ลบอันนี้ทิ้งเลย
+#     [Tags]    keyword_command
+#     Write    kubectl get pod -n admd
+#     ${output}          Read    delay=1s
+#     Log    ${output}
+#     @{output_line}     Split To Lines        ${output}
+#     FOR    ${line}    IN    @{output_line}    
+#         @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
+#         ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-v3-2-dev
+#         IF    ${status} == True
+#             ${admd_dev_path}    Set Variable    ${admd_path}[0]  
+#             Exit For Loop
+#         END
+#     END    
+#     [Return]    ${admd_dev_path}
+
+# ADMD Get Kubectl Grep Path
+#     [Documentation]    Owner: Nakarin
+#     ...    Receive ${kubectl_path} then change directory to ${kubectl_path} 
+#     ...    then return ${cat_path} to get log
+#     ...    รอเทสว่า keyword    Get Kubectl Path ADMD  กับ  Get Admd Path ใช้ได้ไหม ถ้าใช้ได้ลบอันนี้ทิ้งเลย
+#     [Tags]    keyword_command
+#     [Arguments]    ${kubectl_path}
+#     Write    kubectl exec -it ${kubectl_path} -n admd sh
+#     Write    cd logs/detail/
+#     Write    ls -lrt | tail
+#     ${output}      Read    delay=2s
+#     Log    ${output}
+#     @{output_line}    Split To Lines        ${output}
+#     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+#     Write    reset
+#     Log Many    @{cat_path}
+#     Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
+#     [Return]    ${cat_path}[-1]
+
+Change Directory Path To Get ADMD SRFP Log
+    [Documentation]    Owner: sasipen
+    ...    get SRFP path ls tail
+    ...    [Return] the admd SRFP path to get log with grep
+    Switch Connection    ${SSH_ADMD_SRFP}
+    ${admd_srfp_path}        Wait Until Keyword Succeeds    5x    2s   Get Kubectl Path ADMD    admd-srfp    
+    Write    reset
+    Read     delay=2s  
+    ${admd_srfp_path_log}    Wait Until Keyword Succeeds    5x    2s   Get Admd Path    ${admd_srfp_path}    logs/appLog/    _SRFP.0.log 
+    [Return]    ${admd_srfp_path_log}
+
+# Get Kubectl Path ADMD Srfp
+#     [Documentation]    Owner: sasipen
+#     ...    รอเทสว่า keyword    Get Kubectl Path ADMD  กับ  Get Admd Path ใช้ได้ไหม ถ้าใช้ได้ลบอันนี้ทิ้งเลย
+#     Write    kubectl get pod -n admd
+#     ${output}    Read    delay=1s
+#     Log    ${output}
+#     @{output_line}    Split To Lines        ${output}
+#     FOR    ${line}    IN    @{output_line}    
+#         @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
+#         ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-srfp
+#         IF    ${status} == True
+#             ${admd_srfp_path}    Set Variable    ${admd_path}[0]  
+#             Exit For Loop
+#         END
+#     END    
+#     [Return]    ${admd_srfp_path}
+
+# Get Admd Srfp Path
+#     [Documentation]    Owner: sasipen
+#     ...    get path admd srfp____SRFP.0.log
+#     ...    รอเทสว่า keyword    Get Kubectl Path ADMD  กับ  Get Admd Path ใช้ได้ไหม ถ้าใช้ได้ลบอันนี้ทิ้งเลย  
+#     [Arguments]    ${kubectl_path}
+#     Write     kubectl exec -it ${kubectl_path} -n admd sh 
+#     ${output}    Read    delay=2s
+#     Log    ${output}
+#     Write    cd logs/appLog/
+#     Write    ls -lrt | tail
+#     ${output}    Read    delay=2s
+#     Log    ${output}
+#     @{output_line}    Split To Lines        ${output}
+#     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
+#     Write    reset
+#     Log Many    @{cat_path}
+#     Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${kubectl_path}_SRFP.0.log"  values=False
+#     ${srfp_path}    Set Variable    ${cat_path}[-1]
+#     [Return]    ${srfp_path}
+
+#comment wait review
+Get Kubectl Path ADMD
+    [Documentation]    Owner: sasipen
+    ...   รับ Arguments ชื่อ path  เอามาใช้ตอน จะค้นหา path จะได้ใช้ด้วยกันได้ ไม่ต้องสร้าง keyword ใหม่หลายอัน
+    [Arguments]    ${path_get_log}        
     Write    kubectl get pod -n admd
-    ${output}          Read    delay=1s
+    ${output}    Read    delay=1s
     Log    ${output}
-    @{output_line}     Split To Lines        ${output}
+    @{output_line}    Split To Lines        ${output}
     FOR    ${line}    IN    @{output_line}    
         @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
-        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-v3-2-dev
+        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    ${path_get_log}
         IF    ${status} == True
-            ${admd_dev_path}    Set Variable    ${admd_path}[0]  
+            ${admd_path}    Set Variable    ${admd_path}[0]  
             Exit For Loop
         END
     END    
-    [Return]    ${admd_dev_path}
+    [Return]    ${admd_path}
 
-ADMD Get Kubectl Grep Path
-    [Documentation]    Owner: Nakarin
-    ...    Receive ${kubectl_path} then change directory to ${kubectl_path} 
-    ...    then return ${cat_path} to get log
+Get Admd Path
+    [Documentation]    Owner: 
+    ...   รับ Arguments ชื่อ path tail > 0......  เอามาใช้ตอน จะค้นหา path ล่าสุดของตัวที่จะเก็ทล็อค จะได้ใช้ด้วยกันได้ ไม่ต้องสร้าง keyword ใหม่หลายอัน
     [Tags]    keyword_command
-    [Arguments]    ${kubectl_path}
+    [Arguments]    ${kubectl_path}    ${logs_type}    ${path_tail}    
     Write    kubectl exec -it ${kubectl_path} -n admd sh
-    Write    cd logs/detail/
+    Write    cd ${logs_type}
     Write    ls -lrt | tail
     ${output}      Read    delay=2s
     Log    ${output}
@@ -111,52 +195,8 @@ ADMD Get Kubectl Grep Path
     @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
     Write    reset
     Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    admd.0.detail    msg=Can't get "${kubectl_path}[0].admd.0.detail" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
+    Should Contain    ${cat_path}[-1]    ${path_tail}    msg=Can't get "${kubectl_path}[0]${path_tail}" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
     [Return]    ${cat_path}[-1]
-
-Change Directory Path To Get ADMD SRFP Log
-    Switch Connection    ${SSH_ADMD_SRFP}
-    ${admd_srfp_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD Srfp
-    #${admd_dev_path}    Wait Until Keyword Succeeds    5x    2s   Get Kubectl Path ADMD    admd-srfp    
-    Write    reset
-    Read     delay=2s  
-    ${admd_srfp_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Srfp Path    ${admd_srfp_path}
-    [Return]    ${admd_srfp_path_log}
-
-Get Kubectl Path ADMD Srfp
-    [Documentation]    Owner: sasipen
-    Write    kubectl get pod -n admd
-    ${output}    Read    delay=1s
-    Log    ${output}
-    @{output_line}    Split To Lines        ${output}
-    FOR    ${line}    IN    @{output_line}    
-        @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
-        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    admd-srfp
-        IF    ${status} == True
-            ${admd_srfp_path}    Set Variable    ${admd_path}[0]  
-            Exit For Loop
-        END
-    END    
-    [Return]    ${admd_srfp_path}
-
-Get Admd Srfp Path
-    [Documentation]    Owner: sasipen
-    ...    get path admd srfp____SRFP.0.log    
-    [Arguments]    ${kubectl_path}
-    Write     kubectl exec -it ${kubectl_path} -n admd sh 
-    ${output}    Read    delay=2s
-    Log    ${output}
-    Write    cd logs/appLog/
-    Write    ls -lrt | tail
-    ${output}    Read    delay=2s
-    Log    ${output}
-    @{output_line}    Split To Lines        ${output}
-    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    Write    reset
-    Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    SRFP.0.log    msg=Can't get "${kubectl_path}_SRFP.0.log"  values=False
-    ${srfp_path}    Set Variable    ${cat_path}[-1]
-    [Return]    ${srfp_path}
 
 Get Admd Log From Server
     [Documentation]    Owner: sasipen    
@@ -404,90 +444,6 @@ Verify Contain Any Value Decode Jwt
     ${value}           Get Value Json By Key    ${jsondata}    ${response_key}
     Should Match Regexp    ${value}    .*
     Log    ${value}
-
-#comment wait review
-SSH Connect To Server Get Log Logout Pushnotify
-    ${admd_srfc_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
-    ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
-    Log    ${login_log} 
-    Set Suite Variable    ${SSH_ADMD_SRFC}     ${admd_srfc_connection}
-    ${admd_src_connection}       Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
-    ${login_log}    Login    ${ssh_admd_user}         ${ssh_admd_pass}
-    Log    ${login_log} 
-    Set Suite Variable    ${SSH_ADMD_SCF}     ${admd-scf_connection}   # ADMD DEV Connection
-
-Get Kubectl Path ADMD
-    [Documentation]    Owner: sasipen
-    ...   รับ Arguments ชื่อ path  เอามาใช้ตอน จะค้นหา path จะได้ใช้ด้วยกันได้ ไม่ต้องสร้าง keyword ใหม่หลายอัน
-    [Arguments]    ${path_get_log}        
-    Write    kubectl get pod -n admd
-    ${output}    Read    delay=1s
-    Log    ${output}
-    @{output_line}    Split To Lines        ${output}
-    FOR    ${line}    IN    @{output_line}    
-        @{admd_path}       Get Regexp Matches    ${line}       (\\w\\S+)
-        ${status}    Run Keyword And Return Status    Should Contain    ${admd_path}[0]    ${path_get_log}
-        IF    ${status} == True
-            ${admd_srfp_path}    Set Variable    ${admd_path}[0]  
-            Exit For Loop
-        END
-    END    
-    [Return]    ${admd_path}
-
-Get Admd Path
-    [Documentation]    Owner: 
-    ...   รับ Arguments ชื่อ path tail > 0......  เอามาใช้ตอน จะค้นหา path ล่าสุดของตัวที่จะเก็ทล็อค จะได้ใช้ด้วยกันได้ ไม่ต้องสร้าง keyword ใหม่หลายอัน
-    [Tags]    keyword_command
-    [Arguments]    ${kubectl_path}    ${path_tail}    
-    Write    kubectl exec -it ${kubectl_path} -n admd sh
-    Write    cd logs/detail/
-    Write    ls -lrt | tail
-    ${output}      Read    delay=2s
-    Log    ${output}
-    @{output_line}    Split To Lines        ${output}
-    @{cat_path}       Get Regexp Matches    ${output_line}[-2]    (\\w\\S+)
-    Write    reset
-    Log Many    @{cat_path}
-    Should Contain    ${cat_path}[-1]    ${path_tail}    msg=Can't get "${kubectl_path}[0]${path_tail}" with 'kubectl exec -it ${kubectl_path}[0] -n admd sh' command    values=False
-    [Return]    ${cat_path}[-1]
-
-Get ADMD SRFC Log Detail
-    Switch Connection    ${SSH_ADMD_SRFC}
-    ${admd_srfc_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd_srfc     
-    Write    reset
-    Read     delay=2s  
-    ${admd_srfp_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_srfc_path}    _SRFC.0.detail    
-    Write    reset
-    Read     delay=5s
-    Write    cat ${admd_srfp_path_log} | grep ${X_SESSION_ID_SEND_EMAIL}
-    ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    SRFC Log Detail: ${json_format} 
-
-Get ADMD SCF Log Detail
-    Switch Connection    ${SSH_ADMD_SCF}
-    ${admd_scf_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-scf-776c894cb9
-    Write    reset
-    Read     delay=2s  
-    ${admd_scf_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_scf_path}    _SCF.0.detail    
-    Write    reset
-    Read     delay=5s
-    Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID_SEND_EMAIL}
-    ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    SCF Log Detail: ${json_format} 
-
-Keyword Test Teardown For Logout Pushnotify
-    Close Browser    ALL
-    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
-    Run Keyword If Test Passed      SSH Connect To Server Get Log Logout Pushnotify
-    Run Keyword If Test Passed      Get ADMD SRFC Log Detail
-    Run Keyword If Test Passed      Get ADMD SCF Log Detail
-
-
-
 
 *** Comments ***
 Append To Document Teardown
