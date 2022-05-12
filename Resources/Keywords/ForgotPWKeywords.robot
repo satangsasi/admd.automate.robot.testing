@@ -143,7 +143,6 @@ Get Admd Srfp Session
     Log    ${session_value}[0]
     ${session}    Set Variable    ${session_value}[0]
     [Return]    ${session}    
-    Set Test Variable    ${X_SESSION_ID_SEND_EMAIL}    ${session}
     
 Get Admd Srfp Confirm Link New Password
     [Documentation]    Owner: sasipen
@@ -168,7 +167,7 @@ Get Link Confirm New Password Form Server
     [Documentation]    Owner: sasipen
     ...    link confirm new password set name > ${URL_CONFIRM_NEW_PASSWORD} 
     ${session_id}    Get Admd Srfp Session    ${ADMD_SRFP_PATH}
-    Get Admd Srfp Confirm Link New Password   ${ADMD_SRFP_PATH}    ${session_id}      
+    Get Admd Srfp Confirm Link New Password   ${ADMD_SRFP_PATH}    ${session_id}    
     Set Test Provisioning Data   Link Confirm New Password : ${URL_CONFIRM_NEW_PASSWORD}
 
 Fill New Password 
