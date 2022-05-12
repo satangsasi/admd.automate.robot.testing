@@ -55,6 +55,7 @@ Get Link Confirm Register Form Server
     [Documentation]    Owner: sasipen
     ${session_id}    Get Admd Srfp Session    ${ADMD_SRFP_PATH}
     Get Admd Srfp Confirm Link Register       ${ADMD_SRFP_PATH}    ${session_id}
+    Set Test Variable    ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}    ${session_id} 
     Set Test Provisioning Data   Link Confirm Register : ${URL_CONFIRM_REGISTER}
 
 Verify Response On Webpage Logout Pushnotify
@@ -209,19 +210,77 @@ Verify Response Logout Pushnotify
     [Documentation]    Owner: sasipen
     Verify Value Response By Key        $..state        Logout Push Noti (1.10)
 
-Get Srfp App log
+SSH Connect To Server Get Log Logout Pushnotify
+    ${admd_srfc_connection}    Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
+    ${login_log}    Login      ${ssh_admd_user}   ${ssh_admd_pass}
+    Log    ${login_log} 
+    Set Suite Variable    ${SSH_ADMD_SRFC}    ${admd_srfc_connection}
+    ${admd_scf_connection}     Open Connection    ${ssh_admd_ip_address}     prompt=$    timeout=${default_timeout}
+    ${login_log}    Login      ${ssh_admd_user}   ${ssh_admd_pass}
+    Log    ${login_log} 
+    Set Suite Variable    ${SSH_ADMD_SCF}     ${admd_scf_connection}
+
+Get ADMD SRFP App log
     Switch Connection    ${SSH_ADMD_SRFP}
     Write    reset
     Read     delay=5s
-    Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID_SEND_EMAIL}   
+    # Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}  
+    Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID}  
+    ${X_SESSION_ID}
     ${string}   Read    delay=5s
     ${json_format}    Get Regexp Matches    ${string}    {.*
     Log    ${json_format} 
     Set Test Actual Result    SRFP AppLog: ${json_format} 
 
-# Keyword Test Teardown For Logout Pushnotify
-#     Close Browser    ALL
-#     Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
-#     Run Keyword If Test Passed      SSH Connect To Server Get Log Logout Pushnotify
-#     Run Keyword If Test Passed      Get ADMD SRFC Log Detail
-#     Run Keyword If Test Passed      Get ADMD SCF Log Detail
+Get ADMD SRFC Path
+    Switch Connection    ${SSH_ADMD_SRFC}
+    ${admd_srfc_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-srfc     
+    Write    reset
+    Read     delay=2s  
+    ${admd_srfc_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_srfc_path}    logs/detail    _SRFC.0.detail    
+    Set Suite Variable    ${ADMD_SRFC_PATH}    ${admd_srfc_path_log}
+
+Get ADMD SRFC Log Detail
+    Switch Connection    ${SSH_ADMD_SRFC}
+    Write    reset
+    Read     delay=5s
+    # Write    cat ${admd_srfp_path_log} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}
+    Write    cat ${ADMD_SRFC_PATH} | grep ${X_SESSION_ID}
+    ${X_SESSION_ID}
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log    ${json_format} 
+    Set Test Actual Result    SRFC Log Detail: ${json_format} 
+
+Get ADMD SCF Path
+    Switch Connection    ${SSH_ADMD_SCF}
+    ${admd_scf_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-scf-776c894cb9
+    Write    reset
+    Read     delay=2s  
+    ${admd_scf_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_scf_path}    logs/detail    _SCF.0.detail    
+    Set Suite Variable    ${ADMD_SCF_PATH}    ${admd_scf_path_log}
+
+Get ADMD SCF Log Detail   
+    Switch Connection    ${SSH_ADMD_SCF} 
+    Write    reset
+    Read     delay=5s
+    # Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}
+    Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID}
+    ${X_SESSION_ID}
+    ${string}   Read    delay=5s
+    ${json_format}    Get Regexp Matches    ${string}    {.*
+    Log    ${json_format} 
+    Set Test Actual Result    SCF Log Detail: ${json_format} 
+
+Keyword Suite Setup For Logout Pushnotify
+    Keyword Suite Setup
+    SSH Connect To Server Get Log Logout Pushnotify
+    Get ADMD SRFC Path
+    Get ADMD SCF Path
+
+Keyword Test Teardown For Logout Pushnotify
+    Close Browser    ALL
+    Run Keyword If Test Passed      Get Admd Log From Server By X Session Id
+    Run Keyword If Test Passed      Get ADMD SRFP App log
+    Run Keyword If Test Passed      Get ADMD SRFC Log Detail
+    Run Keyword If Test Passed      Get ADMD SCF Log Detail

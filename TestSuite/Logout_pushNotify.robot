@@ -1,7 +1,7 @@
 *** Settings ***
 Resource          ./Resource_init.robot
-Suite Setup       Keyword Suite Setup
-Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Setup       Keyword Suite Setup For Logout Pushnotify
+Test Teardown     Run Keyword And Ignore Error    Keyword Test Teardown For Logout Pushnotify
 Suite Teardown    Run Keyword And Ignore Error    Keyword Suite Teardown
    
 
