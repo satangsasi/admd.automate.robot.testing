@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    ./Resource_init.robot
-# Suite Setup      Keyword Suite Setup
-# Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
+Suite Setup      Keyword Suite Setup
+Test Teardown    Run Keyword And Ignore Error    Keyword Test Teardown
 
 
 *** Test Cases ***
@@ -21,7 +21,7 @@ TST_F7_1_1_001 ClientCredentials with client id on backend
     Verify Response Client Credentials    ${expected_expires_in_client_credentials_backend}
     Decode Token To Jwt Client Credentials
     Verify Response Jwt Decode
-    
+  
 TST_F7_1_1_002 ClientCredentials with client id on browser
     [Documentation]     Owner : sasipen
     ...
