@@ -228,9 +228,9 @@ Get ADMD SRFP App log
     Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID}  
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    SRFP AppLog: ${json_format} 
+    ${srfp_app_log}    Get Regexp Matches    ${string}    {.*
+    Log    ${srfp_app_log} 
+    Create File Log    ${srfp_app_log}    SRFP_APP_LOG
 
 Get ADMD SRFC Path
     Switch Connection    ${SSH_ADMD_SRFC}
@@ -248,9 +248,9 @@ Get ADMD SRFC Log Detail
     Write    cat ${ADMD_SRFC_PATH} | grep ${X_SESSION_ID}
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    SRFC Log Detail: ${json_format} 
+    ${srfc_log_detail}    Get Regexp Matches    ${string}    {.*
+    Log    ${srfc_log_detail} 
+    Create File Log    ${srfc_log_detail}    SRFC_DETAIL  
 
 Get ADMD SCF Path
     Switch Connection    ${SSH_ADMD_SCF}
@@ -268,9 +268,9 @@ Get ADMD SCF Log Detail
     Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID}
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    SCF Log Detail: ${json_format} 
+    ${scf_log_detail}    Get Regexp Matches    ${string}    {.*
+    Log    ${scf_log_detail} 
+    Create File Log    ${scf_log_detail}    SCF_DETAIL
 
 Keyword Suite Setup For Logout Pushnotify
     Keyword Suite Setup

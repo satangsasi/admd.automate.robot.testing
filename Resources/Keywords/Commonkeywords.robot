@@ -220,13 +220,33 @@ Get Value X Session Id
     Set Test Variable    ${X_SESSION_ID}    ${value_x_session_id}    
 
 Get Admd Log From Server By X Session Id
+    [Documentation]    Owner: sasipen  
+    [Tags]    keyword_communicate
     Get Admd Log From Server
     Get Value X Session Id
     Write    cat ${ADMD_PATH} | grep ${X_SESSION_ID}
     ${string}   Read    delay=5s
-    ${json_format}    Get Regexp Matches    ${string}    {.*
-    Log    ${json_format} 
-    Set Test Actual Result    ADMD V3.2 Log: ${json_format} 
+    ${admd_v3_2_log}    Get Regexp Matches    ${string}    {.*
+    Log    ${admd_v3_2_log} 
+    Create File Log    ${admd_v3_2_log}    ADMD_V3_2 
+    
+Create File Log
+    [Documentation]    Owner: sasipen 
+    [Arguments]    ${file_log}    ${name_folder_log}     
+    ${file_log}    Convert To String    ${file_log}
+    ${file_log_name}    ${feature_folder_name}    Get Name And Feature Test Case
+    Create File    ../TestSuite/LogFile/${name_folder_log}/${feature_folder_name}/${file_log_name}.txt   ${file_log}
+
+Get Name And Feature Test Case
+    [Documentation]    Owner: sasipen 
+    ...    get id test case and name feature for create name file get log   
+    [Tags]    keyword_commands
+    @{split_code_testcase}      Split String    ${TEST_NAME}        ${SPACE}
+    ${code_testcase}            Set Variable    ${split_code_testcase}[0]
+    @{spilt_suite_name}         Split String    ${SUITE_NAME}       .
+    ${feature_name}             Set Variable    ${spilt_suite_name}[-1]
+    ${file_log_name}      Set Variable    ${code_testcase}-${feature_name}
+    [Return]    ${file_log_name}    ${feature_name}    
 
 Get AAF5G Log
     [Documentation]    Owner: Nakarin
@@ -288,9 +308,9 @@ Get AAF5G Log Command
     [Arguments]    ${session}         ${log_path}
     Write        cat ${log_path} | grep ${session}
     ${string}    Read    delay=5s
-    ${string}    Get Regexp Matches    ${string}    {.*
-    Log    ${string}
-    Set Test Actual Result    AAF5G logs: ${string}
+    ${aaf5g_log}    Get Regexp Matches    ${string}    {.*
+    Log    ${aaf5g_log} 
+    Create File Log    ${aaf5g_log}    AAF5G 
 
 #Get Value
 Get Time Nonce
@@ -315,7 +335,6 @@ Get Code From Authentication
     ...    - Add Set Test Variable (Provisioning Data)
     ...    - Add Set Test Provisioning Data
     [Tags]    keyword_action
-    # Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Verify Locator Is Visible    ${llb_login_web_ais}
     ${url_auth_access}    Wait Until Keyword Succeeds    ${verify_timeout}      10ms    Get Url    contains    https://www.ais.th/?code=
     ${code}    Split String         ${url_auth_access}    =
     ${code}    Set Variable         ${code}[1]
