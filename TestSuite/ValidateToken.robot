@@ -43,6 +43,13 @@ TST_F6_1_1_004 verify validate success with profile have gupimpi more than one o
     ...    - config gupcommon is multi-sequence
     ...    ** ใช้โปรไฟล์ที่ Dup มาจาก Prod by SI and TS**"
     [Tags]    Success    On-Hold
+    SSH Connect To Server Validate Token Profile Have Gupimpi
+    Get Code Form Link Authorization By SSH Connect
+    Create URL For Get Token By SSH Connect
+    Get Token Form Code By SSH Connect 
+    Set API Header Validate Token Profile Have Gupimpi
+    Set API Body Validate Token Profile Have Gupimpi
+    Send Post Request Validate Token Profile Have Gupimpi
 
 TST_F6_0_1_001 Verify validate fail with no access token received from loging by msisdn which is no profile
     [Documentation]    Owner: Sasipen

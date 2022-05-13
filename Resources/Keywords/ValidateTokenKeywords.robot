@@ -315,3 +315,58 @@ Verify Response Validate Token Missing Access Token
     [Tags]    keyword_communicate
     Verify Value Response By Key    $..result_code            ${expected_result_code_40000}
     Verify Value Response By Key    $..developer_message      ${error_message_missing_invalid_parameter}
+
+SSH Connect To Server Validate Token Profile Have Gupimpi
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_action
+    ${validate_token_connection}       Open Connection    ${ssh_validate_token_ip_address}     prompt=$    timeout=${default_timeout}
+    ${login_log}    Login    ${ssh_validate_token_user}    ${ssh_validate_token_pass}           
+    Log    ${login_log} 
+    Set Test Variable    ${SSH_VALIDATE_TOKEN}     ${validate_token_connection}
+
+Get Code Form Link Authorization By SSH Connect
+    [Documentation]    Owner: sasipen
+    Switch Connection    ${SSH_VALIDATE_TOKEN}
+    Read     delay=2s  
+    Write    curl -kv -X GET 'https://iot-apivr.ais.co.th/authtest/v3.2/oauth/authorize?response_type=code&client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&redirect_uri=https%3A%2F%2Fwww.ais.co.th%2F&scope=profile&state=LIB140000001' -H "x-msisdn":"66819633124"
+    ${output}    Read    delay=1s
+    Log    ${output}
+    #อาจจะต้องตัดคำให้ได้โค้ด ${CODE} มาแล้วเอามาใช้ในคีย์เวิร์ด Get Token Form Code By SSH Connect
+   
+Create URL For Get Token By SSH Connect
+    [Documentation]    Owner: sasipen
+    ...        ${url_get_token_Gupimpi}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.ais.co.th%2F&code=_code_
+    ${url_get_token_Gupimpi}     Replace String      ${url_get_token_Gupimpi}    _code_    ${CODE}
+    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token_Gupimpi}
+
+Get Token Form Code By SSH Connect  
+    [Documentation]    Owner: sasipen
+    Write    reset
+    Write    curl -kv -X GET '${URL_GET_TOKEN}'
+    ${output}    Read    delay=1s
+    Log    ${output}
+    #ได้ response กลับมา เอาค่า value ของ access token 
+
+Set API Header Validate Token Profile Have Gupimpi
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Set Content API Header    key=${header_content_type}    value=${content_type_json}    append=False
+    Set Content API Header    key=${header_x_tid}           value=validate004
+
+Set API Body Validate Token Profile Have Gupimpi
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    Get Time Nonce
+    Set Schema API Body     ${body_validate_token_schema}   
+    Set Content API Body    $..client_id      skZHmM4IPAFMCbco8D4MAO0HNSI7VuX/aVThDpTFLbI=
+    Set Content API Body    $..token.value    #value ของ access token 
+    Set Content API Body    $..nonce          ${DATE_TIME}
+
+Send Post Request Validate Token Profile Have Gupimpi
+    [Documentation]    Owner: sasipen
+    [Tags]    keyword_communicate
+    [Arguments]        ${status_code}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
+    Set Test Provisioning Data    Request Validate Missing Access Token : ${message}[request]
+    Set Test Actual Result        Request Validate Missing Access Token : ${message}[response]
+
