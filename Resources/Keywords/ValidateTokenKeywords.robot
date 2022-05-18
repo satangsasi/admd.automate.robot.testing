@@ -336,8 +336,8 @@ Get Code Form Link Authorization By SSH Connect
 Create URL For Get Token By SSH Connect
     [Documentation]    Owner: sasipen
     ...        ${url_get_token_Gupimpi}    https://iot-apivr.ais.co.th/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.ais.co.th%2F&code=_code_
-    ${url_get_token_Gupimpi}     Replace String      ${url_get_token_Gupimpi}    _code_    ${CODE}
-    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token_Gupimpi}
+    ${url_get_token_have_gupimpi}     Replace String      ${url_get_token_gupimpi}    _code_    ${CODE}
+    Set Test Variable    ${URL_GET_TOKEN}    ${url_get_token_have_gupimpi}
 
 Get Token Form Code By SSH Connect  
     [Documentation]    Owner: sasipen

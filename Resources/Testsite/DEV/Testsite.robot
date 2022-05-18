@@ -18,6 +18,7 @@ ${url_validate_token}                        http://10.137.30.22:31191/v3.2/toke
 ${url_request_otp_validate_token}            http://10.137.30.22:31191/v3.2/otp/request?tid=ADMD1234
 ${url_get_token_validate_token}              http://10.137.30.22:31191/v3.2/oauth/token
 ${url_delete_sub_scriber}                    http://10.138.36.227:9600/v1/method/deleteSubscriber.json
+${url_get_token_gupimpi}                     ${url_iot_apivr}/authtest/v3.2/oauth/token?client_id=OhFw3uAQgMdMCbco8D4MAO0HNSI7VuX%2Fw5SmiwOO7UU%3D&client_secret=adfea93d79e56e5219eccd63cc884ae3&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.ais.co.th%2F&code=_code_
 
 # ChangePassword
 ${url_login_change_password}                   ${url_iot_apivr}/authtest/v3.2/oauth/authorize?response_type=code&client_id=FCoRIgzYc6qyWBdO8kC8roohCF7NMYMfwcTays%2BmTxG9%2FxpwVZQ%2BEg%3D%3D&scope=profile&redirect_uri=https://www.ais.co.th/&lang=eng
