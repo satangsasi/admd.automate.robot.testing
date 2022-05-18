@@ -365,8 +365,7 @@ Set API Body Validate Token Profile Have Gupimpi
 Send Post Request Validate Token Profile Have Gupimpi
     [Documentation]    Owner: sasipen
     [Tags]    keyword_communicate
-    [Arguments]        ${status_code}
-    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    expected_status=${status_code}    verify=${ssl_verify}
+    &{message}    Send Request    POST    ${url_validate_token}     headers=${API_HEADER}    body=${API_BODY}    verify=${ssl_verify}
     Set Test Provisioning Data    Request Validate Missing Access Token : ${message}[request]
     Set Test Actual Result        Request Validate Missing Access Token : ${message}[response]
 
