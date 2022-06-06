@@ -23,8 +23,8 @@ Get Json OTP Password Forgot PW
     ...    Edit : add keyword Switch Connection ${SSH_ADMD_DEV}
     [Tags]    keyword_command
     ${number}    Replace String    ${forgot_pw_mobile_number}    0    66    count=1
-    Switch Connection    ${SSH_ADMD_DEV}
-    Write    cat ${ADMD_PATH} | grep -E "${number}.*oneTimePassword"
+    ${admd_dev_path}    Change Directory Path To Get ADMD DEV Log
+    Write    cat ${admd_dev_path} | grep -E "${number}.*oneTimePassword"
     ${string}   Read    delay=1s
     Log    ${string}
     ${json_log}  Get Regexp Matches        ${string}    {.*
