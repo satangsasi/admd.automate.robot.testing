@@ -221,10 +221,10 @@ SSH Connect To Server Get Log Logout Pushnotify
     Set Suite Variable    ${SSH_ADMD_SCF}     ${admd_scf_connection}
 
 Get ADMD SRFP App log
+    [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD_SRFP}
     Write    reset
     Read     delay=5s
-    # Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}  
     Write    cat ${ADMD_SRFP_PATH} | grep ${X_SESSION_ID}  
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
@@ -233,18 +233,21 @@ Get ADMD SRFP App log
     Create File Log    ${srfp_app_log}    SRFP_APP_LOG
 
 Get ADMD SRFC Path
+    [Documentation]    Owner: sasipen  
+    ...    Hold line 239 :  เนื่องจาก มี path admd_srfc 2 ตัว แล้วตัวที่ใช้ได้คือ ตัวที่ 2 
     Switch Connection    ${SSH_ADMD_SRFC}
-    ${admd_srfc_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-srfc     
+    # ${admd_srfc_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-srfc     
+    ${admd_srfc_path}    Set Variable    admd-srfc-c55787dc6-nclvq
     Write    reset
     Read     delay=2s  
     ${admd_srfc_path_log}    Wait Until Keyword Succeeds    5x    2s    Get Admd Path    ${admd_srfc_path}    logs/detail    _SRFC.0.detail    
     Set Suite Variable    ${ADMD_SRFC_PATH}    ${admd_srfc_path_log}
 
 Get ADMD SRFC Log Detail
+    [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD_SRFC}
     Write    reset
     Read     delay=5s
-    # Write    cat ${admd_srfp_path_log} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}
     Write    cat ${ADMD_SRFC_PATH} | grep ${X_SESSION_ID}
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
@@ -253,6 +256,7 @@ Get ADMD SRFC Log Detail
     Create File Log    ${srfc_log_detail}    SRFC_DETAIL  
 
 Get ADMD SCF Path
+    [Documentation]    Owner: sasipen
     Switch Connection    ${SSH_ADMD_SCF}
     ${admd_scf_path}    Wait Until Keyword Succeeds    5x    2s    Get Kubectl Path ADMD    admd-scf-776c894cb9
     Write    reset
@@ -264,7 +268,6 @@ Get ADMD SCF Log Detail
     Switch Connection    ${SSH_ADMD_SCF} 
     Write    reset
     Read     delay=5s
-    # Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID_LOGOUT_PUSHNOTIFY}
     Write    cat ${admd_scf_path_log} | grep ${X_SESSION_ID}
     ${X_SESSION_ID}
     ${string}   Read    delay=5s
