@@ -179,11 +179,10 @@ Fill New Password
 
 Verify Send Link Confirm New Password Succeeds
     [Documentation]    Owner: sasipen
-    TRY
-        Verify Locator Is Visible     ${img_send_succeeds}   
-    EXCEPT  
-        Type Text In Text Box      ${txt_username_forgot_pw}    ${email_for_forgot_pw}
-        Click Button Submit        ${btn_submit_request_otp}
+    ${status}    Run Keyword And Return Status    Verify Locator Is Visible     ${img_send_succeeds}   
+    IF    ${status} == False
+        Type Text In Text Box      ${txt_new_password}            ${email_for_forgot_pw}
+        Click Button Submit        ${btn_submit_request_otp} 
     END
     Verify Value At Locator       ${lbl_succeeds}                      ${succeeds_send_email_reset_pw} 
     Verify Value At Locator       ${lbl_succeeds_check_your_email}     ${succeeds_check_email_reset_pw} 
